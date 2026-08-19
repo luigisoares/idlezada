@@ -108,7 +108,7 @@ function card(b){
       <div class="boss-stats">
         <div class="bs"><span>HP real</span><b>${nf(b.hpReal)}</b></div>
         <div class="bs"><span>Level</span><b>${b.minLevel ?? '—'}</b></div>
-        <div class="bs"><span>XP base</span><b>${nf(b.exp)}</b></div>
+        <div class="bs"><span>XP</span><b>${nf(b.expReal ?? b.exp)}</b></div>
       </div>
       ${editingId === b.id ? editorHtml(b) : elsHtml(b)}
     </div>

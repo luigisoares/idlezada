@@ -1,0 +1,3167 @@
+[
+  {
+    "id": "troll-cave",
+    "name": "Troll Cave",
+    "minLevel": 1,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "troll",
+        "name": "Troll",
+        "hp": 100,
+        "exp": 20
+      },
+      {
+        "key": "swamp_troll",
+        "name": "Swamp Troll",
+        "hp": 110,
+        "exp": 25
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Swamp Troll",
+      "hp": 110,
+      "exp": 25
+    },
+    "avgExp": 23,
+    "avgHp": 106,
+    "xpPerClear": 1233,
+    "hpPerClear": 5790,
+    "goldPerClear": 151,
+    "xpMin": 1103,
+    "xpMax": 1363
+  },
+  {
+    "id": "elf-lair",
+    "name": "Elf",
+    "minLevel": 8,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "elf",
+        "name": "Elf",
+        "hp": 200,
+        "exp": 42
+      },
+      {
+        "key": "elf_scout",
+        "name": "Elf Scout",
+        "hp": 320,
+        "exp": 75
+      },
+      {
+        "key": "elf_arcanist",
+        "name": "Elf Arcanist",
+        "hp": 440,
+        "exp": 175
+      }
+    ],
+    "boss": {
+      "key": "elf_scout",
+      "name": "Elf Scout",
+      "hp": 320,
+      "exp": 75
+    },
+    "avgExp": 97,
+    "avgHp": 320,
+    "xpPerClear": 5249,
+    "hpPerClear": 17600,
+    "goldPerClear": 451,
+    "xpMin": 2372,
+    "xpMax": 9288
+  },
+  {
+    "id": "amazon-camp",
+    "name": "Amazon",
+    "minLevel": 9,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "amazon",
+        "name": "Amazon",
+        "hp": 220,
+        "exp": 60
+      },
+      {
+        "key": "valkyrie",
+        "name": "Valkyrie",
+        "hp": 380,
+        "exp": 85
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Valkyrie",
+      "hp": 380,
+      "exp": 85
+    },
+    "avgExp": 73,
+    "avgHp": 300,
+    "xpPerClear": 3983,
+    "hpPerClear": 16740,
+    "goldPerClear": 165,
+    "xpMin": 3333,
+    "xpMax": 4633
+  },
+  {
+    "id": "minotaur",
+    "name": "Minotaur",
+    "minLevel": 10,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "minotaur_archer",
+        "name": "Minotaur Archer",
+        "hp": 200,
+        "exp": 65
+      },
+      {
+        "key": "minotaur",
+        "name": "Minotaur",
+        "hp": 200,
+        "exp": 50
+      },
+      {
+        "key": "minotaur_guard",
+        "name": "Minotaur Guard",
+        "hp": 370,
+        "exp": 160
+      },
+      {
+        "key": "minotaur_mage",
+        "name": "Minotaur Mage",
+        "hp": 310,
+        "exp": 150
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Minotaur Guard",
+      "hp": 370,
+      "exp": 160
+    },
+    "avgExp": 106,
+    "avgHp": 270,
+    "xpPerClear": 5925,
+    "hpPerClear": 15150,
+    "goldPerClear": 554,
+    "xpMin": 3000,
+    "xpMax": 8720
+  },
+  {
+    "id": "kongra",
+    "name": "Kongra",
+    "minLevel": 10,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "kongra",
+        "name": "Kongra",
+        "hp": 680,
+        "exp": 115
+      },
+      {
+        "key": "merlkin",
+        "name": "Merlkin",
+        "hp": 470,
+        "exp": 145
+      },
+      {
+        "key": "sibang",
+        "name": "Sibang",
+        "hp": 450,
+        "exp": 105
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Merlkin",
+      "hp": 470,
+      "exp": 145
+    },
+    "avgExp": 122,
+    "avgHp": 534,
+    "xpPerClear": 6689,
+    "hpPerClear": 29144,
+    "goldPerClear": 713,
+    "xpMin": 5823,
+    "xpMax": 7903
+  },
+  {
+    "id": "cyclopolis",
+    "name": "Cyclopolis",
+    "minLevel": 15,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "cyclops",
+        "name": "Cyclops",
+        "hp": 520,
+        "exp": 150
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Cyclops",
+      "hp": 520,
+      "exp": 150
+    },
+    "avgExp": 150,
+    "avgHp": 520,
+    "xpPerClear": 8175,
+    "hpPerClear": 28600,
+    "goldPerClear": 1043,
+    "xpMin": 8175,
+    "xpMax": 8175
+  },
+  {
+    "id": "corym-cave",
+    "name": "Corym Skirmisher",
+    "minLevel": 30,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "corym_vanguard",
+        "name": "Corym Vanguard",
+        "hp": 1400,
+        "exp": 490
+      },
+      {
+        "key": "corym_charlatan",
+        "name": "Corym Charlatan",
+        "hp": 500,
+        "exp": 150
+      },
+      {
+        "key": "corym_skirmisher",
+        "name": "Corym Skirmisher",
+        "hp": 900,
+        "exp": 260
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Corym Vanguard",
+      "hp": 1400,
+      "exp": 490
+    },
+    "avgExp": 300,
+    "avgHp": 934,
+    "xpPerClear": 16825,
+    "hpPerClear": 52734,
+    "goldPerClear": 1465,
+    "xpMin": 9025,
+    "xpMax": 26705
+  },
+  {
+    "id": "refiner-cave",
+    "name": "Stone Refiner",
+    "minLevel": 30,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "stonerefiner",
+        "name": "Stonerefiner",
+        "hp": 1600,
+        "exp": 500
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Stonerefiner",
+      "hp": 1600,
+      "exp": 500
+    },
+    "avgExp": 500,
+    "avgHp": 1600,
+    "xpPerClear": 27250,
+    "hpPerClear": 88000,
+    "goldPerClear": 6748,
+    "xpMin": 27250,
+    "xpMax": 27250
+  },
+  {
+    "id": "giant-spider",
+    "name": "Giant Spider",
+    "minLevel": 50,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "giant_spider",
+        "name": "Giant Spider",
+        "hp": 2600,
+        "exp": 900
+      },
+      {
+        "key": "tarantula",
+        "name": "Tarantula",
+        "hp": 450,
+        "exp": 120
+      },
+      {
+        "key": "spider",
+        "name": "Spider",
+        "hp": 40,
+        "exp": 12
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Giant Spider",
+      "hp": 2600,
+      "exp": 900
+    },
+    "avgExp": 533,
+    "avgHp": 1572,
+    "xpPerClear": 29956,
+    "hpPerClear": 89492,
+    "goldPerClear": 3168,
+    "xpMin": 2874,
+    "xpMax": 49050
+  },
+  {
+    "id": "crawler-cave",
+    "name": "Crawler",
+    "minLevel": 50,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "insectoid_worker",
+        "name": "Insectoid Worker",
+        "hp": 1900,
+        "exp": 650
+      },
+      {
+        "key": "crawler",
+        "name": "Crawler",
+        "hp": 2900,
+        "exp": 1000
+      },
+      {
+        "key": "swarmer",
+        "name": "Swarmer",
+        "hp": 920,
+        "exp": 350
+      }
+    ],
+    "boss": {
+      "key": "crawler",
+      "name": "Crawler",
+      "hp": 2900,
+      "exp": 1000
+    },
+    "avgExp": 667,
+    "avgHp": 1906,
+    "xpPerClear": 37167,
+    "hpPerClear": 107846,
+    "goldPerClear": 2327,
+    "xpMin": 20700,
+    "xpMax": 54500
+  },
+  {
+    "id": "hero-cave",
+    "name": "Hero",
+    "minLevel": 60,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "hero",
+        "name": "Hero",
+        "hp": 2800,
+        "exp": 1200
+      },
+      {
+        "key": "renegade_knight",
+        "name": "Renegade Knight",
+        "hp": 2900,
+        "exp": 1200
+      },
+      {
+        "key": "vicious_squire",
+        "name": "Vicious Squire",
+        "hp": 2000,
+        "exp": 900
+      }
+    ],
+    "boss": {
+      "key": "hero",
+      "name": "Hero",
+      "hp": 2800,
+      "exp": 1200
+    },
+    "avgExp": 1100,
+    "avgHp": 2566,
+    "xpPerClear": 60200,
+    "hpPerClear": 141866,
+    "goldPerClear": 956,
+    "xpMin": 49800,
+    "xpMax": 65400
+  },
+  {
+    "id": "glooth-cave",
+    "name": "Glooth Bandit",
+    "minLevel": 60,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "glooth_brigand",
+        "name": "Glooth Brigand",
+        "hp": 4800,
+        "exp": 1900
+      },
+      {
+        "key": "glooth_bandit",
+        "name": "Glooth Bandit",
+        "hp": 5200,
+        "exp": 2000
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Glooth Bandit",
+      "hp": 5200,
+      "exp": 2000
+    },
+    "avgExp": 1950,
+    "avgHp": 5000,
+    "xpPerClear": 106400,
+    "hpPerClear": 275600,
+    "goldPerClear": 13277,
+    "xpMin": 103800,
+    "xpMax": 109000
+  },
+  {
+    "id": "cult-cave",
+    "name": "Cult",
+    "minLevel": 80,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "cult_believer",
+        "name": "Cult Believer",
+        "hp": 1950,
+        "exp": 850
+      },
+      {
+        "key": "cult_enforcer",
+        "name": "Cult Enforcer",
+        "hp": 2300,
+        "exp": 1000
+      },
+      {
+        "key": "vile_grandmaster",
+        "name": "Vile Grandmaster",
+        "hp": 3400,
+        "exp": 1500
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Vile Grandmaster",
+      "hp": 3400,
+      "exp": 1500
+    },
+    "avgExp": 1117,
+    "avgHp": 2550,
+    "xpPerClear": 61817,
+    "hpPerClear": 142800,
+    "goldPerClear": 2693,
+    "xpMin": 47950,
+    "xpMax": 81750
+  },
+  {
+    "id": "dragon-lair",
+    "name": "Dragon Lair",
+    "minLevel": 80,
+    "packBase": 3,
+    "monsters": [
+      {
+        "key": "dragon",
+        "name": "Dragon",
+        "hp": 2000,
+        "exp": 700
+      },
+      {
+        "key": "dragon_lord",
+        "name": "Dragon Lord",
+        "hp": 3800,
+        "exp": 2100
+      }
+    ],
+    "boss": {
+      "key": "dragon",
+      "name": "Dragon",
+      "hp": 2000,
+      "exp": 700
+    },
+    "avgExp": 1400,
+    "avgHp": 2900,
+    "xpPerClear": 61950,
+    "hpPerClear": 130700,
+    "goldPerClear": 3480,
+    "xpMin": 31850,
+    "xpMax": 92050
+  },
+  {
+    "id": "werebadge-cave",
+    "name": "Werebadge",
+    "minLevel": 90,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "werewolf",
+        "name": "Werewolf",
+        "hp": 3910,
+        "exp": 1900
+      },
+      {
+        "key": "werefox",
+        "name": "Werefox",
+        "hp": 3000,
+        "exp": 1600
+      },
+      {
+        "key": "wereboar",
+        "name": "Wereboar",
+        "hp": 4400,
+        "exp": 2000
+      },
+      {
+        "key": "werebear",
+        "name": "Werebear",
+        "hp": 4800,
+        "exp": 2100
+      },
+      {
+        "key": "werebadger",
+        "name": "Werebadger",
+        "hp": 3400,
+        "exp": 1600
+      }
+    ],
+    "boss": {
+      "key": "wereboar",
+      "name": "Wereboar",
+      "hp": 4400,
+      "exp": 2000
+    },
+    "avgExp": 1840,
+    "avgHp": 3902,
+    "xpPerClear": 100680,
+    "hpPerClear": 216104,
+    "goldPerClear": 7839,
+    "xpMin": 88200,
+    "xpMax": 114200
+  },
+  {
+    "id": "orclops-cave",
+    "name": "Orclops",
+    "minLevel": 100,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "orclops_doomhauler",
+        "name": "Orclops Doomhauler",
+        "hp": 3400,
+        "exp": 1450
+      },
+      {
+        "key": "orclops_ravager",
+        "name": "Orclops Ravager",
+        "hp": 2400,
+        "exp": 1100
+      }
+    ],
+    "boss": {
+      "key": "orclops_doomhauler",
+      "name": "Orclops Doomhauler",
+      "hp": 3400,
+      "exp": 1450
+    },
+    "avgExp": 1275,
+    "avgHp": 2900,
+    "xpPerClear": 69925,
+    "hpPerClear": 161000,
+    "goldPerClear": 3363,
+    "xpMin": 60825,
+    "xpMax": 79025
+  },
+  {
+    "id": "hydra-cave",
+    "name": "Hydra",
+    "minLevel": 100,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "bog_raider",
+        "name": "Bog Raider",
+        "hp": 2600,
+        "exp": 800
+      },
+      {
+        "key": "hydra",
+        "name": "Hydra",
+        "hp": 4700,
+        "exp": 2100
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Hydra",
+      "hp": 4700,
+      "exp": 2100
+    },
+    "avgExp": 1450,
+    "avgHp": 3650,
+    "xpPerClear": 80650,
+    "hpPerClear": 203900,
+    "goldPerClear": 6494,
+    "xpMin": 46850,
+    "xpMax": 114450
+  },
+  {
+    "id": "behemoth-cave",
+    "name": "Behemoth",
+    "minLevel": 100,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "glooth_anemone",
+        "name": "Glooth Anemone",
+        "hp": 4800,
+        "exp": 1755
+      },
+      {
+        "key": "behemoth",
+        "name": "Behemoth",
+        "hp": 8000,
+        "exp": 2500
+      },
+      {
+        "key": "drillworm",
+        "name": "Drillworm",
+        "hp": 3000,
+        "exp": 1200
+      },
+      {
+        "key": "devourer",
+        "name": "Devourer",
+        "hp": 3800,
+        "exp": 1755
+      }
+    ],
+    "boss": {
+      "key": "behemoth",
+      "name": "Behemoth",
+      "hp": 8000,
+      "exp": 2500
+    },
+    "avgExp": 1803,
+    "avgHp": 4900,
+    "xpPerClear": 99980,
+    "hpPerClear": 278800,
+    "goldPerClear": 8271,
+    "xpMin": 68650,
+    "xpMax": 136250
+  },
+  {
+    "id": "wyrm-cave",
+    "name": "Wyrm",
+    "minLevel": 130,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "elder_wyrm",
+        "name": "Elder Wyrm",
+        "hp": 5400,
+        "exp": 2500
+      },
+      {
+        "key": "wyrm",
+        "name": "Wyrm",
+        "hp": 3650,
+        "exp": 1550
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Elder Wyrm",
+      "hp": 5400,
+      "exp": 2500
+    },
+    "avgExp": 2025,
+    "avgHp": 4526,
+    "xpPerClear": 111550,
+    "hpPerClear": 251500,
+    "goldPerClear": 7417,
+    "xpMin": 86850,
+    "xpMax": 136250
+  },
+  {
+    "id": "crumbling-cave",
+    "name": "Crumbling Caverns",
+    "minLevel": 130,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "lion_hydra",
+        "name": "Lion Hydra",
+        "hp": 5520,
+        "exp": 2450
+      },
+      {
+        "key": "shell_drake",
+        "name": "Shell Drake",
+        "hp": 5600,
+        "exp": 2370
+      },
+      {
+        "key": "hawk_hopper",
+        "name": "Hawk Hopper",
+        "hp": 4360,
+        "exp": 1770
+      },
+      {
+        "key": "headwalker",
+        "name": "Headwalker",
+        "hp": 4920,
+        "exp": 2050
+      }
+    ],
+    "boss": {
+      "key": "headwalker",
+      "name": "Headwalker",
+      "hp": 4920,
+      "exp": 2050
+    },
+    "avgExp": 2160,
+    "avgHp": 5100,
+    "xpPerClear": 117445,
+    "hpPerClear": 279960,
+    "goldPerClear": 17175,
+    "xpMin": 97165,
+    "xpMax": 132525
+  },
+  {
+    "id": "grimreaper-cave",
+    "name": "Grim Reaper",
+    "minLevel": 130,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "banshee",
+        "name": "Banshee",
+        "hp": 2000,
+        "exp": 900
+      },
+      {
+        "key": "grim_reaper",
+        "name": "Grim Reaper",
+        "hp": 7800,
+        "exp": 5500
+      },
+      {
+        "key": "spectre",
+        "name": "Spectre",
+        "hp": 2700,
+        "exp": 2100
+      }
+    ],
+    "boss": {
+      "key": "grim_reaper",
+      "name": "Grim Reaper",
+      "hp": 7800,
+      "exp": 5500
+    },
+    "avgExp": 2833,
+    "avgHp": 4166,
+    "xpPerClear": 161083,
+    "hpPerClear": 240066,
+    "goldPerClear": 3970,
+    "xpMin": 60550,
+    "xpMax": 299750
+  },
+  {
+    "id": "werehyaena-cave",
+    "name": "Werehyaena",
+    "minLevel": 140,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "werehyaena",
+        "name": "Werehyaena",
+        "hp": 5400,
+        "exp": 2200
+      },
+      {
+        "key": "werehyaena_shaman",
+        "name": "Werehyaena Shaman",
+        "hp": 5000,
+        "exp": 2200
+      }
+    ],
+    "boss": {
+      "key": "werehyaena",
+      "name": "Werehyaena",
+      "hp": 5400,
+      "exp": 2200
+    },
+    "avgExp": 2200,
+    "avgHp": 5200,
+    "xpPerClear": 119900,
+    "hpPerClear": 286600,
+    "goldPerClear": 8000,
+    "xpMin": 119900,
+    "xpMax": 119900
+  },
+  {
+    "id": "candia-cave",
+    "name": "Candia",
+    "minLevel": 140,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "goggle_cake",
+        "name": "Goggle Cake",
+        "hp": 5400,
+        "exp": 2700
+      },
+      {
+        "key": "candy_floss_elemental",
+        "name": "Candy Floss Elemental",
+        "hp": 7400,
+        "exp": 3850
+      },
+      {
+        "key": "angry_sugar_fairy",
+        "name": "Angry Sugar Fairy",
+        "hp": 6000,
+        "exp": 3100
+      },
+      {
+        "key": "honey_elemental",
+        "name": "Honey Elemental",
+        "hp": 5120,
+        "exp": 2400
+      },
+      {
+        "key": "nibblemaw",
+        "name": "Nibblemaw",
+        "hp": 5800,
+        "exp": 2700
+      },
+      {
+        "key": "candy_horror",
+        "name": "Candy Horror",
+        "hp": 6200,
+        "exp": 3000
+      }
+    ],
+    "boss": {
+      "key": "nibblemaw",
+      "name": "Nibblemaw",
+      "hp": 5800,
+      "exp": 2700
+    },
+    "avgExp": 2958,
+    "avgHp": 5986,
+    "xpPerClear": 160583,
+    "hpPerClear": 328706,
+    "goldPerClear": 22907,
+    "xpMin": 131550,
+    "xpMax": 206950
+  },
+  {
+    "id": "asura-lair",
+    "name": "Asuras",
+    "minLevel": 150,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "hellspawn",
+        "name": "Hellspawn",
+        "hp": 7000,
+        "exp": 2550
+      },
+      {
+        "key": "dawnfire_asura",
+        "name": "Dawnfire Asura",
+        "hp": 5800,
+        "exp": 4100
+      },
+      {
+        "key": "midnight_asura",
+        "name": "Midnight Asura",
+        "hp": 6200,
+        "exp": 4100
+      }
+    ],
+    "boss": {
+      "key": "dawnfire_asura",
+      "name": "Dawnfire Asura",
+      "hp": 5800,
+      "exp": 4100
+    },
+    "avgExp": 3583,
+    "avgHp": 6334,
+    "xpPerClear": 196583,
+    "hpPerClear": 346734,
+    "goldPerClear": 15769,
+    "xpMin": 142850,
+    "xpMax": 223450
+  },
+  {
+    "id": "darktorturer-cave",
+    "name": "Dark Torturer",
+    "minLevel": 150,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "dark_torturer",
+        "name": "Dark Torturer",
+        "hp": 14700,
+        "exp": 4650
+      },
+      {
+        "key": "lost_soul",
+        "name": "Lost Soul",
+        "hp": 11600,
+        "exp": 4000
+      },
+      {
+        "key": "betrayed_wraith",
+        "name": "Betrayed Wraith",
+        "hp": 8400,
+        "exp": 3500
+      }
+    ],
+    "boss": {
+      "key": "dark_torturer",
+      "name": "Dark Torturer",
+      "hp": 14700,
+      "exp": 4650
+    },
+    "avgExp": 4050,
+    "avgHp": 11566,
+    "xpPerClear": 222225,
+    "hpPerClear": 645566,
+    "goldPerClear": 23567,
+    "xpMin": 193625,
+    "xpMax": 253425
+  },
+  {
+    "id": "wereliones-cave",
+    "name": "Wereliones",
+    "minLevel": 170,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "werelion",
+        "name": "Werelion",
+        "hp": 5600,
+        "exp": 2200
+      },
+      {
+        "key": "werelioness",
+        "name": "Werelioness",
+        "hp": 6000,
+        "exp": 2300
+      },
+      {
+        "key": "white_lion",
+        "name": "White Lion",
+        "hp": 5400,
+        "exp": 2300
+      }
+    ],
+    "boss": {
+      "key": "werelioness",
+      "name": "Werelioness",
+      "hp": 6000,
+      "exp": 2300
+    },
+    "avgExp": 2267,
+    "avgHp": 5666,
+    "xpPerClear": 123617,
+    "hpPerClear": 312666,
+    "goldPerClear": 16459,
+    "xpMin": 120150,
+    "xpMax": 125350
+  },
+  {
+    "id": "draken-lair",
+    "name": "Draken",
+    "minLevel": 180,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "draken_spellweaver",
+        "name": "Draken Spellweaver",
+        "hp": 10000,
+        "exp": 3100
+      },
+      {
+        "key": "draken_warmaster",
+        "name": "Draken Warmaster",
+        "hp": 8300,
+        "exp": 2400
+      }
+    ],
+    "boss": {
+      "key": "draken_warmaster",
+      "name": "Draken Warmaster",
+      "hp": 8300,
+      "exp": 2400
+    },
+    "avgExp": 2750,
+    "avgHp": 9150,
+    "xpPerClear": 149000,
+    "hpPerClear": 500700,
+    "goldPerClear": 10869,
+    "xpMin": 130800,
+    "xpMax": 167200
+  },
+  {
+    "id": "mitmah-cave",
+    "name": "Mitmah Seer",
+    "minLevel": 180,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "mitmah_scout",
+        "name": "Mitmah Scout",
+        "hp": 7880,
+        "exp": 3230
+      },
+      {
+        "key": "mitmah_seer",
+        "name": "Mitmah Seer",
+        "hp": 9240,
+        "exp": 4580
+      },
+      {
+        "key": "iks_yapunac",
+        "name": "Iks Yapunac",
+        "hp": 6250,
+        "exp": 3125
+      }
+    ],
+    "boss": {
+      "key": "iks_yapunac",
+      "name": "Iks Yapunac",
+      "hp": 6250,
+      "exp": 3125
+    },
+    "avgExp": 3645,
+    "avgHp": 7790,
+    "xpPerClear": 197353,
+    "hpPerClear": 423830,
+    "goldPerClear": 33951,
+    "xpMin": 170313,
+    "xpMax": 245973
+  },
+  {
+    "id": "cobra-cave",
+    "name": "Cobras",
+    "minLevel": 190,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "cobra_vizier",
+        "name": "Cobra Vizier",
+        "hp": 17000,
+        "exp": 7650
+      },
+      {
+        "key": "cobra_assassin",
+        "name": "Cobra Assassin",
+        "hp": 16400,
+        "exp": 6980
+      },
+      {
+        "key": "cobra_scout",
+        "name": "Cobra Scout",
+        "hp": 17000,
+        "exp": 7310
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Cobra Vizier",
+      "hp": 17000,
+      "exp": 7650
+    },
+    "avgExp": 7313,
+    "avgHp": 16800,
+    "xpPerClear": 399418,
+    "hpPerClear": 924600,
+    "goldPerClear": 13798,
+    "xpMin": 382085,
+    "xpMax": 416925
+  },
+  {
+    "id": "dreadintruder-cave",
+    "name": "Dread Intruder",
+    "minLevel": 200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "sparkion",
+        "name": "Sparkion",
+        "hp": 5400,
+        "exp": 1520
+      },
+      {
+        "key": "dread_intruder",
+        "name": "Dread Intruder",
+        "hp": 9000,
+        "exp": 2400
+      },
+      {
+        "key": "breach_brood",
+        "name": "Breach Brood",
+        "hp": 7000,
+        "exp": 1760
+      }
+    ],
+    "boss": {
+      "key": "dread_intruder",
+      "name": "Dread Intruder",
+      "hp": 9000,
+      "exp": 2400
+    },
+    "avgExp": 1893,
+    "avgHp": 7134,
+    "xpPerClear": 104453,
+    "hpPerClear": 397934,
+    "goldPerClear": 15091,
+    "xpMin": 85040,
+    "xpMax": 130800
+  },
+  {
+    "id": "hideous-fungus",
+    "name": "Hideous Fungus",
+    "minLevel": 200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "armadile",
+        "name": "Armadile",
+        "hp": 7600,
+        "exp": 3200
+      },
+      {
+        "key": "hideous_fungus",
+        "name": "Hideous Fungus",
+        "hp": 9200,
+        "exp": 3700
+      },
+      {
+        "key": "humongous_fungus",
+        "name": "Humongous Fungus",
+        "hp": 6800,
+        "exp": 2900
+      },
+      {
+        "key": "stone_devourer",
+        "name": "Stone Devourer",
+        "hp": 8400,
+        "exp": 2900
+      }
+    ],
+    "boss": {
+      "key": "hideous_fungus",
+      "name": "Hideous Fungus",
+      "hp": 9200,
+      "exp": 3700
+    },
+    "avgExp": 3175,
+    "avgHp": 8000,
+    "xpPerClear": 174350,
+    "hpPerClear": 443600,
+    "goldPerClear": 24523,
+    "xpMin": 160050,
+    "xpMax": 201650
+  },
+  {
+    "id": "cliffstrider-cave",
+    "name": "Cliff Strider",
+    "minLevel": 200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "orewalker",
+        "name": "Orewalker",
+        "hp": 14400,
+        "exp": 5900
+      },
+      {
+        "key": "minion_of_versperoth",
+        "name": "Minion of Versperoth",
+        "hp": 18000,
+        "exp": 0
+      },
+      {
+        "key": "lost_berserker",
+        "name": "Lost Berserker",
+        "hp": 11800,
+        "exp": 4800
+      },
+      {
+        "key": "ironblight",
+        "name": "Ironblight",
+        "hp": 13200,
+        "exp": 5400
+      },
+      {
+        "key": "cliff_strider",
+        "name": "Cliff Strider",
+        "hp": 18800,
+        "exp": 7100
+      }
+    ],
+    "boss": {
+      "key": "cliff_strider",
+      "name": "Cliff Strider",
+      "hp": 18800,
+      "exp": 7100
+    },
+    "avgExp": 4640,
+    "avgHp": 15240,
+    "xpPerClear": 259030,
+    "hpPerClear": 848880,
+    "goldPerClear": 25078,
+    "xpMin": 267350,
+    "xpMax": 386950
+  },
+  {
+    "id": "magmacrawler-cave",
+    "name": "Magma Crawler",
+    "minLevel": 200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "weeper",
+        "name": "Weeper",
+        "hp": 13600,
+        "exp": 5800
+      },
+      {
+        "key": "magma_crawler",
+        "name": "Magma Crawler",
+        "hp": 9600,
+        "exp": 3900
+      },
+      {
+        "key": "lava_golem",
+        "name": "Lava Golem",
+        "hp": 18000,
+        "exp": 7900
+      },
+      {
+        "key": "lost_berserker",
+        "name": "Lost Berserker",
+        "hp": 11800,
+        "exp": 4800
+      }
+    ],
+    "boss": {
+      "key": "magma_crawler",
+      "name": "Magma Crawler",
+      "hp": 9600,
+      "exp": 3900
+    },
+    "avgExp": 5600,
+    "avgHp": 13250,
+    "xpPerClear": 300950,
+    "hpPerClear": 717800,
+    "goldPerClear": 27013,
+    "xpMin": 212550,
+    "xpMax": 420550
+  },
+  {
+    "id": "undeadragon-lair",
+    "name": "Undead Dragon",
+    "minLevel": 200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "undead_dragon",
+        "name": "Undead Dragon",
+        "hp": 16700,
+        "exp": 7500
+      }
+    ],
+    "boss": {
+      "key": "undead_dragon",
+      "name": "Undead Dragon",
+      "hp": 16700,
+      "exp": 7500
+    },
+    "avgExp": 7500,
+    "avgHp": 16700,
+    "xpPerClear": 408750,
+    "hpPerClear": 918500,
+    "goldPerClear": 10674,
+    "xpMin": 408750,
+    "xpMax": 408750
+  },
+  {
+    "id": "vexclaw-lair",
+    "name": "Vexclaw",
+    "minLevel": 210,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "vexclaw",
+        "name": "Vexclaw",
+        "hp": 17000,
+        "exp": 6248
+      },
+      {
+        "key": "grimeleech",
+        "name": "Grimeleech",
+        "hp": 19000,
+        "exp": 7216
+      },
+      {
+        "key": "dark_torturer",
+        "name": "Dark Torturer",
+        "hp": 14700,
+        "exp": 4650
+      }
+    ],
+    "boss": {
+      "key": "vexclaw",
+      "name": "Vexclaw",
+      "hp": 17000,
+      "exp": 6248
+    },
+    "avgExp": 6038,
+    "avgHp": 16900,
+    "xpPerClear": 329596,
+    "hpPerClear": 929800,
+    "goldPerClear": 22850,
+    "xpMin": 257420,
+    "xpMax": 390852
+  },
+  {
+    "id": "falcon",
+    "name": "Falcon",
+    "minLevel": 210,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "falcon_paladin",
+        "name": "Falcon Paladin",
+        "hp": 17000,
+        "exp": 6900
+      },
+      {
+        "key": "falcon_knight",
+        "name": "Falcon Knight",
+        "hp": 18000,
+        "exp": 6300
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Falcon Paladin",
+      "hp": 17000,
+      "exp": 6900
+    },
+    "avgExp": 6600,
+    "avgHp": 17500,
+    "xpPerClear": 360450,
+    "hpPerClear": 961000,
+    "goldPerClear": 7290,
+    "xpMin": 344850,
+    "xpMax": 376050
+  },
+  {
+    "id": "grimeleech-cave",
+    "name": "Grimeleech",
+    "minLevel": 220,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "plaguesmith",
+        "name": "Plaguesmith",
+        "hp": 16500,
+        "exp": 3800
+      },
+      {
+        "key": "grimeleech",
+        "name": "Grimeleech",
+        "hp": 19000,
+        "exp": 7216
+      },
+      {
+        "key": "defiler",
+        "name": "Defiler",
+        "hp": 7300,
+        "exp": 3700
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Grimeleech",
+      "hp": 19000,
+      "exp": 7216
+    },
+    "avgExp": 4905,
+    "avgHp": 14266,
+    "xpPerClear": 273117,
+    "hpPerClear": 798866,
+    "goldPerClear": 19471,
+    "xpMin": 210440,
+    "xpMax": 393272
+  },
+  {
+    "id": "choking-cave",
+    "name": "Choking Fear",
+    "minLevel": 240,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "choking_fear",
+        "name": "Choking Fear",
+        "hp": 11600,
+        "exp": 4700
+      },
+      {
+        "key": "retching_horror",
+        "name": "Retching Horror",
+        "hp": 10600,
+        "exp": 4100
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Choking Fear",
+      "hp": 11600,
+      "exp": 4700
+    },
+    "avgExp": 4400,
+    "avgHp": 11100,
+    "xpPerClear": 240550,
+    "hpPerClear": 612000,
+    "goldPerClear": 27827,
+    "xpMin": 224950,
+    "xpMax": 256150
+  },
+  {
+    "id": "crazed-cave",
+    "name": "Crazed Elf's",
+    "minLevel": 240,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "crazed_summer_rearguard",
+        "name": "Crazed Summer Rearguard",
+        "hp": 10600,
+        "exp": 4700
+      },
+      {
+        "key": "crazed_summer_vanguard",
+        "name": "Crazed Summer Vanguard",
+        "hp": 11000,
+        "exp": 5000
+      },
+      {
+        "key": "crazed_winter_rearguard",
+        "name": "Crazed Winter Rearguard",
+        "hp": 10400,
+        "exp": 4700
+      },
+      {
+        "key": "crazed_winter_vanguard",
+        "name": "Crazed Winter Vanguard",
+        "hp": 11600,
+        "exp": 5400
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Crazed Winter Vanguard",
+      "hp": 11600,
+      "exp": 5400
+    },
+    "avgExp": 4950,
+    "avgHp": 10900,
+    "xpPerClear": 270900,
+    "hpPerClear": 601600,
+    "goldPerClear": 26049,
+    "xpMin": 257900,
+    "xpMax": 294300
+  },
+  {
+    "id": "catacomb-cave",
+    "name": "Catacomb",
+    "minLevel": 250,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "demon",
+        "name": "Demon",
+        "hp": 16400,
+        "exp": 6000
+      },
+      {
+        "key": "grim_reaper",
+        "name": "Grim Reaper",
+        "hp": 7800,
+        "exp": 5500
+      },
+      {
+        "key": "destroyer",
+        "name": "Destroyer",
+        "hp": 7400,
+        "exp": 2500
+      },
+      {
+        "key": "hellspawn",
+        "name": "Hellspawn",
+        "hp": 7000,
+        "exp": 2550
+      }
+    ],
+    "boss": {
+      "key": "demon",
+      "name": "Demon",
+      "hp": 16400,
+      "exp": 6000
+    },
+    "avgExp": 4138,
+    "avgHp": 9650,
+    "xpPerClear": 230150,
+    "hpPerClear": 551000,
+    "goldPerClear": 11968,
+    "xpMin": 145000,
+    "xpMax": 327000
+  },
+  {
+    "id": "guzzlemaw-cave",
+    "name": "Guzzlemaw",
+    "minLevel": 250,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "guzzlemaw",
+        "name": "Guzzlemaw",
+        "hp": 12800,
+        "exp": 6050
+      },
+      {
+        "key": "frazzlemaw",
+        "name": "Frazzlemaw",
+        "hp": 8200,
+        "exp": 3740
+      },
+      {
+        "key": "silencer",
+        "name": "Silencer",
+        "hp": 10800,
+        "exp": 5100
+      }
+    ],
+    "boss": {
+      "key": null,
+      "name": "Guzzlemaw",
+      "hp": 12800,
+      "exp": 6050
+    },
+    "avgExp": 4963,
+    "avgHp": 10600,
+    "xpPerClear": 273218,
+    "hpPerClear": 589600,
+    "goldPerClear": 24743,
+    "xpMin": 209605,
+    "xpMax": 329725
+  },
+  {
+    "id": "prison-cave",
+    "name": "Prison",
+    "minLevel": 250,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "plaguesmith",
+        "name": "Plaguesmith",
+        "hp": 16500,
+        "exp": 3800
+      },
+      {
+        "key": "demon_outcast",
+        "name": "Demon Outcast",
+        "hp": 13800,
+        "exp": 6200
+      },
+      {
+        "key": "dark_torturer",
+        "name": "Dark Torturer",
+        "hp": 14700,
+        "exp": 4650
+      },
+      {
+        "key": "blightwalker",
+        "name": "Blightwalker",
+        "hp": 16200,
+        "exp": 6400
+      }
+    ],
+    "boss": {
+      "key": "demon_outcast",
+      "name": "Demon Outcast",
+      "hp": 13800,
+      "exp": 6200
+    },
+    "avgExp": 5263,
+    "avgHp": 15300,
+    "xpPerClear": 289150,
+    "hpPerClear": 837000,
+    "goldPerClear": 15544,
+    "xpMin": 213100,
+    "xpMax": 348300
+  },
+  {
+    "id": "raubritter-lair",
+    "name": "Raubritter",
+    "minLevel": 250,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "raubritter_chastener",
+        "name": "Raubritter Chastener",
+        "hp": 20000,
+        "exp": 9500
+      },
+      {
+        "key": "raubritter_marksman",
+        "name": "Raubritter Marksman",
+        "hp": 21000,
+        "exp": 9025
+      },
+      {
+        "key": "raubritter_skirmisher",
+        "name": "Raubritter Skirmisher",
+        "hp": 22000,
+        "exp": 8550
+      }
+    ],
+    "boss": {
+      "key": "raubritter_skirmisher",
+      "name": "Raubritter Skirmisher",
+      "hp": 22000,
+      "exp": 8550
+    },
+    "avgExp": 9025,
+    "avgHp": 21000,
+    "xpPerClear": 490675,
+    "hpPerClear": 1158000,
+    "goldPerClear": 36473,
+    "xpMin": 465975,
+    "xpMax": 515375
+  },
+  {
+    "id": "lionknight-cave",
+    "name": "Lion Knight",
+    "minLevel": 270,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "usurper_knight",
+        "name": "Usurper Knight",
+        "hp": 16400,
+        "exp": 6900
+      },
+      {
+        "key": "usurper_warlock",
+        "name": "Usurper Warlock",
+        "hp": 15000,
+        "exp": 7000
+      },
+      {
+        "key": "usurper_archer",
+        "name": "Usurper Archer",
+        "hp": 14600,
+        "exp": 6800
+      }
+    ],
+    "boss": {
+      "key": "usurper_knight",
+      "name": "Usurper Knight",
+      "hp": 16400,
+      "exp": 6900
+    },
+    "avgExp": 6900,
+    "avgHp": 15334,
+    "xpPerClear": 376050,
+    "hpPerClear": 846534,
+    "goldPerClear": 13476,
+    "xpMin": 370850,
+    "xpMax": 381250
+  },
+  {
+    "id": "megadragon-cave",
+    "name": "Mega Dragon",
+    "minLevel": 290,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "dragolisk",
+        "name": "Dragolisk",
+        "hp": 12360,
+        "exp": 5050
+      },
+      {
+        "key": "mega_dragon",
+        "name": "Mega Dragon",
+        "hp": 15840,
+        "exp": 6790
+      },
+      {
+        "key": "wardragon",
+        "name": "Wardragon",
+        "hp": 13920,
+        "exp": 5810
+      }
+    ],
+    "boss": {
+      "key": "mega_dragon",
+      "name": "Mega Dragon",
+      "hp": 15840,
+      "exp": 6790
+    },
+    "avgExp": 5883,
+    "avgHp": 14040,
+    "xpPerClear": 322908,
+    "hpPerClear": 777600,
+    "goldPerClear": 45457,
+    "xpMin": 279575,
+    "xpMax": 370055
+  },
+  {
+    "id": "naga-lair",
+    "name": "Naga Lair",
+    "minLevel": 300,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "naga_archer",
+        "name": "Naga Archer",
+        "hp": 9280,
+        "exp": 5150
+      },
+      {
+        "key": "naga_warrior",
+        "name": "Naga Warrior",
+        "hp": 11060,
+        "exp": 5890
+      },
+      {
+        "key": "makara",
+        "name": "Makara",
+        "hp": 10100,
+        "exp": 5720
+      }
+    ],
+    "boss": {
+      "key": "naga_warrior",
+      "name": "Naga Warrior",
+      "hp": 11060,
+      "exp": 5890
+    },
+    "avgExp": 5587,
+    "avgHp": 10146,
+    "xpPerClear": 305232,
+    "hpPerClear": 560806,
+    "goldPerClear": 51317,
+    "xpMin": 282525,
+    "xpMax": 321005
+  },
+  {
+    "id": "freakishlostsoul-cave",
+    "name": "Freakish Lost Soul",
+    "minLevel": 300,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "freakish_lost_soul",
+        "name": "Freakish Lost Soul",
+        "hp": 14000,
+        "exp": 7020
+      },
+      {
+        "key": "mean_lost_soul",
+        "name": "Mean Lost Soul",
+        "hp": 10000,
+        "exp": 5580
+      },
+      {
+        "key": "flimsy_lost_soul",
+        "name": "Flimsy Lost Soul",
+        "hp": 8000,
+        "exp": 4500
+      }
+    ],
+    "boss": {
+      "key": "mean_lost_soul",
+      "name": "Mean Lost Soul",
+      "hp": 10000,
+      "exp": 5580
+    },
+    "avgExp": 5700,
+    "avgHp": 10666,
+    "xpPerClear": 310350,
+    "hpPerClear": 584666,
+    "goldPerClear": 3974,
+    "xpMin": 247950,
+    "xpMax": 378990
+  },
+  {
+    "id": "trueazura-cave",
+    "name": "True Azura",
+    "minLevel": 300,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "true_dawnfire_asura",
+        "name": "True Dawnfire Asura",
+        "hp": 17000,
+        "exp": 7475
+      },
+      {
+        "key": "true_frost_flower_asura",
+        "name": "True Frost Flower Asura",
+        "hp": 8000,
+        "exp": 7069
+      },
+      {
+        "key": "true_midnight_asura",
+        "name": "True Midnight Asura",
+        "hp": 18000,
+        "exp": 7313
+      }
+    ],
+    "boss": {
+      "key": "true_dawnfire_asura",
+      "name": "True Dawnfire Asura",
+      "hp": 17000,
+      "exp": 7475
+    },
+    "avgExp": 7286,
+    "avgHp": 14334,
+    "xpPerClear": 397542,
+    "hpPerClear": 796334,
+    "goldPerClear": 64301,
+    "xpMin": 386276,
+    "xpMax": 407388
+  },
+  {
+    "id": "weretiger-cave",
+    "name": "Weretiger",
+    "minLevel": 330,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "werepanther",
+        "name": "Werepanther",
+        "hp": 8400,
+        "exp": 3550
+      },
+      {
+        "key": "weretiger",
+        "name": "Weretiger",
+        "hp": 10000,
+        "exp": 3920
+      },
+      {
+        "key": "white_weretiger",
+        "name": "White Weretiger",
+        "hp": 12200,
+        "exp": 5200
+      }
+    ],
+    "boss": {
+      "key": "white_weretiger",
+      "name": "White Weretiger",
+      "hp": 12200,
+      "exp": 5200
+    },
+    "avgExp": 4223,
+    "avgHp": 10200,
+    "xpPerClear": 232613,
+    "hpPerClear": 567000,
+    "goldPerClear": 44287,
+    "xpMin": 197600,
+    "xpMax": 283400
+  },
+  {
+    "id": "werecrocodile-cave",
+    "name": "Feral Werecrocodile",
+    "minLevel": 340,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "feral_werecrocodile",
+        "name": "Feral Werecrocodile",
+        "hp": 12800,
+        "exp": 5430
+      },
+      {
+        "key": "werecrocodile",
+        "name": "Werecrocodile",
+        "hp": 10560,
+        "exp": 4140
+      },
+      {
+        "key": "cunning_werepanther",
+        "name": "Cunning Werepanther",
+        "hp": 8600,
+        "exp": 3620
+      }
+    ],
+    "boss": {
+      "key": "feral_werecrocodile",
+      "name": "Feral Werecrocodile",
+      "hp": 12800,
+      "exp": 5430
+    },
+    "avgExp": 4397,
+    "avgHp": 10654,
+    "xpPerClear": 242202,
+    "hpPerClear": 592374,
+    "goldPerClear": 45203,
+    "xpMin": 201815,
+    "xpMax": 295935
+  },
+  {
+    "id": "gazer-lair",
+    "name": "Gazer",
+    "minLevel": 350,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "gazer_spectre",
+        "name": "Gazer Spectre",
+        "hp": 9000,
+        "exp": 4200
+      },
+      {
+        "key": "ripper_spectre",
+        "name": "Ripper Spectre",
+        "hp": 7600,
+        "exp": 3500
+      },
+      {
+        "key": "burster_spectre",
+        "name": "Burster Spectre",
+        "hp": 13000,
+        "exp": 6000
+      }
+    ],
+    "boss": {
+      "key": "ripper_spectre",
+      "name": "Ripper Spectre",
+      "hp": 7600,
+      "exp": 3500
+    },
+    "avgExp": 4567,
+    "avgHp": 9866,
+    "xpPerClear": 246217,
+    "hpPerClear": 535866,
+    "goldPerClear": 17633,
+    "xpMin": 190750,
+    "xpMax": 320750
+  },
+  {
+    "id": "bashmu-cave",
+    "name": "Bashmu",
+    "minLevel": 350,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "bashmu",
+        "name": "Bashmu",
+        "hp": 16400,
+        "exp": 5000
+      },
+      {
+        "key": "juvenile_bashmu",
+        "name": "Juvenile Bashmu",
+        "hp": 15000,
+        "exp": 4500
+      }
+    ],
+    "boss": {
+      "key": "bashmu",
+      "name": "Bashmu",
+      "hp": 16400,
+      "exp": 5000
+    },
+    "avgExp": 4750,
+    "avgHp": 15700,
+    "xpPerClear": 259500,
+    "hpPerClear": 865600,
+    "goldPerClear": 41606,
+    "xpMin": 246500,
+    "xpMax": 272500
+  },
+  {
+    "id": "skeletin-cave",
+    "name": "Skeleton Elite Warrior",
+    "minLevel": 350,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "undead_elite_gladiator",
+        "name": "Undead Elite Gladiator",
+        "hp": 16000,
+        "exp": 5090
+      },
+      {
+        "key": "skeleton_elite_warrior",
+        "name": "Skeleton Elite Warrior",
+        "hp": 15600,
+        "exp": 4800
+      }
+    ],
+    "boss": {
+      "key": "skeleton_elite_warrior",
+      "name": "Skeleton Elite Warrior",
+      "hp": 15600,
+      "exp": 4800
+    },
+    "avgExp": 4945,
+    "avgHp": 15800,
+    "xpPerClear": 269140,
+    "hpPerClear": 868400,
+    "goldPerClear": 32848,
+    "xpMin": 261600,
+    "xpMax": 276680
+  },
+  {
+    "id": "bulltaur-cave",
+    "name": "Bulltaur",
+    "minLevel": 350,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "bulltaur_alchemist",
+        "name": "Bulltaur Alchemist",
+        "hp": 11380,
+        "exp": 4500
+      },
+      {
+        "key": "bulltaur_brute",
+        "name": "Bulltaur Brute",
+        "hp": 13120,
+        "exp": 4700
+      },
+      {
+        "key": "bulltaur_forgepriest",
+        "name": "Bulltaur Forgepriest",
+        "hp": 13680,
+        "exp": 6400
+      }
+    ],
+    "boss": {
+      "key": "bulltaur_brute",
+      "name": "Bulltaur Brute",
+      "hp": 13120,
+      "exp": 4700
+    },
+    "avgExp": 5200,
+    "avgHp": 12726,
+    "xpPerClear": 282150,
+    "hpPerClear": 701146,
+    "goldPerClear": 51477,
+    "xpMin": 245750,
+    "xpMax": 344550
+  },
+  {
+    "id": "darkcarnisylvan-cave",
+    "name": "Dark Carnisylvan",
+    "minLevel": 430,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "dark_carnisylvan",
+        "name": "Dark Carnisylvan",
+        "hp": 15000,
+        "exp": 4400
+      },
+      {
+        "key": "hulking_carnisylvan",
+        "name": "Hulking Carnisylvan",
+        "hp": 17200,
+        "exp": 4700
+      },
+      {
+        "key": "poisonous_carnisylvan",
+        "name": "Poisonous Carnisylvan",
+        "hp": 16000,
+        "exp": 4400
+      }
+    ],
+    "boss": {
+      "key": "dark_carnisylvan",
+      "name": "Dark Carnisylvan",
+      "hp": 15000,
+      "exp": 4400
+    },
+    "avgExp": 4500,
+    "avgHp": 16066,
+    "xpPerClear": 245000,
+    "hpPerClear": 880466,
+    "goldPerClear": 42560,
+    "xpMin": 239800,
+    "xpMax": 255400
+  },
+  {
+    "id": "inferniarch-lair",
+    "name": "Inferniarch",
+    "minLevel": 450,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "broodrider_inferniarch",
+        "name": "Broodrider Inferniarch",
+        "hp": 19200,
+        "exp": 7850
+      },
+      {
+        "key": "gorger_inferniarch",
+        "name": "Gorger Inferniarch",
+        "hp": 18900,
+        "exp": 7680
+      },
+      {
+        "key": "sineater_inferniarch",
+        "name": "Sineater Inferniarch",
+        "hp": 18300,
+        "exp": 7250
+      }
+    ],
+    "boss": {
+      "key": "gorger_inferniarch",
+      "name": "Gorger Inferniarch",
+      "hp": 18900,
+      "exp": 7680
+    },
+    "avgExp": 7593,
+    "avgHp": 18800,
+    "xpPerClear": 414053,
+    "hpPerClear": 1034300,
+    "goldPerClear": 11130,
+    "xpMin": 396200,
+    "xpMax": 427400
+  },
+  {
+    "id": "girtablilu-cave",
+    "name": "girtablilu warrior",
+    "minLevel": 460,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "girtablilu_warrior",
+        "name": "Girtablilu Warrior",
+        "hp": 17000,
+        "exp": 5800
+      },
+      {
+        "key": "venerable_girtablilu",
+        "name": "Venerable Girtablilu",
+        "hp": 17000,
+        "exp": 5300
+      }
+    ],
+    "boss": {
+      "key": "girtablilu_warrior",
+      "name": "Girtablilu Warrior",
+      "hp": 17000,
+      "exp": 5800
+    },
+    "avgExp": 5550,
+    "avgHp": 17000,
+    "xpPerClear": 303100,
+    "hpPerClear": 935000,
+    "goldPerClear": 42770,
+    "xpMin": 290100,
+    "xpMax": 316100
+  },
+  {
+    "id": "livrariaearth-cave",
+    "name": "Livraria EARTH",
+    "minLevel": 500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "biting_book",
+        "name": "Biting Book",
+        "hp": 13000,
+        "exp": 9350
+      },
+      {
+        "key": "cursed_book",
+        "name": "Cursed Book",
+        "hp": 40000,
+        "exp": 13345
+      },
+      {
+        "key": "ink_blob",
+        "name": "Ink Blob",
+        "hp": 19000,
+        "exp": 14450
+      }
+    ],
+    "boss": {
+      "key": "cursed_book",
+      "name": "Cursed Book",
+      "hp": 40000,
+      "exp": 13345
+    },
+    "avgExp": 12382,
+    "avgHp": 24000,
+    "xpPerClear": 677209,
+    "hpPerClear": 1368000,
+    "goldPerClear": 5862,
+    "xpMin": 519563,
+    "xpMax": 784763
+  },
+  {
+    "id": "livrariaice-cave",
+    "name": "Livraria ICE",
+    "minLevel": 500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "animated_feather",
+        "name": "Animated Feather",
+        "hp": 26000,
+        "exp": 9860
+      },
+      {
+        "key": "squid_warden",
+        "name": "Squid Warden",
+        "hp": 33000,
+        "exp": 15300
+      },
+      {
+        "key": "icecold_book",
+        "name": "Icecold Book",
+        "hp": 42000,
+        "exp": 12750
+      }
+    ],
+    "boss": {
+      "key": "icecold_book",
+      "name": "Icecold Book",
+      "hp": 42000,
+      "exp": 12750
+    },
+    "avgExp": 12637,
+    "avgHp": 33666,
+    "xpPerClear": 688982,
+    "hpPerClear": 1876666,
+    "goldPerClear": 52233,
+    "xpMin": 544595,
+    "xpMax": 827475
+  },
+  {
+    "id": "livraria-cave",
+    "name": "Livraria ENERGY",
+    "minLevel": 500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "brain_squid",
+        "name": "Brain Squid",
+        "hp": 36000,
+        "exp": 17672
+      },
+      {
+        "key": "energetic_book",
+        "name": "Energetic Book",
+        "hp": 37000,
+        "exp": 12034
+      },
+      {
+        "key": "knowledge_elemental",
+        "name": "Knowledge Elemental",
+        "hp": 21000,
+        "exp": 10603
+      }
+    ],
+    "boss": {
+      "key": "energetic_book",
+      "name": "Energetic Book",
+      "hp": 37000,
+      "exp": 12034
+    },
+    "avgExp": 13436,
+    "avgHp": 31334,
+    "xpPerClear": 728774,
+    "hpPerClear": 1740334,
+    "goldPerClear": 46517,
+    "xpMin": 581441,
+    "xpMax": 949029
+  },
+  {
+    "id": "livrariafire-cave",
+    "name": "Livraria FIRE",
+    "minLevel": 500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "ink_blob",
+        "name": "Ink Blob",
+        "hp": 19000,
+        "exp": 14450
+      },
+      {
+        "key": "burning_book",
+        "name": "Burning Book",
+        "hp": 36000,
+        "exp": 13200
+      },
+      {
+        "key": "guardian_of_tales",
+        "name": "Guardian of Tales",
+        "hp": 30000,
+        "exp": 10600
+      },
+      {
+        "key": "rage_squid",
+        "name": "Rage Squid",
+        "hp": 34000,
+        "exp": 16300
+      }
+    ],
+    "boss": {
+      "key": "burning_book",
+      "name": "Burning Book",
+      "hp": 36000,
+      "exp": 13200
+    },
+    "avgExp": 13638,
+    "avgHp": 29750,
+    "xpPerClear": 742150,
+    "hpPerClear": 1655000,
+    "goldPerClear": 26777,
+    "xpMin": 584200,
+    "xpMax": 880600
+  },
+  {
+    "id": "norcferatu-cave",
+    "name": "Norcferatu Nightweaver",
+    "minLevel": 600,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "gloom_maw",
+        "name": "Gloom Maw",
+        "hp": 17400,
+        "exp": 6900
+      },
+      {
+        "key": "norcferatu_heartless",
+        "name": "Norcferatu Heartless",
+        "hp": 11400,
+        "exp": 4450
+      },
+      {
+        "key": "norcferatu_nightweaver",
+        "name": "Norcferatu Nightweaver",
+        "hp": 12200,
+        "exp": 4900
+      },
+      {
+        "key": "orclops_bloodbreaker",
+        "name": "Orclops Bloodbreaker",
+        "hp": 20600,
+        "exp": 7800
+      }
+    ],
+    "boss": {
+      "key": "orclops_bloodbreaker",
+      "name": "Orclops Bloodbreaker",
+      "hp": 20600,
+      "exp": 7800
+    },
+    "avgExp": 6013,
+    "avgHp": 15400,
+    "xpPerClear": 332150,
+    "hpPerClear": 862600,
+    "goldPerClear": 38607,
+    "xpMin": 250900,
+    "xpMax": 425100
+  },
+  {
+    "id": "quararaider-lair",
+    "name": "Quara Raider",
+    "minLevel": 600,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "quara_looter",
+        "name": "Quara Looter",
+        "hp": 23000,
+        "exp": 8650
+      },
+      {
+        "key": "quara_plunderer",
+        "name": "Quara Plunderer",
+        "hp": 27000,
+        "exp": 10800
+      },
+      {
+        "key": "quara_raider",
+        "name": "Quara Raider",
+        "hp": 25000,
+        "exp": 8150
+      }
+    ],
+    "boss": {
+      "key": "quara_raider",
+      "name": "Quara Raider",
+      "hp": 25000,
+      "exp": 8150
+    },
+    "avgExp": 9200,
+    "avgHp": 25000,
+    "xpPerClear": 498775,
+    "hpPerClear": 1375000,
+    "goldPerClear": 6890,
+    "xpMin": 444175,
+    "xpMax": 581975
+  },
+  {
+    "id": "afflictedstrider-cave",
+    "name": "Afflicted Strider",
+    "minLevel": 610,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "afflicted_strider",
+        "name": "Afflicted Strider",
+        "hp": 20000,
+        "exp": 5700
+      },
+      {
+        "key": "eyeless_devourer",
+        "name": "Eyeless Devourer",
+        "hp": 20000,
+        "exp": 6000
+      },
+      {
+        "key": "blemished_spawn",
+        "name": "Blemished Spawn",
+        "hp": 18000,
+        "exp": 5300
+      }
+    ],
+    "boss": {
+      "key": "afflicted_strider",
+      "name": "Afflicted Strider",
+      "hp": 20000,
+      "exp": 5700
+    },
+    "avgExp": 5667,
+    "avgHp": 19334,
+    "xpPerClear": 308917,
+    "hpPerClear": 1065334,
+    "goldPerClear": 40635,
+    "xpMin": 289850,
+    "xpMax": 326250
+  },
+  {
+    "id": "varnisheddiremaw-cave",
+    "name": "Varnished Diremaw",
+    "minLevel": 610,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "cave_chimera",
+        "name": "Cave Chimera",
+        "hp": 16000,
+        "exp": 6800
+      },
+      {
+        "key": "varnished_diremaw",
+        "name": "Varnished Diremaw",
+        "hp": 18000,
+        "exp": 5900
+      },
+      {
+        "key": "tremendous_tyrant",
+        "name": "Tremendous Tyrant",
+        "hp": 23000,
+        "exp": 6100
+      }
+    ],
+    "boss": {
+      "key": "varnished_diremaw",
+      "name": "Varnished Diremaw",
+      "hp": 18000,
+      "exp": 5900
+    },
+    "avgExp": 6267,
+    "avgHp": 19000,
+    "xpPerClear": 340617,
+    "hpPerClear": 1042000,
+    "goldPerClear": 42525,
+    "xpMin": 321550,
+    "xpMax": 368350
+  },
+  {
+    "id": "lavafungos-cave",
+    "name": "Lavafungos",
+    "minLevel": 610,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "lavafungus",
+        "name": "Lavafungus",
+        "hp": 14400,
+        "exp": 6200
+      },
+      {
+        "key": "lavaworm",
+        "name": "Lavaworm",
+        "hp": 15000,
+        "exp": 6500
+      },
+      {
+        "key": "streaked_devourer",
+        "name": "Streaked Devourer",
+        "hp": 14000,
+        "exp": 6300
+      }
+    ],
+    "boss": {
+      "key": "lavafungus",
+      "name": "Lavafungus",
+      "hp": 14400,
+      "exp": 6200
+    },
+    "avgExp": 6333,
+    "avgHp": 14466,
+    "xpPerClear": 344833,
+    "hpPerClear": 795466,
+    "goldPerClear": 47518,
+    "xpMin": 337900,
+    "xpMax": 353500
+  },
+  {
+    "id": "crypt-cave",
+    "name": "Crypt Construct",
+    "minLevel": 700,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "crypt_fiend",
+        "name": "Crypt Fiend",
+        "hp": 60000,
+        "exp": 22500
+      },
+      {
+        "key": "crypt_construct",
+        "name": "Crypt Construct",
+        "hp": 50000,
+        "exp": 20500
+      },
+      {
+        "key": "creepy_crawler",
+        "name": "Creepy Crawler",
+        "hp": 54000,
+        "exp": 23000
+      }
+    ],
+    "boss": {
+      "key": "crypt_construct",
+      "name": "Crypt Construct",
+      "hp": 50000,
+      "exp": 20500
+    },
+    "avgExp": 22000,
+    "avgHp": 54666,
+    "xpPerClear": 1195250,
+    "hpPerClear": 2992666,
+    "goldPerClear": 202907,
+    "xpMin": 1117250,
+    "xpMax": 1247250
+  },
+  {
+    "id": "gnomprona2-cave",
+    "name": "Crystal Enigma",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "headpecker",
+        "name": "Headpecker",
+        "hp": 32600,
+        "exp": 20965
+      },
+      {
+        "key": "mantosaurus",
+        "name": "Mantosaurus",
+        "hp": 38800,
+        "exp": 20168
+      },
+      {
+        "key": "mercurial_menace",
+        "name": "Mercurial Menace",
+        "hp": 37000,
+        "exp": 21086
+      },
+      {
+        "key": "noxious_ripptor",
+        "name": "Noxious Ripptor",
+        "hp": 45400,
+        "exp": 22994
+      },
+      {
+        "key": "shrieking_cry_stal",
+        "name": "Shrieking Cry-Stal",
+        "hp": 41300,
+        "exp": 23639
+      }
+    ],
+    "boss": {
+      "key": "noxious_ripptor",
+      "name": "Noxious Ripptor",
+      "hp": 45400,
+      "exp": 22994
+    },
+    "avgExp": 21770,
+    "avgHp": 39020,
+    "xpPerClear": 1189546,
+    "hpPerClear": 2165240,
+    "goldPerClear": 289193,
+    "xpMin": 1106221,
+    "xpMax": 1286713
+  },
+  {
+    "id": "gnomprona1-cave",
+    "name": "Monster Graveyard",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "undertaker",
+        "name": "Undertaker",
+        "hp": 40200,
+        "exp": 23652
+      },
+      {
+        "key": "sulphider",
+        "name": "Sulphider",
+        "hp": 42000,
+        "exp": 23276
+      },
+      {
+        "key": "sulphur_spouter",
+        "name": "Sulphur Spouter",
+        "hp": 38000,
+        "exp": 20113
+      },
+      {
+        "key": "nighthunter",
+        "name": "Nighthunter",
+        "hp": 38400,
+        "exp": 22087
+      },
+      {
+        "key": "stalking_stalk",
+        "name": "Stalking Stalk",
+        "hp": 34200,
+        "exp": 20204
+      }
+    ],
+    "boss": {
+      "key": "sulphider",
+      "name": "Sulphider",
+      "hp": 42000,
+      "exp": 23276
+    },
+    "avgExp": 21866,
+    "avgHp": 38560,
+    "xpPerClear": 1195243,
+    "hpPerClear": 2131120,
+    "goldPerClear": 249480,
+    "xpMin": 1104066,
+    "xpMax": 1288094
+  },
+  {
+    "id": "gnomprona3-cave",
+    "name": "Sparkling Pools",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "emerald_tortoise",
+        "name": "Emerald Tortoise",
+        "hp": 44600,
+        "exp": 21362
+      },
+      {
+        "key": "gore_horn",
+        "name": "Gore Horn",
+        "hp": 41240,
+        "exp": 22183
+      },
+      {
+        "key": "gorerilla",
+        "name": "Gorerilla",
+        "hp": 33700,
+        "exp": 23199
+      },
+      {
+        "key": "hulking_prehemoth",
+        "name": "Hulking Prehemoth",
+        "hp": 41400,
+        "exp": 22349
+      },
+      {
+        "key": "sabretooth",
+        "name": "Sabretooth",
+        "hp": 34600,
+        "exp": 21013
+      }
+    ],
+    "boss": {
+      "key": "emerald_tortoise",
+      "name": "Emerald Tortoise",
+      "hp": 44600,
+      "exp": 21362
+    },
+    "avgExp": 22021,
+    "avgHp": 39108,
+    "xpPerClear": 1198507,
+    "hpPerClear": 2167416,
+    "goldPerClear": 245030,
+    "xpMin": 1146081,
+    "xpMax": 1259753
+  },
+  {
+    "id": "darkthais-cave",
+    "name": "Dark Thais",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "sorcerers_apparition",
+        "name": "Sorcerer's Apparition",
+        "hp": 50000,
+        "exp": 28600
+      },
+      {
+        "key": "paladins_apparition",
+        "name": "Paladin's Apparition",
+        "hp": 50000,
+        "exp": 28600
+      },
+      {
+        "key": "monks_apparition",
+        "name": "Monk's Apparition",
+        "hp": 50000,
+        "exp": 18870
+      },
+      {
+        "key": "knights_apparition",
+        "name": "Knight's Apparition",
+        "hp": 50000,
+        "exp": 28600
+      },
+      {
+        "key": "druids_apparition",
+        "name": "Druid's Apparition",
+        "hp": 50000,
+        "exp": 28600
+      },
+      {
+        "key": "distorted_phantom",
+        "name": "Distorted Phantom",
+        "hp": 52000,
+        "exp": 18870
+      },
+      {
+        "key": "many_faces",
+        "name": "Many Faces",
+        "hp": 60000,
+        "exp": 18870
+      }
+    ],
+    "boss": {
+      "key": "many_faces",
+      "name": "Many Faces",
+      "hp": 60000,
+      "exp": 18870
+    },
+    "avgExp": 24430,
+    "avgHp": 51714,
+    "xpPerClear": 1317535,
+    "hpPerClear": 2869142,
+    "goldPerClear": 514631,
+    "xpMin": 1028415,
+    "xpMax": 1534375
+  },
+  {
+    "id": "rottengolem-cave",
+    "name": "Rotten Golem",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "rotten_golem",
+        "name": "Rotten Golem",
+        "hp": 56000,
+        "exp": 24361
+      },
+      {
+        "key": "branchy_crawler",
+        "name": "Branchy Crawler",
+        "hp": 54000,
+        "exp": 24361
+      },
+      {
+        "key": "mould_phantom",
+        "name": "Mould Phantom",
+        "hp": 56000,
+        "exp": 25002
+      }
+    ],
+    "boss": {
+      "key": "rotten_golem",
+      "name": "Rotten Golem",
+      "hp": 56000,
+      "exp": 24361
+    },
+    "avgExp": 24575,
+    "avgHp": 55334,
+    "xpPerClear": 1338785,
+    "hpPerClear": 3045334,
+    "goldPerClear": 421698,
+    "xpMin": 1327675,
+    "xpMax": 1361007
+  },
+  {
+    "id": "infernalmdemon-cave",
+    "name": "Infernal Demon",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "infernal_phantom",
+        "name": "Infernal Phantom",
+        "hp": 52000,
+        "exp": 29332
+      },
+      {
+        "key": "infernal_demon",
+        "name": "Infernal Demon",
+        "hp": 64000,
+        "exp": 32420
+      },
+      {
+        "key": "brachiodemon",
+        "name": "Brachiodemon",
+        "hp": 50000,
+        "exp": 29332
+      }
+    ],
+    "boss": {
+      "key": "infernal_demon",
+      "name": "Infernal Demon",
+      "hp": 64000,
+      "exp": 32420
+    },
+    "avgExp": 30361,
+    "avgHp": 55334,
+    "xpPerClear": 1659839,
+    "hpPerClear": 3069334,
+    "goldPerClear": 506659,
+    "xpMin": 1606314,
+    "xpMax": 1766890
+  },
+  {
+    "id": "cloakofterror-lair",
+    "name": "Cloak Of Terror",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "vibrant_phantom",
+        "name": "Vibrant Phantom",
+        "hp": 54000,
+        "exp": 36445
+      },
+      {
+        "key": "courage_leech",
+        "name": "Courage Leech",
+        "hp": 54000,
+        "exp": 34965
+      },
+      {
+        "key": "cloak_of_terror",
+        "name": "Cloak of Terror",
+        "hp": 56000,
+        "exp": 36445
+      }
+    ],
+    "boss": {
+      "key": "cloak_of_terror",
+      "name": "Cloak of Terror",
+      "hp": 56000,
+      "exp": 36445
+    },
+    "avgExp": 35952,
+    "avgHp": 54666,
+    "xpPerClear": 1960599,
+    "hpPerClear": 3010666,
+    "goldPerClear": 422896,
+    "xpMin": 1909293,
+    "xpMax": 1986253
+  },
+  {
+    "id": "bonyseadevil-cave",
+    "name": "Bony Sea Devil",
+    "minLevel": 800,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "turbulent_elemental",
+        "name": "Turbulent Elemental",
+        "hp": 56000,
+        "exp": 32138
+      },
+      {
+        "key": "hazardous_phantom",
+        "name": "Hazardous Phantom",
+        "hp": 140000,
+        "exp": 109560
+      },
+      {
+        "key": "capricious_phantom",
+        "name": "Capricious Phantom",
+        "hp": 60000,
+        "exp": 32138
+      },
+      {
+        "key": "bony_sea_devil",
+        "name": "Bony Sea Devil",
+        "hp": 48000,
+        "exp": 32320
+      }
+    ],
+    "boss": {
+      "key": "bony_sea_devil",
+      "name": "Bony Sea Devil",
+      "hp": 48000,
+      "exp": 32320
+    },
+    "avgExp": 51539,
+    "avgHp": 76000,
+    "xpPerClear": 2760828,
+    "hpPerClear": 4096000,
+    "goldPerClear": 676620,
+    "xpMin": 1751976,
+    "xpMax": 5777920
+  },
+  {
+    "id": "bloatedmanmaggot-cave",
+    "name": "bloated man-maggot",
+    "minLevel": 1200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "mycobiontic_beetle",
+        "name": "Mycobiontic Beetle",
+        "hp": 60400,
+        "exp": 21175
+      },
+      {
+        "key": "bloated_man_maggot",
+        "name": "Bloated Man-Maggot",
+        "hp": 63400,
+        "exp": 21570
+      },
+      {
+        "key": "bloodjaw",
+        "name": "Bloodjaw",
+        "hp": 80000,
+        "exp": 20000
+      },
+      {
+        "key": "sopping_corpus",
+        "name": "Sopping Corpus",
+        "hp": 66800,
+        "exp": 22465
+      },
+      {
+        "key": "oozing_corpus",
+        "name": "Oozing Corpus",
+        "hp": 57400,
+        "exp": 20600
+      }
+    ],
+    "boss": {
+      "key": "bloated_man_maggot",
+      "name": "Bloated Man-Maggot",
+      "hp": 63400,
+      "exp": 21570
+    },
+    "avgExp": 21162,
+    "avgHp": 65600,
+    "xpPerClear": 1154349,
+    "hpPerClear": 3601400,
+    "goldPerClear": 47537,
+    "xpMin": 1093925,
+    "xpMax": 1222105
+  },
+  {
+    "id": "maggot-cave",
+    "name": "Rotten man-maggot",
+    "minLevel": 1200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "rotten_man_maggot",
+        "name": "Rotten Man-Maggot",
+        "hp": 62200,
+        "exp": 22625
+      },
+      {
+        "key": "oozing_carcass",
+        "name": "Oozing Carcass",
+        "hp": 55000,
+        "exp": 20980
+      },
+      {
+        "key": "oozing_corpus",
+        "name": "Oozing Corpus",
+        "hp": 57400,
+        "exp": 20600
+      },
+      {
+        "key": "meandering_mushroom",
+        "name": "Meandering Mushroom",
+        "hp": 58200,
+        "exp": 21980
+      }
+    ],
+    "boss": {
+      "key": "rotten_man_maggot",
+      "name": "Rotten Man-Maggot",
+      "hp": 62200,
+      "exp": 22625
+    },
+    "avgExp": 21546,
+    "avgHp": 58200,
+    "xpPerClear": 1176968,
+    "hpPerClear": 3213000,
+    "goldPerClear": 53158,
+    "xpMin": 1127763,
+    "xpMax": 1233063
+  },
+  {
+    "id": "wanderingpillar-cave",
+    "name": "Wandering Pillar",
+    "minLevel": 1200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "wandering_pillar",
+        "name": "Wandering Pillar",
+        "hp": 74000,
+        "exp": 23200
+      },
+      {
+        "key": "darklight_emitter",
+        "name": "Darklight Emitter",
+        "hp": 55000,
+        "exp": 20600
+      },
+      {
+        "key": "converter",
+        "name": "Converter",
+        "hp": 59200,
+        "exp": 21425
+      },
+      {
+        "key": "darklight_construct",
+        "name": "Darklight Construct",
+        "hp": 64400,
+        "exp": 22050
+      }
+    ],
+    "boss": {
+      "key": "wandering_pillar",
+      "name": "Wandering Pillar",
+      "hp": 74000,
+      "exp": 23200
+    },
+    "avgExp": 21819,
+    "avgHp": 63150,
+    "xpPerClear": 1192575,
+    "hpPerClear": 3505800,
+    "goldPerClear": 55163,
+    "xpMin": 1129200,
+    "xpMax": 1264400
+  },
+  {
+    "id": "draklightsource-cave",
+    "name": "Darklight Source",
+    "minLevel": 1200,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "walking_pillar",
+        "name": "Walking Pillar",
+        "hp": 76000,
+        "exp": 24300
+      },
+      {
+        "key": "darklight_emitter",
+        "name": "Darklight Emitter",
+        "hp": 55000,
+        "exp": 20600
+      },
+      {
+        "key": "darklight_matter",
+        "name": "Darklight Matter",
+        "hp": 60300,
+        "exp": 22250
+      },
+      {
+        "key": "darklight_source",
+        "name": "Darklight Source",
+        "hp": 63100,
+        "exp": 22465
+      },
+      {
+        "key": "darklight_striker",
+        "name": "Darklight Striker",
+        "hp": 59400,
+        "exp": 22200
+      }
+    ],
+    "boss": {
+      "key": "darklight_source",
+      "name": "Darklight Source",
+      "hp": 63100,
+      "exp": 22465
+    },
+    "avgExp": 22363,
+    "avgHp": 62760,
+    "xpPerClear": 1219039,
+    "hpPerClear": 3452820,
+    "goldPerClear": 65323,
+    "xpMin": 1127363,
+    "xpMax": 1319763
+  }
+]

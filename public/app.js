@@ -253,7 +253,7 @@ let saveT=null;
 function save(){ clearTimeout(saveT); saveT=setTimeout(saveState, 200); }
 
 /* ---------- tabs ---------- */
-const views = { builds:'view-builds', bosses:'view-bosses', sim:'view-sim', stamina:'view-stamina' };
+const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', sim:'view-sim', stamina:'view-stamina' };
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){
