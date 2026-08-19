@@ -12,6 +12,7 @@
   <h1 class="brand">Idlezada <small>build generator</small></h1>
   <div class="navtabs" id="navtabs">
     <div class="navtab on" data-view="builds">Builds</div>
+    <div class="navtab" data-view="bosses">Bosses</div>
     <div class="navtab" data-view="sim">Simulator</div>
     <div class="navtab" data-view="stamina">Stamina</div>
   </div>
@@ -22,6 +23,26 @@
   <div class="wrap">
     <p class="lead">Set the level and pick an objective — the build is assembled automatically and the share code is ready to copy. Fine-tune it by clicking "Open in simulator".</p>
     <div class="slots" id="slots"></div>
+  </div>
+</section>
+
+<!-- ===== BOSSES ===== -->
+<section class="view" id="view-bosses">
+  <div class="wrap">
+    <div class="bosses-bar">
+      <input type="text" id="boss-search" placeholder="Search boss..." autocomplete="off">
+      <select id="boss-sort">
+        <option value="name">Name (A–Z)</option>
+        <option value="hp-desc">HP (high → low)</option>
+        <option value="hp-asc">HP (low → high)</option>
+        <option value="level">Level</option>
+      </select>
+      <button id="boss-suggest" title="Favorite the 40 meta farm bosses">Suggest 40</button>
+      <label class="chip2"><input type="checkbox" id="boss-favs"> <span id="favs-label">★ Favorites</span></label>
+      <span id="boss-count"></span>
+    </div>
+    <div class="bosses-grid" id="bosses-grid"></div>
+    <p class="note" style="margin-top:14px">Real HP = base × 4.5 for room bosses; cooperative bosses show the group base (scales with players). Data extracted from the community guide.</p>
   </div>
 </section>
 
@@ -38,5 +59,7 @@
 <script src="trees.js"></script>
 <script src="engine.js"></script>
 <script src="app.js"></script>
+<script src="bosses.js"></script>
+<script src="bosses-view.js"></script>
 </body>
 </html>
