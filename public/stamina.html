@@ -34,7 +34,7 @@
   .row{display:flex;gap:14px;flex-wrap:wrap}
   .col{flex:1 1 130px;min-width:120px}
   label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
-  input[type=time],input[type=number]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px;font-size:16px;font-variant-numeric:tabular-nums}
+  input[type=text],input[type=number]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px;font-size:16px;font-variant-numeric:tabular-nums}
   input:focus{outline:2px solid var(--train);outline-offset:1px;border-color:transparent}
   .timewrap{display:flex;gap:8px}
   .agora{background:var(--panel-2);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:0 12px;cursor:pointer;font-size:12px;white-space:nowrap}
@@ -93,8 +93,8 @@
     <h2>Where I am now</h2>
     <div class="row">
       <div class="col">
-        <label>Right now it's</label>
-        <div class="timewrap"><input type="time" id="tNow"><button class="agora" id="btnNow">now</button></div>
+        <label>Right now it's <span style="opacity:.6"></span></label>
+        <div class="timewrap"><input type="text" inputmode="numeric" maxlength="5" autocomplete="off" placeholder="HH:MM" id="tNow"><button class="agora" id="btnNow">now</button></div>
       </div>
       <div class="col">
         <label>Stamina I have</label>
@@ -108,8 +108,8 @@
   <div class="card">
     <h2>Overnight goal</h2>
     <div class="row">
-      <div class="col"><label>Sleep / start the hunt at</label><input type="time" id="tSleep" value="22:00"></div>
-      <div class="col"><label>Wake up at</label><input type="time" id="tWake" value="09:00"></div>
+      <div class="col"><label>Sleep / start the hunt at <span style="opacity:.6">(24h)</span></label><input type="text" inputmode="numeric" maxlength="5" autocomplete="off" placeholder="HH:MM" id="tSleep" value="22:00"></div>
+      <div class="col"><label>Wake up at <span style="opacity:.6">(24h)</span></label><input type="text" inputmode="numeric" maxlength="5" autocomplete="off" placeholder="HH:MM" id="tWake" value="09:00"></div>
     </div>
     <div class="row" style="margin-top:14px">
       <div class="col">
@@ -133,7 +133,17 @@ let mode='hm';
 
 const fmt=m=>{m=Math.round(m);if(m<=0)return'0min';const h=Math.floor(m/60),x=m%60;return h&&x?`${h}h ${x}min`:h?`${h}h`:`${x}min`;};
 const clock=t=>{t=((t%1440)+1440)%1440;return String(Math.floor(t/60)).padStart(2,'0')+':'+String(Math.round(t%60)).padStart(2,'0');};
-const ptime=v=>{if(!v)return null;const[a,b]=v.split(':').map(Number);return a*60+b;};
+// aceita "HH:MM", "H:MM" ou só dígitos "HHMM"/"HMM"; clampa em 24h. vazio/invalido -> null.
+const ptime=v=>{
+  if(v==null) return null; v=String(v).trim(); if(!v) return null;
+  let h,m;
+  if(v.includes(':')){ const p=v.split(':'); h=parseInt(p[0],10); m=parseInt(p[1],10); }
+  else { const d=v.replace(/\D/g,''); if(!d) return null;
+    if(d.length<=2){ h=parseInt(d,10); m=0; } else { h=parseInt(d.slice(0,d.length-2),10); m=parseInt(d.slice(-2),10); } }
+  if(!Number.isFinite(h)) return null; if(!Number.isFinite(m)) m=0;
+  h=Math.max(0,Math.min(23,h)); m=Math.max(0,Math.min(59,m));
+  return h*60+m;
+};
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 const pct=m=>Math.round(m/MAX*100);
 
@@ -240,6 +250,8 @@ function info(r){
 
 $('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.m);});
 ['vip','tNow','tSleep','tWake','hNow','mNow','pctNow','hWake','mWake','pctWake'].forEach(id=>{$(id).addEventListener('input',calc);$(id).addEventListener('change',calc);});
+// ao sair do campo de hora, reformata pra HH:MM 24h (ou limpa se invalido)
+['tNow','tSleep','tWake'].forEach(id=>$(id).addEventListener('blur',()=>{const t=ptime($(id).value);$(id).value=(t==null)?'':clock(t);calc();}));
 $('btnNow').addEventListener('click',()=>{const d=new Date();$('tNow').value=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');calc();});
 (function(){const d=new Date();$('tNow').value=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');calc();})();
 </script>
