@@ -13,6 +13,7 @@
   <div class="navtabs" id="navtabs">
     <div class="navtab on" data-view="builds">Builds</div>
     <div class="navtab" data-view="bosses">Bosses</div>
+    <div class="navtab" data-view="hunts">Hunts</div>
     <div class="navtab" data-view="sim">Simulator</div>
     <div class="navtab" data-view="stamina">Stamina</div>
   </div>
@@ -46,6 +47,32 @@
   </div>
 </section>
 
+<!-- ===== HUNTS ===== -->
+<section class="view" id="view-hunts">
+  <div class="wrap">
+    <div class="hunts-bar">
+      <div class="field"><span class="k">Level</span><input type="number" id="hunt-level" min="1" max="9999999" value="500"></div>
+      <div class="hunt-chars" id="hunt-chars"></div>
+      <label class="chip2"><input type="checkbox" id="hunt-party"> Party (leader 65%)</label>
+      <select id="hunt-sort">
+        <option value="xph">XP / hour</option>
+        <option value="xp">XP per clear</option>
+        <option value="gold">Gold per clear</option>
+        <option value="level">Level</option>
+      </select>
+      <span id="hunt-rate"></span>
+    </div>
+    <div class="hunts-bar dps-bar">
+      <div class="field" style="flex:1 1 260px"><span class="k">DPS — paste your Session (Ctrl+V)</span>
+        <textarea id="hunt-dps" rows="2" placeholder="Session&#10;05:27:35&#10;EK&#10;3.226/s · 63.410.078&#10;ED ..."></textarea></div>
+      <span id="hunt-dpsinfo" class="dpsinfo"></span>
+    </div>
+    <div id="hunt-reco"></div>
+    <div class="hunts-table" id="hunts-table"></div>
+    <p class="note" style="margin-top:14px">Ranked by <b>XP per clear</b> (your level's XP rate × party share). Click a hunt to expand its monsters and see base HP/XP — handy to cross-check with the game. Gold is coins only (approx). Data extracted from the game bundle; rates are live server config.</p>
+  </div>
+</section>
+
 <!-- ===== SIMULATOR ===== -->
 <section class="view" id="view-sim">
   <div class="iframe-wrap"><iframe id="simFrame" title="Build Simulator"></iframe></div>
@@ -61,5 +88,8 @@
 <script src="app.js"></script>
 <script src="bosses.js"></script>
 <script src="bosses-view.js"></script>
+<script src="xprates.js"></script>
+<script src="hunts.js"></script>
+<script src="hunts-view.js"></script>
 </body>
 </html>

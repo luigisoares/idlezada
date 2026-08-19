@@ -29,7 +29,8 @@
     "summons": [],
     "lookType": 495,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/495.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/495.png?v=5",
+    "expReal": 1000000
   },
   {
     "id": "ahau",
@@ -61,7 +62,8 @@
     "summons": [],
     "lookType": 1591,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1591.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1591.png?v=5",
+    "expReal": 89250
   },
   {
     "id": "alptramun",
@@ -93,7 +95,8 @@
     "summons": [],
     "lookType": 1143,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1143.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1143.png?v=5",
+    "expReal": 279750
   },
   {
     "id": "amenef_the_burning",
@@ -125,7 +128,8 @@
     "summons": [],
     "lookType": 541,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/541.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/541.png?v=5",
+    "expReal": 132000
   },
   {
     "id": "anomaly",
@@ -153,7 +157,8 @@
     "summons": [],
     "lookType": 876,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/876.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/876.png?v=5",
+    "expReal": 292500
   },
   {
     "id": "arbaziloth",
@@ -185,7 +190,8 @@
     "summons": [],
     "lookType": 1802,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1802.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1802.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "bakragore",
@@ -221,7 +227,8 @@
     "summons": [],
     "lookType": 1671,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1671.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1671.png?v=5",
+    "expReal": 18750000
   },
   {
     "id": "black_vixen",
@@ -249,7 +256,8 @@
     "summons": [],
     "lookType": 1038,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1038.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1038.png?v=5",
+    "expReal": 42750
   },
   {
     "id": "bloodback",
@@ -277,7 +285,8 @@
     "summons": [],
     "lookType": 1039,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1039.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1039.png?v=5",
+    "expReal": 55500
   },
   {
     "id": "bonelords_phylactery",
@@ -309,7 +318,8 @@
     "summons": [],
     "lookType": 0,
     "imgKind": "object",
-    "img": "https://baiakidle.com/api/things/object/52466.png?v=5"
+    "img": "https://baiakidle.com/api/things/object/52466.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "brain_head",
@@ -333,7 +343,8 @@
     "summons": [],
     "lookType": 0,
     "imgKind": "object",
-    "img": "https://baiakidle.com/api/things/object/32418.png?v=5"
+    "img": "https://baiakidle.com/api/things/object/32418.png?v=5",
+    "expReal": 34500
   },
   {
     "id": "brokul",
@@ -371,7 +382,8 @@
     ],
     "lookType": 1076,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1076.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1076.png?v=5",
+    "expReal": 57500
   },
   {
     "id": "chagorz",
@@ -403,7 +415,8 @@
     "summons": [],
     "lookType": 1666,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1666.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1666.png?v=5",
+    "expReal": 4062500
   },
   {
     "id": "count_vlarkorth",
@@ -435,7 +448,8 @@
     "summons": [],
     "lookType": 1221,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5",
+    "expReal": 233250
   },
   {
     "id": "court_warlock",
@@ -471,7 +485,8 @@
     "summons": [],
     "lookType": 1903,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1903.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1903.png?v=5",
+    "expReal": 367500
   },
   {
     "id": "darkfang",
@@ -499,7 +514,8 @@
     "summons": [],
     "lookType": 308,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/308.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/308.png?v=5",
+    "expReal": 51000
   },
   {
     "id": "deathstrike",
@@ -527,7 +543,8 @@
     "summons": [],
     "lookType": 500,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/500.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/500.png?v=5",
+    "expReal": 100000
   },
   {
     "id": "dragon_pack",
@@ -559,7 +576,8 @@
     "summons": [],
     "lookType": 1712,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1712.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1712.png?v=5",
+    "expReal": 178500
   },
   {
     "id": "dragonking_zyrtarch",
@@ -587,7 +605,8 @@
     "summons": [],
     "lookType": 938,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/938.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/938.png?v=5",
+    "expReal": 170250
   },
   {
     "id": "drume",
@@ -627,7 +646,8 @@
     "summons": [],
     "lookType": 1317,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1317.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1317.png?v=5",
+    "expReal": 182250
   },
   {
     "id": "duke_krule",
@@ -655,7 +675,8 @@
     "summons": [],
     "lookType": 1221,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5",
+    "expReal": 237750
   },
   {
     "id": "earl_osam",
@@ -687,7 +708,8 @@
     "summons": [],
     "lookType": 1223,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5",
+    "expReal": 255000
   },
   {
     "id": "eldritch_dragon_lord",
@@ -719,7 +741,8 @@
     "summons": [],
     "lookType": 1879,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1879.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1879.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "eradicator",
@@ -751,7 +774,8 @@
     "summons": [],
     "lookType": 875,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
+    "expReal": 314250
   },
   {
     "id": "faceless_bane",
@@ -787,7 +811,8 @@
     "summons": [],
     "lookType": 1119,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1119.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1119.png?v=5",
+    "expReal": 199500
   },
   {
     "id": "fatal_bug",
@@ -815,7 +840,8 @@
     "summons": [],
     "lookType": 79,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/79.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/79.png?v=5",
+    "expReal": 1670000
   },
   {
     "id": "ferumbras_mortal_shell",
@@ -847,7 +873,8 @@
     "summons": [],
     "lookType": 229,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/229.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/229.png?v=5",
+    "expReal": 2500000
   },
   {
     "id": "foreshock",
@@ -879,7 +906,8 @@
     "summons": [],
     "lookType": 875,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
+    "expReal": 195000
   },
   {
     "id": "ghulosh",
@@ -903,7 +931,8 @@
     "summons": [],
     "lookType": 1062,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
+    "expReal": 112500
   },
   {
     "id": "gnomevil",
@@ -931,7 +960,8 @@
     "summons": [],
     "lookType": 504,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/504.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/504.png?v=5",
+    "expReal": 1000000
   },
   {
     "id": "gorzindel",
@@ -959,7 +989,8 @@
     "summons": [],
     "lookType": 1062,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
+    "expReal": 360750
   },
   {
     "id": "goshnars_cruelty",
@@ -991,7 +1022,8 @@
     "summons": [],
     "lookType": 1303,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1303.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1303.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "goshnars_greed",
@@ -1027,7 +1059,8 @@
     "summons": [],
     "lookType": 1304,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1304.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1304.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "goshnars_hatred",
@@ -1059,7 +1092,8 @@
     "summons": [],
     "lookType": 1307,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1307.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1307.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "goshnars_malice",
@@ -1087,7 +1121,8 @@
     "summons": [],
     "lookType": 1306,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1306.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1306.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "goshnars_megalomania",
@@ -1119,7 +1154,8 @@
     "summons": [],
     "lookType": 1308,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1308.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1308.png?v=5",
+    "expReal": 2500000
   },
   {
     "id": "goshnars_spite",
@@ -1151,7 +1187,8 @@
     "summons": [],
     "lookType": 1305,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1305.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1305.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "oberon",
@@ -1190,7 +1227,8 @@
     ],
     "lookType": 1072,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1072.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1072.png?v=5",
+    "expReal": 50000
   },
   {
     "id": "ice_horror",
@@ -1218,7 +1256,8 @@
     "summons": [],
     "lookType": 1881,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1881.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1881.png?v=5",
+    "expReal": 647500
   },
   {
     "id": "ichgahal",
@@ -1246,7 +1285,8 @@
     "summons": [],
     "lookType": 1665,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1665.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1665.png?v=5",
+    "expReal": 4062500
   },
   {
     "id": "irgix_the_flimsy",
@@ -1282,7 +1322,8 @@
     "summons": [],
     "lookType": 1268,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
+    "expReal": 119250
   },
   {
     "id": "jaul",
@@ -1322,7 +1363,8 @@
     "summons": [],
     "lookType": 444,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/444.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/444.png?v=5",
+    "expReal": 207750
   },
   {
     "id": "king_zelos",
@@ -1354,7 +1396,8 @@
     "summons": [],
     "lookType": 1224,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1224.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1224.png?v=5",
+    "expReal": 394500
   },
   {
     "id": "kusuma",
@@ -1390,7 +1433,8 @@
     "summons": [],
     "lookType": 1068,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
+    "expReal": 153000
   },
   {
     "id": "lady_tenebris",
@@ -1418,7 +1462,8 @@
     "summons": [],
     "lookType": 433,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/433.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/433.png?v=5",
+    "expReal": 225000
   },
   {
     "id": "leiden",
@@ -1442,7 +1487,8 @@
     "summons": [],
     "lookType": 988,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/988.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/988.png?v=5",
+    "expReal": 127500
   },
   {
     "id": "lloyd",
@@ -1470,7 +1516,8 @@
     "summons": [],
     "lookType": 940,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/940.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/940.png?v=5",
+    "expReal": 174000
   },
   {
     "id": "lokathmor",
@@ -1502,7 +1549,8 @@
     "summons": [],
     "lookType": 1062,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
+    "expReal": 250000
   },
   {
     "id": "lord_azaram",
@@ -1530,7 +1578,8 @@
     "summons": [],
     "lookType": 1223,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5",
+    "expReal": 258750
   },
   {
     "id": "lord_retro",
@@ -1562,7 +1611,8 @@
     "summons": [],
     "lookType": 1469,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1469.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1469.png?v=5",
+    "expReal": 212250
   },
   {
     "id": "magma_bubble",
@@ -1590,7 +1640,8 @@
     "summons": [],
     "lookType": 1413,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1413.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1413.png?v=5",
+    "expReal": 297000
   },
   {
     "id": "mazzinor",
@@ -1626,7 +1677,8 @@
     "summons": [],
     "lookType": 1062,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
+    "expReal": 250000
   },
   {
     "id": "megasylvan_yselda",
@@ -1658,7 +1710,8 @@
     "summons": [],
     "lookType": 0,
     "imgKind": "object",
-    "img": "https://baiakidle.com/api/things/object/36928.png?v=5"
+    "img": "https://baiakidle.com/api/things/object/36928.png?v=5",
+    "expReal": 140250
   },
   {
     "id": "mitmah_vanguard",
@@ -1694,7 +1747,8 @@
     "summons": [],
     "lookType": 1716,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1716.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1716.png?v=5",
+    "expReal": 750000
   },
   {
     "id": "mounted_thorn_knight",
@@ -1722,7 +1776,8 @@
     "summons": [],
     "lookType": 512,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/512.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/512.png?v=5",
+    "expReal": 191250
   },
   {
     "id": "murcion",
@@ -1758,7 +1813,8 @@
     "summons": [],
     "lookType": 1664,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1664.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1664.png?v=5",
+    "expReal": 4062500
   },
   {
     "id": "neferi_the_spy",
@@ -1790,7 +1846,8 @@
     "summons": [],
     "lookType": 149,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/149.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/149.png?v=5",
+    "expReal": 114750
   },
   {
     "id": "obujos",
@@ -1826,7 +1883,8 @@
     "summons": [],
     "lookType": 445,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/445.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/445.png?v=5",
+    "expReal": 157500
   },
   {
     "id": "outburst",
@@ -1858,7 +1916,8 @@
     "summons": [],
     "lookType": 876,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/876.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/876.png?v=5",
+    "expReal": 318000
   },
   {
     "id": "plagirath",
@@ -1890,7 +1949,8 @@
     "summons": [],
     "lookType": 862,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/862.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/862.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "prince_drazzak",
@@ -1914,7 +1974,8 @@
     "summons": [],
     "lookType": 12,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/12.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/12.png?v=5",
+    "expReal": 525000
   },
   {
     "id": "ragiaz",
@@ -1942,7 +2003,8 @@
     "summons": [],
     "lookType": 862,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/862.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/862.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "ratmiral",
@@ -1972,7 +2034,8 @@
     ],
     "lookType": 1377,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1377.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1377.png?v=5",
+    "expReal": 125000
   },
   {
     "id": "razzagorn",
@@ -2008,7 +2071,8 @@
     "summons": [],
     "lookType": 842,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "rupture",
@@ -2040,7 +2104,8 @@
     "summons": [],
     "lookType": 875,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
+    "expReal": 280000
   },
   {
     "id": "scarlett",
@@ -2076,7 +2141,8 @@
     "summons": [],
     "lookType": 1201,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1201.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1201.png?v=5",
+    "expReal": 50000
   },
   {
     "id": "shadowpelt",
@@ -2104,7 +2170,8 @@
     "summons": [],
     "lookType": 1040,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1040.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1040.png?v=5",
+    "expReal": 30000
   },
   {
     "id": "sharpclaw",
@@ -2132,7 +2199,8 @@
     "summons": [],
     "lookType": 1031,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1031.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1031.png?v=5",
+    "expReal": 47250
   },
   {
     "id": "shulgrax",
@@ -2164,7 +2232,8 @@
     "summons": [],
     "lookType": 842,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "sir_nictros",
@@ -2192,7 +2261,8 @@
     "summons": [],
     "lookType": 1222,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1222.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1222.png?v=5",
+    "expReal": 204000
   },
   {
     "id": "sister_hetai",
@@ -2224,7 +2294,8 @@
     "summons": [],
     "lookType": 1199,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1199.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1199.png?v=5",
+    "expReal": 123000
   },
   {
     "id": "solid_frozen_horror",
@@ -2248,7 +2319,8 @@
     "summons": [],
     "lookType": 261,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/261.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/261.png?v=5",
+    "expReal": 161250
   },
   {
     "id": "tanjis",
@@ -2284,7 +2356,8 @@
     "summons": [],
     "lookType": 446,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/446.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/446.png?v=5",
+    "expReal": 148500
   },
   {
     "id": "tarbaz",
@@ -2316,7 +2389,8 @@
     "summons": [],
     "lookType": 842,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
+    "expReal": 1250000
   },
   {
     "id": "the_baron_from_below",
@@ -2348,7 +2422,8 @@
     "summons": [],
     "lookType": 1045,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1045.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1045.png?v=5",
+    "expReal": 229500
   },
   {
     "id": "the_blazing_rose",
@@ -2376,7 +2451,8 @@
     "summons": [],
     "lookType": 1068,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
+    "expReal": 81000
   },
   {
     "id": "the_brainstealer",
@@ -2404,7 +2480,8 @@
     "summons": [],
     "lookType": 1412,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1412.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1412.png?v=5",
+    "expReal": 242250
   },
   {
     "id": "the_count_of_the_core",
@@ -2432,7 +2509,8 @@
     "summons": [],
     "lookType": 1046,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1046.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1046.png?v=5",
+    "expReal": 750000
   },
   {
     "id": "the_diamond_blossom",
@@ -2460,7 +2538,8 @@
     "summons": [],
     "lookType": 1068,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
+    "expReal": 106500
   },
   {
     "id": "the_dread_maiden",
@@ -2488,7 +2567,8 @@
     "summons": [],
     "lookType": 1278,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1278.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1278.png?v=5",
+    "expReal": 220500
   },
   {
     "id": "the_duke_of_the_depths",
@@ -2516,7 +2596,8 @@
     "summons": [],
     "lookType": 1047,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1047.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1047.png?v=5",
+    "expReal": 750000
   },
   {
     "id": "the_fear_feaster",
@@ -2552,7 +2633,8 @@
     "summons": [],
     "lookType": 1276,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1276.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1276.png?v=5",
+    "expReal": 263250
   },
   {
     "id": "the_gravedigger",
@@ -2584,7 +2666,8 @@
     "summons": [],
     "lookType": 1880,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1880.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1880.png?v=5",
+    "expReal": 1875000
   },
   {
     "id": "the_last_lore_keeper",
@@ -2620,7 +2703,8 @@
     "summons": [],
     "lookType": 939,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/939.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/939.png?v=5",
+    "expReal": 112500
   },
   {
     "id": "the_lily_of_night",
@@ -2648,7 +2732,8 @@
     "summons": [],
     "lookType": 1068,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
+    "expReal": 97500
   },
   {
     "id": "the_monster",
@@ -2676,7 +2761,8 @@
     "summons": [],
     "lookType": 1600,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1600.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1600.png?v=5",
+    "expReal": 369000
   },
   {
     "id": "nightmare_beast",
@@ -2704,7 +2790,8 @@
     "summons": [],
     "lookType": 1144,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1144.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1144.png?v=5",
+    "expReal": 187500
   },
   {
     "id": "the_pale_worm",
@@ -2740,7 +2827,8 @@
     "summons": [],
     "lookType": 1272,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1272.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1272.png?v=5",
+    "expReal": 309750
   },
   {
     "id": "the_primal_menace",
@@ -2780,7 +2868,8 @@
     "summons": [],
     "lookType": 1566,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1566.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1566.png?v=5",
+    "expReal": 288750
   },
   {
     "id": "the_rootkraken",
@@ -2812,7 +2901,8 @@
     "summons": [],
     "lookType": 1765,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1765.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1765.png?v=5",
+    "expReal": 1750000
   },
   {
     "id": "the_scourge_of_oblivion",
@@ -2844,7 +2934,8 @@
     "summons": [],
     "lookType": 875,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
+    "expReal": 187500
   },
   {
     "id": "the_time_guardian",
@@ -2876,7 +2967,8 @@
     "summons": [],
     "lookType": 945,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/945.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/945.png?v=5",
+    "expReal": 125000
   },
   {
     "id": "the_unwelcome",
@@ -2912,7 +3004,8 @@
     "summons": [],
     "lookType": 1277,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1277.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1277.png?v=5",
+    "expReal": 267750
   },
   {
     "id": "timira_the_many_headed",
@@ -2948,7 +3041,8 @@
     "summons": [],
     "lookType": 1542,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1542.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1542.png?v=5",
+    "expReal": 216750
   },
   {
     "id": "unaz_the_mean",
@@ -2984,7 +3078,8 @@
     "summons": [],
     "lookType": 1268,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
+    "expReal": 135750
   },
   {
     "id": "urmahlullu_the_immaculate",
@@ -3016,7 +3111,8 @@
     "summons": [],
     "lookType": 1197,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1197.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1197.png?v=5",
+    "expReal": 356250
   },
   {
     "id": "utua_stone_sting",
@@ -3048,7 +3144,8 @@
     "summons": [],
     "lookType": 398,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/398.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/398.png?v=5",
+    "expReal": 76500
   },
   {
     "id": "vemiath",
@@ -3084,7 +3181,8 @@
     "summons": [],
     "lookType": 1668,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1668.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1668.png?v=5",
+    "expReal": 4062500
   },
   {
     "id": "vladrukh",
@@ -3116,7 +3214,8 @@
     "summons": [],
     "lookType": 1862,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1862.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1862.png?v=5",
+    "expReal": 1125000
   },
   {
     "id": "vok_the_freakish",
@@ -3152,7 +3251,8 @@
     "summons": [],
     "lookType": 1268,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
+    "expReal": 144750
   },
   {
     "id": "world_devourer",
@@ -3184,6 +3284,7 @@
     "summons": [],
     "lookType": 875,
     "imgKind": "outfit",
-    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5"
+    "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
+    "expReal": 390000
   }
 ]

@@ -1,0 +1,63 @@
+{
+  "_note": "Valores VIVOS do servidor (baiakidle.com /#/wiki/dados-do-servidor). Server-config: podem mudar. NÃO usar os defaults do bundle (que diferem, ex.: bundle xpstages 51-100=4.5 vs live=3).",
+  "_source": "wiki 'Dados do Servidor' + confirmado in-game (ex.: Bakragore XP 18.75M = base 7.5M × 2.5)",
+
+  "xpRatesByLevel": [
+    { "min": 1,   "max": 50,   "mult": 5 },
+    { "min": 51,  "max": 100,  "mult": 3 },
+    { "min": 101, "max": 250,  "mult": 2 },
+    { "min": 251, "max": 450,  "mult": 1.5 },
+    { "min": 451, "max": 700,  "mult": 1 },
+    { "min": 701, "max": null, "mult": 0.9 }
+  ],
+
+  "phaseBoss":  { "hpMult": 3,   "dmgMult": 1.5, "xpMult": 2.5, "_note": "boss da wave 10 de qualquer hunt (nome em vermelho)" },
+  "roomBoss":   { "hpMult": 4.5, "xpMult": 2.5,  "_note": "salas de boss dedicadas (aba Bosses). hpMult efetivo VIVO (bundle=3 × monsterMult do servidor ~1.5); XP ×2.5 confirmado" },
+
+  "party": { "maxMembers": 3, "leaderXpShare": 0.65, "restSplitEqually": true, "soloShare": 1.0 },
+
+  "hunt": {
+    "waves": 10,
+    "bossWave": 10,
+    "packBase": 4,
+    "packGrowthEveryWaves": 2,
+    "packCap": 9,
+    "packSizeRule": "waves 1-9: min(9, base + floor((wave-1)/2)); wave 10 = 1 boss",
+    "difficulty": "vem do monstro-base (HP/dano) + tamanho do pack; SEM multiplicador de posição/degrau",
+    "levelIsIndicative": true
+  },
+
+  "combat": {
+    "attackIntervalSec": 2,
+    "groupCdAttackSec": 2,
+    "groupCdHealSec": 1,
+    "potionExhaustSec": 1,
+    "critBasePct": 50,
+    "onslaughtPct": 60,
+    "executeBelowHpPct": 25,
+    "skillWeightPctPerPoint": 8,
+    "leechAreaFirstPct": 100,
+    "leechAreaRestPct": 10,
+    "respawnSec": 2.5,
+    "absorb": "sem teto; fontes multiplicativas a+b-ab/100"
+  },
+
+  "economy": {
+    "deathPenaltyFormula": "500 × soma(níveis dos membros nível 50+); só gold; sem teto; isento < nível 50",
+    "promotionLevel": 20,
+    "promotionGold": 20000,
+    "promotionRegenMult": 1.5
+  },
+
+  "bossRooms": {
+    "chargesFree": 20,
+    "chargesVip": 40,
+    "chargeCostPerEntry": 1,
+    "chargeSpentOnEntryEvenIfDeath": true,
+    "rechargePerBoss": "1x por dia, reseta à meia-noite",
+    "bossPassReturnsCharge": 1,
+    "bossPassMaxPerDay": 20,
+    "rewardBagChestCap": 200,
+    "noLevelRequirement": true
+  }
+}
