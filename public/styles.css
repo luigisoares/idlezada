@@ -104,3 +104,58 @@ button.gold:hover{background:#f0d27e}
 .slot .actions{display:flex;gap:8px}
 .slot .actions button{flex:1}
 .note{color:var(--dim);font-size:11.5px;line-height:1.5}
+
+/* ---- bosses tab ---- */
+.bosses-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.bosses-bar input[type=text]{flex:1;min-width:180px;background:#0b100e;border:1px solid var(--line);
+  color:var(--txt);border-radius:9px;padding:9px 12px;font:inherit}
+.bosses-bar input:focus{outline:2px solid #2f4a3d;outline-offset:1px}
+.bosses-bar #boss-count{color:var(--dim);font-size:12.5px;margin-left:auto;font-variant-numeric:tabular-nums}
+.bosses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.boss{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column}
+.boss-img{position:relative;height:100px;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 42%,#16211b,#0c110f);border-bottom:1px solid var(--line)}
+.fav{position:absolute;top:6px;right:6px;width:26px;height:26px;padding:0;border-radius:8px;
+  background:rgba(13,18,16,.55);border:1px solid var(--line);color:#5a6b61;font-size:14px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;transition:.12s}
+.fav:hover{color:var(--gold);border-color:#4a3f21}
+.fav.on{color:var(--gold);border-color:var(--gold);background:rgba(232,197,106,.14)}
+.chip2.limit{border-color:#5a2f2a;color:#ff9a8a}
+/* frame frontal = 3ª linha (índice 2) do sheet 64×64 -> y = -128px */
+.boss-img .sprite{width:64px;height:64px;background-repeat:no-repeat;background-position:0 -128px;
+  image-rendering:pixelated;transform:scale(1.35);transform-origin:center}
+.boss-img .obj-img{max-height:72px;max-width:78%;image-rendering:pixelated}
+.boss-img.noimg::after{content:'?';color:#38473f;font:700 32px Georgia,serif}
+.boss-body{padding:12px 13px;display:flex;flex-direction:column;gap:9px}
+.boss-name{font:600 14px/1.25 Georgia,serif;color:var(--txt)}
+.boss-badges{display:flex;gap:6px;flex-wrap:wrap}
+.rb{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  padding:3px 8px;border-radius:999px;border:1px solid}
+.rb-normal{color:var(--gold);border-color:#4a3f21;background:rgba(232,197,106,.08)}
+.rb-archfoe{color:#c79cff;border-color:#4a3a63;background:rgba(176,96,255,.10)}
+.rb-nemesis{color:#ff8b7a;border-color:#5a2f2a;background:rgba(255,107,94,.10)}
+.rb-bane{color:#6fdce8;border-color:#245863;background:rgba(95,212,232,.10)}
+.rb-group{color:#9fe37a;border-color:#2f5a2a;background:rgba(111,220,140,.10)}
+.boss-stats{display:flex;gap:14px;flex-wrap:wrap}
+.boss-stats .bs{display:flex;flex-direction:column;gap:1px}
+.boss-stats .bs span{color:var(--dim);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.boss-stats .bs b{font-variant-numeric:tabular-nums;font-size:13px}
+.boss-note{color:var(--dim);font-size:11px;border-top:1px solid var(--line);padding-top:7px;
+  font-variant-numeric:tabular-nums}
+
+/* toggle na barra de bosses */
+.chip2{display:inline-flex;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--line);
+  border-radius:9px;padding:8px 12px;cursor:pointer;user-select:none;font-size:12.5px;color:var(--dim)}
+.chip2 input{accent-color:var(--acc);width:15px;height:15px}
+/* elementos de dano do boss */
+.boss-els{display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:8px}
+.el{font-size:10px;font-weight:700;text-transform:capitalize;padding:3px 8px;border-radius:6px;
+  border:1px solid transparent}
+.el-physical{color:#e0d3bd;background:rgba(224,211,189,.10);border-color:#4a4238}
+.el-fire{color:#ff9a6b;background:rgba(255,122,89,.12);border-color:#5a3226}
+.el-ice{color:#7cd6ec;background:rgba(95,212,232,.12);border-color:#245863}
+.el-energy{color:#c79cff;background:rgba(176,96,255,.12);border-color:#4a3a63}
+.el-earth{color:#9fe37a;background:rgba(111,220,140,.12);border-color:#2f5a2a}
+.el-holy{color:#ffe08a;background:rgba(232,197,106,.12);border-color:#4a3f21}
+.el-death{color:#aab0c0;background:rgba(150,160,176,.12);border-color:#3a4048}
