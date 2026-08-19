@@ -116,11 +116,12 @@ button.gold:hover{background:#f0d27e}
   display:flex;flex-direction:column}
 .boss-img{position:relative;height:100px;display:grid;place-items:center;
   background:radial-gradient(circle at 50% 42%,#16211b,#0c110f);border-bottom:1px solid var(--line)}
-.fav{position:absolute;top:6px;right:6px;width:26px;height:26px;padding:0;border-radius:8px;
-  background:rgba(13,18,16,.55);border:1px solid var(--line);color:#5a6b61;font-size:14px;line-height:1;
-  display:grid;place-items:center;cursor:pointer;transition:.12s}
-.fav:hover{color:var(--gold);border-color:#4a3f21}
-.fav.on{color:var(--gold);border-color:var(--gold);background:rgba(232,197,106,.14)}
+.boss-tools{position:absolute;top:6px;right:6px;display:flex;gap:6px;z-index:2}
+.boss-tools button{width:26px;height:26px;padding:0;border-radius:8px;background:rgba(13,18,16,.6);
+  border:1px solid var(--line);color:#7a8a80;font-size:13px;line-height:1;display:grid;place-items:center;
+  cursor:pointer;transition:.12s}
+.boss-tools button:hover{color:var(--gold);border-color:#4a3f21}
+.fav.on,.boss-edit.on{color:var(--gold);border-color:var(--gold);background:rgba(232,197,106,.14)}
 .chip2.limit{border-color:#5a2f2a;color:#ff9a8a}
 /* frame frontal = 3ª linha (índice 2) do sheet 64×64 -> y = -128px */
 .boss-img .sprite{width:64px;height:64px;background-repeat:no-repeat;background-position:0 -128px;
@@ -149,7 +150,7 @@ button.gold:hover{background:#f0d27e}
   border-radius:9px;padding:8px 12px;cursor:pointer;user-select:none;font-size:12.5px;color:var(--dim)}
 .chip2 input{accent-color:var(--acc);width:15px;height:15px}
 /* elementos de dano do boss */
-.boss-els{display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:8px}
+.boss-els{display:flex;gap:6px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:8px}
 .el{font-size:10px;font-weight:700;text-transform:capitalize;padding:3px 8px;border-radius:6px;
   border:1px solid transparent}
 .el-physical{color:#e0d3bd;background:rgba(224,211,189,.10);border-color:#4a4238}
@@ -159,3 +160,18 @@ button.gold:hover{background:#f0d27e}
 .el-earth{color:#9fe37a;background:rgba(111,220,140,.12);border-color:#2f5a2a}
 .el-holy{color:#ffe08a;background:rgba(232,197,106,.12);border-color:#4a3f21}
 .el-death{color:#aab0c0;background:rgba(150,160,176,.12);border-color:#3a4048}
+
+/* editor de elementos (override manual, salvo no localStorage) */
+.el-empty{color:var(--dim);font-size:11px;font-style:italic}
+.boss-editor{border-top:1px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:8px}
+.ed-hint{font-size:10px;color:var(--dim)}
+.ed-chips{display:flex;flex-wrap:wrap;gap:5px}
+.el-pick{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;
+  text-transform:capitalize;padding:4px 9px;border-radius:999px;cursor:pointer;user-select:none;
+  background:var(--panel2);border:1px solid var(--line);opacity:.5;transition:.12s}
+.el-pick:hover{opacity:.85;border-color:#3c5147}
+.el-pick.sel{opacity:1;border-color:currentColor;background:rgba(232,197,106,.05)}
+.el-pick b{font-size:9px;background:var(--gold);color:#0d1210;border-radius:999px;
+  width:13px;height:13px;display:inline-grid;place-items:center;line-height:1}
+.ed-actions{display:flex;gap:6px}
+.ed-actions button{padding:5px 10px;font-size:11px}

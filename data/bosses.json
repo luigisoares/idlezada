@@ -47,15 +47,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 45
+        "pct": 54
       },
       {
         "el": "earth",
-        "pct": 35
+        "pct": 34
       },
       {
         "el": "fire",
-        "pct": 20
+        "pct": 12
       }
     ],
     "summons": [],
@@ -79,15 +79,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 69
+        "pct": 81
       },
       {
         "el": "death",
-        "pct": 27
+        "pct": 16
       },
       {
         "el": "fire",
-        "pct": 5
+        "pct": 3
       }
     ],
     "summons": [],
@@ -111,15 +111,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 59
+        "pct": 74
       },
       {
         "el": "fire",
-        "pct": 32
+        "pct": 20
       },
       {
         "el": "energy",
-        "pct": 9
+        "pct": 5
       }
     ],
     "summons": [],
@@ -143,11 +143,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 86
+        "pct": 82
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 18
       }
     ],
     "summons": [],
@@ -171,15 +171,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 69
+        "pct": 82
       },
       {
         "el": "energy",
-        "pct": 17
+        "pct": 10
       },
       {
         "el": "death",
-        "pct": 13
+        "pct": 8
       }
     ],
     "summons": [],
@@ -203,19 +203,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 59
+        "pct": 55
       },
       {
         "el": "ice",
-        "pct": 21
+        "pct": 35
       },
       {
         "el": "fire",
-        "pct": 12
+        "pct": 6
       },
       {
         "el": "death",
-        "pct": 9
+        "pct": 4
       }
     ],
     "summons": [],
@@ -239,11 +239,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 82
+        "pct": 92
       },
       {
         "el": "death",
-        "pct": 18
+        "pct": 8
       }
     ],
     "summons": [],
@@ -267,11 +267,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 93
+        "pct": 96
       },
       {
         "el": "death",
-        "pct": 7
+        "pct": 4
       }
     ],
     "summons": [],
@@ -295,11 +295,11 @@
     "elements": [
       {
         "el": "death",
-        "pct": 70
+        "pct": 78
       },
       {
         "el": "energy",
-        "pct": 28
+        "pct": 20
       },
       {
         "el": "physical",
@@ -351,19 +351,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 53
+        "pct": 48
       },
       {
         "el": "ice",
-        "pct": 21
+        "pct": 38
       },
       {
         "el": "holy",
-        "pct": 17
+        "pct": 8
       },
       {
         "el": "fire",
-        "pct": 10
+        "pct": 5
       }
     ],
     "summons": [
@@ -389,15 +389,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 62
+        "pct": 67
       },
       {
         "el": "death",
-        "pct": 20
+        "pct": 23
       },
       {
         "el": "earth",
-        "pct": 18
+        "pct": 10
       }
     ],
     "summons": [],
@@ -421,15 +421,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 68
+        "pct": 74
       },
       {
         "el": "fire",
-        "pct": 26
+        "pct": 14
       },
       {
         "el": "death",
-        "pct": 6
+        "pct": 12
       }
     ],
     "summons": [],
@@ -453,19 +453,19 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 33
-      },
-      {
-        "el": "physical",
-        "pct": 31
+        "pct": 38
       },
       {
         "el": "energy",
-        "pct": 25
+        "pct": 30
+      },
+      {
+        "el": "physical",
+        "pct": 26
       },
       {
         "el": "death",
-        "pct": 11
+        "pct": 5
       }
     ],
     "summons": [],
@@ -489,11 +489,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 89
+        "pct": 93
       },
       {
         "el": "death",
-        "pct": 11
+        "pct": 7
       }
     ],
     "summons": [],
@@ -517,11 +517,11 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 91
+        "pct": 73
       },
       {
         "el": "energy",
-        "pct": 9
+        "pct": 27
       }
     ],
     "summons": [],
@@ -545,7 +545,7 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 75
+        "pct": 79
       },
       {
         "el": "fire",
@@ -553,7 +553,7 @@
       },
       {
         "el": "death",
-        "pct": 8
+        "pct": 4
       }
     ],
     "summons": [],
@@ -577,11 +577,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 59
+        "pct": 52
       },
       {
         "el": "fire",
-        "pct": 41
+        "pct": 48
       }
     ],
     "summons": [],
@@ -605,23 +605,23 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 45
-      },
-      {
-        "el": "death",
-        "pct": 19
+        "pct": 43
       },
       {
         "el": "energy",
-        "pct": 15
+        "pct": 27
+      },
+      {
+        "el": "death",
+        "pct": 21
       },
       {
         "el": "holy",
-        "pct": 12
+        "pct": 6
       },
       {
         "el": "ice",
-        "pct": 9
+        "pct": 4
       }
     ],
     "summons": [],
@@ -645,11 +645,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 89
+        "pct": 92
       },
       {
         "el": "fire",
-        "pct": 11
+        "pct": 8
       }
     ],
     "summons": [],
@@ -673,15 +673,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 62
-      },
-      {
-        "el": "earth",
-        "pct": 23
+        "pct": 70
       },
       {
         "el": "ice",
-        "pct": 15
+        "pct": 17
+      },
+      {
+        "el": "earth",
+        "pct": 13
       }
     ],
     "summons": [],
@@ -705,15 +705,15 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 48
-      },
-      {
-        "el": "energy",
-        "pct": 28
+        "pct": 55
       },
       {
         "el": "physical",
-        "pct": 24
+        "pct": 28
+      },
+      {
+        "el": "energy",
+        "pct": 18
       }
     ],
     "summons": [],
@@ -737,15 +737,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 87
-      },
-      {
-        "el": "energy",
-        "pct": 7
+        "pct": 85
       },
       {
         "el": "death",
-        "pct": 5
+        "pct": 11
+      },
+      {
+        "el": "energy",
+        "pct": 4
       }
     ],
     "summons": [],
@@ -776,12 +776,12 @@
         "pct": 32
       },
       {
-        "el": "death",
-        "pct": 14
+        "el": "energy",
+        "pct": 15
       },
       {
-        "el": "energy",
-        "pct": 7
+        "el": "death",
+        "pct": 8
       }
     ],
     "summons": [],
@@ -805,11 +805,11 @@
     "elements": [
       {
         "el": "earth",
-        "pct": 89
+        "pct": 87
       },
       {
         "el": "physical",
-        "pct": 11
+        "pct": 13
       }
     ],
     "summons": [],
@@ -865,15 +865,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 78
-      },
-      {
-        "el": "energy",
-        "pct": 11
+        "pct": 72
       },
       {
         "el": "holy",
-        "pct": 11
+        "pct": 22
+      },
+      {
+        "el": "energy",
+        "pct": 6
       }
     ],
     "summons": [],
@@ -921,11 +921,11 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 91
+        "pct": 73
       },
       {
         "el": "energy",
-        "pct": 9
+        "pct": 27
       }
     ],
     "summons": [],
@@ -949,11 +949,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 90
+        "pct": 95
       },
       {
         "el": "death",
-        "pct": 10
+        "pct": 5
       }
     ],
     "summons": [],
@@ -977,15 +977,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 76
+        "pct": 73
       },
       {
         "el": "energy",
-        "pct": 15
+        "pct": 23
       },
       {
         "el": "death",
-        "pct": 9
+        "pct": 4
       }
     ],
     "summons": [],
@@ -1009,19 +1009,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 64
+        "pct": 55
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 22
       },
       {
         "el": "energy",
-        "pct": 13
+        "pct": 20
       },
       {
         "el": "fire",
-        "pct": 9
+        "pct": 4
       }
     ],
     "summons": [],
@@ -1045,15 +1045,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 66
-      },
-      {
-        "el": "death",
-        "pct": 17
+        "pct": 54
       },
       {
         "el": "energy",
-        "pct": 17
+        "pct": 25
+      },
+      {
+        "el": "death",
+        "pct": 21
       }
     ],
     "summons": [],
@@ -1077,11 +1077,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 68
+        "pct": 65
       },
       {
         "el": "ice",
-        "pct": 32
+        "pct": 35
       }
     ],
     "summons": [],
@@ -1105,15 +1105,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 74
+        "pct": 71
       },
       {
         "el": "energy",
-        "pct": 17
+        "pct": 26
       },
       {
         "el": "death",
-        "pct": 9
+        "pct": 4
       }
     ],
     "summons": [],
@@ -1137,15 +1137,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 64
+        "pct": 53
       },
       {
         "el": "earth",
-        "pct": 24
+        "pct": 29
       },
       {
         "el": "energy",
-        "pct": 12
+        "pct": 18
       }
     ],
     "summons": [],
@@ -1169,19 +1169,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 54
-      },
-      {
-        "el": "holy",
-        "pct": 18
+        "pct": 56
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 27
+      },
+      {
+        "el": "holy",
+        "pct": 10
       },
       {
         "el": "earth",
-        "pct": 13
+        "pct": 7
       }
     ],
     "summons": [
@@ -1208,11 +1208,11 @@
     "elements": [
       {
         "el": "ice",
-        "pct": 78
+        "pct": 74
       },
       {
         "el": "physical",
-        "pct": 22
+        "pct": 26
       }
     ],
     "summons": [],
@@ -1236,11 +1236,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 90
+        "pct": 95
       },
       {
         "el": "fire",
-        "pct": 10
+        "pct": 5
       }
     ],
     "summons": [],
@@ -1264,19 +1264,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 46
+        "pct": 56
       },
       {
         "el": "energy",
-        "pct": 27
-      },
-      {
-        "el": "death",
-        "pct": 21
+        "pct": 16
       },
       {
         "el": "earth",
-        "pct": 7
+        "pct": 15
+      },
+      {
+        "el": "death",
+        "pct": 13
       }
     ],
     "summons": [],
@@ -1300,23 +1300,23 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 75
+        "pct": 77
       },
       {
         "el": "fire",
-        "pct": 9
+        "pct": 14
       },
       {
         "el": "earth",
-        "pct": 6
+        "pct": 3
       },
       {
         "el": "death",
-        "pct": 6
+        "pct": 3
       },
       {
         "el": "ice",
-        "pct": 4
+        "pct": 2
       }
     ],
     "summons": [],
@@ -1340,15 +1340,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 64
+        "pct": 78
       },
       {
         "el": "death",
-        "pct": 24
+        "pct": 15
       },
       {
         "el": "fire",
-        "pct": 11
+        "pct": 7
       }
     ],
     "summons": [],
@@ -1372,19 +1372,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 53
-      },
-      {
-        "el": "fire",
-        "pct": 26
+        "pct": 47
       },
       {
         "el": "energy",
-        "pct": 16
+        "pct": 31
+      },
+      {
+        "el": "fire",
+        "pct": 14
       },
       {
         "el": "death",
-        "pct": 4
+        "pct": 8
       }
     ],
     "summons": [],
@@ -1408,11 +1408,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 87
+        "pct": 88
       },
       {
         "el": "death",
-        "pct": 13
+        "pct": 12
       }
     ],
     "summons": [],
@@ -1460,11 +1460,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 83
+        "pct": 91
       },
       {
         "el": "energy",
-        "pct": 17
+        "pct": 9
       }
     ],
     "summons": [],
@@ -1487,16 +1487,16 @@
     "exp": 100000,
     "elements": [
       {
-        "el": "physical",
-        "pct": 52
+        "el": "death",
+        "pct": 63
       },
       {
-        "el": "death",
-        "pct": 42
+        "el": "physical",
+        "pct": 33
       },
       {
         "el": "earth",
-        "pct": 6
+        "pct": 3
       }
     ],
     "summons": [],
@@ -1520,11 +1520,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 59
+        "pct": 74
       },
       {
         "el": "earth",
-        "pct": 41
+        "pct": 26
       }
     ],
     "summons": [],
@@ -1548,15 +1548,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 67
+        "pct": 80
       },
       {
         "el": "fire",
-        "pct": 29
+        "pct": 17
       },
       {
         "el": "death",
-        "pct": 4
+        "pct": 3
       }
     ],
     "summons": [],
@@ -1580,11 +1580,11 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 75
+        "pct": 79
       },
       {
         "el": "physical",
-        "pct": 25
+        "pct": 21
       }
     ],
     "summons": [],
@@ -1607,20 +1607,20 @@
     "exp": 100000,
     "elements": [
       {
-        "el": "holy",
+        "el": "physical",
         "pct": 43
       },
       {
-        "el": "physical",
-        "pct": 30
-      },
-      {
-        "el": "energy",
-        "pct": 18
+        "el": "holy",
+        "pct": 38
       },
       {
         "el": "death",
-        "pct": 9
+        "pct": 12
+      },
+      {
+        "el": "energy",
+        "pct": 7
       }
     ],
     "summons": [],
@@ -1643,16 +1643,16 @@
     "exp": 56100,
     "elements": [
       {
+        "el": "death",
+        "pct": 44
+      },
+      {
         "el": "physical",
-        "pct": 51
+        "pct": 42
       },
       {
         "el": "earth",
-        "pct": 26
-      },
-      {
-        "el": "death",
-        "pct": 23
+        "pct": 14
       }
     ],
     "summons": [],
@@ -1675,20 +1675,20 @@
     "exp": 300000,
     "elements": [
       {
-        "el": "energy",
-        "pct": 48
+        "el": "physical",
+        "pct": 44
       },
       {
-        "el": "physical",
-        "pct": 32
+        "el": "energy",
+        "pct": 42
       },
       {
         "el": "fire",
-        "pct": 13
+        "pct": 9
       },
       {
         "el": "death",
-        "pct": 8
+        "pct": 5
       }
     ],
     "summons": [],
@@ -1712,11 +1712,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 86
+        "pct": 92
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 8
       }
     ],
     "summons": [],
@@ -1743,16 +1743,16 @@
         "pct": 73
       },
       {
+        "el": "holy",
+        "pct": 17
+      },
+      {
         "el": "ice",
-        "pct": 10
+        "pct": 5
       },
       {
         "el": "death",
-        "pct": 9
-      },
-      {
-        "el": "holy",
-        "pct": 9
+        "pct": 5
       }
     ],
     "summons": [],
@@ -1775,16 +1775,16 @@
     "exp": 45900,
     "elements": [
       {
-        "el": "earth",
-        "pct": 56
+        "el": "physical",
+        "pct": 36
       },
       {
-        "el": "physical",
-        "pct": 30
+        "el": "earth",
+        "pct": 34
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 30
       }
     ],
     "summons": [],
@@ -1808,19 +1808,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 63
+        "pct": 58
       },
       {
         "el": "death",
-        "pct": 21
+        "pct": 22
       },
       {
         "el": "earth",
-        "pct": 11
+        "pct": 18
       },
       {
         "el": "ice",
-        "pct": 5
+        "pct": 2
       }
     ],
     "summons": [],
@@ -1844,15 +1844,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 75
+        "pct": 78
       },
       {
         "el": "death",
-        "pct": 13
+        "pct": 15
       },
       {
         "el": "fire",
-        "pct": 12
+        "pct": 6
       }
     ],
     "summons": [],
@@ -1876,7 +1876,7 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 70
+        "pct": 76
       },
       {
         "el": "death",
@@ -1884,7 +1884,7 @@
       },
       {
         "el": "earth",
-        "pct": 13
+        "pct": 7
       }
     ],
     "summons": [],
@@ -1960,11 +1960,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 58
+        "pct": 78
       },
       {
         "el": "death",
-        "pct": 42
+        "pct": 22
       }
     ],
     "summons": [
@@ -1990,19 +1990,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 64
+        "pct": 78
       },
       {
         "el": "death",
-        "pct": 16
+        "pct": 10
       },
       {
         "el": "fire",
-        "pct": 15
+        "pct": 9
       },
       {
         "el": "energy",
-        "pct": 5
+        "pct": 3
       }
     ],
     "summons": [],
@@ -2026,15 +2026,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 74
+        "pct": 78
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 15
       },
       {
         "el": "energy",
-        "pct": 12
+        "pct": 7
       }
     ],
     "summons": [],
@@ -2058,19 +2058,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 80
-      },
-      {
-        "el": "earth",
-        "pct": 8
+        "pct": 81
       },
       {
         "el": "death",
-        "pct": 6
+        "pct": 12
+      },
+      {
+        "el": "earth",
+        "pct": 4
       },
       {
         "el": "holy",
-        "pct": 6
+        "pct": 3
       }
     ],
     "summons": [],
@@ -2122,11 +2122,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 82
+        "pct": 92
       },
       {
         "el": "death",
-        "pct": 18
+        "pct": 8
       }
     ],
     "summons": [],
@@ -2150,15 +2150,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 80
+        "pct": 89
       },
       {
         "el": "fire",
-        "pct": 15
+        "pct": 8
       },
       {
         "el": "death",
-        "pct": 5
+        "pct": 3
       }
     ],
     "summons": [],
@@ -2182,11 +2182,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 95
+        "pct": 92
       },
       {
         "el": "death",
-        "pct": 5
+        "pct": 8
       }
     ],
     "summons": [],
@@ -2210,15 +2210,15 @@
     "elements": [
       {
         "el": "fire",
-        "pct": 46
+        "pct": 65
       },
       {
         "el": "physical",
-        "pct": 37
+        "pct": 29
       },
       {
         "el": "energy",
-        "pct": 17
+        "pct": 6
       }
     ],
     "summons": [],
@@ -2266,11 +2266,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 65
+        "pct": 59
       },
       {
         "el": "ice",
-        "pct": 17
+        "pct": 27
       },
       {
         "el": "death",
@@ -2278,7 +2278,7 @@
       },
       {
         "el": "energy",
-        "pct": 7
+        "pct": 3
       }
     ],
     "summons": [],
@@ -2302,15 +2302,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 76
+        "pct": 86
       },
       {
         "el": "fire",
-        "pct": 18
+        "pct": 10
       },
       {
         "el": "death",
-        "pct": 6
+        "pct": 3
       }
     ],
     "summons": [],
@@ -2333,16 +2333,16 @@
     "exp": 91800,
     "elements": [
       {
-        "el": "death",
-        "pct": 47
+        "el": "physical",
+        "pct": 46
       },
       {
-        "el": "physical",
-        "pct": 33
+        "el": "death",
+        "pct": 37
       },
       {
         "el": "earth",
-        "pct": 21
+        "pct": 17
       }
     ],
     "summons": [],
@@ -2366,11 +2366,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 92
+        "pct": 96
       },
       {
         "el": "energy",
-        "pct": 8
+        "pct": 4
       }
     ],
     "summons": [],
@@ -2394,11 +2394,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 55
+        "pct": 51
       },
       {
         "el": "death",
-        "pct": 45
+        "pct": 49
       }
     ],
     "summons": [],
@@ -2422,11 +2422,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 58
+        "pct": 71
       },
       {
         "el": "death",
-        "pct": 42
+        "pct": 29
       }
     ],
     "summons": [],
@@ -2450,11 +2450,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 92
+        "pct": 96
       },
       {
         "el": "energy",
-        "pct": 8
+        "pct": 4
       }
     ],
     "summons": [],
@@ -2478,11 +2478,11 @@
     "elements": [
       {
         "el": "death",
-        "pct": 70
+        "pct": 64
       },
       {
         "el": "physical",
-        "pct": 30
+        "pct": 36
       }
     ],
     "summons": [],
@@ -2506,11 +2506,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 76
+        "pct": 84
       },
       {
         "el": "fire",
-        "pct": 24
+        "pct": 16
       }
     ],
     "summons": [],
@@ -2533,20 +2533,20 @@
     "exp": 105300,
     "elements": [
       {
-        "el": "physical",
-        "pct": 47
+        "el": "death",
+        "pct": 54
       },
       {
-        "el": "death",
-        "pct": 38
+        "el": "physical",
+        "pct": 29
       },
       {
         "el": "fire",
-        "pct": 11
+        "pct": 16
       },
       {
         "el": "energy",
-        "pct": 4
+        "pct": 1
       }
     ],
     "summons": [],
@@ -2570,7 +2570,7 @@
     "elements": [
       {
         "el": "death",
-        "pct": 49
+        "pct": 52
       },
       {
         "el": "earth",
@@ -2578,7 +2578,7 @@
       },
       {
         "el": "physical",
-        "pct": 21
+        "pct": 18
       }
     ],
     "summons": [],
@@ -2602,19 +2602,19 @@
     "elements": [
       {
         "el": "death",
-        "pct": 60
-      },
-      {
-        "el": "energy",
-        "pct": 19
+        "pct": 42
       },
       {
         "el": "earth",
-        "pct": 16
+        "pct": 40
+      },
+      {
+        "el": "energy",
+        "pct": 13
       },
       {
         "el": "physical",
-        "pct": 6
+        "pct": 4
       }
     ],
     "summons": [],
@@ -2638,11 +2638,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 92
+        "pct": 96
       },
       {
         "el": "energy",
-        "pct": 8
+        "pct": 4
       }
     ],
     "summons": [],
@@ -2666,11 +2666,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 87
+        "pct": 78
       },
       {
         "el": "energy",
-        "pct": 13
+        "pct": 22
       }
     ],
     "summons": [],
@@ -2694,11 +2694,11 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 73
+        "pct": 91
       },
       {
         "el": "death",
-        "pct": 27
+        "pct": 9
       }
     ],
     "summons": [],
@@ -2721,20 +2721,20 @@
     "exp": 123900,
     "elements": [
       {
-        "el": "physical",
-        "pct": 47
+        "el": "death",
+        "pct": 54
       },
       {
-        "el": "death",
-        "pct": 38
+        "el": "physical",
+        "pct": 29
       },
       {
         "el": "fire",
-        "pct": 11
+        "pct": 16
       },
       {
         "el": "energy",
-        "pct": 4
+        "pct": 1
       }
     ],
     "summons": [],
@@ -2758,23 +2758,23 @@
     "elements": [
       {
         "el": "earth",
-        "pct": 44
+        "pct": 56
       },
       {
         "el": "physical",
-        "pct": 28
+        "pct": 30
       },
       {
         "el": "fire",
-        "pct": 13
+        "pct": 7
       },
       {
         "el": "energy",
-        "pct": 12
+        "pct": 6
       },
       {
         "el": "death",
-        "pct": 3
+        "pct": 1
       }
     ],
     "summons": [],
@@ -2798,15 +2798,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 75
+        "pct": 66
       },
       {
         "el": "death",
-        "pct": 14
+        "pct": 19
       },
       {
         "el": "earth",
-        "pct": 11
+        "pct": 15
       }
     ],
     "summons": [],
@@ -2830,15 +2830,15 @@
     "elements": [
       {
         "el": "energy",
-        "pct": 48
-      },
-      {
-        "el": "death",
-        "pct": 34
+        "pct": 40
       },
       {
         "el": "fire",
-        "pct": 18
+        "pct": 30
+      },
+      {
+        "el": "death",
+        "pct": 30
       }
     ],
     "summons": [],
@@ -2862,15 +2862,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 70
-      },
-      {
-        "el": "energy",
-        "pct": 20
+        "pct": 55
       },
       {
         "el": "death",
-        "pct": 10
+        "pct": 29
+      },
+      {
+        "el": "energy",
+        "pct": 16
       }
     ],
     "summons": [],
@@ -2893,20 +2893,20 @@
     "exp": 107100,
     "elements": [
       {
-        "el": "physical",
-        "pct": 47
+        "el": "death",
+        "pct": 54
       },
       {
-        "el": "death",
-        "pct": 38
+        "el": "physical",
+        "pct": 29
       },
       {
         "el": "fire",
-        "pct": 11
+        "pct": 16
       },
       {
         "el": "energy",
-        "pct": 4
+        "pct": 1
       }
     ],
     "summons": [],
@@ -2930,19 +2930,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 53
-      },
-      {
-        "el": "fire",
-        "pct": 26
+        "pct": 47
       },
       {
         "el": "energy",
-        "pct": 16
+        "pct": 31
+      },
+      {
+        "el": "fire",
+        "pct": 14
       },
       {
         "el": "death",
-        "pct": 4
+        "pct": 8
       }
     ],
     "summons": [],
@@ -2966,19 +2966,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 46
+        "pct": 56
       },
       {
         "el": "energy",
-        "pct": 27
-      },
-      {
-        "el": "death",
-        "pct": 21
+        "pct": 16
       },
       {
         "el": "earth",
-        "pct": 7
+        "pct": 15
+      },
+      {
+        "el": "death",
+        "pct": 13
       }
     ],
     "summons": [],
@@ -3002,15 +3002,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 70
+        "pct": 83
       },
       {
         "el": "fire",
-        "pct": 21
+        "pct": 12
       },
       {
         "el": "energy",
-        "pct": 9
+        "pct": 5
       }
     ],
     "summons": [],
@@ -3033,16 +3033,16 @@
     "exp": 30600,
     "elements": [
       {
-        "el": "physical",
-        "pct": 45
+        "el": "earth",
+        "pct": 49
       },
       {
-        "el": "earth",
-        "pct": 31
+        "el": "physical",
+        "pct": 40
       },
       {
         "el": "death",
-        "pct": 24
+        "pct": 11
       }
     ],
     "summons": [],
@@ -3066,19 +3066,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 65
+        "pct": 79
       },
       {
         "el": "fire",
-        "pct": 18
-      },
-      {
-        "el": "death",
         "pct": 11
       },
       {
+        "el": "death",
+        "pct": 7
+      },
+      {
         "el": "ice",
-        "pct": 6
+        "pct": 4
       }
     ],
     "summons": [],
@@ -3102,15 +3102,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 76
+        "pct": 64
       },
       {
         "el": "ice",
-        "pct": 16
+        "pct": 25
       },
       {
         "el": "holy",
-        "pct": 8
+        "pct": 12
       }
     ],
     "summons": [],
@@ -3134,19 +3134,19 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 46
+        "pct": 36
       },
       {
         "el": "death",
-        "pct": 21
+        "pct": 30
       },
       {
         "el": "earth",
-        "pct": 19
+        "pct": 27
       },
       {
         "el": "energy",
-        "pct": 15
+        "pct": 6
       }
     ],
     "summons": [],
@@ -3170,15 +3170,15 @@
     "elements": [
       {
         "el": "physical",
-        "pct": 60
+        "pct": 58
       },
       {
         "el": "energy",
-        "pct": 20
+        "pct": 21
       },
       {
         "el": "death",
-        "pct": 20
+        "pct": 21
       }
     ],
     "summons": [],
