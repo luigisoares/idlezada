@@ -1,0 +1,80 @@
+:root{
+  --bg:#0d1210; --panel:#141c19; --panel2:#1a241f; --line:#26332c;
+  --txt:#dbe7e0; --dim:#8fa398; --gold:#e8c56a; --acc:#6fdc8c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--txt);
+  font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:inherit}
+
+/* ---- top bar / tabs ---- */
+.topbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+.brand{font:600 20px/1 Georgia,serif;letter-spacing:.5px;color:var(--gold);margin:0}
+.brand small{display:block;font:400 11px/1.3 system-ui;color:var(--dim);letter-spacing:0;margin-top:3px}
+.navtabs{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.navtab{padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--dim);cursor:pointer;font-weight:600;font-size:13px;transition:.15s}
+.navtab:hover{color:var(--txt)}
+.navtab.on{color:#0d1210;background:var(--gold);border-color:var(--gold)}
+
+/* ---- views ---- */
+.view{display:none}
+.view.on{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:20px}
+.iframe-wrap{width:100%;height:calc(100vh - 62px);border:0}
+.iframe-wrap iframe{width:100%;height:100%;border:0;display:block;background:var(--bg)}
+
+/* ---- builds grid ---- */
+.lead{color:var(--dim);font-size:13px;margin:0 0 18px}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+@media(max-width:960px){.slots{grid-template-columns:1fr}}
+
+.slot{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;
+  display:flex;flex-direction:column;gap:13px}
+.slot .head{display:flex;align-items:center;gap:10px}
+.slot .avatar{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;
+  font:700 15px/1 Georgia,serif;color:#0d1210}
+.slot input.label{flex:1;min-width:0;background:transparent;border:0;border-bottom:1px dashed var(--line);
+  color:var(--txt);font:600 16px/1.2 Georgia,serif;padding:2px 2px 4px}
+.slot input.label:focus{outline:0;border-bottom-color:var(--gold)}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field > span.k{color:var(--dim);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.row2{display:flex;gap:10px;flex-wrap:wrap}
+select,input[type=number]{background:#0b100e;border:1px solid var(--line);color:var(--txt);
+  border-radius:8px;padding:8px 10px;font:inherit}
+select{cursor:pointer}
+input[type=number]{width:110px}
+
+.objs{display:flex;gap:6px;flex-wrap:wrap}
+.obj{padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--dim);cursor:pointer;font-weight:600;font-size:12.5px;transition:.15s}
+.obj:hover{color:var(--txt)}
+.obj.on{color:#0d1210;background:var(--acc);border-color:var(--acc)}
+
+.pts{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--dim)}
+.pts .bar{flex:1;height:8px;border-radius:6px;background:#0b100e;border:1px solid var(--line);overflow:hidden}
+.pts .bar i{display:block;height:100%;background:var(--acc)}
+.pts b{color:var(--txt);font-variant-numeric:tabular-nums}
+
+.stats{display:flex;flex-direction:column;gap:4px;max-height:230px;overflow:auto}
+.stat{background:linear-gradient(90deg,#16281d,#141c19);border-left:3px solid var(--acc);
+  border-radius:6px;padding:6px 10px;font-size:12.5px;font-weight:600}
+.stat.sp{border-left-color:var(--gold);color:#f0dda6;font-weight:500;font-size:12px;line-height:1.4}
+.stat.empty{background:none;border:0;color:var(--dim);font-style:italic;font-weight:400;padding-left:0}
+
+.warn{font-size:12px;color:#ffcf8a;background:rgba(232,197,106,.08);border:1px solid #4a3f21;
+  border-radius:8px;padding:8px 10px}
+
+.codebox{display:flex;gap:8px}
+.codebox input{flex:1;font-family:ui-monospace,Menlo,monospace;font-size:12px;
+  background:#0b100e;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 10px}
+button{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;
+  padding:8px 14px;font:600 12.5px/1 inherit;cursor:pointer;transition:.15s;white-space:nowrap}
+button:hover{border-color:#3c5147}
+button.gold{background:var(--gold);border-color:var(--gold);color:#0d1210}
+.slot .actions{display:flex;gap:8px}
+.slot .actions button{flex:1}
+.note{color:var(--dim);font-size:11.5px;line-height:1.5}

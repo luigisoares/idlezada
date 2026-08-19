@@ -1,0 +1,11 @@
+# temporários de teste/patch (prefixo _)
+_*.js
+_*.html
+_*.log
+_*.txt
+
+# node / SO
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
