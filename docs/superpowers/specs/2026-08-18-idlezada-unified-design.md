@@ -7,7 +7,7 @@ Data: 2026-08-18 · Status: aprovado · **Sem commits, tudo local.**
 Unificar os três arquivos soltos (`simuladorbuild.html`, `trees.json`, `stamina.html`) num
 mini-projeto de front-end estático, e adicionar o recurso principal: um **gerador de build
 automático** que, dado *vocação + level + objetivo*, monta a árvore sozinho e entrega o
-**share code copiável**, compatível byte-a-byte com o Baiak Idle.
+**share code copiável**, compatível byte-a-byte com o the game.
 
 Restrições dadas pelo usuário:
 - Estático, sem build, abre no `file://` (duplo-clique). Sem framework, sem servidor.

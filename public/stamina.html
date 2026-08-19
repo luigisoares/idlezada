@@ -1,55 +1,56 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculadora de Stamina — Baiak Idle</title>
+<title>Stamina Calculator — Idlezada</title>
 <style>
+  /* paleta alinhada ao resto do Idlezada (verde/dourado escuro) */
   :root{
-    --bg:#0e1116; --panel:#161b22; --panel-2:#1c232d; --line:#2a323d;
-    --ink:#e6edf3; --muted:#8b98a5;
-    --hunt:#ff7a59; --train:#4fd1a8; --night:#7aa2ff; --warn:#ffcf4d; --danger:#ff5d5d;
+    --bg:#0d1210; --panel:#141c19; --panel-2:#1a241f; --line:#26332c;
+    --ink:#dbe7e0; --muted:#8fa398;
+    --hunt:#e0a76a; --train:#6fdc8c; --night:#8aa0e0; --warn:#e8c56a; --danger:#ff6b5e;
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{
-    background:radial-gradient(1000px 500px at 50% -180px,#182130,transparent),var(--bg);
+    background:radial-gradient(1000px 500px at 50% -180px,#16241c,transparent),var(--bg);
     color:var(--ink); font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
     -webkit-font-smoothing:antialiased; padding:24px 16px 56px;
   }
   .wrap{max-width:560px;margin:0 auto}
-  h1{font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h1{font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px;font-family:Georgia,serif;color:var(--warn)}
   h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--train);box-shadow:0 0 12px var(--train)}
   .lead{color:var(--muted);font-size:13px;margin:0 0 18px}
 
   .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 14px;font-weight:600}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 14px;font-weight:700}
   .toprow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
   .chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;user-select:none;font-size:14px}
   .chip input{accent-color:var(--train);width:16px;height:16px}
   .seg{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:3px}
   .seg button{border:0;background:transparent;color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
-  .seg button.on{background:var(--night);color:#0b0f14}
+  .seg button.on{background:var(--warn);color:#0d1210}
 
   .row{display:flex;gap:14px;flex-wrap:wrap}
   .col{flex:1 1 130px;min-width:120px}
   label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
   input[type=time],input[type=number]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px;font-size:16px;font-variant-numeric:tabular-nums}
-  input:focus{outline:2px solid var(--night);outline-offset:1px;border-color:transparent}
+  input:focus{outline:2px solid var(--train);outline-offset:1px;border-color:transparent}
   .timewrap{display:flex;gap:8px}
   .agora{background:var(--panel-2);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:0 12px;cursor:pointer;font-size:12px;white-space:nowrap}
-  .agora:hover{color:var(--ink);border-color:var(--night)}
+  .agora:hover{color:var(--ink);border-color:var(--train)}
   .hm{display:flex;gap:8px;align-items:center}.hm input{text-align:center}.hm span{color:var(--muted);font-size:13px}
   .cap{font-size:12px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
   .hide{display:none !important}
 
-  .result{background:linear-gradient(180deg,#1a2230,#151b23)}
+  .result{background:linear-gradient(180deg,#18241d,#131b17)}
   .heads{display:flex;gap:12px;margin-bottom:12px}
   .big{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
   .big .k{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
   .big .v{font-size:24px;font-weight:700;margin-top:5px;font-variant-numeric:tabular-nums}
-  .big.hunt{border-color:rgba(255,122,89,.4)}.big.hunt .v{color:var(--hunt)}
-  .big.train{border-color:rgba(79,209,168,.4)}.big.train .v{color:var(--train)}
-  .bar{height:10px;border-radius:6px;background:#0c0f14;border:1px solid var(--line);overflow:hidden;display:flex}
+  .big.hunt{border-color:rgba(224,167,106,.4)}.big.hunt .v{color:var(--hunt)}
+  .big.train{border-color:rgba(111,220,140,.4)}.big.train .v{color:var(--train)}
+  .bar{height:10px;border-radius:6px;background:#0b100e;border:1px solid var(--line);overflow:hidden;display:flex}
   .bar i{display:block;height:100%}.bar .h{background:var(--hunt)}.bar .t{background:var(--train)}
   .barlbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:5px}
 
@@ -67,8 +68,8 @@
   .step .aft .dl{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 
   .tip{font-size:14px;margin-top:8px;padding:11px 13px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
-  .tip.warn{background:rgba(255,207,77,.1);border-color:rgba(255,207,77,.35);color:#ffe08a}
-  .tip.bad{background:rgba(255,93,93,.1);border-color:rgba(255,93,93,.35);color:#ff9a9a}
+  .tip.warn{background:rgba(232,197,106,.1);border-color:rgba(232,197,106,.35);color:#ffe08a}
+  .tip.bad{background:rgba(255,107,94,.1);border-color:rgba(255,107,94,.35);color:#ff9a9a}
   .tip b{color:var(--ink)}.tip.warn b,.tip.bad b{color:inherit}
 
   details{margin-top:2px}summary{cursor:pointer;color:var(--muted);font-size:13px}
@@ -78,25 +79,25 @@
 </head>
 <body>
 <div class="wrap">
-  <h1><span class="dot"></span> Calculadora de Stamina</h1>
-  <p class="lead">Monta o roteiro do dia — quando caçar, quando treinar — pra caçar a noite e acordar com stamina de sobra.</p>
+  <h1><span class="dot"></span> Stamina Calculator</h1>
+  <p class="lead">Plan your day — when to hunt, when to train — so you can hunt overnight and wake up with stamina to spare.</p>
 
   <div class="card">
     <div class="toprow">
-      <label class="chip"><input type="checkbox" id="vip" checked> VIP ativo</label>
+      <label class="chip"><input type="checkbox" id="vip" checked> VIP active</label>
       <div class="seg" id="seg"><button data-m="hm" class="on">h:min</button><button data-m="pct">%</button></div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Onde estou</h2>
+    <h2>Where I am now</h2>
     <div class="row">
       <div class="col">
-        <label>Agora são</label>
-        <div class="timewrap"><input type="time" id="tNow"><button class="agora" id="btnNow">agora</button></div>
+        <label>Right now it's</label>
+        <div class="timewrap"><input type="time" id="tNow"><button class="agora" id="btnNow">now</button></div>
       </div>
       <div class="col">
-        <label>Tenho de stamina</label>
+        <label>Stamina I have</label>
         <div class="grp-hm hm"><input type="number" id="hNow" min="0" max="42" value="23"><span>h</span><input type="number" id="mNow" min="0" max="59" value="0"><span>min</span></div>
         <div class="grp-pct hide"><input type="number" id="pctNow" min="0" max="100" value="55"></div>
         <div class="cap" id="capNow"></div>
@@ -105,14 +106,14 @@
   </div>
 
   <div class="card">
-    <h2>Meta da noite</h2>
+    <h2>Overnight goal</h2>
     <div class="row">
-      <div class="col"><label>Durmo / ponho na hunt às</label><input type="time" id="tSleep" value="22:00"></div>
-      <div class="col"><label>Acordo às</label><input type="time" id="tWake" value="09:00"></div>
+      <div class="col"><label>Sleep / start the hunt at</label><input type="time" id="tSleep" value="22:00"></div>
+      <div class="col"><label>Wake up at</label><input type="time" id="tWake" value="09:00"></div>
     </div>
     <div class="row" style="margin-top:14px">
       <div class="col">
-        <label>Quero acordar com</label>
+        <label>Want to wake up with</label>
         <div class="grp-hm hm"><input type="number" id="hWake" min="0" max="42" value="14"><span>h</span><input type="number" id="mWake" min="0" max="59" value="0"><span>min</span></div>
         <div class="grp-pct hide"><input type="number" id="pctWake" min="0" max="100" value="33"></div>
         <div class="cap" id="capWake"></div>
@@ -122,7 +123,7 @@
 
   <div class="card result" id="out"></div>
 
-  <div class="card"><details><summary>Como a conta funciona</summary><div class="info" id="info"></div></details></div>
+  <div class="card"><details><summary>How the math works</summary><div class="info" id="info"></div></details></div>
 </div>
 
 <script>
@@ -172,7 +173,7 @@ function calc(){
   info(r);
 
   const out=$('out');
-  if(now===null||sleep===null||wake===null){out.innerHTML=`<div class="tip warn">Preencha as horas.</div>`;return;}
+  if(now===null||sleep===null||wake===null){out.innerHTML=`<div class="tip warn">Fill in the times.</div>`;return;}
 
   let win=sleep-now; if(win<=0)win+=1440;
   let night=wake-sleep; if(night<=0)night+=1440;
@@ -184,17 +185,17 @@ function calc(){
   let T,H,arrival,tip='',tipCls='';
 
   if(need>maxR+0.5){ T=win;H=0;arrival=maxR;
-    tip=`Não dá tempo de recuperar tudo. Mesmo <b>treinando o dia inteiro</b> você chega em ${fmt(arrival)} e acorda com <b>${fmt(Math.max(0,arrival-night))}</b>. Comece mais cedo ou baixe a meta.`;tipCls='bad';
+    tip=`Not enough time to recover it all. Even <b>training all day</b> you reach ${fmt(arrival)} and wake up with <b>${fmt(Math.max(0,arrival-night))}</b>. Start earlier or lower the goal.`;tipCls='bad';
   }else if(need<minR-0.5){ T=0;H=win;arrival=minR;
-    tip=`Sobra stamina: pode <b>caçar o dia inteiro</b> e ainda acorda com <b>${fmt(Math.max(0,arrival-night))}</b>.`;
+    tip=`Stamina to spare: you can <b>hunt all day</b> and still wake up with <b>${fmt(Math.max(0,arrival-night))}</b>.`;
   }else{ T=cl((need-S0+win)/(1+r),0,win);H=win-T;arrival=S0-H+T*r;
     const trough=S0-H, peak=arrival+H;
-    if(trough>=PEN) tip=`Caçar rende o dia todo até aqui: seu ponto mais baixo é ${fmt(trough)}, ainda acima dos 15%.`;
-    else if(peak<=MAX){tip=`Treine primeiro pra não caçar abaixo de 15% (senão XP e ouro caem pela metade).`;tipCls='warn';}
-    else {tip=`Um trecho vai ficar abaixo de 15% (ganhos ×0,5) — inevitável nessa janela.`;tipCls='warn';}
+    if(trough>=PEN) tip=`Hunting pays off all day up to here: your lowest point is ${fmt(trough)}, still above 15%.`;
+    else if(peak<=MAX){tip=`Train first so you don't hunt below 15% (otherwise XP and gold are halved).`;tipCls='warn';}
+    else {tip=`A stretch will drop below 15% (gains ×0.5) — unavoidable in this window.`;tipCls='warn';}
   }
 
-  // sequência dos blocos do dia
+  // sequence of the day's blocks
   let seq=[];
   if(H>0.5&&T>0.5){
     const trough=S0-H, peak=arrival+H;
@@ -202,28 +203,28 @@ function calc(){
   } else if(T>0.5) seq=[['train',T]];
   else if(H>0.5) seq=[['hunt',H]];
 
-  // monta roteiro
+  // build the plan
   let cur=S0, tc=now, rows='';
   for(const [type,dur] of seq){
     const end=tc+dur, delta=type==='hunt'?-dur:dur*r;
     cur=Math.min(MAX,Math.max(0,cur+delta));
-    rows+=step(type, type==='hunt'?'Caçar':'Treinar (online)', tc, end, dur, delta, cur);
+    rows+=step(type, type==='hunt'?'Hunt':'Train (online)', tc, end, dur, delta, cur);
     tc=end;
   }
   const morningReal=Math.max(0,cur-night);
-  if(night>0) rows+=step('night','Hunt online — a noite', sleep, wake, night, -night, morningReal);
+  if(night>0) rows+=step('night','Overnight hunt (online)', sleep, wake, night, -night, morningReal);
 
   const pH=win>0?Math.round(H/win*100):0;
-  let html=`<h2>Resumo até ${clock(sleep)}</h2>
+  let html=`<h2>Summary until ${clock(sleep)}</h2>
     <div class="heads">
-      <div class="big hunt"><div class="k">Caçar (total)</div><div class="v">${fmt(H)}</div></div>
-      <div class="big train"><div class="k">Treinar (total)</div><div class="v">${fmt(T)}</div></div></div>
+      <div class="big hunt"><div class="k">Hunt (total)</div><div class="v">${fmt(H)}</div></div>
+      <div class="big train"><div class="k">Train (total)</div><div class="v">${fmt(T)}</div></div></div>
     <div class="bar"><i class="h" style="width:${pH}%"></i><i class="t" style="width:${100-pH}%"></i></div>
-    <div class="barlbl"><span>caçar ${pH}%</span><span>treinar ${100-pH}%</span></div>
-    <div class="roteiro"><div class="rlabel">Roteiro</div>${rows}</div>`;
+    <div class="barlbl"><span>hunt ${pH}%</span><span>train ${100-pH}%</span></div>
+    <div class="roteiro"><div class="rlabel">Plan</div>${rows}</div>`;
 
-  if(capped) html+=`<div class="tip warn">Pra caçar ${fmt(night)} e acordar com ${fmt(morning)} precisaria de ${fmt(morning+night)} às ${clock(sleep)} — passa do teto de 42h. Com o tanque cheio, acorda com <b>${fmt(MAX-night)}</b>.</div>`;
-  if(morningReal<PEN && !capped) html+=`<div class="tip warn">Você acorda abaixo de 15%: parte da noite rende metade.</div>`;
+  if(capped) html+=`<div class="tip warn">To hunt ${fmt(night)} and wake up with ${fmt(morning)} you'd need ${fmt(morning+night)} at ${clock(sleep)} — over the 42h cap. With a full tank, you wake up with <b>${fmt(MAX-night)}</b>.</div>`;
+  if(morningReal<PEN && !capped) html+=`<div class="tip warn">You wake up below 15%: part of the night pays half.</div>`;
   html+=`<div class="tip ${tipCls}">${tip}</div>`;
 
   out.innerHTML=html;
@@ -231,10 +232,10 @@ function calc(){
 
 function info(r){
   $('info').innerHTML=
-    `Stamina: <code>0</code> a <code>42h</code> (o % é sobre isso).<br>`+
-    `Caçar gasta <code>1×</code>. Treino <b>online</b> recupera <code>${r}×</code> ${$('vip').checked?'(VIP)':'(sem VIP; 4×)'} — ou seja 1h de treino devolve ${fmt(r*60)}. Treino <b>offline</b> é a metade.<br>`+
-    `Abaixo de <code>15%</code> (${fmt(PEN)}) XP e ouro caem pela metade; drop não muda.<br>`+
-    `A noite a party caça <b>online</b> e gasta 1×/min. Em <b>Hunt offline</b> a stamina não é gasta — aí não precisa de buffer.`;
+    `Stamina: <code>0</code> to <code>42h</code> (the % is of that).<br>`+
+    `Hunting spends <code>1×</code>. <b>Online</b> training recovers <code>${r}×</code> ${$('vip').checked?'(VIP)':'(no VIP; 4×)'} — i.e. 1h of training gives back ${fmt(r*60)}. <b>Offline</b> training is half.<br>`+
+    `Below <code>15%</code> (${fmt(PEN)}) XP and gold are halved; drop is unchanged.<br>`+
+    `Overnight the party hunts <b>online</b> and spends 1×/min. In <b>offline Hunt</b>, stamina isn't spent — so no buffer needed.`;
 }
 
 $('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.m);});

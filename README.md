@@ -1,51 +1,63 @@
-# idlezada
+# Idlezada
 
-Ferramentas estáticas para o **Baiak Idle** — gerador de builds das 5 árvores,
-simulador interativo e calculadora de stamina. HTML/JS puro, **sem build**.
+Static tools for an idle RPG — a build generator for the 5 vocation trees, an
+interactive skill-tree simulator, and a stamina planner. Plain HTML/JS, **no build step**.
 
-## Estrutura
+## Structure
 
 ```
 idlezada/
-├─ public/               # o que vai pro ar (alvo do deploy)
-│  ├─ index.html         # home: gerador de 3 builds
-│  ├─ app.js             # UI da tela de builds + localStorage
-│  ├─ engine.js          # motor: custo/validação/aggregate/encode-decode + autobuild
-│  ├─ trees.js           # dados das 5 árvores (window.TREES) — gerado de data/trees.json
+├─ public/               # what gets deployed
+│  ├─ index.html         # home: 3-build generator
+│  ├─ app.js             # builds screen UI + localStorage
+│  ├─ engine.js          # engine: cost/validation/aggregate/encode-decode + autobuild
+│  ├─ trees.js           # data for the 5 trees (window.TREES) — generated from data/trees.json
 │  ├─ styles.css
-│  ├─ simuladorbuild.html# simulador interativo (aba Simulador)
-│  └─ stamina.html       # calculadora de stamina (aba Stamina)
-├─ data/trees.json       # fonte dos dados das árvores (não publicada)
-├─ docs/                 # specs internas (não publicadas)
+│  ├─ simuladorbuild.html# interactive simulator (Simulator tab)
+│  └─ stamina.html       # stamina calculator (Stamina tab)
+├─ data/trees.json       # source data for the trees (not published)
+├─ docs/                 # internal specs (not published)
 └─ .github/workflows/deploy.yml
 ```
 
-## Rodar local
+## Run locally
 
-Abra `public/index.html` no navegador (duplo-clique). Sem servidor, sem dependências.
+Open `public/index.html` in a browser (double-click). No server, no dependencies.
+
+## Objectives (build generator)
+
+Pick a level and an objective; the tree is auto-allocated and a copyable share code is produced:
+
+- **Damage** — attack / spell / elemental / crit. For casters you can choose the damage element.
+- **Crit** — stacks crit chance and crit damage together.
+- **Avatar** — opens the cheapest path to the tier-11 Avatar node, then fills with crit-leaning damage.
+- **Tank** — HP / absorb / defense / regen.
+- **XP** — exp gains + tactics + light damage to keep kills fast.
+- **Atk Speed** — attack speed + light damage/crit.
+
+The share-code format round-trips: paste a code into the simulator (or the game) and back.
 
 ## Deploy (Cloudflare Pages via GitHub Actions)
 
-Cada push na `main` dispara `.github/workflows/deploy.yml`, que roda
+Each push to `main` runs `.github/workflows/deploy.yml`:
 `wrangler pages deploy public --project-name=idlezada`.
 
-Pré-requisitos (feitos uma vez, no lado Cloudflare/GitHub):
+One-time setup (Cloudflare / GitHub side):
 
-1. Criar o projeto Pages:
+1. Create the Pages project:
    ```
    npx wrangler pages project create idlezada --production-branch=main
    ```
-   (com `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` exportados no ambiente)
-2. Cadastrar os secrets do repositório:
+2. Add the repo secrets:
    ```
-   gh secret set CLOUDFLARE_API_TOKEN     # token com permissão Cloudflare Pages: Edit
+   gh secret set CLOUDFLARE_API_TOKEN     # API token with Cloudflare Pages: Edit
    gh secret set CLOUDFLARE_ACCOUNT_ID
    ```
 
-URL de produção: `https://idlezada.pages.dev`
+Production URL: `https://idlezada.pages.dev`
 
-## Dados / re-sync
+## Data / re-sync
 
-`public/trees.js` é gerado de `data/trees.json`. Quando o bundle do jogo mudar,
-basta regenerar `trees.js` a partir do `trees.json` atualizado — o motor é agnóstico
-e lê qualquer árvore no mesmo formato.
+`public/trees.js` is generated from `data/trees.json`. When the tree data changes,
+regenerate `trees.js` from the updated JSON — the engine is data-agnostic and reads
+any tree in the same format.

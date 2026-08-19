@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>idlezada — Builds</title>
+<title>Idlezada — Builds</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="topbar">
-  <h1 class="brand">idlezada <small>gerador de builds · Baiak Idle</small></h1>
+  <h1 class="brand">Idlezada <small>build generator</small></h1>
   <div class="navtabs" id="navtabs">
     <div class="navtab on" data-view="builds">Builds</div>
-    <div class="navtab" data-view="sim">Simulador</div>
+    <div class="navtab" data-view="sim">Simulator</div>
     <div class="navtab" data-view="stamina">Stamina</div>
   </div>
 </div>
@@ -20,19 +20,19 @@
 <!-- ===== BUILDS ===== -->
 <section class="view on" id="view-builds">
   <div class="wrap">
-    <p class="lead">Informe o level e escolha o objetivo — a build é montada sozinha e o código sai pronto pra colar no Baiak Idle. Refine clicando em "Abrir no simulador".</p>
+    <p class="lead">Set the level and pick an objective — the build is assembled automatically and the share code is ready to copy. Fine-tune it by clicking "Open in simulator".</p>
     <div class="slots" id="slots"></div>
   </div>
 </section>
 
-<!-- ===== SIMULADOR ===== -->
+<!-- ===== SIMULATOR ===== -->
 <section class="view" id="view-sim">
-  <div class="iframe-wrap"><iframe id="simFrame" title="Simulador de Build"></iframe></div>
+  <div class="iframe-wrap"><iframe id="simFrame" title="Build Simulator"></iframe></div>
 </section>
 
 <!-- ===== STAMINA ===== -->
 <section class="view" id="view-stamina">
-  <div class="iframe-wrap"><iframe id="staminaFrame" title="Calculadora de Stamina"></iframe></div>
+  <div class="iframe-wrap"><iframe id="staminaFrame" title="Stamina Calculator"></iframe></div>
 </section>
 
 <script src="trees.js"></script>

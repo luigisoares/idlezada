@@ -3,7 +3,7 @@
 
    As funcoes de custo / reach / valid / aggregate / encode / decode sao copia
    VERBATIM do simuladorbuild.html validado, pra o share code continuar
-   byte-identico ao do Baiak Idle. Nao altere a logica delas.
+   byte-identico ao do jogo. Nao altere a logica delas.
 
    Novidade: autobuild() + perfis de peso por objetivo.
    ============================================================================ */

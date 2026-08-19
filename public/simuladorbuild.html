@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Simulador de Build</title>
+<title>Build Simulator — Idlezada</title>
 <style>
 :root{
   --bg:#0d1210; --panel:#141c19; --panel2:#1a241f; --line:#26332c;
@@ -89,22 +89,22 @@ svg.drag{cursor:grabbing}
 
 <div class="card">
   <div class="top">
-    <h1>Simulador de Build</h1>
+    <h1>Build Simulator</h1>
     <div class="tabs" id="tabs"></div>
   </div>
   <div class="bar">
     <label for="lv">Level</label>
     <input type="number" id="lv" min="1" max="9999999" value="850">
-    <div class="sw" id="full"><i></i><span>Full liberado</span></div>
-    <div class="pill gold" id="budget">&#10022; ilimitado</div>
-    <div class="pill" id="spent">0 gastos</div>
-    <button id="reset">Zerar</button>
-    <div class="sw on" id="types" style="margin-left:auto"><i></i><span>Tipos</span></div>
+    <div class="sw" id="full"><i></i><span>Full unlocked</span></div>
+    <div class="pill gold" id="budget">&#10022; unlimited</div>
+    <div class="pill" id="spent">0 spent</div>
+    <button id="reset">Reset</button>
+    <div class="sw on" id="types" style="margin-left:auto"><i></i><span>Types</span></div>
   </div>
   <div class="legend">
-    <span><i class="dot"></i> pequeno &mdash; custo escala por rank</span>
-    <span><i class="dot n"></i> notable &mdash; rank unico, custo fixo</span>
-    <span>clique = +1 &nbsp;&middot;&nbsp; clique direito / shift = &minus;1</span>
+    <span><i class="dot"></i> small &mdash; cost scales per rank</span>
+    <span><i class="dot n"></i> notable &mdash; single rank, fixed cost</span>
+    <span>click = +1 &nbsp;&middot;&nbsp; right-click / shift = &minus;1</span>
   </div>
 </div>
 
@@ -118,22 +118,22 @@ svg.drag{cursor:grabbing}
 
   <div class="side">
     <div class="card pad">
-      <h2>Atributos liberados</h2>
-      <div class="sub" id="cnt">0 nos &middot; 0 pontos investidos</div>
+      <h2>Unlocked attributes</h2>
+      <div class="sub" id="cnt">0 nodes &middot; 0 points invested</div>
       <div class="stats" id="stats"></div>
       <div class="note" id="fullnote"></div>
     </div>
     <div class="card pad">
-      <h2>Codigo da build</h2>
+      <h2>Build code</h2>
       <div class="codebox">
         <input type="text" id="code" readonly>
-        <button id="copy">Copiar</button>
+        <button id="copy">Copy</button>
       </div>
       <div class="codebox">
         <input type="text" id="load" placeholder="BT1-D850-...">
-        <button id="dold">Carregar</button>
+        <button id="dold">Load</button>
       </div>
-      <div class="note">Formato compativel com o do site original &mdash; da pra colar codigo de la aqui e vice-versa.</div>
+      <div class="note">Compatible share-code format &mdash; paste a code here and copy it back out.</div>
     </div>
   </div>
 </div>
@@ -142,6 +142,7 @@ svg.drag{cursor:grabbing}
 <div id="tip"></div>
 
 <script src="trees.js"></script>
+<script src="engine.js"></script>
 <script>
 const TREES = window.TREES;
 
@@ -150,33 +151,33 @@ const VNAME={knight:'Knight',paladin:'Paladin',sorcerer:'Sorcerer',druid:'Druid'
 const VCOL={knight:'#ff6b5e',paladin:'#ffd76a',sorcerer:'#b060ff',druid:'#6fdc8c',monk:'#5fd4e8'};
 const VLET={knight:'K',paladin:'P',sorcerer:'S',druid:'D',monk:'M'};
 const LETV={K:'knight',P:'paladin',S:'sorcerer',D:'druid',M:'monk'};
-const EL={physical:'fisico',energy:'energia',earth:'terra',fire:'fogo',ice:'gelo',holy:'sagrado',death:'morte'};
+const EL={physical:'physical',energy:'energy',earth:'earth',fire:'fire',ice:'ice',holy:'holy',death:'death'};
 
 const SL={
-  atkPct:v=>`+${v}% ataque`, defFlat:v=>`+${v} def`, armorFlat:v=>`+${v} armadura`,
-  critChance:v=>`+${v}% chance de critico`, critDmg:v=>`+${v}% dano critico`,
+  atkPct:v=>`+${v}% attack`, defFlat:v=>`+${v} def`, armorFlat:v=>`+${v} armor`,
+  critChance:v=>`+${v}% crit chance`, critDmg:v=>`+${v}% crit damage`,
   lifeLeech:v=>`+${v}% life leech`, manaLeech:v=>`+${v}% mana leech`,
   hpPct:v=>`+${v}% HP`, manaPct:v=>`+${v}% mana`, expPct:v=>`+${v}% exp`, lootPct:v=>`+${v}% loot`,
-  spellDmgPct:v=>`+${v}% dano de magia`, attackSpeedPct:v=>`+${v}% velocidade de ataque`,
-  spellHealPct:v=>`+${v}% cura de magia`, hpRegenPct:v=>`+${v}% regen de HP`,
-  mpRegenPct:v=>`+${v}% regen de mana`
+  spellDmgPct:v=>`+${v}% spell damage`, attackSpeedPct:v=>`+${v}% attack speed`,
+  spellHealPct:v=>`+${v}% spell healing`, hpRegenPct:v=>`+${v}% HP regen`,
+  mpRegenPct:v=>`+${v}% mana regen`
 };
 const SORD=['critChance','critDmg','lifeLeech','manaLeech','atkPct','attackSpeedPct','armorFlat',
   'defFlat','hpPct','manaPct','expPct','lootPct','spellDmgPct','spellHealPct','hpRegenPct','mpRegenPct'];
 const ELORD=['physical','energy','earth','fire','ice','holy','death'];
 
 const SPL={
-  dodge:v=>`${v}% de chance de desviar (0 de dano)`,
-  gift_of_life:v=>`Gift of Life: sobrevive a golpe letal (cd ${v}s)`,
-  momentum:v=>`${v}% de chance de cortar 2s dos cooldowns no auto-attack`,
-  execute:v=>`+${v}% de dano vs monstros abaixo de 25% do HP`,
-  element_pierce:v=>`Ignora ${v}% da resistencia elemental dos monstros`,
-  battle_instinct:v=>`+${v} def por monstro em melee range`,
-  chain:v=>`Auto-attack salta pra +${v} monstro(s) proximo(s) (60% do dano)`,
-  slash:v=>`Corta os monstros adjacentes ao alvo por ${v}% do golpe`,
-  precision:v=>`${v}% de chance de um segundo ataque completo`,
-  tactics:v=>`+${v} de tatica: mira, posicionamento e reacao (nivel 3 destrava o kite infinito)`,
-  avatar:v=>`${v}% de chance, por golpe ou magia que acerta, de entrar na forma avatar por 15s`
+  dodge:v=>`${v}% chance to take 0 damage`,
+  gift_of_life:v=>`Gift of Life: survives a lethal hit (cd ${v}s)`,
+  momentum:v=>`${v}% chance on auto-attack to cut 2s off all spell cooldowns`,
+  execute:v=>`+${v}% damage vs monsters below 25% HP`,
+  element_pierce:v=>`ignores ${v}% of the monster's elemental resistance`,
+  battle_instinct:v=>`+${v} def per monster in melee range`,
+  chain:v=>`auto-attack jumps to +${v} nearby monster(s) (60% damage)`,
+  slash:v=>`cleaves monsters adjacent to the target for ${v}% of the hit`,
+  precision:v=>`${v}% chance of a full second attack`,
+  tactics:v=>`+${v} tactics: aim, positioning and reaction (level 3 unlocks infinite kiting)`,
+  avatar:v=>`${v}% chance, per hit or spell that lands, to enter Avatar form for 15s`
 };
 
 const CATC={def:'#7fb7ff',heal:'#8ff0b8',crit:'#ffb35c',energy:'#c78cff',speed:'#6fe6dc',
@@ -198,77 +199,9 @@ function cat(p){
 }
 
 /* ---------- engine ---------- */
-const IDX={},ADJ={};
-for(const v of VOCS){
-  IDX[v]={}; for(const n of TREES[v]) IDX[v][n.id]=n;
-  const m=new Map(); for(const n of TREES[v]) m.set(n.id,[]);
-  for(const n of TREES[v]) for(const r of (n.requires||[])){ m.get(n.id).push(r); m.get(r).push(n.id); }
-  ADJ[v]=m;
-}
-const nd=(v,id)=>IDX[v][id];
-const nextCost=(n,r)=> n.kind==='small' ? n.cost*(r+1) : n.cost;
-function totalCost(n,r){ r=Math.min(Math.max(0,r),n.maxRank);
-  return n.kind==='small' ? n.cost*r*(r+1)/2 : (r>0?n.cost:0); }
-function spent(v,rk){ let s=0; for(const n of TREES[v]){ const r=rk[n.id]||0; if(r>0) s+=totalCost(n,r); } return s; }
-const fullCost=v=>TREES[v].reduce((s,n)=>s+totalCost(n,n.maxRank),0);
-function reach(v,rk){
-  const a=ADJ[v],seen=new Set(),st=[];
-  for(const n of TREES[v]) if(n.tier===0&&(rk[n.id]||0)>=1){seen.add(n.id);st.push(n.id);}
-  while(st.length){const id=st.pop();
-    for(const b of (a.get(id)||[])) if(!seen.has(b)&&(rk[b]||0)>=1){seen.add(b);st.push(b);}}
-  return seen;
-}
-const allocCount=(v,rk)=>TREES[v].filter(n=>(rk[n.id]||0)>=1).length;
-const valid=(v,rk)=>reach(v,rk).size===allocCount(v,rk);
-function connected(v,rk,id){
-  const n=nd(v,id); if(n.tier===0) return true;
-  return (ADJ[v].get(id)||[]).some(x=>(rk[x]||0)>=1);
-}
-function canAlloc(v,rk,id,bud){
-  const n=nd(v,id); if(!n) return false;
-  const r=rk[id]||0;
-  if(r>=n.maxRank) return false;
-  if(!connected(v,rk,id)) return false;
-  return spent(v,rk)+nextCost(n,r)<=bud;
-}
-function canDealloc(v,rk,id){
-  const n=nd(v,id); if(!n) return false;
-  const r=rk[id]||0; if(r<1) return false;
-  if(r===1){ const t=Object.assign({},rk); t[id]=0; if(!valid(v,t)) return false; }
-  return true;
-}
-const stack=(a,b)=>a+b-a*b/100;
-function aggregate(v,rk){
-  const bonus={},absorb={},elem={},spec={};
-  for(const n of TREES[v]){
-    const r=Math.min(rk[n.id]||0,n.maxRank); if(r<=0) continue;
-    if(n.per) for(const k in n.per){
-      const val=n.per[k];
-      if(k==='absorbPct'){ for(const e in val) absorb[e]=stack(absorb[e]||0,val[e]*r); }
-      else if(typeof val==='object'){ elem[k]=elem[k]||{}; for(const e in val) elem[k][e]=(elem[k][e]||0)+val[e]*r; }
-      else bonus[k]=(bonus[k]||0)+val*r;
-    }
-    if(n.special) spec[n.special.key]=(spec[n.special.key]||0)+n.special.value*r;
-  }
-  return {bonus,absorb,elem,spec};
-}
+const { nd, nextCost, totalCost, spent, fullCost, reach, allocCount, valid,
+  connected, canAlloc, canDealloc, aggregate, sortedNodes, encode, decode } = window.Engine;
 const fmt=x=>{const r=Math.round(x*100)/100; return String(r);};
-const sortedNodes=v=>[...TREES[v]].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
-function encode(v,rk,lv){
-  const hex=sortedNodes(v).map(n=>Math.min(Math.max(0,rk[n.id]||0),n.maxRank).toString(16))
-    .join('').replace(/0+$/,'');
-  return `BT1-${VLET[v]}${lv==null?'F':String(Math.max(1,Math.floor(lv)))}-${hex.toUpperCase()}`;
-}
-function decode(code){
-  const m=String(code).trim().toUpperCase().match(/^BT1-([KPSDM])(F|\d{1,7})-([0-9A-F]*)$/);
-  if(!m) return null;
-  const v=LETV[m[1]], lv=m[2]==='F'?null:parseInt(m[2],10), sn=sortedNodes(v), rk={};
-  for(let i=0;i<sn.length&&i<m[3].length;i++){
-    const r=parseInt(m[3][i],16); if(r>0) rk[sn[i].id]=Math.min(r,sn[i].maxRank);
-  }
-  const rc=reach(v,rk); for(const k of Object.keys(rk)) if(!rc.has(k)) delete rk[k];
-  return {voc:v,level:lv,ranks:rk};
-}
 
 /* ---------- state ---------- */
 let VOC='knight', RANKS={}, LEVEL=850, FULL=true, TYPES=true;
@@ -350,14 +283,14 @@ function render(){
     if(on) l.setAttribute('stroke',VCOL[VOC]+'88');
     else l.removeAttribute('stroke');
   }
-  $('spent').textContent=`${sp.toLocaleString('pt-BR')} gastos`;
+  $('spent').textContent=`${sp.toLocaleString('en-US')} spent`;
   $('spent').className='pill'+(!FULL&&sp>bud?' over':'');
-  $('budget').textContent=FULL?'✦ ilimitado':`${LEVEL.toLocaleString('pt-BR')} pontos`;
+  $('budget').textContent=FULL?'✦ unlimited':`${LEVEL.toLocaleString('en-US')} points`;
   $('full').className='sw'+(FULL?' on':'');
   $('types').className='sw'+(TYPES?' on':'');
   $('lv').disabled=FULL; $('lv').style.opacity=FULL?.45:1;
-  $('cnt').textContent=`${allocCount(VOC,RANKS)} nos · ${sp.toLocaleString('pt-BR')} pontos investidos`;
-  $('fullnote').textContent=`Fechar a arvore inteira desta vocacao: ~${fullCost(VOC).toLocaleString('pt-BR')} pontos (nivel ${fullCost(VOC).toLocaleString('pt-BR')}).`;
+  $('cnt').textContent=`${allocCount(VOC,RANKS)} nodes · ${sp.toLocaleString('en-US')} points invested`;
+  $('fullnote').textContent=`Fully maxing this vocation's tree: ~${fullCost(VOC).toLocaleString('en-US')} points (level ${fullCost(VOC).toLocaleString('en-US')}).`;
   renderStats();
   const code=encode(VOC,RANKS,FULL?null:LEVEL);
   $('code').value=code;
@@ -369,27 +302,27 @@ function renderStats(){
   const add=(txt,sp)=>{const d=document.createElement('div');d.className='stat'+(sp?' sp':'');d.textContent=txt;box.appendChild(d);};
   for(const k of SORD) if(bonus[k]) add((SL[k]||(v=>`+${v} ${k}`))(fmt(bonus[k])));
   for(const k in bonus) if(!SORD.includes(k)&&bonus[k]) add((SL[k]||(v=>`+${v} ${k}`))(fmt(bonus[k])));
-  for(const e of ELORD) if(absorb[e]) add(`+${fmt(absorb[e])}% protecao ${EL[e]}`);
-  if(elem.elementDmgPct) for(const e of ELORD) if(elem.elementDmgPct[e]) add(`+${fmt(elem.elementDmgPct[e])}% dano de ${EL[e]}`);
+  for(const e of ELORD) if(absorb[e]) add(`+${fmt(absorb[e])}% ${EL[e]} protection`);
+  if(elem.elementDmgPct) for(const e of ELORD) if(elem.elementDmgPct[e]) add(`+${fmt(elem.elementDmgPct[e])}% ${EL[e]} damage`);
   for(const k in spec) if(spec[k]) add((SPL[k]||(v=>`${k}: ${v}`))(fmt(spec[k])),true);
   if(!box.children.length){const d=document.createElement('div');d.className='empty';
-    d.textContent='Nenhum no alocado ainda.';box.appendChild(d);}
+    d.textContent='No nodes allocated yet.';box.appendChild(d);}
 }
 
 /* ---------- tooltip ---------- */
 function showTip(e,n){
   const t=$('tip'), r=RANKS[n.id]||0;
   const lines=[];
-  lines.push(`<b>${n.name}</b> <span class="k">&middot; ${n.kind==='notable'?'notable':'pequeno'} &middot; tier ${n.tier}</span>`);
+  lines.push(`<b>${n.name}</b> <span class="k">&middot; ${n.kind==='notable'?'notable':'small'} &middot; tier ${n.tier}</span>`);
   lines.push(`<span class="k">Rank</span> ${r}/${n.maxRank}`);
   if(r<n.maxRank){
     const c=nextCost(n,r);
     const ok=canAlloc(VOC,RANKS,n.id,budget());
-    const why = ok?'' : (!connected(VOC,RANKS,n.id)?' <span class="r">(sem conexao)</span>':' <span class="r">(sem pontos)</span>');
-    lines.push(`<span class="k">Proximo ponto</span> <span class="${ok?'g':'r'}">${c}</span>${why}`);
+    const why = ok?'' : (!connected(VOC,RANKS,n.id)?' <span class="r">(not connected)</span>':' <span class="r">(not enough points)</span>');
+    lines.push(`<span class="k">Next point</span> <span class="${ok?'g':'r'}">${c}</span>${why}`);
   }
-  if(r>0) lines.push(`<span class="k">Investido aqui</span> ${totalCost(n,r)}`);
-  lines.push(`<span class="k">Fechar (${n.maxRank})</span> ${totalCost(n,n.maxRank)}`);
+  if(r>0) lines.push(`<span class="k">Invested here</span> ${totalCost(n,r)}`);
+  lines.push(`<span class="k">Max (${n.maxRank})</span> ${totalCost(n,n.maxRank)}`);
   if(n.per){
     const ps=[];
     for(const k in n.per){
@@ -398,7 +331,7 @@ function showTip(e,n){
         for(const el in v) ps.push(k==='absorbPct'?`+${v[el]}% prot ${EL[el]}`:`+${v[el]}% dano ${EL[el]}`);
       } else ps.push((SL[k]||(x=>`+${x} ${k}`))(v));
     }
-    lines.push(`<span class="k">Por rank:</span> ${ps.join(', ')}`);
+    lines.push(`<span class="k">Per rank:</span> ${ps.join(', ')}`);
   }
   if(n.desc) lines.push(`<span style="color:#f0dda6">${n.desc}</span>`);
   t.innerHTML=lines.join('<br>');
@@ -448,7 +381,7 @@ $('reset').onclick=()=>{ RANKS={}; render(); };
 $('copy').onclick=()=>{ navigator.clipboard.writeText($('code').value);
   $('copy').textContent='Copiado!'; setTimeout(()=>$('copy').textContent='Copiar',1200); };
 function loadCode(c){
-  const d=decode(c); if(!d){ alert('Codigo invalido. Formato: BT1-D850-A5F...'); return; }
+  const d=decode(c); if(!d){ alert('Invalid code. Format: BT1-D850-A5F...'); return; }
   VOC=d.voc; RANKS=d.ranks;
   if(d.level==null) FULL=true; else { FULL=false; LEVEL=d.level; $('lv').value=d.level; }
   fit(); render();

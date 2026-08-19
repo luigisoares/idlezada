@@ -1,4 +1,4 @@
-﻿// GERADO de trees.json — fonte unica dos dados das arvores. Nao editar a mao; rode o re-sync.
+// GERADO de trees.json — fonte unica dos dados das arvores. Nao editar a mao; rode o re-sync.
 window.TREES = {
  "knight": [
   {
@@ -368,7 +368,7 @@ window.TREES = {
     "key": "slash",
     "value": 40
    },
-   "desc": "Golpes corpo a corpo cortam os monstros ADJACENTES ao alvo por 40% do dano"
+   "desc": "Melee hits cleave monsters ADJACENT to the target for 40% of the damage"
   },
   {
    "id": "k_tactics",
@@ -385,7 +385,7 @@ window.TREES = {
     "key": "tactics",
     "value": 1
    },
-   "desc": "Afia a IA de combate: mira, posicionamento e reação (+100 níveis de tática por rank)"
+   "desc": "Sharpens combat AI: aim, positioning and reaction (+100 tactics levels per rank)"
   },
   {
    "id": "k_rampage",
@@ -500,7 +500,7 @@ window.TREES = {
     "key": "battle_instinct",
     "value": 6
    },
-   "desc": "+6 def por monstro em melee range"
+   "desc": "+6 def per monster in melee range"
   },
   {
    "id": "k_slash2",
@@ -517,7 +517,7 @@ window.TREES = {
     "key": "slash",
     "value": 15
    },
-   "desc": "O corte adjacente sobe pra 55% do dano"
+   "desc": "The adjacent cleave rises to 55% of the damage"
   },
   {
    "id": "k_executioner",
@@ -534,7 +534,7 @@ window.TREES = {
     "key": "execute",
     "value": 40
    },
-   "desc": "+40% de dano em monstros abaixo de 25% do HP"
+   "desc": "+40% damage vs monsters below 25% HP"
   },
   {
    "id": "k_smite",
@@ -625,7 +625,7 @@ window.TREES = {
     "key": "gift_of_life",
     "value": 60
    },
-   "desc": "Sobrevive a um golpe letal curando 40% do HP (cooldown 60s)"
+   "desc": "Survives a lethal hit by healing 40% of HP (cooldown 60s)"
   },
   {
    "id": "k_iron_will",
@@ -699,7 +699,7 @@ window.TREES = {
     "key": "slash",
     "value": 15
    },
-   "desc": "O corte adjacente sobe pra 70% do dano"
+   "desc": "The adjacent cleave rises to 70% of the damage"
   },
   {
    "id": "k_avatar_steel",
@@ -730,7 +730,7 @@ window.TREES = {
     "key": "avatar",
     "value": 5
    },
-   "desc": "5% de chance, por golpe ou magia que ACERTA, de entrar na forma avatar por 15s (crita sempre e -3% de dano recebido)"
+   "desc": "5% chance, per hit or spell that LANDS, to enter Avatar form for 15s (always crits and -3% damage taken)"
   }
  ],
  "paladin": [
@@ -1066,7 +1066,7 @@ window.TREES = {
     "key": "precision",
     "value": 6
    },
-   "desc": "6% de chance de disparar um SEGUNDO tiro completo"
+   "desc": "6% chance to fire a full SECOND shot"
   },
   {
    "id": "p_tactics",
@@ -1083,7 +1083,7 @@ window.TREES = {
     "key": "tactics",
     "value": 1
    },
-   "desc": "Afia a IA de combate: mira, posicionamento e reação (+100 níveis de tática por rank)"
+   "desc": "Sharpens combat AI: aim, positioning and reaction (+100 tactics levels per rank)"
   },
   {
    "id": "p_sharpshooter",
@@ -1213,7 +1213,7 @@ window.TREES = {
     "key": "precision",
     "value": 6
    },
-   "desc": "A chance do segundo tiro sobe pra 12%"
+   "desc": "The second-shot chance rises to 12%"
   },
   {
    "id": "p_ballistic",
@@ -1230,7 +1230,7 @@ window.TREES = {
     "key": "element_pierce",
     "value": 20
    },
-   "desc": "Ignora 20% da resistência elemental do monstro"
+   "desc": "Ignores 20% of the monster's elemental resistance"
   },
   {
    "id": "p_hawkeye",
@@ -1304,7 +1304,7 @@ window.TREES = {
     "key": "execute",
     "value": 35
    },
-   "desc": "+35% de dano em monstros abaixo de 25% do HP"
+   "desc": "+35% damage vs monsters below 25% HP"
   },
   {
    "id": "p_relentless",
@@ -1388,7 +1388,7 @@ window.TREES = {
     "key": "precision",
     "value": 6
    },
-   "desc": "A chance do segundo tiro sobe pra 18%"
+   "desc": "The second-shot chance rises to 18%"
   },
   {
    "id": "p_avatar_light",
@@ -1421,7 +1421,7 @@ window.TREES = {
     "key": "avatar",
     "value": 5
    },
-   "desc": "5% de chance, por golpe ou magia que ACERTA, de entrar na forma avatar por 15s (crita sempre e -3% de dano recebido)"
+   "desc": "5% chance, per hit or spell that LANDS, to enter Avatar form for 15s (always crits and -3% damage taken)"
   }
  ],
  "sorcerer": [
@@ -1827,7 +1827,7 @@ window.TREES = {
     "key": "chain",
     "value": 1
    },
-   "desc": "O auto-attack da wand SALTA pra +1 monstro próximo (60% do dano)"
+   "desc": "The wand's auto-attack JUMPS to +1 nearby monster (60% of the damage)"
   },
   {
    "id": "s_tactics",
@@ -1844,7 +1844,7 @@ window.TREES = {
     "key": "tactics",
     "value": 1
    },
-   "desc": "Afia a IA de combate: mira, posicionamento e reação (+100 níveis de tática por rank)"
+   "desc": "Sharpens combat AI: aim, positioning and reaction (+100 tactics levels per rank)"
   },
   {
    "id": "s_inferno",
@@ -2035,7 +2035,7 @@ window.TREES = {
     "key": "chain",
     "value": 1
    },
-   "desc": "O arco salta pra mais +1 monstro"
+   "desc": "The arc jumps to +1 more monster"
   },
   {
    "id": "s_momentum",
@@ -2053,7 +2053,7 @@ window.TREES = {
     "key": "momentum",
     "value": 18
    },
-   "desc": "18% de chance no auto-attack de reduzir 2s de todos os cooldowns de magia"
+   "desc": "18% chance on auto-attack to cut 2s off all spell cooldowns"
   },
   {
    "id": "s_cataclysm",
@@ -2100,7 +2100,7 @@ window.TREES = {
     "key": "avatar",
     "value": 5
    },
-   "desc": "5% de chance, por golpe ou magia que ACERTA, de entrar na forma avatar por 15s (crita sempre e -3% de dano recebido)"
+   "desc": "5% chance, per hit or spell that LANDS, to enter Avatar form for 15s (always crits and -3% damage taken)"
   }
  ],
  "druid": [
@@ -2420,7 +2420,7 @@ window.TREES = {
     "key": "chain",
     "value": 1
    },
-   "desc": "O auto-attack da rod SALTA pra +1 monstro próximo (60% do dano)"
+   "desc": "The rod's auto-attack JUMPS to +1 nearby monster (60% of the damage)"
   },
   {
    "id": "d_tactics",
@@ -2437,7 +2437,7 @@ window.TREES = {
     "key": "tactics",
     "value": 1
    },
-   "desc": "Afia a IA de combate: mira, posicionamento e reação (+100 níveis de tática por rank)"
+   "desc": "Sharpens combat AI: aim, positioning and reaction (+100 tactics levels per rank)"
   },
   {
    "id": "d_hailstorm",
@@ -2581,7 +2581,7 @@ window.TREES = {
     "key": "chain",
     "value": 1
    },
-   "desc": "Os cipós saltam pra mais +1 monstro"
+   "desc": "The vines jump to +1 more monster"
   },
   {
    "id": "d_wrath_nature",
@@ -2723,7 +2723,7 @@ window.TREES = {
     "key": "gift_of_life",
     "value": 60
    },
-   "desc": "Sobrevive a um golpe letal curando 40% do HP (cooldown 60s)"
+   "desc": "Survives a lethal hit by healing 40% of HP (cooldown 60s)"
   },
   {
    "id": "d_evergreen",
@@ -2770,7 +2770,7 @@ window.TREES = {
     "key": "avatar",
     "value": 5
    },
-   "desc": "5% de chance, por golpe ou magia que ACERTA, de entrar na forma avatar por 15s (crita sempre e -3% de dano recebido)"
+   "desc": "5% chance, per hit or spell that LANDS, to enter Avatar form for 15s (always crits and -3% damage taken)"
   }
  ],
  "monk": [
@@ -3098,7 +3098,7 @@ window.TREES = {
     "key": "tactics",
     "value": 1
    },
-   "desc": "Afia a IA de combate: mira, posicionamento e reação (+100 níveis de tática por rank)"
+   "desc": "Sharpens combat AI: aim, positioning and reaction (+100 tactics levels per rank)"
   },
   {
    "id": "m_dragonfist",
@@ -3240,7 +3240,7 @@ window.TREES = {
     "key": "precision",
     "value": 5
    },
-   "desc": "5% de chance de um SEGUNDO golpe completo"
+   "desc": "5% chance of a full SECOND strike"
   },
   {
    "id": "m_hundredfists",
@@ -3289,7 +3289,7 @@ window.TREES = {
     "key": "dodge",
     "value": 10
    },
-   "desc": "10% de chance de tomar 0 de dano"
+   "desc": "10% chance to take 0 damage"
   },
   {
    "id": "m_zenith",
@@ -3413,7 +3413,7 @@ window.TREES = {
     "key": "precision",
     "value": 5
    },
-   "desc": "A chance do segundo golpe sobe pra 10%"
+   "desc": "The second-strike chance rises to 10%"
   },
   {
    "id": "m_avatar_balance",
@@ -3444,8 +3444,7 @@ window.TREES = {
     "key": "avatar",
     "value": 5
    },
-   "desc": "5% de chance, por golpe ou magia que ACERTA, de entrar na forma avatar por 15s (crita sempre e -3% de dano recebido)"
+   "desc": "5% chance, per hit or spell that LANDS, to enter Avatar form for 15s (always crits and -3% damage taken)"
   }
  ]
 };
-

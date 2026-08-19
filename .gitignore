@@ -1,11 +1,11 @@
-# temporários de teste/patch (prefixo _)
-_*.js
-_*.html
-_*.log
-_*.txt
+# temp / test / patch artifacts (underscore prefix)
+_*
 
-# node / SO
+# tooling / OS / editor
+.wrangler/
 node_modules/
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 *.log
