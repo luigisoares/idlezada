@@ -13,12 +13,27 @@ const OBJS = [
   { key:'dano',     label:'Damage' },
   { key:'critico',  label:'Crit' },
   { key:'avatar',   label:'Avatar' },
+  { key:'aoe',      label:'AoE' },
   { key:'tank',     label:'Tank' },
+  { key:'puller',   label:'Puller' },
+  { key:'healer',   label:'Healer' },
+  { key:'curadano', label:'Heal + Dmg' },
   { key:'xp',       label:'XP' },
   { key:'atkspeed', label:'Atk Speed' },
 ];
 // título do card por objetivo
-const OBJTITLE = { dano:'MAX DAMAGE', critico:'CRIT', avatar:'AVATAR', tank:'TANK', xp:'XP', atkspeed:'ATTACK SPEED' };
+const OBJTITLE = { dano:'MAX DAMAGE', critico:'CRIT', avatar:'AVATAR', aoe:'AOE / MULTI-TARGET',
+  tank:'TANK', puller:'PULLER', healer:'HEALER', curadano:'HEAL + DAMAGE', xp:'XP', atkspeed:'ATTACK SPEED' };
+// objetivos em que o elemento de dano muda a build -> mostra o seletor
+const ELEM_OBJS = ['dano','aoe','curadano'];
+/* os objetivos agrupados pelo CENARIO em que ganham, que e' a divisao que a analise
+   comparativa mostrou importar: Avatar domina o 1v1 (boss) mas cai abaixo do Damage
+   num pack; o AoE e' o inverso. Chip solto nao comunica isso e leva a escolha errada. */
+const OBJ_GROUPS = [
+  { label:'Single target · boss', objs:['dano','critico','avatar','atkspeed'] },
+  { label:'Pack · hunt',          objs:['aoe','puller','xp'] },
+  { label:'Defense & support',    objs:['tank','healer','curadano'] },
+];
 
 const ELNAME = { physical:'Physical', energy:'Energy', earth:'Earth', fire:'Fire', ice:'Ice', holy:'Holy', death:'Death' };
 
@@ -66,9 +81,9 @@ const CAT_LABEL = { damage:'Damage', speed:'Speed', crit:'Crit', sustain:'Sustai
 /* ---------- state ---------- */
 const LS_KEY = 'idlezada.builds.v3';
 const DEFAULT_SLOTS = [
-  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:'all' },
-  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:'all' },
-  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:'all' },
+  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
+  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
+  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
 ];
 let state = loadState();
 
@@ -76,7 +91,8 @@ function loadState(){
   try {
     const raw = JSON.parse(localStorage.getItem(LS_KEY));
     if (raw && Array.isArray(raw.slots) && raw.slots.length === 3) {
-      return { slots: raw.slots.map((s,i)=>({ ...DEFAULT_SLOTS[i], ...s })), tab: raw.tab || 'builds' };
+      // estado salvo antes desta versao pode ter objetivo que a vocacao nao oferece
+      return { slots: raw.slots.map((s,i)=>sanitizeSlot({ ...DEFAULT_SLOTS[i], ...s })), tab: raw.tab || 'builds' };
     }
   } catch (e) { /* storage corrompido: ignora */ }
   return { slots: DEFAULT_SLOTS.map(s=>({...s})), tab:'builds' };
@@ -92,11 +108,19 @@ function renderSlot(s){
   el.className = 'slot';
   const col = VCOL[s.voc] || '#6fdc8c';
 
-  const objBtns = OBJS.map(o =>
-    `<div class="obj${o.key===s.obj?' on':''}" data-obj="${o.key}">${o.label}</div>`).join('');
+  const objBtns = OBJ_GROUPS.map(g => {
+    const keys = g.objs.filter(k => E.objAvailable(s.voc, k));
+    if (!keys.length) return '';                            // grupo inteiro indisponivel
+    const chips = keys.map(k => {
+      const o = OBJS.find(x => x.key === k);
+      return `<div class="obj${k===s.obj?' on':''}" data-obj="${k}">${o.label}</div>`;
+    }).join('');
+    return `<div class="objgroup"><span class="objgroup-k">${g.label}</span>
+      <div class="objs">${chips}</div></div>`;
+  }).join('');
 
   const els = E.damageElements(s.voc);
-  const showElem = s.obj === 'dano' && els.length >= 2;
+  const showElem = ELEM_OBJS.includes(s.obj) && els.length >= 2;
   const elemOptions = ['all', ...els].map(e =>
     `<option value="${e}"${e===s.element?' selected':''}>${e==='all'?'All elements':ELNAME[e]||e}</option>`).join('');
   const vocOptions = E.VOCS.map(v =>
@@ -113,9 +137,17 @@ function renderSlot(s){
       <div class="field"><span class="k">Level</span>
         <input type="number" min="1" max="9999999" value="${s.level}" data-role="level"></div>
     </div>
-    <div class="field"><span class="k">Objective</span><div class="objs">${objBtns}</div></div>
+    <div class="field"><span class="k">Objective</span><div class="objgroups">${objBtns}</div></div>
     <div class="field" data-role="elemfield" style="${showElem?'':'display:none'}">
       <span class="k">Damage element</span><select data-role="element">${elemOptions}</select></div>
+    <div class="field">
+      <button type="button" class="perks-h" data-role="perks-toggle" aria-expanded="${s.perksOpen?'true':'false'}">
+        <span class="perks-caret">${s.perksOpen?'▾':'▸'}</span>
+        <span class="perks-t">Perks to prioritize</span>
+        <span class="perks-n" data-role="perks-n">${perkCountLabel(s)}</span>
+      </button>
+      <div class="perks" data-role="perks"${s.perksOpen?'':' hidden'}>${perkRows(s)}</div>
+    </div>
     <div data-role="warn"></div>
     <div class="sum" data-role="summary"></div>
     <div class="codebox"><input type="text" readonly data-role="code"><button data-role="copy">Copy</button></div>
@@ -127,7 +159,7 @@ function renderSlot(s){
   el.querySelector('[data-role=label]').addEventListener('input', e=>{ s.label=e.target.value; save(); });
   el.querySelector('[data-role=voc]').addEventListener('change', e=>{
     s.voc = e.target.value;
-    if (s.element !== 'all' && !E.damageElements(s.voc).includes(s.element)) s.element = 'all';
+    sanitizeSlot(s);
     save(); render();
   });
   el.querySelector('[data-role=level]').addEventListener('input', e=>{
@@ -138,6 +170,25 @@ function renderSlot(s){
   }));
   const elemSel = el.querySelector('[data-role=element]');
   if (elemSel) elemSel.addEventListener('change', e=>{ s.element=e.target.value; save(); recompute(el, s); });
+  el.querySelector('[data-role=warn]').addEventListener('change', e=>{
+    if (!e.target.matches('[data-role=force]')) return;
+    s.forcePerks = e.target.checked; save(); recompute(el, s);
+  });
+  el.querySelector('[data-role=perks-toggle]').addEventListener('click', ()=>{
+    s.perksOpen = !s.perksOpen; save();
+    const box = el.querySelector('[data-role=perks]');
+    const btn = el.querySelector('[data-role=perks-toggle]');
+    box.hidden = !s.perksOpen;
+    btn.setAttribute('aria-expanded', s.perksOpen ? 'true' : 'false');
+    el.querySelector('.perks-caret').textContent = s.perksOpen ? '▾' : '▸';
+  });
+  el.querySelectorAll('[data-perk]').forEach(cb => cb.addEventListener('change', ()=>{
+    const id = cb.dataset.perk;
+    s.perks = cb.checked ? [...(s.perks||[]), id] : (s.perks||[]).filter(x => x !== id);
+    cb.closest('.perk').classList.toggle('on', cb.checked);
+    el.querySelector('[data-role=perks-n]').textContent = perkCountLabel(s);
+    save(); recompute(el, s);   // so recalcula: nao re-renderiza, pra a lista nao fechar
+  }));
   el.querySelector('[data-role=copy]').addEventListener('click', ()=>{
     const inp = el.querySelector('[data-role=code]');
     if (navigator.clipboard) navigator.clipboard.writeText(inp.value);
@@ -152,14 +203,103 @@ function renderSlot(s){
   return el;
 }
 
+/* o objetivo escolhido depende de stats que a arvore pode nao ter (cura so existe
+   no druid, cleave so no knight...). em vez de esconder o botao ao trocar de vocacao,
+   o autobuild degrada pro mais proximo e a gente avisa aqui o que aconteceu.
+   detectado da arvore, nao hardcoded por vocacao -> sobrevive ao re-sync. */
+/* se a vocacao mudou e o objetivo escolhido nao existe mais nela, cai no Damage. */
+function sanitizeSlot(s){
+  if (!E.objAvailable(s.voc, s.obj)) s.obj = 'dano';
+  if (s.element !== 'all' && !E.damageElements(s.voc).includes(s.element)) s.element = 'all';
+  // os ids de perk sao por arvore: trocar de vocacao descarta o que nao existe na nova
+  const ids = new Set(E.perkNodes(s.voc).map(n => n.id));
+  s.perks = (s.perks || []).filter(id => ids.has(id));
+  return s;
+}
+
+/* efeito do perk em uma linha, reusando os mesmos formatadores do resumo. */
+function perkEffect(n){
+  const bits = [];
+  if (n.per) {
+    for (const k of SORD) if (n.per[k]) bits.push(SL[k] ? SL[k](fmtNum(n.per[k])) : `${k} +${n.per[k]}`);
+    const ed = n.per.elementDmgPct;
+    if (ed) for (const e of ELORD) if (ed[e]) bits.push(`+${fmtNum(ed[e])}% ${ELNAME[e]||e}`);
+    const ab = n.per.absorbPct;
+    if (ab) {
+      const keys = ELORD.filter(e => ab[e]);
+      const uniform = keys.length > 1 && keys.every(e => Math.abs(ab[e]-ab[keys[0]]) < 0.001);
+      bits.push(uniform ? `+${fmtNum(ab[keys[0]])}% absorb (all)`
+        : keys.map(e => `+${fmtNum(ab[e])}% ${ELNAME[e]||e} absorb`).join(' · '));
+    }
+  }
+  if (n.special) bits.push(SPL[n.special.key] ? SPL[n.special.key](fmtNum(n.special.value)) : n.special.key);
+  return bits.join(' · ');
+}
+
+function perkCountLabel(s){
+  const n = (s.perks||[]).length;
+  return n ? `${n} selected` : 'none';
+}
+function perkRows(s){
+  return E.perkNodes(s.voc).map(n => {
+    const on = (s.perks||[]).includes(n.id);
+    return `<label class="perk${on?' on':''}">
+      <input type="checkbox" data-perk="${n.id}"${on?' checked':''}>
+      <span class="perk-b">
+        <span class="perk-top"><span class="perk-name">${esc(n.name)}</span><span class="perk-cost">${n.cost}</span></span>
+        <span class="perk-eff">${esc(perkEffect(n))}</span>
+      </span></label>`;
+  }).join('');
+}
+
 function recompute(el, s){
-  const build = E.autobuild(s.voc, s.level, s.obj, { element: s.element });
+  const build = E.autobuild(s.voc, s.level, s.obj,
+    { element: s.element, perks: s.perks || [], forcePerks: !!s.forcePerks });
   el.querySelector('[data-role=code]').value = E.encode(s.voc, build.ranks, s.level);
 
   const warn = el.querySelector('[data-role=warn]');
-  warn.innerHTML = (s.obj==='avatar' && !build.reachedAvatar)
-    ? `<div class="warn">Level too low to reach the Avatar node — built the best damage setup with the available points.</div>`
+  const nameOfNode = id => (TREES[s.voc].find(n => n.id === id) || {}).name || id;
+  const P = build.perks || { reached:[], missing:[], unaffordable:[], forced:false };
+  const hasPerks = (s.perks||[]).length > 0;
+  // "nao cabe no level" e "cabia mas nao valeu" sao problemas diferentes: o primeiro
+  // nao tem solucao a nao ser subir de level, e forcar nao muda nada. Por isso o
+  // checkbox de forcar so e' oferecido no segundo caso.
+  const tooExpensive = P.unaffordable.map(nameOfNode);
+  const notWorth = P.missing.filter(id => !P.unaffordable.includes(id)).map(nameOfNode);
+  const plural = n => n === 1 ? 'perk' : 'perks';
+
+  let msg = null;
+  if (s.obj === 'avatar' && !build.reachedAvatar) {
+    msg = 'Level too low to reach the Avatar node — built the best damage setup with the available points.';
+  } else if (tooExpensive.length) {
+    msg = `Level too low for ${tooExpensive.join(', ')} — the path alone costs more than your points.`;
+  } else if (notWorth.length) {
+    msg = s.forcePerks
+      ? `Even forced, ${notWorth.join(', ')} does not fit alongside your other picks at this level.`
+      : `${notWorth.join(', ')} left out: at this level the points cost more than the perk gives back.`;
+  }
+  // o controle de forcar fica visivel enquanto estiver ligado, senao nao daria pra
+  // desligar depois que o aviso que o ofereceu desaparece.
+  const forceRow = (hasPerks && (notWorth.length || s.forcePerks))
+    ? `<label class="forcebox"><input type="checkbox" data-role="force"${s.forcePerks?' checked':''}>
+        <span>Take ${(s.perks||[]).length===1?'it':'them'} anyway — build the rest around ${(s.perks||[]).length===1?'it':'them'}</span></label>`
     : '';
+  // !msg: se ja existe um aviso, o forceRow vai nele -- senao dois checkboxes iguais
+  // renderizariam juntos (ex.: preset Avatar em level baixo + perks forcados).
+  const forcedNote = (!msg && s.forcePerks && hasPerks && !notWorth.length && !tooExpensive.length)
+    ? `Forcing ${P.reached.length} ${plural(P.reached.length)} — the rest of the build is shaped around ${P.reached.length===1?'it':'them'}.`
+    : null;
+  // acima do custo total da arvore todo objetivo produz a MESMA build (tudo maxado),
+  // entao trocar de botao deixa de fazer efeito -- melhor dizer isso que deixar o
+  // usuario clicando sem entender.
+  const cap = E.fullCost(s.voc);
+  const capped = s.level >= cap
+    ? `Level ${s.level.toLocaleString('en-US')} maxes this entire tree (${cap.toLocaleString('en-US')} points) — every objective builds the same thing from here.`
+    : null;
+  warn.innerHTML =
+      (msg ? `<div class="warn">${esc(msg)}${forceRow}</div>` : '')
+    + (forcedNote ? `<div class="info">${esc(forcedNote)}${forceRow}</div>` : '')
+    + (capped ? `<div class="info">${esc(capped)}</div>` : '');
 
   renderSummary(el.querySelector('[data-role=summary]'), s, build);
 }
@@ -178,7 +318,7 @@ function renderSummary(box, s, build){
     damage:  b.atkPct ? SL.atkPct(fmtNum(b.atkPct)) : null,
     speed:   b.attackSpeedPct ? SL.attackSpeedPct(fmtNum(b.attackSpeedPct)) : null,
     crit:    b.critChance ? SL.critChance(fmtNum(b.critChance)) : (b.critDmg ? SL.critDmg(fmtNum(b.critDmg)) : null),
-    sustain: b.lifeLeech ? SL.lifeLeech(fmtNum(b.lifeLeech)) : (b.hpRegenPct ? SL.hpRegenPct(fmtNum(b.hpRegenPct)) : null),
+    sustain: b.spellHealPct ? SL.spellHealPct(fmtNum(b.spellHealPct)) : (b.lifeLeech ? SL.lifeLeech(fmtNum(b.lifeLeech)) : (b.hpRegenPct ? SL.hpRegenPct(fmtNum(b.hpRegenPct)) : null)),
     defense: b.hpPct ? SL.hpPct(fmtNum(b.hpPct)) : (b.defFlat ? SL.defFlat(fmtNum(b.defFlat)) : (b.armorFlat ? SL.armorFlat(fmtNum(b.armorFlat)) : (absKeys.length ? `+${fmtNum(absorb[absKeys[0]])}% absorb` : null))),
     element: elemJoin || null,
   };
@@ -210,15 +350,21 @@ function renderSummary(box, s, build){
     : `absorb: ${absKeys.map(e=>`${ELNAME[e]} +${fmtNum(absorb[e])}%`).join(' · ')}`);
   // specials: nome do nó (inglês, vem do dado) + resumo em inglês
   const specialPills = [];
+  const upt = E.avatarUptime(voc, build.ranks);
   for (const n of TREES[voc]) {
     if (n.special && (build.ranks[n.id]||0) >= 1) {
       const s2 = SPL[n.special.key] ? SPL[n.special.key](fmtNum(n.special.value*(build.ranks[n.id]||1))) : '';
-      specialPills.push(`<div class="pill2 sp">★ ${esc(n.name)}${s2?` — ${s2}`:''}</div>`);
+      // no Avatar a chance por hit sozinha nao diz nada: o que importa e' quanto do
+      // tempo a build passa na forma -- e' o uptime que faz o crit damage compensar.
+      const extra = (n.special.key==='avatar' && upt>0)
+        ? `<b>~${Math.round(upt*100)}% uptime</b> — always crits while active`
+        : '';
+      specialPills.push(`<div class="pill2 sp">★ ${esc(n.name)}${s2?` — ${s2}`:''}${extra?` · ${extra}`:''}</div>`);
     }
   }
   const pillsHtml = pills.map(p=>`<div class="pill2">${p}</div>`).join('') + specialPills.join('');
 
-  const titleEl = (s.obj==='dano' && s.element!=='all') ? ` / ${ (ELNAME[s.element]||s.element).toUpperCase() }` : '';
+  const titleEl = (ELEM_OBJS.includes(s.obj) && s.element!=='all') ? ` / ${ (ELNAME[s.element]||s.element).toUpperCase() }` : '';
   box.innerHTML = `
     <div class="sum-title">◆ BUILD SUMMARY · ${OBJTITLE[s.obj]||''}${titleEl}</div>
     <div class="sum-body">
