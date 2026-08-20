@@ -108,8 +108,24 @@ function avatarNodeId(v){
 
 /* perfis de peso por objetivo. valor(no) = soma(peso[stat] * quantidade).
    ajuste aqui pra afinar as builds. */
-const DMG_STATS = { atkPct:1.0, spellDmgPct:1.0, critChance:1.2, critDmg:0.35, attackSpeedPct:0.9, lifeLeech:0.1 };
-const DMG_SPECIALS = { execute:0.6, precision:2.0, chain:3.0, slash:0.15, element_pierce:0.5, momentum:1.5, battle_instinct:0, tactics:0, dodge:0, gift_of_life:0, avatar:0 };
+/* critChance/critDmg em 1.0 = "conta pelo valor real em % de dano" (ver nodeValue,
+   que faz a conta marginal). acima de 1.0 e' preferencia explicita pelo caminho de
+   crit, nao correcao de escala.
+   slash em 0.25: cleave de 40% em ~2 adjacentes rende ~+80% de throughput num pack
+   de 4 (peso 2.0 nesse cenario), MAS zero contra boss. Medido: por o cleave alto
+   aqui custava 3-12% de dano 1v1 em todos os objetivos da familia. Como o caso de
+   pack tem objetivo proprio (AoE, com slash 1.5 e chain 60), esta familia fica
+   otimizando single-target e o cleave entra so quando sobra ponto. */
+const DMG_STATS = { atkPct:1.0, spellDmgPct:1.0, critChance:1.0, critDmg:1.0, attackSpeedPct:0.9, lifeLeech:0.1 };
+/* REGRA: so o objetivo Avatar persegue o no do Avatar (peso 1000 la). Nos outros
+   perfis ele fica em 0.
+   Por que nao o peso "correto" de ~11 (o no vale ~+56% de dano a ~48% de uptime):
+   porque com ele TODO objetivo de dano gastava 300 pontos no mesmo no de tier 11 e
+   virava a mesma build -- Damage, Crit, AoE e Atk Speed colapsavam no Avatar. O preset
+   tem que responder o que voce pediu, nao o que rende mais no papel. Se o no entrar
+   numa build de outro objetivo, e' pelos stats dele (que `per` conta normalmente),
+   nao por perseguicao. */
+const DMG_SPECIALS = { execute:0.6, precision:2.0, chain:3.0, slash:0.25, element_pierce:0.5, momentum:1.5, avatar:0, battle_instinct:0, tactics:0, dodge:0, gift_of_life:0 };
 
 const PROFILES = {
   dano: {
@@ -118,23 +134,40 @@ const PROFILES = {
     specials: DMG_SPECIALS,
   },
   critico: {
-    // critChance e critDmg se multiplicam; sozinho, critDmg sem chance e' fraco.
-    // pesos calibrados pra as duas crescerem juntas (critChance rende ~0.6/rank, critDmg ~2.5/rank).
-    stats: { critChance:4.0, critDmg:1.0, atkPct:0.6, spellDmgPct:0.6, attackSpeedPct:0.5, lifeLeech:0.1 },
+    // divisao de papeis: nodeValue cuida do EQUILIBRIO entre critChance e critDmg (elas
+    // se multiplicam, entao crescem juntas sozinhas); o peso 3.0 aqui e' a PREFERENCIA
+    // de quem clicou em "Crit" -- sem ele o otimizador nota que crit-stacking rende
+    // menos que atk puro e entrega uma build de dano com o nome errado.
+    stats: { critChance:3.0, critDmg:3.0, atkPct:0.6, spellDmgPct:0.6, attackSpeedPct:0.5, lifeLeech:0.1 },
     elem: 0.5, elemPick: 0.6, elemOther: 0.1, absorb: 0,
     specials: Object.assign({}, DMG_SPECIALS),
   },
   avatar: {
-    // a forma Avatar SEMPRE crita -> na sobra de pontos, critDmg vale muito mais que critChance.
-    stats: { atkPct:1.0, spellDmgPct:1.0, critChance:0.5, critDmg:1.2, attackSpeedPct:0.9, lifeLeech:0.1 },
+    /* dentro da forma todo hit crita, e isso define o que a build quer:
+       - atk speed (2.2, o maior peso): rende DUAS vezes aqui -- mais hits que ja sao
+         crits garantidos, e a forma dispara por hit, entao mais hits = mais uptime.
+       - crit damage (1.6): e' o multiplicador desses crits garantidos.
+       - crit chance fica em 1.0 e nodeValue ja a desconta por (1-uptime) sozinho:
+         durante a forma a chance e' 100% e um ponto ali nao compra nada. */
+    stats: { attackSpeedPct:2.2, critDmg:1.6, atkPct:1.0, spellDmgPct:1.0, critChance:1.0, lifeLeech:0.1 },
     elem: 0.9, elemPick: 1.3, elemOther: 0.12, absorb: 0,
+    // sem inclinacao pra cleave DE PROPOSITO: o Avatar e' a build de boss/single-target
+    // e por cleave nela media -12% de dano 1v1 no lv500. Pra pack, o objetivo e' AoE.
     specials: Object.assign({}, DMG_SPECIALS, { avatar: 1000 }),
   },
   tank: {
+    /* cenario BOSS: luta longa, um alvo, hit grande. Muda duas coisas:
+       - gift_of_life sobe pra 2.5. Ele sobrevive a um hit letal a cada 60s, ou seja
+         numa luta de boss de alguns minutos e' uma barra de vida extra varias vezes.
+         O indice de EHP nao ve isso (ele mede o tamanho da barra, nao quantas voce
+         tem), entao aqui e' julgamento declarado, nao numero medido.
+       - avatar cai pra 0: MEDIDO. O no custa 300 pontos e da -3% de dano recebido em
+         ~43% do tempo = ~1.3% na media; tirar ele do perfil AUMENTA o EHP no lv900
+         (1.479 vs 1.450), porque os pontos vao pra HP e absorb. */
     stats: { hpPct:1.5, defFlat:1.0, armorFlat:1.0, hpRegenPct:4.0, lifeLeech:1.0, manaPct:0.1,
              atkPct:0.15, spellDmgPct:0.15, critChance:0.1 },
     elem: 0.1, elemPick: 0.1, elemOther: 0.1, absorb: 8.0,
-    specials: { dodge:3.0, gift_of_life:0.6, battle_instinct:2.0, avatar:8, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
+    specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
   },
   xp: {
     stats: { expPct:10.0, lootPct:1.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.3, attackSpeedPct:0.3, critDmg:0.1, hpPct:0.1 },
@@ -146,10 +179,119 @@ const PROFILES = {
     elem: 0.25, elemPick: 0.3, elemOther: 0.2, absorb: 0,
     specials: Object.assign({}, DMG_SPECIALS, { precision:3.0 }),
   },
+  healer: {
+    // cura de grupo: spellHealPct e' o produto, mana e' o combustivel.
+    // dano fica em ~0.15 de peso so pra a build nao ficar inutil solo.
+    stats: { spellHealPct:5.0, mpRegenPct:5.0, hpRegenPct:3.0, manaLeech:1.5, manaPct:1.2,
+             hpPct:0.6, lifeLeech:0.3, spellDmgPct:0.15, atkPct:0.15, critChance:0.05 },
+    elem: 0.05, elemPick: 0.05, elemOther: 0.05, absorb: 3.0,
+    specials: { gift_of_life:1.5, dodge:2.0, tactics:1.0, avatar:0, momentum:0.3,
+                chain:0.2, execute:0, precision:0, slash:0, battle_instinct:0, element_pierce:0 },
+  },
+  aoe: {
+    // multi-target. chain 1 = +1 alvo a 60% do dano ~= +60% de throughput, entao o
+    // peso do chain tem que ser da ordem de 60 "pontos de dano%" -- com peso baixo
+    // ele nunca ganha de um no pequeno e o objetivo viraria um clone do dano.
+    // crit em 1.0/1.0 como o perfil dano: desde que nodeValue passou a calcular crit
+    // em "dano equivalente", qualquer valor abaixo de 1.0 aqui e' subvalorizar de graca.
+    stats: { spellDmgPct:1.0, atkPct:1.0, critChance:1.0, critDmg:1.0, attackSpeedPct:0.7,
+             lifeLeech:0.2, mpRegenPct:0.5, manaPct:0.1 },
+    elem: 1.0, elemPick: 1.4, elemOther: 0.15, absorb: 0,
+    specials: { chain:60.0, momentum:2.0, slash:1.5, precision:1.0, element_pierce:0.5,
+                execute:0.2, avatar:0, tactics:0, dodge:0, battle_instinct:0, gift_of_life:0 },
+  },
 };
 
-function nodeValue(n, obj, elem){
+/* mistura dois perfis (t=0 -> a, t=1 -> b). serve pros objetivos hibridos:
+   os pesos sao lineares em nodeValue(), entao a media ponderada das tabelas da'
+   exatamente "metade de cada objetivo" sem nenhum caso especial no autobuild. */
+function blend(a, b, t){
+  const mixMap = (x, y) => {
+    const out = {};
+    for(const k of new Set([...Object.keys(x||{}), ...Object.keys(y||{})]))
+      out[k] = (x[k]||0)*(1-t) + (y[k]||0)*t;
+    return out;
+  };
+  return {
+    stats: mixMap(a.stats, b.stats),
+    specials: mixMap(a.specials, b.specials),
+    elem:      (a.elem||0)*(1-t)      + (b.elem||0)*t,
+    elemPick:  (a.elemPick||0)*(1-t)  + (b.elemPick||0)*t,
+    elemOther: (a.elemOther||0)*(1-t) + (b.elemOther||0)*t,
+    absorb:    (a.absorb||0)*(1-t)    + (b.absorb||0)*t,
+  };
+}
+
+/* hibrido pedido pro Elder Druid: cura E dano na mesma build.
+   t=0.65 puxado pro dano de proposito, nao 50/50: o ramo de cura do druid e'
+   pequeno e satura em ~+61% spellHeal, entao num 50/50 o greedy enche a cura
+   primeiro e a build vira "healer com sobra". Em 0.65 as duas metades crescem
+   juntas (lv500: cura +40.7% e dano +52.5%). Pra afinar, muda so o t. */
+PROFILES.curadano = blend(PROFILES.healer, PROFILES.dano, 0.65);
+
+/* puller = tank que segura PULL. era uma tabela escrita a mao e ficava num vale:
+   menos EHP que o tank puro E menos throughput que o aoe -- dominado nos dois eixos.
+   como mistura tank<->aoe em 0.65 ele passa a ser um ponto de Pareto real
+   (EK lv1500: mesmo EHP do puller antigo com o DOBRO do dano).
+   nota de calibragem: packBase = 4 em 78 das 79 hunts (data/hunts.json), entao
+   battle_instinct (+6 def/bicho em melee) rende so +24 def -- nao paga os 150 pontos
+   do notavel, e o otimizador acerta em gastar isso em absorb/HP. */
+PROFILES.puller = blend(PROFILES.tank, PROFILES.aoe, 0.65);
+
+/* ---------------------------------------------------------------------------
+   VALORACAO CIENTE DO ESTADO.
+
+   Os pesos por stat sao lineares, mas dois efeitos NAO sao, e ignorar isso
+   produzia builds mensuravelmente piores:
+
+   a) critChance e critDmg se MULTIPLICAM. +85% de crit damage com 2% de chance
+      de critar nao vale quase nada; com 11% vale 5x mais. Com peso fixo o
+      otimizador empilhava um sem o outro -- era por isso que o objetivo Crit
+      chegava a perder do Damage puro na arvore do knight.
+   b) na forma Avatar o hit SEMPRE crita. Isso faz o crit damage valer pelo
+      uptime do Avatar (~45-50% com 5%/hit e 15s de duracao) em vez de valer
+      pela crit chance. E' o que torna Avatar + crit damage o melhor 1v1.
+
+   Entao o valor de critChance/critDmg e' recalculado a cada ponto alocado,
+   convertido em "pontos de dano equivalente" -- a mesma unidade de atkPct, o
+   que deixa os pesos dos perfis comparaveis entre si. Os outros stats seguem
+   lineares, porque sao lineares mesmo.
+   --------------------------------------------------------------------------- */
+
+/* crit chance que o personagem tem FORA da arvore (base + equipamento). so
+   influencia como o otimizador pondera os nos, nunca os stats mostrados na UI.
+   sem esse piso, crit damage valeria 0 numa build zerada e nunca seria pego. */
+const CRIT_BASE_CHANCE = 5;
+
+/* contexto = o que a build JA tem, pro calculo marginal acima. */
+/* duracao da forma Avatar, em segundos (do texto do proprio no). */
+const AVATAR_DUR = 15;
+/* uptime estimado da forma Avatar: a chance e' por hit que acerta, entao quanto mais
+   rapido o ataque, mais rapido ela dispara. assume ~1 hit/s de base escalado por atk
+   speed, e que a forma NAO reseta a duracao se disparar de novo dentro dela (se
+   resetar, o uptime real e' maior que este). uma funcao so, usada pelo otimizador e
+   pela UI, pra nao existirem duas contas divergentes. */
+function avatarUptimeFrom(agg){
+  const ch = (agg.spec.avatar||0)/100;
+  if(ch <= 0) return 0;
+  const aps = 1 + (agg.bonus.attackSpeedPct||0)/100;
+  return AVATAR_DUR/(AVATAR_DUR + 1/(ch*aps));
+}
+function avatarUptime(v, rk){ return avatarUptimeFrom(aggregate(v, rk)); }
+
+function valueCtx(v, rk){
+  const a = aggregate(v, rk);
+  const cc = CRIT_BASE_CHANCE + (a.bonus.critChance||0);
+  const cd = a.bonus.critDmg||0;
+  return { cc:Math.min(100,cc), cd, up:avatarUptimeFrom(a) };
+}
+const NO_CTX = { cc:CRIT_BASE_CHANCE, cd:0, up:0 };
+
+function nodeValue(n, obj, elem, ctx){
   const W = PROFILES[obj] || PROFILES.dano;
+  const C = ctx || NO_CTX;
+  // chance efetiva de critar: dentro do avatar e' 100%, fora e' a crit chance
+  const pEff = C.up + (1-C.up)*(C.cc/100);
   let val = 0;
   if(n.per) for(const k in n.per){
     const x = n.per[k];
@@ -161,6 +303,13 @@ function nodeValue(n, obj, elem){
       }
     } else if(k==='absorbPct'){
       for(const e in x) val += (W.absorb||0) * x[e];
+    } else if(k==='critChance'){
+      // +1% de chance rende (1 + critDmg atual) de dano extra; durante o avatar
+      // a chance ja e' 100%, logo esse ganho so valeria nos (1-uptime) restantes
+      val += (W.stats.critChance||0) * x * (1-C.up) * (1 + C.cd/100);
+    } else if(k==='critDmg'){
+      // +1% de crit damage rende so na fracao dos hits que critam
+      val += (W.stats.critDmg||0) * x * pEff;
     } else {
       val += (W.stats[k]||0) * x;
     }
@@ -201,7 +350,34 @@ function firstStepOnPath(id, pred, rk){
   return id;
 }
 
-/* monta a build. retorna {ranks, spent, reachedAvatar}. */
+/* PERKS — os notaveis da arvore, que o usuario pode marcar como prioridade.
+   `kind !== 'small'` e' o que define um notavel: rank unico, custo alto, efeito com
+   identidade (Avatar of Steel, Executioner, Cleaving Strikes...). Detectado do dado. */
+const perkNodes = v => TREES[v].filter(n => n.kind !== 'small');
+
+/* Marcar um perk PRIORIZA, nao garante. O bonus e' proporcional ao custo do no, o que
+   equivale a fixar pra ele uma razao custo-beneficio minima de PERK_BOOST.
+
+   0.35 foi medido, nao chutado. Marcando Avatar of Steel + Executioner num EK:
+     K=0.35 -> lv500 entra so o Executioner (o Avatar custaria 300 pontos e derrubaria
+               o atk de 60% pra 26%); lv900 entram os dois e o Avatar custa 8 pontos de
+               atk (73% vs 81%); lv1500 os dois, com atk MAIOR que sem perk.
+     K>=0.5 -> força os dois ja no lv500 e estraga a build -- isso e' "garantir", nao
+               "priorizar".
+     K<=0.2 -> mesmo resultado do 0.35, sem margem.
+   Ou seja: empurra forte, mas o otimizador ainda recusa quando o perk destruiria o
+   resto da build.
+
+   opts.forcePerks troca isso por GARANTIR: o bonus vira grande o bastante pra dominar
+   qualquer outro no (razao ~100 contra ~2 do melhor no pequeno), entao o perk marcado
+   e' perseguido primeiro, custe o que custar. E' a valvula de escape pra quando o
+   modelo esta sendo conservador demais e voce sabe que o perk vale.
+   Um limite intransponivel continua: se o caminho ate o no custar mais que o level
+   inteiro, nem forcando ele entra -- ai o que falta e' level, nao prioridade. */
+const PERK_BOOST = 0.35;
+const PERK_FORCE = 100;
+
+/* monta a build. retorna {ranks, spent, reachedAvatar, perks:{reached,missing,unaffordable}}. */
 function autobuild(v, level, obj, opts){
   opts = opts||{};
   const elem = opts.element || 'all';
@@ -209,12 +385,22 @@ function autobuild(v, level, obj, opts){
   const nodes = TREES[v];
   const rk = {};
   const val = {};
-  for(const n of nodes) val[n.id] = nodeValue(n, obj, elem);
+  // perks pedidos que existem nesta arvore (id de outra vocacao e' ignorado)
+  const perks = (opts.perks||[]).filter(id => IDX[v][id]);
+  const perkSet = new Set(perks);
 
   let guard = 0;
   while(guard++ < 200000){
     const rem = budget - spent(v, rk);
     if(rem <= 0) break;
+    // o valor de crit depende do que a build ja tem -> recalcula por iteracao
+    const ctx = valueCtx(v, rk);
+    for(const n of nodes){
+      val[n.id] = nodeValue(n, obj, elem, ctx);
+      // o bonus e' somado (nao multiplicado): um perk pode valer 0 no perfil escolhido
+      // -- Avatar num perfil de tank, por exemplo -- e multiplicar zero nao prioriza nada.
+      if(perkSet.has(n.id)) val[n.id] += n.cost * (opts.forcePerks ? PERK_FORCE : PERK_BOOST);
+    }
     const {dist,pred} = unlockDijkstra(v, rk);
     let best = null;
     for(const n of nodes){
@@ -238,15 +424,57 @@ function autobuild(v, level, obj, opts){
   }
 
   const av = avatarNodeId(v);
-  return { ranks: rk, spent: spent(v, rk), reachedAvatar: !!(av && (rk[av]||0) >= 1) };
+  /* distancia a partir da arvore VAZIA = custo minimo pra alcancar cada no. Serve pra
+     separar "nao caberia no level de jeito nenhum" de "cabia, mas o otimizador preferiu
+     outra coisa" -- sao avisos diferentes pra quem marcou o checkbox. */
+  const fromScratch = perks.length ? unlockDijkstra(v, {}).dist : null;
+  const reached = perks.filter(id => (rk[id]||0) >= 1);
+  const missing = perks.filter(id => (rk[id]||0) < 1);
+  return {
+    ranks: rk, spent: spent(v, rk),
+    reachedAvatar: !!(av && (rk[av]||0) >= 1),
+    perks: {
+      reached, missing, forced: !!opts.forcePerks,
+      unaffordable: missing.filter(id => !isFinite(fromScratch[id]) || fromScratch[id] > budget),
+    },
+  };
 }
+
+/* ============================================================================
+   DISPONIBILIDADE — que objetivo faz sentido em que arvore.
+
+   Nao e' regra de tela: e' o dado dizendo que Healer num knight nao e' uma build
+   ruim, e' uma build que nao existe (a arvore dele nao tem spellHealPct em no
+   nenhum). A UI usa isso pra nao mostrar o botao, e a verificacao usa pra nao
+   comparar builds que ninguem consegue pedir.
+   Detectado da arvore -> sobrevive ao re-sync de trees.json.
+   ============================================================================ */
+const OBJ_NEEDS = {
+  healer:   { stat:'spellHealPct' },      // so o druid
+  curadano: { stat:'spellHealPct' },      // so o druid
+  xp:       { stat:'expPct' },            // o knight nao tem
+  atkspeed: { stat:'attackSpeedPct' },    // o druid nao tem
+  puller:   { specials:['slash','chain','battle_instinct'] },  // paladin/monk nao tem
+  aoe:      { specials:['chain','slash'] },                    // paladin/monk nao tem
+};
+const treeHasStat = (v,k) => TREES[v].some(n => n.per && n.per[k] != null);
+const treeHasSpecial = (v,ks) => TREES[v].some(n => n.special && ks.includes(n.special.key));
+function objAvailable(v, obj){
+  const need = OBJ_NEEDS[obj];
+  if(!need) return true;                  // dano/critico/avatar/tank: sempre
+  if(need.stat) return treeHasStat(v, need.stat);
+  if(need.specials) return treeHasSpecial(v, need.specials);
+  return true;
+}
+const availableObjs = v => Object.keys(PROFILES).filter(o => objAvailable(v, o));
 
 /* ---------- export ---------- */
 global.Engine = {
   VOCS, VLET, LETV, ELORD,
   nd, nextCost, totalCost, spent, fullCost, reach, allocCount, valid,
   connected, canAlloc, canDealloc, aggregate, sortedNodes, encode, decode,
-  damageElements, avatarNodeId, autobuild, PROFILES,
+  damageElements, avatarNodeId, autobuild, PROFILES, blend, avatarUptime,
+  OBJ_NEEDS, objAvailable, availableObjs, perkNodes, PERK_BOOST, PERK_FORCE,
 };
 
 })(window);

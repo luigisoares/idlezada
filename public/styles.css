@@ -1,6 +1,6 @@
 :root{
   --bg:#0d1210; --panel:#141c19; --panel2:#1a241f; --line:#26332c;
-  --txt:#dbe7e0; --dim:#8fa398; --gold:#e8c56a; --gold-dim:#b79a4e; --acc:#6fdc8c;
+  --txt:#dbe7e0; --dim:#8fa398; --dimmer:#6b7d73; --gold:#e8c56a; --gold-dim:#b79a4e; --acc:#6fdc8c;
   /* superfície quente do card de resumo (estilo da imagem) */
   --warm:#1b1712; --warm2:#231d15; --warm-line:#3a2f1e;
 }
@@ -52,14 +52,64 @@ select{cursor:pointer}
 input[type=number]{width:100px}
 select:focus,input:focus{outline:2px solid #2f4a3d;outline-offset:1px}
 
+/* objetivos agrupados por cenario de uso (single-target / pack / defesa+suporte).
+   o rotulo do grupo usa um peso menor que o .field > span.k pra ficar claro que e'
+   subordinado a ele, e nao um segundo campo. */
+.objgroups{display:flex;flex-direction:column;gap:9px}
+.objgroup{display:flex;flex-direction:column;gap:5px}
+.objgroup-k{color:var(--dimmer,#6b7d73);font-size:9.5px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.09em;display:flex;align-items:center;gap:7px}
+.objgroup-k::after{content:"";flex:1;height:1px;background:var(--line)}
 .objs{display:flex;gap:5px;flex-wrap:wrap}
 .obj{padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);
   color:var(--dim);cursor:pointer;font-weight:600;font-size:12px;transition:.15s}
 .obj:hover{color:var(--txt);border-color:#38493f}
 .obj.on{color:#0d1210;background:var(--acc);border-color:var(--acc)}
 
+/* ---- perks (notaveis marcaveis) ---- */
+/* cabecalho recolhivel: parece o rotulo .field > span.k, mas e' botao de verdade
+   (teclado + aria-expanded). O contador a direita diz se tem algo marcado sem abrir. */
+.perks-h{display:flex;align-items:center;gap:7px;width:100%;background:none;border:0;padding:0;
+  cursor:pointer;color:var(--dim);font:700 10.5px/1 inherit;text-transform:uppercase;
+  letter-spacing:.06em;text-align:left}
+.perks-h:hover{color:var(--txt)}
+.perks-h:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+.perks-caret{color:var(--gold-dim);font-size:9px;width:9px}
+.perks-t{flex:1}
+.perks-n{color:var(--gold-dim);letter-spacing:.03em;text-transform:none;font-weight:600}
+
+.perks{display:flex;flex-direction:column;gap:2px;margin-top:6px;
+  max-height:260px;overflow-y:auto;padding-right:2px}
+/* o [hidden] do navegador e' `display:none` numa regra de especificidade menor que a
+   classe acima, entao sem isto o display:flex ganha e a lista nunca recolhe. */
+.perks[hidden]{display:none}
+.perk{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:8px;
+  border:1px solid transparent;cursor:pointer;transition:.12s}
+.perk:hover{background:var(--panel2);border-color:var(--line)}
+.perk.on{background:rgba(232,197,106,.07);border-color:#4a3f21}
+.perk input{margin:1px 0 0;accent-color:var(--gold);flex:none;cursor:pointer}
+.perk-b{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.perk-top{display:flex;gap:8px;align-items:baseline}
+.perk-name{font-size:12px;font-weight:600;color:var(--txt);flex:1;min-width:0}
+.perk.on .perk-name{color:var(--gold)}
+.perk-cost{font-size:10px;font-weight:700;color:var(--dimmer);font-variant-numeric:tabular-nums}
+.perk-eff{font-size:10.5px;line-height:1.4;color:var(--dim)}
+
 .warn{font-size:12px;color:#ffcf8a;background:rgba(232,197,106,.08);border:1px solid #4a3f21;
   border-radius:9px;padding:9px 11px;line-height:1.45}
+/* controle de forcar, dentro do proprio aviso que o oferece */
+.forcebox{display:flex;align-items:flex-start;gap:7px;margin-top:9px;padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.07);cursor:pointer;font-weight:600;
+  color:var(--txt);font-size:11.5px;line-height:1.4}
+.forcebox input{margin:1px 0 0;flex:none;accent-color:var(--gold);cursor:pointer}
+.forcebox:hover{color:#fff}
+.info .forcebox input{accent-color:var(--acc)}
+
+/* .info: nao e' problema, e' contexto (ex.: seu level ja maxa a arvore inteira).
+   verde do accent pra nao competir com o ambar do .warn. */
+.info{font-size:12px;color:#a9e6bd;background:rgba(111,220,140,.07);border:1px solid #2c4636;
+  border-radius:9px;padding:9px 11px;line-height:1.45}
+.warn + .info{margin-top:7px}
 
 /* ---- summary card (estilo da imagem) ---- */
 .sum{background:linear-gradient(180deg,var(--warm2),var(--warm));border:1px solid var(--warm-line);
@@ -89,6 +139,7 @@ select:focus,input:focus{outline:2px solid #2f4a3d;outline-offset:1px}
   padding:5px 9px;font-size:11px;font-weight:600;color:#e9dcc0}
 .pill2.sp{flex-basis:100%;border-radius:10px;background:rgba(232,197,106,.09);border-color:#5a4a28;
   color:#f0dda6;font-weight:500;line-height:1.45}
+.pill2.sp b{color:var(--gold);font-weight:700}
 .pill2.off{background:none;border:0;color:var(--dim);font-style:italic;font-weight:400;padding-left:0}
 .sum-foot{font-size:10.5px;color:#7d7666;border-top:1px solid var(--warm-line);padding-top:8px}
 
