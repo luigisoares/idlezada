@@ -58,8 +58,12 @@ module.exports = function (E) {
     const slashMult = 1 + ((sp.slash||0)/100)*Math.min(c.adj, c.pack-1);
     const packThru = single * chainMult * slashMult;
 
-    const absKeys = E.ELORD.filter(e => a.absorb[e]);
-    const absAvg = absKeys.length ? absKeys.reduce((x,e)=>x+a.absorb[e],0)/absKeys.length : 0;
+    /* absorb que conta pro EHP e' o FISICO. A media sobre os elementos que a build tem
+       era regua errada: uma build com 6.7% de absorb de fire e nada mais saia com
+       absAvg=6.7%, como se reduzisse 6.7% de TODO dano recebido -- e por isso o indice
+       premiava a escada de Wards elementais que nao vale ponto de arvore (resistencia
+       de elemento vem do equipamento). */
+    const absAvg = a.absorb.physical || 0;
     const ehp = (1 + (S.hpPct||0)/100)
       / (1 - absAvg/100)
       / (1 - Math.min(0.9, (sp.dodge||0)/100));

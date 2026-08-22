@@ -390,8 +390,19 @@ $('dold').onclick=()=>loadCode($('load').value);
 $('load').onkeydown=e=>{ if(e.key==='Enter') loadCode($('load').value); };
 addEventListener('resize',()=>fit());
 
-if(location.hash.length>5 && decode(location.hash.slice(1))) loadCode(location.hash.slice(1));
-else { fit(); render(); }
+/* O "Open in simulator" da aba Builds navega este iframe trocando SO o fragmento
+   (simuladorbuild.html#CODIGO). Trocar o fragmento nao recarrega o documento, entao
+   ler o hash uma vez no load fazia a build certa aparecer somente no primeiro clique --
+   nos seguintes o hash mudava e nada reagia, e o simulador ficava mostrando a vocacao e
+   o level da build anterior. Escutar hashchange resolve na raiz, e de graca faz editar
+   o hash na mao funcionar tambem. */
+function loadFromHash(){
+  const c = location.hash.slice(1);
+  if(c.length > 5 && decode(c)){ loadCode(c); return true; }
+  return false;
+}
+addEventListener('hashchange', loadFromHash);
+if(!loadFromHash()){ fit(); render(); }
 </script>
 </body>
 </html>

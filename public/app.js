@@ -24,8 +24,11 @@ const OBJS = [
 // título do card por objetivo
 const OBJTITLE = { dano:'MAX DAMAGE', critico:'CRIT', avatar:'AVATAR', aoe:'AOE / MULTI-TARGET',
   tank:'TANK', puller:'PULLER', healer:'HEALER', curadano:'HEAL + DAMAGE', xp:'XP', atkspeed:'ATTACK SPEED' };
-// objetivos em que o elemento de dano muda a build -> mostra o seletor
-const ELEM_OBJS = ['dano','aoe','curadano'];
+/* objetivos em que o elemento de dano muda a build -> mostra o seletor. Vem do engine
+   (derivado dos pesos elemPick) em vez de escrito a mao: a lista antiga esquecia o
+   `avatar`, que tem elemPick 1.3, e por isso nao havia como pedir "avatar de fire" --
+   sem escolha o otimizador subia as tres escadas de elemento do sorcerer em paralelo. */
+const ELEM_OBJS = E.elementObjs();
 /* os objetivos agrupados pelo CENARIO em que ganham, que e' a divisao que a analise
    comparativa mostrou importar: Avatar domina o 1v1 (boss) mas cai abaixo do Damage
    num pack; o AoE e' o inverso. Chip solto nao comunica isso e leva a escolha errada. */
@@ -81,9 +84,9 @@ const CAT_LABEL = { damage:'Damage', speed:'Speed', crit:'Crit', sustain:'Sustai
 /* ---------- state ---------- */
 const LS_KEY = 'idlezada.builds.v3';
 const DEFAULT_SLOTS = [
-  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
-  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
-  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:'all', perks:[], perksOpen:false, forcePerks:false },
+  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:E.defaultElement('knight'), perks:[], perksOpen:false, forcePerks:false },
+  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:E.defaultElement('druid'), perks:[], perksOpen:false, forcePerks:false },
+  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:E.defaultElement('sorcerer'), perks:[], perksOpen:false, forcePerks:false },
 ];
 let state = loadState();
 
@@ -121,8 +124,12 @@ function renderSlot(s){
 
   const els = E.damageElements(s.voc);
   const showElem = ELEM_OBJS.includes(s.obj) && els.length >= 2;
-  const elemOptions = ['all', ...els].map(e =>
-    `<option value="${e}"${e===s.element?' selected':''}>${e==='all'?'All elements':ELNAME[e]||e}</option>`).join('');
+  /* 'No element' substitui o antigo 'All elements'. "Todos" era dominado: valorizava
+     os tres elementos igualmente e mandava o otimizador subir tres escadas, quando o
+     personagem ataca com um. Medido no sorcerer/avatar/lv1500, 'none' rende mais que
+     'all' ATE pra quem ataca com fire (5.80 vs 5.63). */
+  const elemOptions = ['none', ...els].map(e =>
+    `<option value="${e}"${e===s.element?' selected':''}>${e==='none'?'No element':ELNAME[e]||e}</option>`).join('');
   const vocOptions = E.VOCS.map(v =>
     `<option value="${v}"${v===s.voc?' selected':''}>${VNAME[v]}</option>`).join('');
 
@@ -210,7 +217,11 @@ function renderSlot(s){
 /* se a vocacao mudou e o objetivo escolhido nao existe mais nela, cai no Damage. */
 function sanitizeSlot(s){
   if (!E.objAvailable(s.voc, s.obj)) s.obj = 'dano';
-  if (s.element !== 'all' && !E.damageElements(s.voc).includes(s.element)) s.element = 'all';
+  /* 'all' e' estado salvo de versao anterior: migra pro padrao da vocacao (physical no
+     knight/monk, 'none' onde ha escolha a fazer). Mesmo caminho serve pra quando a
+     vocacao muda e o elemento escolhido nao existe na arvore nova. */
+  if (s.element === 'all' || (s.element !== 'none' && !E.damageElements(s.voc).includes(s.element)))
+    s.element = E.defaultElement(s.voc);
   // os ids de perk sao por arvore: trocar de vocacao descarta o que nao existe na nova
   const ids = new Set(E.perkNodes(s.voc).map(n => n.id));
   s.perks = (s.perks || []).filter(id => ids.has(id));
@@ -364,7 +375,7 @@ function renderSummary(box, s, build){
   }
   const pillsHtml = pills.map(p=>`<div class="pill2">${p}</div>`).join('') + specialPills.join('');
 
-  const titleEl = (ELEM_OBJS.includes(s.obj) && s.element!=='all') ? ` / ${ (ELNAME[s.element]||s.element).toUpperCase() }` : '';
+  const titleEl = (ELEM_OBJS.includes(s.obj) && s.element!=='none') ? ` / ${ (ELNAME[s.element]||s.element).toUpperCase() }` : '';
   box.innerHTML = `
     <div class="sum-title">◆ BUILD SUMMARY · ${OBJTITLE[s.obj]||''}${titleEl}</div>
     <div class="sum-body">
@@ -412,7 +423,18 @@ function switchTab(view){
 document.getElementById('navtabs').addEventListener('click', e=>{
   const t = e.target.closest('.navtab'); if (t) switchTab(t.dataset.view);
 });
-function openInSimulator(code){ frames.sim.src = iframeSrc.sim + '#' + code; switchTab('sim'); }
+/* O nonce na query e' o que garante recarga DE VERDADE a cada clique. Sem ele o src ia
+   de "...html#A" pra "...html#B", o que troca so o fragmento e nao recarrega o
+   documento -- a build certa aparecia apenas no primeiro clique. Trocar a query forca
+   load novo sempre, o que tambem resolve reabrir o MESMO codigo depois de mexer na
+   arvore na mao (a build volta como foi gerada, em vez de manter a ediçao).
+   O simuladorbuild.html tambem passou a escutar hashchange, o que o deixa correto por
+   conta propria; aqui a recarga e' o caminho deterministico. */
+let simNonce = 0;
+function openInSimulator(code){
+  frames.sim.src = `${iframeSrc.sim}?n=${++simNonce}#${code}`;
+  switchTab('sim');
+}
 
 /* ---------- util ---------- */
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }

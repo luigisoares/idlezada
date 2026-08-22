@@ -31,7 +31,7 @@ let fail = 0, pass = 0;
 function ok(cond, msg) { if (cond) pass++; else { fail++; console.log('  FAIL: ' + msg); } }
 const allocated = ranks => new Set(Object.keys(ranks).filter(id => ranks[id] > 0));
 const nameOf = (v, id) => (TREES[v].find(n => n.id === id) || {}).name || id;
-const build = (v, lv, obj, el) => E.autobuild(v, lv, obj, { element: el || 'all' });
+const build = (v, lv, obj, el) => E.autobuild(v, lv, obj, { element: el || E.defaultElement(v) });
 const agg = (v, lv, obj, el) => E.aggregate(v, build(v, lv, obj, el).ranks);
 
 const OBJS = Object.keys(E.PROFILES);
@@ -40,7 +40,8 @@ const LEVELS = [50, 200, 500, 2000];
 /* ---------------------------------------------------------------- 1. INVARIANTES */
 console.log(`== invariantes (${OBJS.length} objetivos x ${E.VOCS.length} vocacoes x ${LEVELS.length} levels) ==`);
 for (const v of E.VOCS) for (const obj of OBJS) for (const lv of LEVELS) {
-  const b = build(v, lv, obj);
+  const el = E.defaultElement(v);
+  const b = build(v, lv, obj, el);
   const tag = `${v}/${obj}/${lv}`;
   ok(E.valid(v, b.ranks), `${tag}: build invalida (no alocado sem caminho)`);
   ok(b.spent <= lv, `${tag}: gastou ${b.spent} > ${lv} pontos`);
@@ -54,9 +55,62 @@ for (const v of E.VOCS) for (const obj of OBJS) for (const lv of LEVELS) {
     ok(same, `${tag}: encode->decode nao volta na mesma build`);
   }
   if (lv >= 200) ok(b.spent > lv * 0.9, `${tag}: sobrou ponto demais (${b.spent}/${lv})`);
+
+  /* FOCO NO TEMA: um no que nao vale nada no perfil so pode estar alocado se for
+     caminho OBRIGATORIO. Se ele sai e a build continua valida, os pontos dele foram
+     jogados fora -- era assim que 9 nos de DEFESA sobravam numa build de Avatar do
+     knight (caminho aberto no comeco do greedy que ficou redundante depois, e nunca
+     era desfeito porque o autobuild nunca chamava canDealloc). */
+  /* a valoracao usada tem que ser a MESMA que comprou o no: numa build que precisou do
+     passe de sobra (o tema acabou antes do level) os nos finais valem 0 no perfil de
+     proposito, e cobrar deles o peso do tema acusaria 103 falsos positivos. */
+  const floor = b.spentFallback > 0;
+  const ctx = E.valueCtx(v, b.ranks);
+  for (const id of Object.keys(b.ranks)) {
+    if (!b.ranks[id]) continue;
+    const n = E.nd(v, id);
+    if (E.nodeValue(n, obj, el, ctx, floor) > E.DEAD_EPS) continue;    // vale algo: legitimo
+    const t = Object.assign({}, b.ranks); t[id] = 0;
+    ok(!E.valid(v, t), `${tag}: ${nameOf(v, id)} r${b.ranks[id]} vale 0 e `
+      + `sai sem quebrar a conectividade (${E.totalCost(n, b.ranks[id])} pts jogados fora)`);
+  }
 }
 
 /* -------------------------------------------------------------- 2. COMPORTAMENTO */
+console.log('== elemento: sem escolha, no de elemento nao ganha prioridade nenhuma ==');
+{
+  /* o caso reportado: sorcerer/avatar subia fire, energy E death em paralelo, porque
+     com "all" os tres pesavam igual -- so que o personagem ataca com UM elemento. */
+  const v = 'sorcerer', lv = 1500;
+  const elTot = rk => Object.values(E.aggregate(v, rk).elem.elementDmgPct || {})
+    .reduce((s, x) => s + x, 0);
+
+  const none = E.autobuild(v, lv, 'avatar', { element:'none' });
+  const a = E.aggregate(v, none.ranks).bonus;
+  ok(elTot(none.ranks) <= 10, `avatar/sorcerer/${lv} element=none pegou `
+    + `${elTot(none.ranks).toFixed(1)}% de dano de elemento (esperado <= 10: so o caminho)`);
+  ok((a.spellDmgPct||0) >= 160, `avatar/sorcerer/${lv} element=none: spellDmg `
+    + `${a.spellDmgPct}% (esperado >= 160 -- o ponto que nao vai pro elemento vira spell dmg)`);
+  console.log(`   none: spellDmg +${a.spellDmgPct}% · critDmg +${a.critDmg}% `
+    + `· elemento ${elTot(none.ranks).toFixed(1)}% · ${allocated(none.ranks).size} nos`);
+
+  const fire = E.autobuild(v, lv, 'avatar', { element:'fire' });
+  const fel = E.aggregate(v, fire.ranks).elem.elementDmgPct || {};
+  const off = Object.entries(fel).filter(([e]) => e !== 'fire').reduce((s, [, x]) => s + x, 0);
+  ok((fel.fire||0) >= 30, `avatar/sorcerer/${lv} element=fire so pegou ${(fel.fire||0).toFixed(1)}% de fire`);
+  ok(off <= 4, `avatar/sorcerer/${lv} element=fire pegou ${off.toFixed(1)}% de OUTRO elemento `
+    + `(esperado <= 4: escada de fora nao ganha prioridade)`);
+  console.log(`   fire: fire +${(fel.fire||0).toFixed(1)}% · outros ${off.toFixed(1)}% `
+    + `· ${allocated(fire.ranks).size} nos`);
+
+  /* o seletor de elemento tem que aparecer em TODO objetivo em que o elemento muda a
+     build. `avatar` tem elemPick 1.3 e ficava de fora da lista da UI -- era por isso
+     que nao havia como pedir "avatar de fire". */
+  for (const o of ['dano','avatar','aoe'])
+    ok(E.elementObjs().includes(o), `elementObjs() nao inclui "${o}" (elemPick ${E.PROFILES[o].elemPick})`);
+  console.log(`   objetivos com seletor de elemento: ${E.elementObjs().join(', ')}`);
+}
+
 console.log('== healer: cura de verdade no druid, e mais cura que o dano puro ==');
 {
   const b = build('druid', 500, 'healer');
@@ -89,10 +143,19 @@ console.log('== puller: bate o tank em ofensiva sem jogar a defesa fora ==');
   // pontos do notavel -- o otimizador acerta em gastar isso em absorb/HP.
   const t = E.aggregate('knight', build('knight', 1500, 'tank').ranks);
   const p = E.aggregate('knight', build('knight', 1500, 'puller').ranks);
-  const absTotal = a => E.ELORD.filter(e => a.absorb[e]).reduce((x,e)=>x+a.absorb[e], 0);
   ok((p.spec.slash||0) > (t.spec.slash||0), 'puller/1500 nao tem mais cleave que o tank');
   ok((p.bonus.atkPct||0) > (t.bonus.atkPct||0), 'puller/1500 nao tem mais atk que o tank');
-  ok(absTotal(p) > 0.5*absTotal(t), 'puller/1500 jogou a defesa fora (absorb < metade do tank)');
+  /* "nao jogou a defesa fora" medido em EHP, nao na soma do absorb dos 7 elementos.
+     A soma era a mesma regua errada que o model.js usava: premiava a escada de Wards
+     elementais, que nao vale ponto de arvore. Agora que a defesa do puller mora em HP,
+     a soma do absorb dava 24% da do tank e acusava falso positivo.
+     O que o puller promete e' ser um ponto de Pareto: nitidamente mais duro que a build
+     de dano puro, e mais ofensivo que o tank (as duas linhas acima). */
+  const ehpOf = o => metrics('knight', 1500, o).ehp;
+  ok(ehpOf('puller') > ehpOf('dano') * 1.2,
+    `puller/1500 jogou a defesa fora: ehp ${ehpOf('puller').toFixed(3)} vs dano puro ${ehpOf('dano').toFixed(3)}`);
+  ok(ehpOf('puller') < ehpOf('tank'),
+    `puller/1500 com ehp >= tank (${ehpOf('puller').toFixed(3)} vs ${ehpOf('tank').toFixed(3)}): virou tank, nao puller`);
   ok(allocated(build('knight', 500, 'puller').ranks).has('k_slash1'), 'puller/knight/500 sem Cleaving Strikes I');
   console.log(`   cleave ${p.spec.slash||0}% vs tank ${t.spec.slash||0}% · atk +${p.bonus.atkPct||0}% vs ${t.bonus.atkPct||0}%`);
 }
@@ -234,7 +297,16 @@ console.log('== calibragem (premissas de tools/model.js, nao leis) ==');
       if (obj === 'aoe' && !hasPackTool(M.find(m => m.obj === 'aoe'))) continue; // chain/cleave nao cabe no level
       const mine = M.find(m => m.obj === obj);
       if (!mine) continue;                                       // objetivo indisponivel nessa arvore
-      const best = M.reduce((a,b) => ax.get(b) > ax.get(a) ? b : a);
+      /* o no do Avatar (tier 11, 300 pts) multiplica TODO eixo, porque dentro da forma
+         todo hit crita. Mas so o objetivo Avatar o PERSEGUE: nos outros perfis ele vale
+         0 de proposito (ver DMG_SPECIALS.avatar em engine.js) e entra por acidente,
+         quando o level deixa sobrar orcamento. Comparar o dono de um eixo contra uma
+         build que tropecou nesse notavel mede sorte de orcamento, nao calibragem -- no
+         druid/1500 o "dano" alcanca o no e lidera o pack com 5.70 contra o AoE que
+         gastou 300 pontos em dois chains e fica em 5.33. Entao quem chegou la sem
+         perseguir sai do comparativo (up > 0 == a forma esta na build). */
+      const pool = obj === 'avatar' ? M : M.filter(m => m.obj === obj || !(m.up > 0));
+      const best = pool.reduce((a,b) => ax.get(b) > ax.get(a) ? b : a);
       ok(ax.get(mine) >= ax.get(best)*0.98,
         `${voc}/${lv}: "${obj}" deveria liderar ${ax.label} mas "${best.obj}" tem mais `
         + `(${ax.get(best).toFixed(2)} vs ${ax.get(mine).toFixed(2)})`);
