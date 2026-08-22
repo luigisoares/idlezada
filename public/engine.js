@@ -127,10 +127,19 @@ const DMG_STATS = { atkPct:1.0, spellDmgPct:1.0, critChance:1.0, critDmg:1.0, at
    nao por perseguicao. */
 const DMG_SPECIALS = { execute:0.6, precision:2.0, chain:3.0, slash:0.25, element_pierce:0.5, momentum:1.5, avatar:0, battle_instinct:0, tactics:0, dodge:0, gift_of_life:0 };
 
+/* elemOther em 0 em TODOS os perfis, e o motivo e' o mesmo em todos: o personagem
+   ataca com UM elemento. Dano de um elemento que voce nao usa vale zero, nao "um
+   pouco". Com o 0.12 antigo o otimizador subia as escadas de fora em paralelo com a
+   escolhida -- MEDIDO no sorcerer/avatar/lv1500: 30.9% de dano em elementos que nao
+   eram o escolhido, 11 nos gastos nisso. Zerando, aqueles pontos viram spellDmg e
+   critDmg e o dano sobe 14.5%.
+   Os nos de elemento de fora nao ficam PROIBIDOS: com valor 0 eles continuam
+   elegiveis como degrau de caminho (ver o filtro em autobuild), so param de ser
+   PERSEGUIDOS. */
 const PROFILES = {
   dano: {
     stats: DMG_STATS,
-    elem: 0.9, elemPick: 1.3, elemOther: 0.12, absorb: 0,
+    elem: 0.9, elemPick: 1.3, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: DMG_SPECIALS,
   },
   critico: {
@@ -139,7 +148,7 @@ const PROFILES = {
     // de quem clicou em "Crit" -- sem ele o otimizador nota que crit-stacking rende
     // menos que atk puro e entrega uma build de dano com o nome errado.
     stats: { critChance:3.0, critDmg:3.0, atkPct:0.6, spellDmgPct:0.6, attackSpeedPct:0.5, lifeLeech:0.1 },
-    elem: 0.5, elemPick: 0.6, elemOther: 0.1, absorb: 0,
+    elem: 0.5, elemPick: 0.6, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: Object.assign({}, DMG_SPECIALS),
   },
   avatar: {
@@ -150,7 +159,7 @@ const PROFILES = {
        - crit chance fica em 1.0 e nodeValue ja a desconta por (1-uptime) sozinho:
          durante a forma a chance e' 100% e um ponto ali nao compra nada. */
     stats: { attackSpeedPct:2.2, critDmg:1.6, atkPct:1.0, spellDmgPct:1.0, critChance:1.0, lifeLeech:0.1 },
-    elem: 0.9, elemPick: 1.3, elemOther: 0.12, absorb: 0,
+    elem: 0.9, elemPick: 1.3, elemOther: 0, absorb: 0, absorbElem: 0,
     // sem inclinacao pra cleave DE PROPOSITO: o Avatar e' a build de boss/single-target
     // e por cleave nela media -12% de dano 1v1 no lv500. Pra pack, o objetivo e' AoE.
     specials: Object.assign({}, DMG_SPECIALS, { avatar: 1000 }),
@@ -164,19 +173,28 @@ const PROFILES = {
        - avatar cai pra 0: MEDIDO. O no custa 300 pontos e da -3% de dano recebido em
          ~43% do tempo = ~1.3% na media; tirar ele do perfil AUMENTA o EHP no lv900
          (1.479 vs 1.450), porque os pontos vao pra HP e absorb. */
-    stats: { hpPct:1.5, defFlat:1.0, armorFlat:1.0, hpRegenPct:4.0, lifeLeech:1.0, manaPct:0.1,
+    /* HP e' o que tanka. defFlat/armorFlat sao PLANOS (+1 def por rank, teto de +78
+       na arvore inteira do knight) e nao escalam com o level, enquanto hpPct escala com
+       a barra toda -- MEDIDO: com peso 1.0 o knight/tank/2500 gastava 545 dos 2500
+       pontos (22%) pra comprar +45 def e +33 armor. Em 0.1 eles entram so quando nao
+       ha mais nada, que e' o lugar deles.
+       absorb (fisico) em 3.0 = MESMO peso de hpPct, e isso e' ancora, nao chute:
+       +1% de absorb fisico multiplica a barra por 1/(1-0.01) = +1.01% de EHP, e +1% de
+       hpPct da' +1%. Sao a mesma coisa por unidade, entao pesam igual. O 8.0 antigo
+       vinha de quando o peso valia pros 7 elementos de uma vez. */
+    stats: { hpPct:3.0, defFlat:0.1, armorFlat:0.1, hpRegenPct:4.0, lifeLeech:1.0, manaPct:0.1,
              atkPct:0.15, spellDmgPct:0.15, critChance:0.1 },
-    elem: 0.1, elemPick: 0.1, elemOther: 0.1, absorb: 8.0,
+    elem: 0.1, elemPick: 0.1, elemOther: 0, absorb: 3.0, absorbElem: 0,
     specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
   },
   xp: {
     stats: { expPct:10.0, lootPct:1.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.3, attackSpeedPct:0.3, critDmg:0.1, hpPct:0.1 },
-    elem: 0.25, elemPick: 0.3, elemOther: 0.2, absorb: 0.1,
+    elem: 0.25, elemPick: 0.3, elemOther: 0, absorb: 0.1, absorbElem: 0,
     specials: Object.assign({}, DMG_SPECIALS, { tactics:8.0 }),
   },
   atkspeed: {
     stats: { attackSpeedPct:10.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.4, critDmg:0.2 },
-    elem: 0.25, elemPick: 0.3, elemOther: 0.2, absorb: 0,
+    elem: 0.25, elemPick: 0.3, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: Object.assign({}, DMG_SPECIALS, { precision:3.0 }),
   },
   healer: {
@@ -184,7 +202,7 @@ const PROFILES = {
     // dano fica em ~0.15 de peso so pra a build nao ficar inutil solo.
     stats: { spellHealPct:5.0, mpRegenPct:5.0, hpRegenPct:3.0, manaLeech:1.5, manaPct:1.2,
              hpPct:0.6, lifeLeech:0.3, spellDmgPct:0.15, atkPct:0.15, critChance:0.05 },
-    elem: 0.05, elemPick: 0.05, elemOther: 0.05, absorb: 3.0,
+    elem: 0.05, elemPick: 0.05, elemOther: 0, absorb: 3.0, absorbElem: 0,
     specials: { gift_of_life:1.5, dodge:2.0, tactics:1.0, avatar:0, momentum:0.3,
                 chain:0.2, execute:0, precision:0, slash:0, battle_instinct:0, element_pierce:0 },
   },
@@ -196,7 +214,7 @@ const PROFILES = {
     // em "dano equivalente", qualquer valor abaixo de 1.0 aqui e' subvalorizar de graca.
     stats: { spellDmgPct:1.0, atkPct:1.0, critChance:1.0, critDmg:1.0, attackSpeedPct:0.7,
              lifeLeech:0.2, mpRegenPct:0.5, manaPct:0.1 },
-    elem: 1.0, elemPick: 1.4, elemOther: 0.15, absorb: 0,
+    elem: 1.0, elemPick: 1.4, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: { chain:60.0, momentum:2.0, slash:1.5, precision:1.0, element_pierce:0.5,
                 execute:0.2, avatar:0, tactics:0, dodge:0, battle_instinct:0, gift_of_life:0 },
   },
@@ -218,7 +236,8 @@ function blend(a, b, t){
     elem:      (a.elem||0)*(1-t)      + (b.elem||0)*t,
     elemPick:  (a.elemPick||0)*(1-t)  + (b.elemPick||0)*t,
     elemOther: (a.elemOther||0)*(1-t) + (b.elemOther||0)*t,
-    absorb:    (a.absorb||0)*(1-t)    + (b.absorb||0)*t,
+    absorb:     (a.absorb||0)*(1-t)     + (b.absorb||0)*t,
+    absorbElem: (a.absorbElem||0)*(1-t) + (b.absorbElem||0)*t,
   };
 }
 
@@ -287,36 +306,83 @@ function valueCtx(v, rk){
 }
 const NO_CTX = { cc:CRIT_BASE_CHANCE, cd:0, up:0 };
 
-function nodeValue(n, obj, elem, ctx){
+/* 'none' = "nao conto com elemento nenhum". Nao e' o mesmo que o antigo 'all', que
+   valorizava TODOS os elementos igualmente e por isso mandava o otimizador subir tres
+   escadas em paralelo. 'all' era dominado: no sorcerer/avatar/lv1500 ele rendia menos
+   que 'none' ate PRA QUEM ATACA COM FIRE (5.63 vs 5.80 no indice de dano), porque os
+   pontos das escadas de fora rendem mais como spellDmg. Fica aceito como apelido de
+   'none' so pra nao quebrar estado salvo no localStorage. */
+const noElement = elem => !elem || elem === 'none' || elem === 'all';
+
+/* peso de reserva do PASSE DE SOBRA (em autobuild). Qualquer stat que o perfil
+   zerou passa a valer isso -- baixo o bastante pra nunca competir com o tema (o menor
+   peso real de um perfil e' 0.05), mas positivo, pra que ponto sem destino melhor va
+   pro maior stat disponivel em vez de ficar na mao. */
+const FALLBACK_W = 0.01;
+
+/* limite de "vale nada". Tem que ser O MESMO no greedy (o que ele nao persegue) e na
+   poda (o que ela remove): com limites diferentes, um no no meio dos dois era removido
+   pela poda e recomprado pelo greedy em loop, e a build saia com o caminho morto de
+   volta. Bem abaixo do menor valor real possivel (FALLBACK_W x o menor stat da arvore,
+   0.1, da' 0.001). */
+const DEAD_EPS = 1e-9;
+
+/* floor=true -> modo reserva: todo peso zerado vira FALLBACK_W. */
+function nodeValue(n, obj, elem, ctx, floor){
   const W = PROFILES[obj] || PROFILES.dano;
   const C = ctx || NO_CTX;
+  const w = x => floor ? Math.max(x||0, FALLBACK_W) : (x||0);
   // chance efetiva de critar: dentro do avatar e' 100%, fora e' a crit chance
   const pEff = C.up + (1-C.up)*(C.cc/100);
   let val = 0;
   if(n.per) for(const k in n.per){
     const x = n.per[k];
     if(k==='elementDmgPct'){
-      for(const e in x){
-        let w = W.elem||0;
-        if(elem && elem!=='all') w = (e===elem) ? (W.elemPick||W.elem||0) : (W.elemOther!=null?W.elemOther:0);
-        val += w * x[e];
-      }
+      // sem elemento escolhido o no de elemento nao vale nada: so entra como caminho
+      if(noElement(elem)){ if(floor) for(const e in x) val += FALLBACK_W * x[e]; }
+      else for(const e in x)
+        val += w(e===elem ? (W.elemPick||W.elem||0) : W.elemOther) * x[e];
     } else if(k==='absorbPct'){
-      for(const e in x) val += (W.absorb||0) * x[e];
+      /* absorb de FISICO conta; de elemento nao. Resistencia elemental vem do
+         equipamento, entao ponto de arvore gasto nela e' ponto perdido -- MEDIDO na
+         build BT1-K540 (knight tank lv540): Fire Ward r9 45p, Death Ward r8 36p, Ice
+         Ward r5 30p e Energy Ward r5 30p somavam 141 dos 540 pontos (26%) em absorcao
+         elemental, com hpPct em apenas 17.4%. Pior: essa escada de Wards E' o "segundo
+         caminho" subindo em paralelo ao ramo de HP.
+         Os notaveis que dao absorb em TODOS os elementos (Resilience, Fortress,
+         Colossus, Avatar of Steel) continuam contando -- pela parte fisica deles. */
+      for(const e in x) val += w(e==='physical' ? W.absorb : W.absorbElem) * x[e];
     } else if(k==='critChance'){
       // +1% de chance rende (1 + critDmg atual) de dano extra; durante o avatar
       // a chance ja e' 100%, logo esse ganho so valeria nos (1-uptime) restantes
-      val += (W.stats.critChance||0) * x * (1-C.up) * (1 + C.cd/100);
+      val += w(W.stats.critChance) * x * (1-C.up) * (1 + C.cd/100);
     } else if(k==='critDmg'){
       // +1% de crit damage rende so na fracao dos hits que critam
-      val += (W.stats.critDmg||0) * x * pEff;
+      val += w(W.stats.critDmg) * x * pEff;
     } else {
-      val += (W.stats[k]||0) * x;
+      val += w(W.stats[k]) * x;
     }
   }
-  if(n.special) val += (W.specials[n.special.key]||0) * n.special.value;
+  if(n.special) val += w(W.specials[n.special.key]) * n.special.value;
   return val;
 }
+
+/* objetivos em que ESCOLHER o elemento muda a build de verdade. A UI usava uma lista
+   escrita a mao que esquecia o `avatar` (elemPick 1.3!), entao nao havia como pedir
+   "avatar de fire" -- e sem escolha o otimizador subia as tres escadas. Derivado dos
+   pesos -> nao da pra esquecer um objetivo novo. */
+const elementObjs = () => Object.keys(PROFILES)
+  .filter(o => (PROFILES[o].elemPick || PROFILES[o].elem || 0) >= 0.5);
+
+/* elemento padrao da vocacao. Com UM elemento de dano na arvore nao existe escolha a
+   fazer: aquele elemento E' o do personagem, e trata-lo como "sem elemento" joga dano
+   fora de graca -- MEDIDO no knight/dano/lv1500, 3.711 com physical contra 3.352 com
+   none (-10.7%), porque a arvore do knight e do monk e' toda physical.
+   Com dois ou mais, quem escolhe e' o jogador e 'none' nao chuta por ele. */
+const defaultElement = v => {
+  const els = damageElements(v);
+  return els.length === 1 ? els[0] : 'none';
+};
 
 /* Dijkstra: custo minimo pra deixar cada no alocado+conectado, dado rk atual.
    Nos ja alocados sao waypoints de custo 0. Nos tier-0 sao entradas (custo do 1o rank). */
@@ -377,18 +443,13 @@ const perkNodes = v => TREES[v].filter(n => n.kind !== 'small');
 const PERK_BOOST = 0.35;
 const PERK_FORCE = 100;
 
-/* monta a build. retorna {ranks, spent, reachedAvatar, perks:{reached,missing,unaffordable}}. */
-function autobuild(v, level, obj, opts){
-  opts = opts||{};
-  const elem = opts.element || 'all';
-  const budget = Math.max(0, Math.floor(level||0));
+/* um passe do greedy custo-beneficio. Continua de onde `rk` esta (nao exige arvore
+   vazia), o que e' o que permite rodar de novo depois da poda e no passe de sobra.
+   `floor` liga o modo reserva do nodeValue. Devolve quantos pontos gastou. */
+function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewBranch){
   const nodes = TREES[v];
-  const rk = {};
   const val = {};
-  // perks pedidos que existem nesta arvore (id de outra vocacao e' ignorado)
-  const perks = (opts.perks||[]).filter(id => IDX[v][id]);
-  const perkSet = new Set(perks);
-
+  const before = spent(v, rk);
   let guard = 0;
   while(guard++ < 200000){
     const rem = budget - spent(v, rk);
@@ -396,21 +457,25 @@ function autobuild(v, level, obj, opts){
     // o valor de crit depende do que a build ja tem -> recalcula por iteracao
     const ctx = valueCtx(v, rk);
     for(const n of nodes){
-      val[n.id] = nodeValue(n, obj, elem, ctx);
+      val[n.id] = nodeValue(n, obj, elem, ctx, floor);
       // o bonus e' somado (nao multiplicado): um perk pode valer 0 no perfil escolhido
       // -- Avatar num perfil de tank, por exemplo -- e multiplicar zero nao prioriza nada.
-      if(perkSet.has(n.id)) val[n.id] += n.cost * (opts.forcePerks ? PERK_FORCE : PERK_BOOST);
+      if(perkSet.has(n.id)) val[n.id] += n.cost * (forcePerks ? PERK_FORCE : PERK_BOOST);
     }
     const {dist,pred} = unlockDijkstra(v, rk);
     let best = null;
     for(const n of nodes){
       const r = rk[n.id]||0;
       if(r >= n.maxRank) continue;
-      if(val[n.id] <= 0) continue;               // nao mira nos sem valor (mas eles entram como caminho)
+      // noNewBranch==='deepen': so engrossa no que a build JA tem, nao acende no novo
+      if(noNewBranch === 'deepen' && r < 1) continue;
+      if(val[n.id] <= DEAD_EPS) continue;        // nao mira nos sem valor (mas eles entram como caminho)
       let cost, firstStep;
       if(connected(v, rk, n.id)){
         cost = nextCost(n, r); firstStep = n.id;
       } else {
+        // noNewBranch: a sobra engrossa o que a build ja tem, nao abre ramo distante
+        if(noNewBranch) continue;
         cost = dist[n.id]; if(!isFinite(cost)) continue;
         firstStep = firstStepOnPath(n.id, pred, rk);
       }
@@ -422,6 +487,102 @@ function autobuild(v, level, obj, opts){
     if(!canAlloc(v, rk, best.firstStep, budget)) break;   // seguranca
     rk[best.firstStep] = (rk[best.firstStep]||0) + 1;
   }
+  return spent(v, rk) - before;
+}
+
+/* PODA — devolve os pontos de nos que nao valem nada NO PERFIL e que saem sem quebrar
+   a conectividade.
+
+   Por que eles existem: o greedy escolhe um alvo, paga o primeiro passo do caminho e
+   nunca revisa. Quando mais tarde aparece uma rota melhor, o caminho antigo continua
+   pago. MEDIDO na versao anterior a esta: 301 pontos desperdicados em 84 de 180
+   combos. O caso mais visivel era o knight/avatar, com NOVE nos de defesa acesos
+   (Plating, Fire Ward, Resilience, Second Wind, Ice Ward, Energy Ward, Fortress, Iron
+   Will, Colossus) numa build de dano.
+
+   Remove do mais barato pro mais caro: tirar o barato primeiro abre a cascata (um no
+   de 1 ponto que segurava outro de 3 sai antes, e ai o de 3 tambem passa a sair).
+   Devolve os pontos liberados. */
+function pruneDeadWeight(v, rk, obj, elem, floor){
+  const ctx = valueCtx(v, rk);
+  const dead = Object.keys(rk)
+    .filter(id => (rk[id]||0) > 0 && nodeValue(nd(v,id), obj, elem, ctx, floor) <= DEAD_EPS)
+    .map(id => ({ id, pts: totalCost(nd(v,id), rk[id]) }))
+    .sort((a,b) => a.pts - b.pts);
+  let freed = 0;
+  for(const d of dead){
+    const t = Object.assign({}, rk); t[d.id] = 0;
+    if(!valid(v, t)) continue;                   // e' caminho obrigatorio: fica
+    // delete, nao `= 0`: `ranks` tem que conter SO no alocado. Uma chave com valor 0
+    // sobrevive ao Object.keys e quebrava o round-trip do share code (o decode nunca
+    // devolve chave zerada, entao as contagens divergiam).
+    delete rk[d.id]; freed += d.pts;
+  }
+  return freed;
+}
+
+/* monta a build. retorna {ranks, spent, reachedAvatar, leftover, spentFallback,
+   perks:{reached,missing,unaffordable}}. */
+function autobuild(v, level, obj, opts){
+  opts = opts||{};
+  /* 'all' (legado do localStorage) e ausencia de escolha caem no padrao da vocacao, nao
+     em 'none': pro knight isso devolve `physical` (o elemento dele) em vez de descartar
+     o ramo de dano fisico. 'none' explicito continua sendo "nao conto com elemento". */
+  const elem = (!opts.element || opts.element === 'all') ? defaultElement(v) : opts.element;
+  const budget = Math.max(0, Math.floor(level||0));
+  const rk = {};
+  // perks pedidos que existem nesta arvore (id de outra vocacao e' ignorado)
+  const perks = (opts.perks||[]).filter(id => IDX[v][id]);
+  const perkSet = new Set(perks);
+  const grow = (floor, noNewBranch) => growGreedy(v, budget, obj, elem, rk, perkSet,
+    !!opts.forcePerks, floor, noNewBranch);
+
+  grow(false);
+
+  /* poda + recrescer ate estabilizar. Cada volta devolve caminho morto e reinveste os
+     pontos no tema. MEDIDO em 180 combos: 16 builds melhoraram, 164 ficaram iguais,
+     ZERO pioraram -- ele so tira no que nao vale nada e nao segura nada. */
+  const settle = floor => {
+    for(let i = 0; i < 10; i++){
+      if(pruneDeadWeight(v, rk, obj, elem, floor) === 0) break;
+      if(grow(floor) === 0) break;
+    }
+  };
+  settle(false);
+
+  /* PASSE DE SOBRA. Quando o tema acaba antes do level, o passe principal para com
+     ponto na mao -- zerar o peso de elemento deixava o druid/dano/2500 gastando 1628
+     de 2500, porque a arvore dele e' quase toda earth/ice. Aqui os pontos restantes
+     vao pro melhor no disponivel com os pesos de reserva.
+
+     Roda DEPOIS da poda, nunca antes: o que ele compra vale 0 no perfil real, entao
+     uma poda posterior desfaria a compra e o ciclo nao terminaria.
+
+     E roda so quando a sobra passa de um punhado de pontos. Rodando sempre ele acende
+     um no de lixo pra gastar 1 ponto solto, que e' de novo o problema que a poda acabou
+     de resolver. Sobra de 1-2 pontos e' arredondamento (o proximo rank de tudo que
+     presta custa mais que o que restou) e fica na mao de proposito.
+
+     5 pontos, absoluto, MEDIDO nos 216 combos -- limite / pior sobra / nos por build:
+       5% do level ->  47 pts (!) / 18.83   <- 47 pontos parados no druid/critico/1500
+       > 5 pts     ->   5 pts     / 18.92   <- escolhido
+       > 2 pts     ->   5 pts     / 19.04
+       sempre      ->   5 pts     / 19.30
+     Absoluto em vez de percentual porque o que importa e' quanto ponto fica parado, nao
+     a fracao: os mesmos 47 pontos que sao 3% de um lv1500 nao viram arredondamento por
+     causa do level ser alto. Abaixo de 5 nao compra mais nada (a pior sobra para em 5
+     pts nos tres limites), so acende mais no -- entao 5 e' onde o ganho termina. */
+  const LEFTOVER_TOLERANCE = 5;
+  let spentFallback = 0;
+  if((budget - spent(v, rk)) > LEFTOVER_TOLERANCE){
+    /* dois estagios, pra sobra nao virar confete: primeiro engrossa o que a build ja
+       tem (nenhum no novo aceso), e so se isso nao gastar nada abre no adjacente. */
+    spentFallback = grow(true, 'deepen');
+    if(spentFallback === 0) spentFallback = grow(true, true);
+    // o passe de sobra tambem abre caminho, entao tambem deixa caminho morto. Poda com
+    // a valoracao DELE: um no sem valor nem pros pesos de reserva nao tem por que ficar.
+    settle(true);
+  }
 
   const av = avatarNodeId(v);
   /* distancia a partir da arvore VAZIA = custo minimo pra alcancar cada no. Serve pra
@@ -430,9 +591,13 @@ function autobuild(v, level, obj, opts){
   const fromScratch = perks.length ? unlockDijkstra(v, {}).dist : null;
   const reached = perks.filter(id => (rk[id]||0) >= 1);
   const missing = perks.filter(id => (rk[id]||0) < 1);
+  const used = spent(v, rk);
   return {
-    ranks: rk, spent: spent(v, rk),
+    ranks: rk, spent: used,
     reachedAvatar: !!(av && (rk[av]||0) >= 1),
+    /* leftover > 0 significa "a arvore nao tem mais nada pra comprar neste level",
+       nao bug. spentFallback = quanto foi pro que sobrou, fora do tema. */
+    leftover: budget - used, spentFallback,
     perks: {
       reached, missing, forced: !!opts.forcePerks,
       unaffordable: missing.filter(id => !isFinite(fromScratch[id]) || fromScratch[id] > budget),
@@ -475,6 +640,8 @@ global.Engine = {
   connected, canAlloc, canDealloc, aggregate, sortedNodes, encode, decode,
   damageElements, avatarNodeId, autobuild, PROFILES, blend, avatarUptime,
   OBJ_NEEDS, objAvailable, availableObjs, perkNodes, PERK_BOOST, PERK_FORCE,
+  // valoracao exposta pra verificacao (tools/check-builds.js) e pra UI do elemento
+  nodeValue, valueCtx, elementObjs, noElement, defaultElement, DEAD_EPS,
 };
 
 })(window);
