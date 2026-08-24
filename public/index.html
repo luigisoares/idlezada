@@ -67,6 +67,10 @@
         <textarea id="hunt-dps" rows="2" placeholder="Session&#10;05:27:35&#10;EK&#10;3.226/s · 63.410.078&#10;ED ..."></textarea></div>
       <span id="hunt-dpsinfo" class="dpsinfo"></span>
     </div>
+    <div class="hunts-bar charm-bar">
+      <button class="cfg-toggle perks-h" id="charm-cfg-toggle" aria-expanded="false" aria-controls="charm-cfg"></button>
+      <div class="cfg-body" id="charm-cfg" hidden></div>
+    </div>
     <div id="hunt-reco"></div>
     <div class="hunts-table" id="hunts-table"></div>
     <p class="note" style="margin-top:14px">Ranked by <b>XP per clear</b> (your level's XP rate × party share). Click a hunt to expand its monsters and see base HP/XP — handy to cross-check with the game. Gold is coins only (approx). Data extracted from the game bundle; rates are live server config.</p>
@@ -90,6 +94,8 @@
 <script src="bosses-view.js"></script>
 <script src="xprates.js"></script>
 <script src="hunts.js"></script>
+<script src="charms.js"></script>
+<script src="hunt-model.js"></script>
 <script src="hunts-view.js"></script>
 </body>
 </html>

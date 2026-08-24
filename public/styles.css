@@ -236,6 +236,7 @@ button.gold:hover{background:#f0d27e}
   padding:8px 12px;font:600 12px/1 inherit;cursor:pointer}
 .charpick:hover{color:var(--txt);border-color:#38493f}
 .charpick b{color:var(--gold)}
+.charpick.on{color:var(--txt);border-color:var(--gold-dim);background:rgba(232,197,106,.08)}
 #hunt-rate{color:var(--dim);font-size:12.5px;margin-left:auto;font-variant-numeric:tabular-nums}
 
 .reco{background:linear-gradient(180deg,var(--warm2),var(--warm));border:1px solid var(--warm-line);
@@ -252,8 +253,8 @@ button.gold:hover{background:#f0d27e}
 .reco-item .rm b{color:#e9dcc0;font-variant-numeric:tabular-nums}
 
 .hunts-table{border:1px solid var(--line);border-radius:12px;overflow-x:auto}
-.ht-head,.ht-row{display:grid;grid-template-columns:18px 1.35fr 42px 1.55fr 116px 92px 92px;gap:10px;
-  align-items:center;padding:9px 13px;min-width:740px}
+.ht-head,.ht-row{display:grid;grid-template-columns:18px 1.2fr 42px 1.35fr 108px 116px 92px 92px;gap:10px;
+  align-items:center;padding:9px 13px;min-width:860px}
 .ht-item:nth-child(even){background:rgba(255,255,255,.018)}
 .ht-row .num.xpc{display:flex;flex-direction:column;line-height:1.15}
 .ht-row .num.xpc b{font-weight:600}
@@ -273,7 +274,7 @@ button.gold:hover{background:#f0d27e}
 .ht-row .hl{font-variant-numeric:tabular-nums}
 .ht-row .hl.bad{color:#ff8b7a}
 /* detalhe expansível: bichos com HP/XP base */
-.ht-detail{background:#0d1512;border-top:1px solid var(--line);padding:6px 13px 10px 41px;min-width:740px}
+.ht-detail{background:#0d1512;border-top:1px solid var(--line);padding:6px 13px 10px 41px;min-width:860px}
 .ht-row .num.xph{color:var(--gold);font-weight:700}
 .reco-item .rm em{color:#7d7666;font-style:normal;font-size:11px}
 /* barra de DPS (colar Session) */
@@ -291,3 +292,92 @@ button.gold:hover{background:#f0d27e}
 .htd-row .num{text-align:right;font-variant-numeric:tabular-nums}
 .htd-row.boss{color:var(--gold)}
 .htd-row.boss em{color:var(--dim);font-style:normal;font-size:10.5px;font-weight:400}
+
+/* ---- Hunts: elemento e charms ---------------------------------------- */
+/* melhor elemento do pack, na linha da tabela */
+.ht-row .he{overflow:hidden}
+.ht-row .he .el{white-space:nowrap}
+/* bloco de um monstro dentro do detalhe: linha + resistencias + charms */
+.htd-mon{padding:2px 0 8px;border-bottom:1px solid #1a241f}
+.htd-mon:last-child{border-bottom:0}
+.htd-mon .htd-row{border-bottom:0}
+.htd-row em{color:var(--dimmer);font-style:normal;font-size:10.5px;font-weight:400}
+.htd-res{display:flex;flex-wrap:wrap;gap:6px;padding:2px 0 6px}
+.rs{display:inline-flex;align-items:center;gap:4px}
+.rs i{font-style:normal;font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.rs.weak i{color:var(--acc)}      /* resist negativo: o bicho APANHA mais */
+.rs.hard i{color:#ff8b7a}
+/* ---- Hunts: painel "meus charms" ------------------------------------- */
+/* Recolhido por default: quem nao mexe nunca ve. O rotulo diz o que importa sem
+   abrir (quantos faltam, quantos slots), igual ao cabecalho dos perks. */
+.charm-bar{display:block;margin-bottom:14px}
+.cfg-toggle{max-width:340px}
+.cfg-body{display:flex;flex-direction:column;gap:8px;margin-top:9px;padding:11px 13px;
+  background:var(--panel2);border:1px solid var(--line);border-radius:9px}
+.cfg-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cfg-k{color:var(--dim);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;width:44px;flex:none}
+.cfg-chips{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+.cfg-note{color:var(--dimmer);font-size:10.5px;font-style:italic}
+/* charm que eu NAO tenho fica apagado -- e' o estado que tira ele do plano */
+.cchip{display:inline-flex;align-items:center;gap:5px;cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:999px;
+  padding:4px 9px;font:600 11px/1 inherit;color:var(--dimmer);opacity:.55}
+.cchip:hover{color:var(--txt);border-color:#38493f;opacity:.85}
+.cchip.on{color:var(--txt);border-color:var(--gold-dim);background:rgba(232,197,106,.07);opacity:1}
+.cchip em{font-style:normal;font-weight:400;color:var(--dimmer);font-size:10px}
+.cchip:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* ---- Hunts: o plano da hunt ------------------------------------------ */
+/* Uma linha por criatura, no topo do detalhe: onde prender cada charm, de que
+   elemento bater e de que se proteger. E' a resposta; o resto do detalhe e' prova. */
+.pl{margin:8px 0 12px;padding:11px 13px;border:1px solid var(--warm-line);border-radius:9px;
+  background:linear-gradient(180deg,var(--warm2),var(--warm))}
+.pl-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding-bottom:9px;
+  margin-bottom:8px;border-bottom:1px solid #2c2416}
+.pl-lab{color:var(--gold-dim);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pl-lab:not(:first-child){margin-left:12px}
+.pl-els{display:inline-flex;gap:5px;flex-wrap:wrap}
+.pl-heal{color:var(--dim);font-size:10.5px;font-style:italic;margin-left:auto}
+.pl-rows{display:flex;flex-direction:column;gap:1px}
+.pl-row{display:grid;grid-template-columns:1.15fr 1.35fr 1fr 104px;gap:10px;align-items:center;
+  padding:5px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.pl-row:last-child{border-bottom:0}
+.pl-row.boss .pl-c{color:var(--gold)}
+.pl-c em{color:var(--dimmer);font-style:normal;font-size:10.5px;font-weight:400}
+.pl-bst{text-align:right;color:var(--dimmer);font-size:10px;white-space:nowrap;cursor:help}
+.pl-charm{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pl-charm b{font-weight:600;color:var(--txt)}
+.pl-charm i{font-style:normal;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
+.pl-charm em{font-style:normal;color:var(--dim);font-size:10.5px}
+.pl-charm u{text-decoration:none;color:var(--dimmer);font-size:10px;font-variant-numeric:tabular-nums}
+/* migalha: entra no plano (ponto e' teto, nao moeda) mas nao merece grind */
+.pl-charm.thin{opacity:.5}
+.pl-charm.thin i{color:var(--dim);font-weight:400}
+.pl-t{color:var(--dimmer);font-size:9.5px;font-weight:700}
+.pl-none{color:var(--dimmer)}
+.pl-notes{margin-top:8px;padding-top:8px;border-top:1px solid #2c2416;
+  display:flex;flex-direction:column;gap:3px}
+.pl-notes div{color:var(--dim);font-size:10.5px;line-height:1.45}
+.pl-notes b{color:#e9dcc0;font-weight:600}
+.pl-hint{color:var(--dimmer);font-size:11px;font-style:italic;padding:8px 0}
+
+/* comparativo de charms: o numero por tier, fechado por default */
+.cm-all{margin:2px 0 0 2px}
+.cm-all summary{color:var(--dimmer);font-size:10.5px;cursor:pointer;padding:2px 0;list-style:none}
+.cm-all summary::-webkit-details-marker{display:none}
+.cm-all summary::before{content:'▸ ';color:var(--gold-dim)}
+.cm-all[open] summary::before{content:'▾ '}
+.cm-all summary:hover{color:var(--dim)}
+.cm{display:flex;flex-direction:column;gap:2px;padding:2px 0 0 2px}
+.cm-row{display:grid;grid-template-columns:1fr 28px 200px 96px;gap:8px;align-items:center;font-size:11.5px}
+.cm-n{display:flex;align-items:center;gap:6px;color:var(--txt);font-weight:600}
+.cm-t{color:var(--dimmer);font-size:10px;font-weight:700}
+.cm-v{font-variant-numeric:tabular-nums}
+.cm-v b{color:var(--acc);font-weight:700}
+.cm-v em{color:var(--dimmer);font-style:normal;font-size:10.5px}
+.cm-v .cm-na{color:var(--dimmer);font-style:italic;font-size:10.5px}
+.cm-c{text-align:right;color:var(--dim);font-size:10.5px;font-variant-numeric:tabular-nums}
+.cm-hint{color:var(--dimmer);font-size:10.5px;font-style:italic;padding-top:3px}
+/* charm colocado por resistencia: sem DPS colado nao existe % pra mostrar */
+.pl-q{color:var(--gold-dim) !important;font-size:10px}
