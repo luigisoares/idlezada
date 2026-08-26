@@ -188,9 +188,40 @@ const PROFILES = {
     specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
   },
   xp: {
-    stats: { expPct:10.0, lootPct:1.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.3, attackSpeedPct:0.3, critDmg:0.1, hpPct:0.1 },
-    elem: 0.25, elemPick: 0.3, elemOther: 0, absorb: 0.1, absorbElem: 0,
-    specials: Object.assign({}, DMG_SPECIALS, { tactics:8.0 }),
+    /* xp/h = exp% x kills/h. O exp% satura BARATO e cedo -- 55 pontos no sorcerer
+       (Scholar r10, teto de +10%), 165 no druid (+22%) -- entao depois disso o
+       objetivo XP e', na pratica, uma build de dano. A versao anterior era uma build
+       de dano TORTA: critDmg em 0.1 contra critChance em 0.3 (elas se MULTIPLICAM,
+       valorizar uma em 1/3 da outra monta crit quebrado) e elemPick em 0.3 numa
+       arvore de sorcerer que e' quase toda elemental. Agora o lado de dano e' o
+       DMG_STATS inteiro, na escala real, e o expPct em 10.0 continua garantindo que
+       os nos de exp entrem primeiro -- MEDIDO: o exp final nao caiu em nenhuma
+       vocacao, em nenhum level.
+
+       SO XP, loot nao: lootPct fica de fora (= 0). Ver o commit anterior.
+
+       avatar em 11 e' a UNICA excecao a regra "so o objetivo Avatar persegue o no do
+       Avatar" (ver DMG_SPECIALS), e ela nao contradiz o motivo da regra. A regra
+       existe porque Damage/Crit/AoE/AtkSpeed sao ESTILOS de bater: com o Avatar
+       ligado os quatro gastam os mesmos 300 pontos no mesmo no de tier 11 e colapsam
+       na mesma build, e ai o preset deixa de responder o que foi pedido. XP nao e'
+       estilo, e' uma METRICA -- nao existe "XP de crit" contra "XP de atk speed" pra
+       colapsar, entao nao ha o que proteger. E o no e' grande demais pra ignorar:
+       uptime MEDIDO de 43-55% conforme a vocacao (o 11 e' o peso "correto" que o
+       comentario de DMG_SPECIALS ja calculava: ~+56% de dano a ~48% de uptime).
+       Ele se auto-regula pelo orcamento: no lv500 nao entra em vocacao nenhuma
+       (300 pontos nao pagam em 500), so a partir do ~lv900.
+
+       Indice de xp/h = (1 + exp%) x dano, antes -> depois:
+         sorcerer/900   2.97 -> 4.26  (+44%)   sorcerer/1500  4.12 -> 5.84  (+42%)
+         druid/1500     2.85 -> 4.30  (+51%)   paladin/1500   3.76 -> 6.64  (+77%)
+         monk/1500      3.68 -> 6.03  (+64%)
+       tactics fica em 8.0: nao e' medido pelo model.js (ele nao modela "aim da IA"),
+       e' julgamento declarado, e continua sendo a maior preferencia do perfil mesmo
+       agora que os pesos de dano subiram de 0.3 pra 1.0. */
+    stats: Object.assign({ expPct:10.0 }, DMG_STATS),
+    elem: 0.9, elemPick: 1.3, elemOther: 0, absorb: 0, absorbElem: 0,
+    specials: Object.assign({}, DMG_SPECIALS, { tactics:8.0, avatar:11 }),
   },
   atkspeed: {
     stats: { attackSpeedPct:10.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.4, critDmg:0.2 },
