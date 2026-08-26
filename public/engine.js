@@ -125,7 +125,7 @@ const DMG_STATS = { atkPct:1.0, spellDmgPct:1.0, critChance:1.0, critDmg:1.0, at
    tem que responder o que voce pediu, nao o que rende mais no papel. Se o no entrar
    numa build de outro objetivo, e' pelos stats dele (que `per` conta normalmente),
    nao por perseguicao. */
-const DMG_SPECIALS = { execute:0.6, precision:2.0, chain:3.0, slash:0.25, element_pierce:0.5, momentum:1.5, avatar:0, battle_instinct:0, tactics:0, dodge:0, gift_of_life:0 };
+const DMG_SPECIALS = { execute:0.6, precision:2.0, chain:3.0, slash:0.25, element_pierce:0.5, momentum:1.5, avatar:0, battle_instinct:0, tactics:2.0, dodge:0, gift_of_life:0 };
 
 /* elemOther em 0 em TODOS os perfis, e o motivo e' o mesmo em todos: o personagem
    ataca com UM elemento. Dano de um elemento que voce nao usa vale zero, nao "um
@@ -185,7 +185,7 @@ const PROFILES = {
     stats: { hpPct:3.0, defFlat:0.1, armorFlat:0.1, hpRegenPct:4.0, lifeLeech:1.0, manaPct:0.1,
              atkPct:0.15, spellDmgPct:0.15, critChance:0.1 },
     elem: 0.1, elemPick: 0.1, elemOther: 0, absorb: 3.0, absorbElem: 0,
-    specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
+    specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:2.0, momentum:0, element_pierce:0 },
   },
   xp: {
     /* xp/h = exp% x kills/h. O exp% satura BARATO e cedo -- 55 pontos no sorcerer
@@ -216,12 +216,12 @@ const PROFILES = {
          sorcerer/900   2.97 -> 4.26  (+44%)   sorcerer/1500  4.12 -> 5.84  (+42%)
          druid/1500     2.85 -> 4.30  (+51%)   paladin/1500   3.76 -> 6.64  (+77%)
          monk/1500      3.68 -> 6.03  (+64%)
-       tactics fica em 8.0: nao e' medido pelo model.js (ele nao modela "aim da IA"),
-       e' julgamento declarado, e continua sendo a maior preferencia do perfil mesmo
-       agora que os pesos de dano subiram de 0.3 pra 1.0. */
+       tactics saiu do perfil: era 8.0 aqui e 0 em todo o resto, e agora e' 2.0 pra
+       todo mundo, com teto de rank 3 (ver SPECIAL_CAP). Kite nao e' assunto de XP, e'
+       assunto de qualquer boneco que ande sozinho. */
     stats: Object.assign({ expPct:10.0 }, DMG_STATS),
     elem: 0.9, elemPick: 1.3, elemOther: 0, absorb: 0, absorbElem: 0,
-    specials: Object.assign({}, DMG_SPECIALS, { tactics:8.0, avatar:11 }),
+    specials: Object.assign({}, DMG_SPECIALS, { avatar:11 }),
   },
   atkspeed: {
     stats: { attackSpeedPct:10.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.4, critDmg:0.2 },
@@ -234,7 +234,7 @@ const PROFILES = {
     stats: { spellHealPct:5.0, mpRegenPct:5.0, hpRegenPct:3.0, manaLeech:1.5, manaPct:1.2,
              hpPct:0.6, lifeLeech:0.3, spellDmgPct:0.15, atkPct:0.15, critChance:0.05 },
     elem: 0.05, elemPick: 0.05, elemOther: 0, absorb: 3.0, absorbElem: 0,
-    specials: { gift_of_life:1.5, dodge:2.0, tactics:1.0, avatar:0, momentum:0.3,
+    specials: { gift_of_life:1.5, dodge:2.0, tactics:2.0, avatar:0, momentum:0.3,
                 chain:0.2, execute:0, precision:0, slash:0, battle_instinct:0, element_pierce:0 },
   },
   aoe: {
@@ -247,7 +247,7 @@ const PROFILES = {
              lifeLeech:0.2, mpRegenPct:0.5, manaPct:0.1 },
     elem: 1.0, elemPick: 1.4, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: { chain:60.0, momentum:2.0, slash:1.5, precision:1.0, element_pierce:0.5,
-                execute:0.2, avatar:0, tactics:0, dodge:0, battle_instinct:0, gift_of_life:0 },
+                execute:0.2, avatar:0, tactics:2.0, dodge:0, battle_instinct:0, gift_of_life:0 },
   },
 };
 
@@ -357,6 +357,28 @@ const FALLBACK_W = 0.01;
    volta. Bem abaixo do menor valor real possivel (FALLBACK_W x o menor stat da arvore,
    0.1, da' 0.001). */
 const DEAD_EPS = 1e-9;
+
+/* TETO EFETIVO POR RANK. Nao e' preferencia de objetivo, e' regra do JOGO -- mora
+   aqui, e nao nos perfis, pelo mesmo motivo que `maxRank` mora na arvore.
+
+   O `desc` que o extractor traz pro trees.json diz so "+100 niveis de tatica por
+   rank", o que faz o Battle Tactics parecer um stat linear. O texto completo do jogo
+   (bundle, tela de IA de combate) diz o resto: "o comportamento perfeito (mira,
+   posicionamento, kite) existe desde o nivel 1 e a % e' a chance de acerta-lo em cada
+   decisao -- o nivel rende metade da qualidade (ate o 2000) e o no Battle Tactics a
+   outra metade (cada rank tambem vale +100 niveis; NIVEL 3 DE TATICA DESTRAVA O KITE
+   INFINITO SEM TANK)".
+
+   Ou seja: o rank 3 e' um DEGRAU, nao mais um passo numa rampa. E o custo dos ranks e'
+   triangular (cost*r*(r+1)/2), entao o degrau e barato e o resto e caro:
+       r1=2p  r2=6p  r3=12p  r4=20p  r10=110p
+   Os 12 pontos do marco compram sobrevivencia; os 98 pontos seguintes compram so mais
+   chance de acerto numa IA que ja kita sozinha. MEDIDO: sem este teto o objetivo XP
+   comprava r10 no paladin, sorcerer e druid -- 110 pontos, 98 deles depois do degrau.
+
+   O filtro vive no greedy (e nao em nodeValue) de proposito: assim o no continua
+   valendo > 0 pra poda, que portanto nao desfaz os 3 ranks depois de compra-los. */
+const SPECIAL_CAP = { tactics: 3 };
 
 /* floor=true -> modo reserva: todo peso zerado vira FALLBACK_W. */
 function nodeValue(n, obj, elem, ctx, floor){
@@ -501,6 +523,9 @@ function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewB
       // noNewBranch==='deepen': so engrossa no que a build JA tem, nao acende no novo
       if(noNewBranch === 'deepen' && r < 1) continue;
       if(val[n.id] <= DEAD_EPS) continue;        // nao mira nos sem valor (mas eles entram como caminho)
+      // teto de rank do special (ver SPECIAL_CAP): acima do degrau ele para de ser alvo
+      const cap = n.special && SPECIAL_CAP[n.special.key];
+      if(cap && r >= cap) continue;
       let cost, firstStep;
       if(connected(v, rk, n.id)){
         cost = nextCost(n, r); firstStep = n.id;
@@ -672,7 +697,7 @@ global.Engine = {
   damageElements, avatarNodeId, autobuild, PROFILES, blend, avatarUptime,
   OBJ_NEEDS, objAvailable, availableObjs, perkNodes, PERK_BOOST, PERK_FORCE,
   // valoracao exposta pra verificacao (tools/check-builds.js) e pra UI do elemento
-  nodeValue, valueCtx, elementObjs, noElement, defaultElement, DEAD_EPS,
+  nodeValue, valueCtx, elementObjs, noElement, defaultElement, DEAD_EPS, SPECIAL_CAP,
 };
 
 })(window);
