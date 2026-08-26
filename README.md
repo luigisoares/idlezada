@@ -64,7 +64,12 @@ falls behind on a pack of four, and AoE is the reverse.
 - **Heal + Dmg** — the hybrid: healing and damage in the same build. Weighted 0.65 toward damage on
   purpose — the druid's healing branch saturates around +61%, so a straight 50/50 just produces a
   healer with leftovers.
-- **XP** — exp gains + tactics + light damage to keep kills fast.
+- **XP** — exp gains + tactics + light damage to keep kills fast. **Loot is worth zero here**:
+  it does not level anyone up, and on the druid it was the objective's second biggest expense —
+  Fortune + Lucky Charm ate 165 points at level 1000 *after* exp had already maxed out the tree's
+  ceiling (+22%). Those points now buy damage, which is what actually raises xp/h. The loot ranks
+  that remain are mandatory path (the druid's Herbalist requires Fortune, Windfall requires Lucky
+  Charm), and the monk's Guiding Presence gives exp and loot in the same node.
 - **Atk Speed** — attack speed + light damage/crit.
 
 ### Perks to prioritize

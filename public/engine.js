@@ -188,7 +188,16 @@ const PROFILES = {
     specials: { dodge:3.0, gift_of_life:2.5, battle_instinct:2.0, avatar:0, execute:0, precision:0, chain:0, slash:0, tactics:0, momentum:0, element_pierce:0 },
   },
   xp: {
-    stats: { expPct:10.0, lootPct:1.0, atkPct:0.3, spellDmgPct:0.3, critChance:0.3, attackSpeedPct:0.3, critDmg:0.1, hpPct:0.1 },
+    /* SO XP, loot nao. lootPct em 0 (era 1.0): loot nao acelera level nenhum, e no
+       druid ele era o maior gasto do objetivo depois do proprio exp -- MEDIDO no
+       lv1000: Fortune r10 (55p) + Lucky Charm r10 (110p) = 165 pontos comprando +22%
+       de loot DEPOIS que o exp ja tinha estourado o teto da arvore (22%, os dois nos
+       de exp no rank maximo). Com peso 0 esses pontos viram dano/tactics, que e' o que
+       de fato aumenta xp/h: mais kill por hora.
+       O que sobra de loot na build e' CAMINHO OBRIGATORIO e nao da pra evitar: no
+       druid o Herbalist (exp) exige Fortune (loot) e o Windfall (exp) exige Lucky
+       Charm (loot), entao 1 rank de cada fica de pedagio. */
+    stats: { expPct:10.0, lootPct:0, atkPct:0.3, spellDmgPct:0.3, critChance:0.3, attackSpeedPct:0.3, critDmg:0.1, hpPct:0.1 },
     elem: 0.25, elemPick: 0.3, elemOther: 0, absorb: 0.1, absorbElem: 0,
     specials: Object.assign({}, DMG_SPECIALS, { tactics:8.0 }),
   },
