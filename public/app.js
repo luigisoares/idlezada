@@ -189,6 +189,17 @@ function renderSlot(s){
     btn.setAttribute('aria-expanded', s.perksOpen ? 'true' : 'false');
     el.querySelector('.perks-caret').textContent = s.perksOpen ? '▾' : '▸';
   });
+  /* delegado no container: o stepper reescreve só o número da linha, mas o handler
+     precisa sobreviver a isso de qualquer jeito. */
+  el.querySelector('[data-role=perks]').addEventListener('click', ev => {
+    const b = ev.target.closest && ev.target.closest('[data-tac]');
+    if (!b) return;
+    const n = tacticsNode(s.voc);
+    if (!n) return;
+    s.tactics = Math.max(0, Math.min(n.maxRank, tacticsWant(s) + Number(b.dataset.tac)));
+    updateTacticsRow(el, s);
+    save(); recompute(el, s);   // igual aos perks: recalcula sem re-render, pra lista nao fechar
+  });
   el.querySelectorAll('[data-perk]').forEach(cb => cb.addEventListener('change', ()=>{
     const id = cb.dataset.perk;
     s.perks = cb.checked ? [...(s.perks||[]), id] : (s.perks||[]).filter(x => x !== id);
@@ -225,6 +236,11 @@ function sanitizeSlot(s){
   // os ids de perk sao por arvore: trocar de vocacao descarta o que nao existe na nova
   const ids = new Set(E.perkNodes(s.voc).map(n => n.id));
   s.perks = (s.perks || []).filter(id => ids.has(id));
+  /* o marker tambem e' por arvore (o maxRank vem do no). null continua sendo "segue o
+     objetivo" -- estado salvo antes desta versao cai ai, sem bump do LS_KEY. */
+  const tn = tacticsNode(s.voc);
+  if (s.tactics != null)
+    s.tactics = tn ? Math.max(0, Math.min(tn.maxRank, Math.floor(s.tactics) || 0)) : null;
   return s;
 }
 
@@ -248,11 +264,72 @@ function perkEffect(n){
 }
 
 function perkCountLabel(s){
-  const n = (s.perks||[]).length;
-  return n ? `${n} selected` : 'none';
+  const n = (s.perks||[]).length, t = tacticsWant(s);
+  const bits = [];
+  if (t) bits.push(`tactics r${t}`);
+  if (n) bits.push(`${n} perk${n===1?'':'s'}`);
+  return bits.length ? bits.join(' · ') : 'none';
+}
+
+/* BATTLE TACTICS — o marker de rank no topo da lista.
+
+   O nó é `kind:'small'` (rank 1-10, custo triangular), então ele não entra em
+   `perkNodes` e não teria como ser um checkbox: 0-10 é um número, não um sim/não.
+   Por isso a linha é fixa e vem com stepper, em vez de aparecer só quando marcada.
+
+   `s.tactics` ausente = a build nunca tocou no controle e segue o default do OBJETIVO
+   (E.defaultTactics: r3 em quem farma sozinho, 0 no resto). No primeiro clique o número
+   vira escolha da build e para de seguir o objetivo — senão trocar de objetivo
+   sobrescreveria em silêncio o que você acabou de pedir.
+
+   `tacticsNode` é declaração e não `const` de propósito: o `sanitizeSlot` chama ela de
+   dentro do `loadState()`, que roda no init do módulo — antes desta linha. Como `const`
+   dava TDZ, e o `catch` do loadState ("storage corrompido: ignora") engolia o erro: quem
+   já tinha build salva perdia as três em silêncio e caía nos slots padrão. Coberto no
+   tools/check-builds-view.js. */
+function tacticsNode(voc){
+  const id = E.tacticsNodeId(voc);
+  return id ? TREES[voc].find(n => n.id === id) : null;
+}
+function tacticsWant(s){
+  const n = tacticsNode(s.voc);
+  if (!n) return 0;
+  const w = s.tactics == null ? E.defaultTactics(s.obj) : s.tactics;
+  return Math.max(0, Math.min(n.maxRank, Math.floor(w) || 0));
+}
+function tacticsRow(s){
+  const n = tacticsNode(s.voc);
+  if (!n) return '';
+  const want = tacticsWant(s);
+  return `<div class="perk tac${want?' on':''}" data-role="tac-row">
+    <span class="perk-b">
+      <span class="perk-top"><span class="perk-name">${esc(n.name)}</span>
+        <span class="perk-cost" data-role="tac-cost">${E.totalCost(n, want)}</span></span>
+      <span class="perk-eff">Aim, positioning and reaction — rank 3 kites forever without a tank</span>
+    </span>
+    <span class="tac-step">
+      <button type="button" class="tac-b" data-tac="-1" aria-label="Lower Battle Tactics"${want<=0?' disabled':''}>−</button>
+      <span class="tac-n" data-role="tac-n">${want}</span>
+      <button type="button" class="tac-b" data-tac="1" aria-label="Raise Battle Tactics"${want>=n.maxRank?' disabled':''}>+</button>
+    </span>
+  </div>`;
+}
+/* atualiza a linha no lugar em vez de re-renderizar a lista: um innerHTML novo
+   descartaria os listeners dos checkboxes de perk e fecharia o scroll onde estava. */
+function updateTacticsRow(el, s){
+  const n = tacticsNode(s.voc), row = el.querySelector('[data-role=tac-row]');
+  if (!n || !row) return;
+  const want = tacticsWant(s);
+  row.classList.toggle('on', want > 0);
+  row.querySelector('[data-role=tac-n]').textContent = want;
+  row.querySelector('[data-role=tac-cost]').textContent = E.totalCost(n, want);
+  row.querySelectorAll('[data-tac]').forEach(b => {
+    b.disabled = (+b.dataset.tac < 0) ? want <= 0 : want >= n.maxRank;
+  });
+  el.querySelector('[data-role=perks-n]').textContent = perkCountLabel(s);
 }
 function perkRows(s){
-  return E.perkNodes(s.voc).map(n => {
+  return tacticsRow(s) + E.perkNodes(s.voc).map(n => {
     const on = (s.perks||[]).includes(n.id);
     return `<label class="perk${on?' on':''}">
       <input type="checkbox" data-perk="${n.id}"${on?' checked':''}>
@@ -265,7 +342,7 @@ function perkRows(s){
 
 function recompute(el, s){
   const build = E.autobuild(s.voc, s.level, s.obj,
-    { element: s.element, perks: s.perks || [], forcePerks: !!s.forcePerks });
+    { element: s.element, perks: s.perks || [], forcePerks: !!s.forcePerks, tactics: tacticsWant(s) });
   el.querySelector('[data-role=code]').value = E.encode(s.voc, build.ranks, s.level);
 
   const warn = el.querySelector('[data-role=warn]');
@@ -304,12 +381,20 @@ function recompute(el, s){
   // entao trocar de botao deixa de fazer efeito -- melhor dizer isso que deixar o
   // usuario clicando sem entender.
   const cap = E.fullCost(s.voc);
+  /* o marker e' garantia, entao a UNICA razao pra voltar abaixo do pedido e' o level nao
+     pagar a escada (custo triangular: r10 sozinho ja custa 110 pontos). Aviso proprio, e
+     nao no msg dos perks, porque os dois podem acontecer na mesma build. */
+  const T = build.tactics || { want:0, got:0 };
+  const tacMsg = T.got < T.want
+    ? `Level too low for Battle Tactics r${T.want} — the path plus the ranks cost more than your points. Built r${T.got}.`
+    : null;
   const capped = s.level >= cap
     ? `Level ${s.level.toLocaleString('en-US')} maxes this entire tree (${cap.toLocaleString('en-US')} points) — every objective builds the same thing from here.`
     : null;
   warn.innerHTML =
       (msg ? `<div class="warn">${esc(msg)}${forceRow}</div>` : '')
     + (forcedNote ? `<div class="info">${esc(forcedNote)}${forceRow}</div>` : '')
+    + (tacMsg ? `<div class="warn">${esc(tacMsg)}</div>` : '')
     + (capped ? `<div class="info">${esc(capped)}</div>` : '');
 
   renderSummary(el.querySelector('[data-role=summary]'), s, build);

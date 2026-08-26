@@ -24,6 +24,7 @@ idlezada/
 │  ├─ check-builds.js    # run after touching any weight: node tools/check-builds.js
 │  ├─ check-hunt-model.js# run after touching hunt-model.js or re-extracting
 │  ├─ check-hunts-view.js# runs the Hunts tab against a fake DOM (catches render breaks)
+│  ├─ check-builds-view.js # same, for the Builds tab (catches init + marker breaks)
 │  ├─ extract-game-data.js # pulls resists, damage + charms out of the game bundle
 │  └─ model.js           # combat model used to compare objectives
 ├─ docs/                 # internal specs (not published)
@@ -88,15 +89,18 @@ falls behind on a pack of four, and AoE is the reverse.
   stays a distinct build. If you want raw damage *with* the Avatar, that is the Avatar button.
 - **Atk Speed** — attack speed + light damage/crit.
 
-### Battle Tactics: a step, not a slope
+### Battle Tactics: a step you choose, not a step everyone pays for
 
-Every objective now tries to fit **exactly 3 ranks of Battle Tactics** when the path is
-affordable, and the optimizer is forbidden from buying a fourth. The node is not a linear stat,
-even though its in-tree description makes it look like one — the game's combat-AI screen spells
-out the rest: *"the perfect behavior (aim, positioning, kiting) exists from level 1 and the % is
-the chance of nailing it on each decision — level provides half the quality (up to 2000) and the
-Battle Tactics node the other half (each rank is also worth +100 levels; **tactics level 3
-unlocks the infinite kite without a tank**)."*
+Every card's perk list opens with a **Battle Tactics marker** — a stepper from 0 to 10 that
+sets the rank the build should reach. It is a guarantee in both directions: the optimizer
+chases the node until it gets there and stops aiming at it the moment it does, so a build
+never overshoots the rank you asked for and never stalls halfway up the ladder.
+
+The node is not a linear stat, even though its in-tree description makes it look like one —
+the game's combat-AI screen spells out the rest: *"the perfect behavior (aim, positioning,
+kiting) exists from level 1 and the % is the chance of nailing it on each decision — level
+provides half the quality (up to 2000) and the Battle Tactics node the other half (each rank
+is also worth +100 levels; **tactics level 3 unlocks the infinite kite without a tank**)."*
 
 Rank costs are triangular (`cost·r(r+1)/2`), so the step is cheap and everything past it is not:
 
@@ -104,20 +108,31 @@ Rank costs are triangular (`cost·r(r+1)/2`), so the step is cheap and everythin
 |---|---|---|---|---|---|
 | points spent | 2 | 6 | **12** | 20 | 110 |
 
-Twelve points buy survivability; the next 98 buy a slightly higher hit rate on an AI that already
-kites on its own. Before the cap, XP was buying rank 10 on the paladin, sorcerer and druid — 110
-points, 98 of them past the step. Handing those back is why adding this to *every* build still
-came out **damage-positive** on average (druid/xp/300 gained 21%).
+**The default follows the scenario, not the vocation.** Objectives that farm on their own —
+XP, AoE, Puller — start at **r3**, the step the game's own text describes. Boss and support
+objectives start at **r0** and pay the 12 points only if you ask. Touch the stepper once and
+your number takes over: switching objectives afterwards no longer overwrites it.
 
-The cap lives with the engine's other limits rather than in the objective profiles, for the same
-reason `maxRank` lives in the tree: it is a fact about the game, not a preference. Tactics is
-weighted identically (2.0) across every objective, because kiting is not a build style — it is
-whatever keeps the character alive while it farms.
+This replaces a fixed engine-wide cap of 3 ranks that applied to *every* objective. The cap
+was right about the ceiling and wrong about the floor: kiting is worth 12 points to a character
+farming a pack alone, and worth nothing to a build that exists to hit one boss with a tank
+holding it. Measured across the same 144 combos, handing those points back is **+0.58%** on the
+average damage index, and it refunds exactly the two builds the cap taxed hardest —
+**knight/tank/900 +5.9%** and **paladin/atkspeed/500 +5.1%**, which had lost 5.6% and 4.8% to it.
 
-**It is never forced.** Reaching the node still has to pay for its path, so 16 of 144 measured
-combos skip it entirely — mostly the monk at low level, whose `m_tactics` sits behind Combat
-Mastery. What the calibration does guard against is the worst outcome of all: stopping at rank 1
-or 2, which spends points and unlocks nothing. Two of 144 do that today; at weight 0.5 it was 49.
+⚠️ Freeing points is not automatically damage-positive: the greedy re-spends them and can land
+somewhere the single-target model values less. **knight/dano/900 drops 4.6%** because the 12
+points came back as Cleaving Strikes I plus one lost rank on six damage nodes — a trade
+`tools/model.js` scores as a loss because it measures one target.
+
+Below the marker, `tactics` keeps its 2.0 weight in every profile, now doing exactly one job:
+keeping the node worth more than nothing so the dead-weight prune cannot undo what the marker
+just bought.
+
+**Asking for more than the level pays.** The path plus the ranks has a minimum price
+(`tacticsMinCost`), and r10 alone costs 110 points. When it does not fit, the build says so —
+*"Level too low for Battle Tactics r7 …"* — and reports what it did reach instead of silently
+delivering less.
 
 ### Perks to prioritize
 
@@ -256,6 +271,7 @@ that looks plausible and is quietly bad. After changing any weight — or re-syn
 
 ```
 node tools/check-builds.js      # exits non-zero if anything fails
+node tools/check-builds-view.js # ...and that the Builds tab still renders and clicks
 ```
 
 No dependencies: it loads `trees.js` + `engine.js` into a `window` shim, the same way

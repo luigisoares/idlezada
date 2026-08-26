@@ -216,9 +216,9 @@ const PROFILES = {
          sorcerer/900   2.97 -> 4.26  (+44%)   sorcerer/1500  4.12 -> 5.84  (+42%)
          druid/1500     2.85 -> 4.30  (+51%)   paladin/1500   3.76 -> 6.64  (+77%)
          monk/1500      3.68 -> 6.03  (+64%)
-       tactics saiu do perfil: era 8.0 aqui e 0 em todo o resto, e agora e' 2.0 pra
-       todo mundo, com teto de rank 3 (ver SPECIAL_CAP). Kite nao e' assunto de XP, e'
-       assunto de qualquer boneco que ande sozinho. */
+       tactics nao e' mais assunto do perfil: o rank vem do marker da build (ver
+       TACTICS_DEFAULT), e o xp e' um dos objetivos que ja vem com o degrau ligado. O
+       peso 2.0 que ficou aqui so impede a poda de desfazer o que o marker comprou. */
     stats: Object.assign({ expPct:10.0 }, DMG_STATS),
     elem: 0.9, elemPick: 1.3, elemOther: 0, absorb: 0, absorbElem: 0,
     specials: Object.assign({}, DMG_SPECIALS, { avatar:11 }),
@@ -358,27 +358,51 @@ const FALLBACK_W = 0.01;
    0.1, da' 0.001). */
 const DEAD_EPS = 1e-9;
 
-/* TETO EFETIVO POR RANK. Nao e' preferencia de objetivo, e' regra do JOGO -- mora
-   aqui, e nao nos perfis, pelo mesmo motivo que `maxRank` mora na arvore.
+/* BATTLE TACTICS — rank alvo POR BUILD, nao regra do motor.
 
    O `desc` que o extractor traz pro trees.json diz so "+100 niveis de tatica por
-   rank", o que faz o Battle Tactics parecer um stat linear. O texto completo do jogo
-   (bundle, tela de IA de combate) diz o resto: "o comportamento perfeito (mira,
-   posicionamento, kite) existe desde o nivel 1 e a % e' a chance de acerta-lo em cada
-   decisao -- o nivel rende metade da qualidade (ate o 2000) e o no Battle Tactics a
-   outra metade (cada rank tambem vale +100 niveis; NIVEL 3 DE TATICA DESTRAVA O KITE
-   INFINITO SEM TANK)".
+   rank", o que faz o no parecer um stat linear. O texto completo do jogo (bundle, tela
+   de IA de combate) diz o resto: "o comportamento perfeito (mira, posicionamento,
+   kite) existe desde o nivel 1 e a % e' a chance de acerta-lo em cada decisao -- o
+   nivel rende metade da qualidade (ate o 2000) e o no Battle Tactics a outra metade
+   (cada rank tambem vale +100 niveis; NIVEL 3 DE TATICA DESTRAVA O KITE INFINITO SEM
+   TANK)".
 
-   Ou seja: o rank 3 e' um DEGRAU, nao mais um passo numa rampa. E o custo dos ranks e'
-   triangular (cost*r*(r+1)/2), entao o degrau e barato e o resto e caro:
+   Ou seja: o r3 e' um DEGRAU, e o custo dos ranks e' triangular (cost*r*(r+1)/2), o que
+   deixa o degrau barato e o resto caro:
        r1=2p  r2=6p  r3=12p  r4=20p  r10=110p
-   Os 12 pontos do marco compram sobrevivencia; os 98 pontos seguintes compram so mais
-   chance de acerto numa IA que ja kita sozinha. MEDIDO: sem este teto o objetivo XP
-   comprava r10 no paladin, sorcerer e druid -- 110 pontos, 98 deles depois do degrau.
 
-   O filtro vive no greedy (e nao em nodeValue) de proposito: assim o no continua
-   valendo > 0 pra poda, que portanto nao desfaz os 3 ranks depois de compra-los. */
-const SPECIAL_CAP = { tactics: 3 };
+   A versao anterior tratava isso como teto fixo do motor (`SPECIAL_CAP = {tactics:3}`),
+   e por isso TODA build comprava o degrau -- inclusive as que nao estao ali pra kitar.
+   O degrau continua sendo fato do jogo, mas QUANTO comprar dele e' escolha de quem
+   monta a build: o marker na lista de perks manda um alvo de 0 a 10, e o alvo e'
+   GARANTIA nos dois sentidos -- o greedy persegue ate chegar nele (mesmo boost dos
+   perks forcados) e para de mirar assim que chega, entao nao passa nem fica no meio.
+
+   O default so vale pra quem nao mexeu no marker, e segue o cenario e nao a vocacao:
+   quem farma sozinho (xp/aoe/puller) ja vem com o degrau; build de boss e de suporte
+   vem limpa e paga os 12 pontos so se voce pedir.
+
+   Os pesos `tactics` nos PROFILES ficam onde estao, e agora servem a UMA coisa so:
+   manter o no com valor > 0 pra poda nao desfazer o que o alvo acabou de comprar. */
+const TACTICS_DEFAULT = { xp:3, aoe:3, puller:3 };
+const defaultTactics = obj => TACTICS_DEFAULT[obj] || 0;
+function tacticsNodeId(v){
+  for(const n of TREES[v]) if(n.special && n.special.key === 'tactics') return n.id;
+  return null;
+}
+/* pontos minimos pra SEGURAR o no no rank `want` numa arvore vazia: o caminho ate ele
+   (que ja inclui o primeiro rank) mais o resto da escada. Separa "nao cabe no level de
+   jeito nenhum" de "cabia e o otimizador preferiu outra coisa" -- so o primeiro e'
+   motivo legitimo pra build voltar abaixo do que foi pedido. */
+function tacticsMinCost(v, want){
+  const id = tacticsNodeId(v);
+  if(!id || want <= 0) return 0;
+  const n = nd(v, id);
+  const d = unlockDijkstra(v, {}).dist[id];
+  if(!isFinite(d)) return Infinity;
+  return d + totalCost(n, want) - totalCost(n, 1);
+}
 
 /* floor=true -> modo reserva: todo peso zerado vira FALLBACK_W. */
 function nodeValue(n, obj, elem, ctx, floor){
@@ -499,8 +523,9 @@ const PERK_FORCE = 100;
 /* um passe do greedy custo-beneficio. Continua de onde `rk` esta (nao exige arvore
    vazia), o que e' o que permite rodar de novo depois da poda e no passe de sobra.
    `floor` liga o modo reserva do nodeValue. Devolve quantos pontos gastou. */
-function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewBranch){
+function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewBranch, tactics){
   const nodes = TREES[v];
+  const tid = tacticsNodeId(v);
   const val = {};
   const before = spent(v, rk);
   let guard = 0;
@@ -514,6 +539,9 @@ function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewB
       // o bonus e' somado (nao multiplicado): um perk pode valer 0 no perfil escolhido
       // -- Avatar num perfil de tank, por exemplo -- e multiplicar zero nao prioriza nada.
       if(perkSet.has(n.id)) val[n.id] += n.cost * (forcePerks ? PERK_FORCE : PERK_BOOST);
+      // o marker do Battle Tactics e' garantia, nao preferencia: enquanto falta rank pro
+      // alvo, o no e' perseguido como um perk forcado (ver TACTICS_DEFAULT).
+      if(n.id === tid && (rk[n.id]||0) < tactics) val[n.id] += n.cost * PERK_FORCE;
     }
     const {dist,pred} = unlockDijkstra(v, rk);
     let best = null;
@@ -523,9 +551,9 @@ function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewB
       // noNewBranch==='deepen': so engrossa no que a build JA tem, nao acende no novo
       if(noNewBranch === 'deepen' && r < 1) continue;
       if(val[n.id] <= DEAD_EPS) continue;        // nao mira nos sem valor (mas eles entram como caminho)
-      // teto de rank do special (ver SPECIAL_CAP): acima do degrau ele para de ser alvo
-      const cap = n.special && SPECIAL_CAP[n.special.key];
-      if(cap && r >= cap) continue;
+      // alvo do Battle Tactics (ver TACTICS_DEFAULT): no rank pedido ele para de ser
+      // alvo, e com pedido 0 nunca chega a ser um.
+      if(n.id === tid && r >= tactics) continue;
       let cost, firstStep;
       if(connected(v, rk, n.id)){
         cost = nextCost(n, r); firstStep = n.id;
@@ -590,8 +618,14 @@ function autobuild(v, level, obj, opts){
   // perks pedidos que existem nesta arvore (id de outra vocacao e' ignorado)
   const perks = (opts.perks||[]).filter(id => IDX[v][id]);
   const perkSet = new Set(perks);
+  /* opts.tactics ausente = a build nao mexeu no marker -> default do objetivo. Um pedido
+     explicito (inclusive 0) manda, limitado ao maxRank da arvore. */
+  const tNode = tacticsNodeId(v);
+  const tWant = Math.max(0, Math.min(
+    opts.tactics == null ? defaultTactics(obj) : Math.floor(opts.tactics),
+    tNode ? nd(v, tNode).maxRank : 0));
   const grow = (floor, noNewBranch) => growGreedy(v, budget, obj, elem, rk, perkSet,
-    !!opts.forcePerks, floor, noNewBranch);
+    !!opts.forcePerks, floor, noNewBranch, tWant);
 
   grow(false);
 
@@ -654,6 +688,10 @@ function autobuild(v, level, obj, opts){
     /* leftover > 0 significa "a arvore nao tem mais nada pra comprar neste level",
        nao bug. spentFallback = quanto foi pro que sobrou, fora do tema. */
     leftover: budget - used, spentFallback,
+    /* want != got so acontece quando o level nao paga a escada inteira (unaffordable):
+       o alvo domina o greedy, entao nao existe "cabia e ele preferiu outra coisa". */
+    tactics: { want: tWant, got: tNode ? (rk[tNode]||0) : 0,
+               unaffordable: tacticsMinCost(v, tWant) > budget },
     perks: {
       reached, missing, forced: !!opts.forcePerks,
       unaffordable: missing.filter(id => !isFinite(fromScratch[id]) || fromScratch[id] > budget),
@@ -697,7 +735,8 @@ global.Engine = {
   damageElements, avatarNodeId, autobuild, PROFILES, blend, avatarUptime,
   OBJ_NEEDS, objAvailable, availableObjs, perkNodes, PERK_BOOST, PERK_FORCE,
   // valoracao exposta pra verificacao (tools/check-builds.js) e pra UI do elemento
-  nodeValue, valueCtx, elementObjs, noElement, defaultElement, DEAD_EPS, SPECIAL_CAP,
+  nodeValue, valueCtx, elementObjs, noElement, defaultElement, DEAD_EPS,
+  defaultTactics, tacticsNodeId, tacticsMinCost,
 };
 
 })(window);
