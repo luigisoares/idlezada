@@ -170,43 +170,71 @@ for (const [voc, node, el] of [['sorcerer','s_chain1','fire'], ['druid','d_chain
   console.log(`   ${voc}: chain ${a.spec.chain||0} · spellDmg +${a.bonus.spellDmgPct||0}%`);
 }
 
-console.log('== battle tactics: o degrau do rank 3, nunca alem, nunca no meio ==');
+console.log('== battle tactics: o rank que a build pediu, exatamente esse ==');
 {
-  /* O rank 3 destrava o kite infinito sem tank (texto do jogo, ver SPECIAL_CAP em
-     engine.js). Isso faz do no um DEGRAU, e degrau tem dois jeitos de errar:
-       - passar dele: r4..r10 custam 98 pontos e nao destravam mais nada;
-       - parar antes: r1/r2 gastam 2-6 pontos e nao destravam NADA. Pior que r0.
-     Os dois sao cobrados aqui. Ficar em r0 e' legitimo -- quer dizer que o caminho
-     ate o no nao compensou naquele orcamento, e o objetivo nao e' forcar. */
-  const CAP = E.SPECIAL_CAP.tactics;
+  /* O rank do Battle Tactics deixou de ser regra do motor e virou ESCOLHA da build --
+     o marker na lista de perks, de 0 a 10. O que se cobra aqui mudou junto: nao e' mais
+     "toda build no r3", e' "quem pediu N recebe N, e quem pediu zero nao recebe nada".
+
+     O r3 continua sendo o degrau que o texto do jogo descreve (nivel 3 de tatica
+     destrava o kite infinito sem tank), e por isso e' o default de quem farma sozinho
+     -- mas e' default, nao teto: quem pede outro numero manda. */
   const tacticsId = voc => (TREES[voc].find(n => n.special && n.special.key === 'tactics') || {}).id;
-  let atCap = 0, zero = 0, combos = 0;
+  const rankOf = (voc, b) => b.ranks[tacticsId(voc)] || 0;
+  const ask = (voc, lv, obj, tactics) =>
+    E.autobuild(voc, lv, obj, { element: E.defaultElement(voc), tactics });
+
+  /* 1. PEDIDO EXPLICITO E' ENTREGUE EXATO, do r0 ao r10. E' a diferenca entre garantir e
+        sugerir: com level de sobra, o numero que voltou tem que ser o que foi pedido. */
   for (const voc of E.VOCS) {
-    const id = tacticsId(voc);
-    ok(id, `${voc}: sem no de Battle Tactics na arvore`);
-    for (const obj of E.availableObjs(voc)) for (const lv of [300, 500, 900, 1500]) {
-      const r = build(voc, lv, obj).ranks[id] || 0;
-      combos++;
-      ok(r <= CAP, `${voc}/${obj}/${lv}: Battle Tactics r${r} passou do teto r${CAP}`);
-      if (r === CAP) atCap++; else if (r === 0) zero++;
+    ok(tacticsId(voc), `${voc}: sem no de Battle Tactics na arvore`);
+    for (let want = 0; want <= 10; want++) {
+      const b = ask(voc, 1500, 'dano', want);
+      ok(rankOf(voc, b) === want,
+        `${voc}/dano/1500 pediu Battle Tactics r${want} e a build ficou em r${rankOf(voc, b)}`);
+      ok(b.tactics && b.tactics.want === want && b.tactics.got === want,
+        `${voc}/dano/1500: build.tactics reportou ${JSON.stringify(b.tactics)} pro pedido r${want}`);
     }
   }
-  /* "nem r1 nem r2" e' a assercao que de fato calibra o peso: com peso baixo demais o
-     otimizador compra o comeco da escada e abandona no meio, que e' o pior resultado
-     possivel. MEDIDO em 144 combos: peso 0.5 deixava 49 builds paradas em r1/r2,
-     peso 1.0 deixava 20, peso 2.0 deixa 2. O limite fica em 5% pra nao ser um teste
-     de igualdade exata contra o numero de hoje. */
-    const stuck = combos - atCap - zero;
-  ok(stuck <= combos * 0.05,
-    `${stuck}/${combos} builds pararam em r1/r2 do Battle Tactics (gastaram sem destravar o kite)`);
-  console.log(`   ${atCap}/${combos} chegam no r${CAP} · ${zero} ficam em r0 (caminho nao compensou) · ${stuck} presas no meio`);
 
-  /* O teto tem que DEVOLVER ponto, nao so limitar: era o XP que torrava 110 pontos
-     indo ate o r10. Cobrado onde doia mais. */
-  for (const voc of ['paladin', 'sorcerer', 'druid']) {
-    const b = build(voc, 500, 'xp');
-    ok(E.totalCost(E.nd(voc, tacticsId(voc)), b.ranks[tacticsId(voc)] || 0) <= 12,
-      `xp/${voc}/500 gastou mais que os 12 pontos do degrau em Battle Tactics`);
+  /* 2. NUNCA ACIMA, NUNCA PARADO NO MEIO -- varrendo voc x objetivo x level. Passar do
+        pedido gasta ponto em escada triangular (r10 custa 110); parar no meio gasta sem
+        destravar nada, que e' pior que nao ir. Abaixo do pedido so e' legitimo quando o
+        level nao paga o caminho, e nesse caso a build tem que DIZER isso. */
+  let combos = 0, exato = 0;
+  for (const voc of E.VOCS) for (const obj of E.availableObjs(voc)) for (const lv of [300, 500, 900, 1500]) {
+    for (const want of [0, 3, 7]) {
+      const b = ask(voc, lv, obj, want), r = rankOf(voc, b);
+      combos++;
+      ok(E.valid(voc, b.ranks), `${voc}/${obj}/${lv} tactics r${want}: build invalida`);
+      ok(b.spent <= lv, `${voc}/${obj}/${lv} tactics r${want}: gastou ${b.spent} > ${lv}`);
+      ok(r <= want, `${voc}/${obj}/${lv}: pediu r${want} e a build foi ate r${r}`);
+      if (r === want) exato++;
+      else ok(b.tactics.unaffordable,
+        `${voc}/${obj}/${lv}: pediu r${want}, parou em r${r} e o level pagava o caminho`);
+    }
+  }
+  console.log(`   ${exato}/${combos} pedidos entregues na mosca`);
+
+  /* 3. DEFAULT POR OBJETIVO: quem farma sozinho ja vem com o degrau, o resto vem limpo.
+        O default mora no engine (e nao na tela) exatamente pra poder ser cobrado aqui. */
+  for (const voc of E.VOCS) for (const obj of E.availableObjs(voc)) {
+    const b = E.autobuild(voc, 1500, obj, { element: E.defaultElement(voc) });
+    const esperado = E.defaultTactics(obj);
+    ok(rankOf(voc, b) === esperado,
+      `${voc}/${obj}/1500 sem pedido: Battle Tactics r${rankOf(voc, b)}, o default do objetivo e' r${esperado}`);
+  }
+  ok(['xp', 'aoe', 'puller'].every(o => E.defaultTactics(o) === 3)
+    && ['dano', 'critico', 'avatar', 'tank', 'healer', 'curadano', 'atkspeed'].every(o => E.defaultTactics(o) === 0),
+    'defaultTactics: o degrau vem ligado no xp/aoe/puller e desligado no resto');
+
+  /* 4. O QUE FALTA E' LEVEL, NAO PRIORIDADE. Pedir alem do que o orcamento paga nao pode
+        produzir build invalida nem estourar o level tentando -- so reportar a falta. */
+  for (const voc of E.VOCS) {
+    const b = ask(voc, 30, 'dano', 10);
+    ok(E.valid(voc, b.ranks) && b.spent <= 30, `${voc}/dano/30 pediu r10 e quebrou a build`);
+    ok(b.tactics.got < 10 && b.tactics.unaffordable,
+      `${voc}/dano/30: pediu r10 com 30 pontos e reportou ${JSON.stringify(b.tactics)}`);
   }
 }
 
