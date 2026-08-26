@@ -170,6 +170,46 @@ for (const [voc, node, el] of [['sorcerer','s_chain1','fire'], ['druid','d_chain
   console.log(`   ${voc}: chain ${a.spec.chain||0} · spellDmg +${a.bonus.spellDmgPct||0}%`);
 }
 
+console.log('== battle tactics: o degrau do rank 3, nunca alem, nunca no meio ==');
+{
+  /* O rank 3 destrava o kite infinito sem tank (texto do jogo, ver SPECIAL_CAP em
+     engine.js). Isso faz do no um DEGRAU, e degrau tem dois jeitos de errar:
+       - passar dele: r4..r10 custam 98 pontos e nao destravam mais nada;
+       - parar antes: r1/r2 gastam 2-6 pontos e nao destravam NADA. Pior que r0.
+     Os dois sao cobrados aqui. Ficar em r0 e' legitimo -- quer dizer que o caminho
+     ate o no nao compensou naquele orcamento, e o objetivo nao e' forcar. */
+  const CAP = E.SPECIAL_CAP.tactics;
+  const tacticsId = voc => (TREES[voc].find(n => n.special && n.special.key === 'tactics') || {}).id;
+  let atCap = 0, zero = 0, combos = 0;
+  for (const voc of E.VOCS) {
+    const id = tacticsId(voc);
+    ok(id, `${voc}: sem no de Battle Tactics na arvore`);
+    for (const obj of E.availableObjs(voc)) for (const lv of [300, 500, 900, 1500]) {
+      const r = build(voc, lv, obj).ranks[id] || 0;
+      combos++;
+      ok(r <= CAP, `${voc}/${obj}/${lv}: Battle Tactics r${r} passou do teto r${CAP}`);
+      if (r === CAP) atCap++; else if (r === 0) zero++;
+    }
+  }
+  /* "nem r1 nem r2" e' a assercao que de fato calibra o peso: com peso baixo demais o
+     otimizador compra o comeco da escada e abandona no meio, que e' o pior resultado
+     possivel. MEDIDO em 144 combos: peso 0.5 deixava 49 builds paradas em r1/r2,
+     peso 1.0 deixava 20, peso 2.0 deixa 2. O limite fica em 5% pra nao ser um teste
+     de igualdade exata contra o numero de hoje. */
+    const stuck = combos - atCap - zero;
+  ok(stuck <= combos * 0.05,
+    `${stuck}/${combos} builds pararam em r1/r2 do Battle Tactics (gastaram sem destravar o kite)`);
+  console.log(`   ${atCap}/${combos} chegam no r${CAP} · ${zero} ficam em r0 (caminho nao compensou) · ${stuck} presas no meio`);
+
+  /* O teto tem que DEVOLVER ponto, nao so limitar: era o XP que torrava 110 pontos
+     indo ate o r10. Cobrado onde doia mais. */
+  for (const voc of ['paladin', 'sorcerer', 'druid']) {
+    const b = build(voc, 500, 'xp');
+    ok(E.totalCost(E.nd(voc, tacticsId(voc)), b.ranks[tacticsId(voc)] || 0) <= 12,
+      `xp/${voc}/500 gastou mais que os 12 pontos do degrau em Battle Tactics`);
+  }
+}
+
 console.log('== xp: exp no teto, loot so de pedagio, e o Avatar entra quando paga ==');
 {
   /* xp/h = exp% x kills/h, entao o objetivo tem DOIS lados e os dois sao cobrados:

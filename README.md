@@ -88,6 +88,37 @@ falls behind on a pack of four, and AoE is the reverse.
   stays a distinct build. If you want raw damage *with* the Avatar, that is the Avatar button.
 - **Atk Speed** — attack speed + light damage/crit.
 
+### Battle Tactics: a step, not a slope
+
+Every objective now tries to fit **exactly 3 ranks of Battle Tactics** when the path is
+affordable, and the optimizer is forbidden from buying a fourth. The node is not a linear stat,
+even though its in-tree description makes it look like one — the game's combat-AI screen spells
+out the rest: *"the perfect behavior (aim, positioning, kiting) exists from level 1 and the % is
+the chance of nailing it on each decision — level provides half the quality (up to 2000) and the
+Battle Tactics node the other half (each rank is also worth +100 levels; **tactics level 3
+unlocks the infinite kite without a tank**)."*
+
+Rank costs are triangular (`cost·r(r+1)/2`), so the step is cheap and everything past it is not:
+
+| rank | 1 | 2 | **3** | 4 | 10 |
+|---|---|---|---|---|---|
+| points spent | 2 | 6 | **12** | 20 | 110 |
+
+Twelve points buy survivability; the next 98 buy a slightly higher hit rate on an AI that already
+kites on its own. Before the cap, XP was buying rank 10 on the paladin, sorcerer and druid — 110
+points, 98 of them past the step. Handing those back is why adding this to *every* build still
+came out **damage-positive** on average (druid/xp/300 gained 21%).
+
+The cap lives with the engine's other limits rather than in the objective profiles, for the same
+reason `maxRank` lives in the tree: it is a fact about the game, not a preference. Tactics is
+weighted identically (2.0) across every objective, because kiting is not a build style — it is
+whatever keeps the character alive while it farms.
+
+**It is never forced.** Reaching the node still has to pay for its path, so 16 of 144 measured
+combos skip it entirely — mostly the monk at low level, whose `m_tactics` sits behind Combat
+Mastery. What the calibration does guard against is the worst outcome of all: stopping at rank 1
+or 2, which spends points and unlocks nothing. Two of 144 do that today; at weight 0.5 it was 49.
+
 ### Perks to prioritize
 
 Each card has a collapsible list of the tree's **notables** (Avatar of Steel, Executioner,
