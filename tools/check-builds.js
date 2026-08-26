@@ -170,6 +170,50 @@ for (const [voc, node, el] of [['sorcerer','s_chain1','fire'], ['druid','d_chain
   console.log(`   ${voc}: chain ${a.spec.chain||0} · spellDmg +${a.bonus.spellDmgPct||0}%`);
 }
 
+console.log('== xp: exp no teto, loot so de pedagio, e o Avatar entra quando paga ==');
+{
+  /* xp/h = exp% x kills/h, entao o objetivo tem DOIS lados e os dois sao cobrados:
+     o exp tem que estar no teto que a arvore oferece, e o dano nao pode ficar muito
+     atras da build de dano pura -- e' esse segundo lado que a versao antiga perdia,
+     com pesos de dano desproporcionais entre si (critDmg 0.1 vs critChance 0.3). */
+  const expCeiling = voc => TREES[voc].reduce((s,n) =>
+    s + (n.per && n.per.expPct ? n.per.expPct * n.maxRank : 0), 0);
+  const lootNodes = voc => TREES[voc].filter(n => n.per && n.per.lootPct).map(n => n.id);
+  for (const voc of E.VOCS.filter(v => E.objAvailable(v, 'xp'))) {
+    const b = build(voc, 1500, 'xp'), a = E.aggregate(voc, b.ranks);
+    ok((a.bonus.expPct||0) >= expCeiling(voc) - 1e-9,
+      `xp/${voc}/1500: exp em ${a.bonus.expPct||0}%, o teto da arvore e' ${expCeiling(voc)}%`);
+
+    /* LOOT: so pode estar aceso o que e' caminho obrigatorio. O criterio nao e' um
+       numero magico -- e' "tira o no e ve se a build continua valida", o mesmo teste
+       da poda. O Guiding Presence do monk e' notavel de exp+loot no MESMO no, entao
+       ele passa por ser nó de exp, nao por ser caminho. */
+    for (const id of lootNodes(voc)) {
+      if (!(b.ranks[id] > 0)) continue;
+      const node = TREES[voc].find(n => n.id === id);
+      if (node.per.expPct) continue;                   // no misto: entrou pelo exp
+      const without = Object.assign({}, b.ranks); delete without[id];
+      ok(!E.valid(voc, without) || b.ranks[id] === 1,
+        `xp/${voc}/1500: ${nameOf(voc,id)} r${b.ranks[id]} de loot sem ser pedagio de caminho`);
+    }
+
+    /* DANO: com o exp saturando em 55-165 pontos, o resto do orcamento e' build de
+       dano e nao ha desculpa pra ela ser ruim. 0.85 e' folga pro que o exp custou. */
+    const mine = metrics(voc, 1500, 'xp'), pure = metrics(voc, 1500, 'dano');
+    ok(mine.single >= pure.single * 0.85,
+      `xp/${voc}/1500: dano ${mine.single.toFixed(2)} contra ${pure.single.toFixed(2)} do dano puro`);
+    console.log(`   ${voc}: exp +${a.bonus.expPct||0}% (teto ${expCeiling(voc)}%) · dano `
+      + `${mine.single.toFixed(2)} vs ${pure.single.toFixed(2)} puro · avatar ${(100*mine.up).toFixed(0)}%`);
+  }
+  /* O no do Avatar e' a excecao declarada do perfil xp (ver engine.js). Cobrada onde
+     ela vale: no lv500 ele NAO pode entrar (300 pontos nao pagam em 500), no lv1500
+     ele tem que entrar. Se um dos dois inverter, o peso saiu de calibragem. */
+  for (const voc of E.VOCS.filter(v => E.objAvailable(v, 'xp') && E.avatarNodeId(v))) {
+    ok(!(metrics(voc, 500, 'xp').up > 0), `xp/${voc}/500 gastou no Avatar num orcamento de 500`);
+    ok(metrics(voc, 1500, 'xp').up > 0, `xp/${voc}/1500 nao alcancou o Avatar`);
+  }
+}
+
 console.log('== crit: o objetivo constroi crit de verdade (nao vira dano disfarcado) ==');
 for (const voc of ['knight','sorcerer']) {
   const c = agg(voc, 900, 'critico').bonus, d = agg(voc, 900, 'dano').bonus;

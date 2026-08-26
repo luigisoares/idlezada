@@ -64,12 +64,28 @@ falls behind on a pack of four, and AoE is the reverse.
 - **Heal + Dmg** — the hybrid: healing and damage in the same build. Weighted 0.65 toward damage on
   purpose — the druid's healing branch saturates around +61%, so a straight 50/50 just produces a
   healer with leftovers.
-- **XP** — exp gains + tactics + light damage to keep kills fast. **Loot is worth zero here**:
-  it does not level anyone up, and on the druid it was the objective's second biggest expense —
-  Fortune + Lucky Charm ate 165 points at level 1000 *after* exp had already maxed out the tree's
-  ceiling (+22%). Those points now buy damage, which is what actually raises xp/h. The loot ranks
-  that remain are mandatory path (the druid's Herbalist requires Fortune, Windfall requires Lucky
-  Charm), and the monk's Guiding Presence gives exp and loot in the same node.
+- **XP** — `xp/h = exp% × kills/h`, so the objective has **two** sides and buys both. Exp saturates
+  cheap and early (55 points on the sorcerer for the tree's +10% ceiling, 165 on the druid for +22%),
+  which means everything after that is a damage build — so it is weighted as a *real* one, on the
+  same scale as Damage, instead of the skewed "light damage" it used to carry (crit damage at a
+  third of crit chance, when the two multiply). **Loot is worth zero here**: it does not level anyone
+  up, and on the druid it was the objective's second biggest expense — Fortune + Lucky Charm ate 165
+  points at level 1000 *after* exp had already maxed the ceiling. The loot ranks that remain are
+  mandatory path (Herbalist requires Fortune, Windfall requires Lucky Charm), and the monk's Guiding
+  Presence gives exp and loot in the same node.
+
+  XP is also **the one objective besides Avatar that chases the Avatar node**, and the exception is
+  deliberate. The rule zeroing that node everywhere else exists because Damage / Crit / AoE / Atk
+  Speed are *styles* of hitting: let them all buy the same tier-11 node and they collapse into one
+  build, and the preset stops answering what was asked. XP is not a style, it is a metric — there is
+  no "XP of crit" versus "XP of attack speed" to collapse — so there is nothing to protect, and at
+  43–55% measured uptime the node is too big to leave on the table. It pays for itself only when the
+  budget is there: it stays out at level 500 on every vocation and comes in from roughly level 900.
+
+  **Consequence worth knowing:** from around level 1500, XP shows a *higher* damage index than the
+  Damage button on the paladin, sorcerer and monk (6.03 vs 4.49 on the paladin at 1500). That is not
+  a bug and not XP being secretly better — it is Damage deliberately declining the Avatar node so it
+  stays a distinct build. If you want raw damage *with* the Avatar, that is the Avatar button.
 - **Atk Speed** — attack speed + light damage/crit.
 
 ### Perks to prioritize
