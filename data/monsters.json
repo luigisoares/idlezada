@@ -11072,7 +11072,7 @@
  "minion_of_versperoth": {
   "name": "Minion of Versperoth",
   "hp": 9000,
-  "exp": 0,
+  "exp": 4000,
   "armor": 60,
   "dmg": [
    0,
@@ -16023,6 +16023,531 @@
     "min": 400,
     "max": 500,
     "chance": 35,
+    "interval": 3000
+   }
+  ]
+ },
+ "paladin_sentinel": {
+  "name": "Paladin Sentinel",
+  "hp": 10000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 400,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "holy",
+    "min": 200,
+    "max": 400,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "paladin_guard": {
+  "name": "Paladin Guard",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 50,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 400,
+    "chance": 100,
+    "interval": 1500
+   },
+   {
+    "element": "holy",
+    "min": 200,
+    "max": 400,
+    "chance": 60,
+    "interval": 5000
+   }
+  ]
+ },
+ "paladin_chief": {
+  "name": "Paladin Chief",
+  "hp": 200000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   1500,
+   3300
+  ],
+  "resist": {
+   "physical": 40,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 60,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 1800,
+    "max": 2800,
+    "chance": 100,
+    "interval": 1500
+   },
+   {
+    "element": "holy",
+    "min": 3500,
+    "max": 4500,
+    "chance": 80,
+    "interval": 3000
+   }
+  ]
+ },
+ "druid_sentinel": {
+  "name": "Druid Sentinel",
+  "hp": 10000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 300,
+    "max": 400,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "ice",
+    "min": 200,
+    "max": 400,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "druid_guard": {
+  "name": "Druid Guard",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   400,
+   800
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 40,
+   "fire": 0,
+   "ice": 40,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 600,
+    "max": 800,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "ice",
+    "min": 400,
+    "max": 800,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "druid_chief": {
+  "name": "Druid Chief",
+  "hp": 200000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   800,
+   1500
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 50,
+   "fire": 0,
+   "ice": 50,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 1200,
+    "max": 2200,
+    "chance": 60,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1800,
+    "max": 2800,
+    "chance": 50,
+    "interval": 3000
+   }
+  ]
+ },
+ "sorcerer_sentinel": {
+  "name": "Sorcerer Sentinel",
+  "hp": 10000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 300,
+    "max": 400,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "energy",
+    "min": 200,
+    "max": 400,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "sorcerer_guard": {
+  "name": "Sorcerer Guard",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 40,
+   "earth": 0,
+   "fire": 40,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 300,
+    "max": 400,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "energy",
+    "min": 200,
+    "max": 400,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "sorcerer_chief": {
+  "name": "Sorcerer Chief",
+  "hp": 200000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   800,
+   1500
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 50,
+   "earth": 0,
+   "fire": 50,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 1200,
+    "max": 2200,
+    "chance": 60,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 1800,
+    "max": 2800,
+    "chance": 50,
+    "interval": 3000
+   }
+  ]
+ },
+ "knight_sentinel": {
+  "name": "Knight Sentinel",
+  "hp": 10000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   300,
+   600
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 400,
+    "max": 600,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 600,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "knight_guard": {
+  "name": "Knight Guard",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   300,
+   600
+  ],
+  "resist": {
+   "physical": 40,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 400,
+    "max": 600,
+    "chance": 100,
+    "interval": 1500
+   },
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 600,
+    "chance": 60,
+    "interval": 5000
+   }
+  ]
+ },
+ "knight_chief": {
+  "name": "Knight Chief",
+  "hp": 200000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   1700,
+   2700
+  ],
+  "resist": {
+   "physical": 60,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 2300,
+    "max": 3200,
+    "chance": 70,
+    "interval": 3000
+   },
+   {
+    "element": "death",
+    "min": 3700,
+    "max": 4700,
+    "chance": 60,
+    "interval": 4000
+   }
+  ]
+ },
+ "monk_sentinel": {
+  "name": "Monk Sentinel",
+  "hp": 10000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   200,
+   400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 300,
+    "max": 400,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "ice",
+    "min": 200,
+    "max": 400,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "monk_guard": {
+  "name": "Monk Guard",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   400,
+   800
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 40,
+   "fire": 0,
+   "ice": 40,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 600,
+    "max": 800,
+    "chance": 60,
+    "interval": 1500
+   },
+   {
+    "element": "ice",
+    "min": 400,
+    "max": 800,
+    "chance": 30,
+    "interval": 5000
+   }
+  ]
+ },
+ "monk_chief": {
+  "name": "Monk Chief",
+  "hp": 200000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   800,
+   1500
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 50,
+   "fire": 0,
+   "ice": 50,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 1200,
+    "max": 2200,
+    "chance": 60,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1800,
+    "max": 2800,
+    "chance": 50,
     "interval": 3000
    }
   ]

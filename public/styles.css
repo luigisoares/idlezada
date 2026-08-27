@@ -31,8 +31,16 @@ a{color:inherit}
 
 /* ---- builds grid ---- */
 .lead{color:var(--dim);font-size:13px;margin:0 0 20px;max-width:820px}
+/* A grade segue quantos cards estao na tela (a classe vem do render). Com o
+   paladino escondido sao as tres de sempre; trazendo ele, quatro lado a lado. */
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-@media(max-width:980px){.slots{grid-template-columns:1fr}}
+.slots.n1{grid-template-columns:1fr}
+.slots.n2{grid-template-columns:repeat(2,1fr)}
+.slots.n4{grid-template-columns:repeat(4,1fr);gap:14px}
+/* quatro cards nao cabem confortavelmente abaixo de ~1300px: caem pra 2x2 antes
+   de espremer, e so viram coluna unica junto com o resto. */
+@media(max-width:1300px){.slots.n4{grid-template-columns:repeat(2,1fr);gap:18px}}
+@media(max-width:980px){.slots,.slots.n2,.slots.n4{grid-template-columns:1fr}}
 
 .slot{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;
   display:flex;flex-direction:column;gap:11px}
@@ -42,6 +50,26 @@ a{color:inherit}
 .slot input.label{flex:1;min-width:0;background:transparent;border:0;border-bottom:1px dashed var(--line);
   color:var(--txt);font:600 17px/1.2 Georgia,serif;padding:2px 2px 5px}
 .slot input.label:focus{outline:0;border-bottom-color:var(--gold)}
+
+/* ---- esconder / trazer de volta uma build ----------------------------- */
+/* Esconder nao apaga o slot: ele sai da grade e vira um chip aqui em cima. E' o
+   estado em que o paladino comeca -- a vocacao que voce esta subindo existe pra
+   ir montando a build, sem tomar espaco das tres que voce joga hoje. */
+.card-hide{background:none;border:0;color:var(--dimmer);font:inherit;font-size:12px;
+  cursor:pointer;padding:4px 2px;flex:none;line-height:1}
+.card-hide:hover{color:#ff8b7a}
+
+.hidden-builds{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.hidden-builds:empty{margin:0}
+.hb-k{color:var(--dim);font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;margin-right:2px}
+.hb{display:inline-flex;align-items:center;gap:7px;background:var(--panel);
+  border:1px dashed var(--line);border-radius:10px;color:var(--dim);
+  font:inherit;font-size:12.5px;padding:6px 11px;cursor:pointer}
+.hb:hover{color:var(--txt);border-color:var(--hb);border-style:solid}
+.hb-dot{width:9px;height:9px;border-radius:3px;background:var(--hb);flex:none}
+.hb-plus{color:var(--dimmer);font-weight:700;margin-left:2px}
+.hb:hover .hb-plus{color:var(--hb)}
 
 .field{display:flex;flex-direction:column;gap:5px}
 .field > span.k{color:var(--dim);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
@@ -397,3 +425,124 @@ button.gold:hover{background:#f0d27e}
 .cm-hint{color:var(--dimmer);font-size:10.5px;font-style:italic;padding-top:3px}
 /* charm colocado por resistencia: sem DPS colado nao existe % pra mostrar */
 .pl-q{color:var(--gold-dim) !important;font-size:10px}
+
+/* ---- Loot: de qual bicho sai o item, e em que hunt sai mais ----------- */
+/* A tabela imita a da aba Hunts (mesma grade, mesmos tons) de proposito: sao a
+   mesma lista de hunts vista por outra pergunta, e trocar a aparencia faria
+   parecer outro dado. So as colunas mudam.
+
+   A BARRA usa .hunts-bar (align-items:flex-end) e nao .bosses-bar
+   (align-items:center): todo controle daqui e' um .field rotulado, que e' uma
+   COLUNA de duas linhas. Centralizado, o campo com rotulo desce em relacao aos
+   sem rotulo e a barra inteira sai torta -- foi o que aconteceu na primeira
+   versao. Alinhando pela base, os campos se encostam na mesma linha. */
+.loot-bar{margin-bottom:12px}
+.loot-bar .lf-search{flex:1 1 300px;max-width:380px}
+.loot-bar .lf-wrap{position:relative;display:flex}
+.loot-bar #loot-search{width:100%;background:#0b100e;border:1px solid var(--line);
+  color:var(--txt);border-radius:9px;padding:9px 38px 9px 12px;font:inherit}
+.loot-bar #loot-search:focus{outline:2px solid #2f4a3d;outline-offset:1px}
+.loot-bar #loot-level{width:104px}
+.loot-bar select{min-width:168px}
+
+/* estrela: uma so aparencia, na barra, no chip e na lista da hunt */
+.lstar{background:none;border:0;padding:0;cursor:pointer;color:var(--dimmer);
+  font:inherit;line-height:1}
+.lstar:hover{color:var(--gold-dim)}
+.lstar.on{color:var(--gold)}
+.lstar.big{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:16px}
+.lstar.big.off{cursor:default;opacity:.35}
+.lstar.big.off:hover{color:var(--dimmer)}
+
+/* chips da lista favorita */
+.loot-favs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px}
+.loot-favs:empty{margin:0}
+.lfav-k{color:var(--dim);font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;margin-right:2px}
+.lfav{display:inline-flex;align-items:stretch;background:var(--panel2);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lfav.on{border-color:var(--gold-dim)}
+.lfav-go{background:none;border:0;color:var(--txt);font:inherit;font-size:11.5px;
+  padding:4px 4px 4px 9px;cursor:pointer}
+.lfav.on .lfav-go{color:var(--gold)}
+.lfav-x{background:none;border:0;color:var(--dimmer);font:inherit;font-size:11px;
+  padding:4px 8px 4px 4px;cursor:pointer}
+.lfav-x:hover{color:#ff8b7a}
+.lfav-all{background:none;border:1px dashed var(--line);color:var(--dim);border-radius:8px;
+  font:inherit;font-size:11.5px;padding:4px 9px;cursor:pointer}
+.lfav-all:hover{color:var(--txt);border-color:var(--gold-dim)}
+
+.loot-info{color:var(--dim);font-size:12.5px;margin:0 0 6px;
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.loot-info b{color:var(--txt)}
+.loot-info .hint{color:var(--dimmer)}
+.loot-note{font-size:12px;color:var(--dim);margin:0 0 12px}
+.loot-note:empty{margin:0}
+.loot-note b{color:var(--txt)}
+.lsug{background:var(--panel2);border:1px solid var(--line);color:var(--dim);
+  border-radius:7px;padding:2px 8px;margin:0 4px 0 0;font:inherit;font-size:11.5px;cursor:pointer}
+.lsug:hover{color:var(--txt);border-color:var(--gold-dim)}
+
+/* tres modos, tres grades. Menos colunas que a primeira versao: sem /hora e sem
+   /1M HP, o minimo caiu de 940px pra 720 e a tabela para de espremer. */
+.lt-head,.lt-row{display:grid;
+  grid-template-columns:18px 1.1fr 46px 1.9fr 104px 92px;
+  gap:10px;align-items:center;padding:9px 13px;min-width:720px}
+.lt-head-b,.lt-row-b{grid-template-columns:18px 1.1fr 46px 1.9fr 104px 104px}
+.lt-head-g,.lt-row-g{grid-template-columns:18px 1.1fr 46px 62px 1fr 1fr 1fr}
+.lt-head{background:var(--panel2);color:var(--dim);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em}
+.lt-item{border-top:1px solid var(--line)}
+.lt-item:first-child{border-top:0}
+.lt-item:nth-child(even){background:rgba(255,255,255,.018)}
+.lt-row{font-size:12.5px;cursor:pointer}
+.lt-row:hover,.lt-row.open{background:var(--panel2)}
+.lt-row.locked{opacity:.42}
+.lt-row .caret{color:var(--dim);font-size:10px}
+.lt-row .hn{font-weight:600}
+.lt-row .hl{font-variant-numeric:tabular-nums}
+.lt-row .hl.bad{color:#ff8b7a}
+.lt-head .num,.lt-row .num{text-align:right;font-variant-numeric:tabular-nums}
+.lt-row .num.big{color:var(--gold);font-weight:700}
+.lt-row .num.big em{color:var(--dimmer);font-style:normal;font-size:10.5px;font-weight:400}
+.lt-row .num.dim{color:var(--dim)}
+.lt-empty{padding:22px 13px;color:var(--dim);font-size:13px}
+.lt-empty b{color:var(--txt)}
+.lt-empty .dim{color:var(--dimmer);font-size:12px}
+
+/* de qual bicho o item vem, e quantas vezes ele morre no clear */
+.lt-row .lsrc{color:var(--dim);font-size:11.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.lt-row .lsrc b{color:var(--txt);font-weight:600}
+.lt-row .lsrc em{color:var(--dimmer);font-style:normal;font-size:10.5px;margin-left:4px}
+.lsrc .sep{color:var(--dimmer);margin:0 5px}
+
+/* quais favoritos a hunt cobre */
+.lcov{display:flex;flex-wrap:wrap;gap:4px 8px;overflow:hidden}
+.lcov-i{color:var(--txt);font-size:11.5px;white-space:nowrap}
+.lcov-i em{color:var(--dimmer);font-style:normal;font-size:10.5px;margin-left:4px}
+
+/* detalhe: o loot inteiro da hunt */
+.ltd{padding:4px 13px 14px;background:var(--panel)}
+.ltd-sum{display:flex;flex-wrap:wrap;gap:8px 18px;padding:8px 0 10px;font-size:12px;
+  color:var(--dim);font-variant-numeric:tabular-nums}
+.ltd-sum em{font-style:normal;font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--dimmer);margin-right:5px}
+.ltd-sum b{color:var(--txt);font-weight:700}
+.ltd-warn{font-size:11.5px;color:var(--gold-dim);padding:0 0 8px}
+.ltd-warn b{color:var(--gold)}
+.ltd-row{display:grid;grid-template-columns:1.15fr 1.5fr 88px 78px 74px 84px;gap:10px;
+  padding:5px 0;font-size:12px;border-bottom:1px solid #1a241f}
+.ltd-row:last-child{border-bottom:0}
+.ltd-row.ltd-head{color:var(--dim);font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;font-weight:700}
+.ltd-row .num{text-align:right;font-variant-numeric:tabular-nums}
+.ltd-row .ltd-n{display:flex;align-items:center;gap:6px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ltd-row .ltd-s{color:var(--dim);font-size:11px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ltd-row .ltd-s b{color:var(--txt);font-weight:600}
+.ltd-row .ltd-s em{color:var(--dimmer);font-style:normal;font-size:10px;margin-left:4px}
+/* o item favoritado, destacado dentro da lista da hunt */
+.ltd-row.hit{background:rgba(232,197,106,.09)}
+.ltd-row.hit .ltd-n{color:var(--gold);font-weight:700}

@@ -644,9 +644,222 @@ function cheaperTier(charm, tier, creature, ctx) {
   return null;
 }
 
+/* ============================================================================
+   LOOT — quanto de cada item uma hunt rende, e qual hunt rende mais de um item
+
+   O bundle traz, por monstro, `loot:[{name, chance, max}]`. `chance` e' por
+   100.000 (chance:750 = 0,75%) e `max` marca o stackavel: a quantidade rola
+   uniforme de 1 a max.
+
+   NADA DISSO E' CHUTE -- fecha contra um numero que o repo ja tinha por outra
+   via. Somando (gold coin + platinum + crystal) x chance/1e5 x (1+max)/2 pelas
+   mortes de um clear, o resultado bate com o `goldPerClear` gravado em
+   data/hunts.json nas 79 hunts, exato. Isso prende de uma vez a escala da
+   chance, a media do max e a contagem de mortes daqui de baixo. O
+   tools/check-loot.js roda essa igualdade.
+
+   PESO POR MORTE, NAO POR HP. O `packWeights` pesa cada monstro pelo HP que ele
+   representa, porque lá o que se mede e' tempo gasto batendo (elemento, charm).
+   Loot nao: um bicho de 100 HP e um de 10.000 dropam uma vez cada. Por isso
+   existe o `killsPerClear` separado, e nao um parametro no packWeights -- sao
+   duas perguntas diferentes sobre o mesmo pack, e misturar as duas foi o unico
+   jeito de errar isso.
+
+   A RARIDADE (Comum/Incomum/Raro/Epico/Lendario/Mitico) NAO ESTA AQUI. Ela e'
+   outro eixo -- a qualidade que o item rola QUANDO cai -- e vem do servidor
+   (admin.rarityDrop), nao do bundle. O que esta aqui e' a chance de cair.
+   ============================================================================ */
+
+/* quantas mortes de cada criatura um clear inteiro produz: as waves 1-9 pelo
+   peso de spawn, mais 1 do boss da wave 10. */
+function killsPerClear(hunt) {
+  const list = (hunt && hunt.monsters) || [];
+  const share = m => (m.spawn != null ? m.spawn : 1);
+  const totShare = list.reduce((s, m) => s + share(m), 0) || 1;
+  const spawns = spawnCount(hunt && hunt.packBase);
+  const byKey = new Map();
+  const add = (key, name, n) => {
+    const id = key || String(name || '').toLowerCase();
+    if (!byKey.has(id)) byKey.set(id, { key: id, name, kills: 0 });
+    byKey.get(id).kills += n;
+  };
+  for (const m of list) add(m.key, m.name, spawns * share(m) / totShare);
+  /* o boss da wave 10 e' um dos bichos do pack (mesma key, HP x3): uma morte a
+     mais na criatura dele, nao uma criatura nova. */
+  const b = hunt && hunt.boss;
+  if (b && b.hp) add(b.key, b.name, 1);
+  return [...byKey.values()].sort((a, b2) => b2.kills - a.kills);
+}
+
+/* unidades esperadas por morte de uma linha de loot */
+function lootPerKill(row) {
+  const p = (row && row.chance || 0) / 1e5;
+  return p * (row && row.max ? (1 + row.max) / 2 : 1);
+}
+
+/* MESMO ITEM EM VARIAS LINHAS DA MESMA CRIATURA e' normal, nao e' erro do dado:
+   o stack tem teto, entao um bicho que solta 297 gold vem em tres linhas de ate
+   100. Sao rolagens independentes, logo a esperanca SOMA. E' exatamente somando
+   assim que o gold calculado bate com o goldPerClear gravado -- se isso virar
+   "pegue a maior linha" algum dia, o check-loot.js cai no bloco 3.
+
+   Pra tela, as linhas de uma mesma criatura viram UMA fonte: mostrar "Spectre
+   33%" tres vezes seguidas nao informa nada. `rows` guarda quantas eram. */
+function foldSource(acc, k, r) {
+  let f = acc.get(k.key);
+  if (!f) acc.set(k.key, f = { key: k.key, name: k.name, kills: k.kills, chance: 0, max: 0, rows: 0, perKill: 0 });
+  f.rows++;
+  f.perKill += lootPerKill(r);
+  if (r.chance > f.chance) f.chance = r.chance;   // a maior, pra rotular a fonte
+  if ((r.max || 0) > f.max) f.max = r.max || 0;
+  return f;
+}
+
+/* a tabela de loot de um monstro, normalizada. Aceita as duas formas: o objeto
+   de data/loot.json e o array compacto de public/loot.js ([name,chance,max]). */
+function lootRows(key, loot) {
+  const table = (loot || global.LOOT || {}).m || (loot || global.LOOT || {}).monsters || {};
+  const raw = table[key];
+  if (!raw) return null;
+  return raw.map(r => (Array.isArray(r)
+    ? { name: r[0], chance: r[1], max: r[2] || 0 }
+    : { name: r.name, chance: r.chance, max: r.max || 0 }));
+}
+function lootPrices(loot) {
+  const src = loot || global.LOOT || {};
+  return src.p || src.prices || {};
+}
+
+/* TUDO que uma hunt rende por clear. `gold` so conta o item que tem preco no
+   bundle -- 225 dos itens alcancaveis nao tem, e somar 0 por eles seria mentir
+   que o total e' o total. Por isso `priced` volta separado. */
+function huntLoot(hunt, loot) {
+  const prices = lootPrices(loot);
+  const kills = killsPerClear(hunt);
+  const byItem = new Map();
+  const missing = [];
+  for (const k of kills) {
+    const rows = lootRows(k.key, loot);
+    if (!rows) { missing.push(k.name || k.key); continue; }
+    for (const r of rows) {
+      if (!byItem.has(r.name)) byItem.set(r.name, { name: r.name, perClear: 0, src: new Map() });
+      const it = byItem.get(r.name);
+      it.perClear += k.kills * lootPerKill(r);
+      foldSource(it.src, k, r);
+    }
+  }
+  const items = [...byItem.values()];
+  for (const it of items) {
+    it.price = prices[it.name] != null ? prices[it.name] : null;
+    it.gold = it.price != null ? it.perClear * it.price : 0;
+    it.from = [...it.src.values()].sort((a, b) => b.chance - a.chance);
+    delete it.src;
+  }
+  items.sort((a, b) => b.gold - a.gold || b.perClear - a.perClear);
+  return {
+    items,
+    gold: items.reduce((s, it) => s + it.gold, 0),
+    priced: items.filter(it => it.price != null).length,
+    missing,                       // criaturas da hunt sem tabela de loot no bundle
+  };
+}
+
+/* o inverso: das hunts dadas, quais rendem o item, e quanto.
+   `perMhp` e' por 1M de HP moido -- o ranking justo quando nao ha DPS colado,
+   porque um clear de lvl 800 e' varias vezes mais gordo que um de lvl 100. */
+function lootSources(itemName, hunts, loot) {
+  const want = String(itemName || '').toLowerCase();
+  if (!want) return [];
+  const list = hunts || global.HUNTS || [];
+  const out = [];
+  for (const h of list) {
+    let perClear = 0;
+    const src = new Map();
+    for (const k of killsPerClear(h)) {
+      const rows = lootRows(k.key, loot);
+      if (!rows) continue;
+      for (const r of rows) {
+        if (String(r.name).toLowerCase() !== want) continue;
+        perClear += k.kills * lootPerKill(r);
+        foldSource(src, k, r);
+      }
+    }
+    if (perClear <= 0) continue;
+    out.push({ hunt: h, id: h.id, name: h.name, minLevel: h.minLevel, perClear,
+      from: [...src.values()].sort((a, b) => b.chance - a.chance),
+      perMhp: h.hpPerClear ? perClear / (h.hpPerClear / 1e6) : 0 });
+  }
+  return out.sort((a, b) => b.perClear - a.perClear);
+}
+
+/* UMA LISTA de itens contra as hunts: quantos da lista cada hunt cobre, e quanto
+   valem por clear. E' a pergunta de quem tem cinco itens em mente em vez de um --
+   e ela nao e' `lootSources` rodado N vezes e somado, porque "quantidade" nao
+   soma entre itens diferentes (um amuleto + uma moeda nao sao dois de nada). O
+   que soma e' COBERTURA (quantos da lista caem ali) e GOLD (o que essa fatia
+   vale), nessa ordem. */
+function lootBasket(names, hunts, loot) {
+  const want = new Map();
+  for (const n of (names || [])) {
+    const s = String(n || '').trim();
+    if (s) want.set(s.toLowerCase(), s);
+  }
+  if (!want.size) return [];
+  const list = hunts || global.HUNTS || [];
+  const prices = lootPrices(loot);
+  const out = [];
+
+  for (const h of list) {
+    /* uma passada pelo pack, colhendo so o que esta na lista */
+    const got = new Map();
+    for (const k of killsPerClear(h)) {
+      const rows = lootRows(k.key, loot);
+      if (!rows) continue;
+      for (const r of rows) {
+        const key = String(r.name).toLowerCase();
+        if (!want.has(key)) continue;
+        if (!got.has(key)) got.set(key, { name: want.get(key), perClear: 0, src: new Map() });
+        const it = got.get(key);
+        it.perClear += k.kills * lootPerKill(r);
+        foldSource(it.src, k, r);
+      }
+    }
+    if (!got.size) continue;
+    const hits = [...got.values()].map(it => {
+      const price = prices[it.name] != null ? prices[it.name] : null;
+      return { name: it.name, perClear: it.perClear, price,
+        gold: price != null ? it.perClear * price : 0,
+        from: [...it.src.values()].sort((a, b) => b.chance - a.chance) };
+    }).sort((a, b) => b.gold - a.gold || b.perClear - a.perClear);
+    out.push({ hunt: h, id: h.id, name: h.name, minLevel: h.minLevel,
+      covered: hits.length, wanted: want.size, hits,
+      gold: hits.reduce((s, x) => s + x.gold, 0) });
+  }
+  return out.sort((a, b) => b.covered - a.covered || b.gold - a.gold);
+}
+
+/* todo item alcancavel pelas hunts, pra alimentar a busca */
+function lootItems(hunts, loot) {
+  const list = hunts || global.HUNTS || [];
+  const prices = lootPrices(loot);
+  const seen = new Map();
+  for (const h of list) {
+    for (const k of killsPerClear(h)) {
+      const rows = lootRows(k.key, loot);
+      if (!rows) continue;
+      for (const r of rows) {
+        if (!seen.has(r.name)) seen.set(r.name, { name: r.name, hunts: 0, price: prices[r.name] != null ? prices[r.name] : null });
+        seen.get(r.name).hunts++;
+      }
+    }
+  }
+  return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
 global.HuntModel = { ELEMENTS, spawnCount, elementMult, packWeights, huntElements,
   critMult, charmRanking, bestiary, monsterThreat, huntThreat, huntCreatures,
   charmValue, huntCharmPlan, MINOR_ORDER, CHARM_SLOTS,
+  killsPerClear, lootPerKill, huntLoot, lootSources, lootItems, lootBasket,
   CRIT_BASE, EXEC_FRAC, CARNAGE_ADJ, BOSS_DMG_MULT, MELEE_MS };
 
 })(typeof window !== 'undefined' ? window : globalThis);

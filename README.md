@@ -8,24 +8,30 @@ interactive skill-tree simulator, and a stamina planner. Plain HTML/JS, **no bui
 ```
 idlezada/
 ├─ public/               # what gets deployed
-│  ├─ index.html         # home: 3-build generator
+│  ├─ index.html         # home: build generator (3 in use + a hideable 4th)
 │  ├─ app.js             # builds screen UI + localStorage
 │  ├─ engine.js          # engine: cost/validation/aggregate/encode-decode + autobuild
 │  ├─ trees.js           # data for the 5 trees (window.TREES) — generated from data/trees.json
-│  ├─ hunt-model.js      # hunts: element to hit, element to fear, charm plan per hunt
+│  ├─ hunt-model.js      # hunts: element to hit, element to fear, charm plan, loot per clear
 │  ├─ hunts.js           # hunt data (window.HUNTS) — generated from data/hunts.json
 │  ├─ charms.js          # charm table (window.CHARMS) — generated from data/charms.json
+│  ├─ loot-view.js       # loot screen: item → creature + hunt, starred list, drop tables
+│  ├─ loot.js            # loot + sell prices (window.LOOT) — generated from data/loot.json
 │  ├─ styles.css
 │  ├─ simuladorbuild.html# interactive simulator (Simulator tab)
 │  └─ stamina.html       # stamina calculator (Stamina tab)
 ├─ data/trees.json       # source data for the trees (not published)
 ├─ data/monsters.json    # whole bestiary: hp/exp/armor/resist + dmg/abilities (not published)
+├─ data/loot.json        # whole bestiary's loot: item / chance / max (not published)
+├─ data/prices.json      # sell price in gold of every item (not published)
 ├─ tools/                # verification (not published, no dependencies)
 │  ├─ check-builds.js    # run after touching any weight: node tools/check-builds.js
 │  ├─ check-hunt-model.js# run after touching hunt-model.js or re-extracting
 │  ├─ check-hunts-view.js# runs the Hunts tab against a fake DOM (catches render breaks)
 │  ├─ check-builds-view.js # same, for the Builds tab (catches init + marker breaks)
-│  ├─ extract-game-data.js # pulls resists, damage + charms out of the game bundle
+│  ├─ check-loot.js      # loot model + the gold cross-check that pins the chance scale
+│  ├─ check-loot-view.js # runs the Loot tab against a fake DOM
+│  ├─ extract-game-data.js # pulls resists, damage, charms, loot + prices out of the bundle
 │  └─ model.js           # combat model used to compare objectives
 ├─ docs/                 # internal specs (not published)
 └─ .github/workflows/deploy.yml
@@ -38,6 +44,14 @@ Open `public/index.html` in a browser (double-click). No server, no dependencies
 ## Objectives (build generator)
 
 Pick a level and an objective; the tree is auto-allocated and a copyable share code is produced.
+There are four builds: the three vocations in use, plus a **Royal Paladin that starts hidden** —
+the slot for a vocation you are still levelling. Hidden builds are not gone, they are chips above the
+grid; click one and the card joins the others in the same row (the grid widens to four). The `✕` on
+any card hides it back, keeping everything you had typed. What is shown is saved.
+
+Growing from three slots to four had to be a migration, not a length check: the old
+`slots.length === 3` guard fell back to the defaults when it did not match, so simply adding a slot
+would have wiped everyone's saved builds in silence. `check-builds-view.js` covers it.
 **Only the objectives that the vocation's tree can actually deliver are offered** — Healer and
 Heal + Dmg appear for the druid alone (no other tree has spell healing), XP is absent for the knight,
 Atk Speed for the druid, and AoE / Puller for the paladin and the monk. The objectives are grouped by
@@ -246,20 +260,84 @@ percentages. Two known ways the model runs *low* on the elementals are documente
 the top of `hunt-model.js` (spell casts also proc them; the proc is assumed not to
 crit).
 
+## Loot: which creature drops it, and where it comes out most
+
+The Loot tab is the same list of hunts asked a different question, so it reuses the
+same table and the same tones on purpose — only the columns change. It has three modes,
+and what is in the search box decides which:
+
+- **an item** → every hunt that drops it, with the creature and chance it comes from,
+  how many come out per clear, and how many clears one unit costs;
+- **empty, with starred items** → *my list*: hunts ranked by how much of your list they
+  cover, tie-broken by what that slice is worth per clear;
+- **empty, nothing starred** → hunts ranked by what their whole loot table is worth.
+
+Star an item from the search bar or from any row of an opened hunt's drop table — the
+list lives in `localStorage` and shows up as chips you can click to jump between items.
+
+**There is no DPS here, deliberately.** The question this tab answers is *which creature
+drops it and where*, which is chance and quantity per clear. Clear speed belongs to the
+Hunts tab, and dragging it over here only bought a column that depended on having pasted
+a Session somewhere else. Sorting is by quantity per clear, by **best drop chance** (the
+single highest-percentage creature), or by level.
+
+Everything comes from `loot:[{name, chance, max}]` in the game bundle: `chance` is per
+100,000 (750 = 0.75%) and `max` marks a stackable, whose quantity rolls 1..max. Three
+assumptions ride on that — the scale of the chance, the mean of `max`, and that a clear
+kills `spawnCount(packBase)` monsters by spawn weight plus one boss — and none of them
+can be checked in the client, because combat runs on the server.
+
+So they are checked against the repo instead. `data/hunts.json` already carried
+`goldPerClear` for every hunt, recorded from the game long before there was a loot table
+here. Summing the coins out of the loot with those three assumptions has to reproduce
+that number, and it does, **exactly, on all 79 hunts** — `check-loot.js` runs the
+equality. Get any of the three wrong and it fails immediately.
+
+**Deaths, not HP.** `packWeights` weighs each monster by the HP it represents, because
+there what is being measured is time spent hitting (element, charms). Loot is not that:
+a 100 HP monster and a 10,000 HP monster each drop once. Hence a separate
+`killsPerClear`, rather than a flag on `packWeights` — two different questions about the
+same pack, and conflating them was the one way to get this wrong.
+
+**Same item twice on one creature is normal**, not dirty data: a stack caps at 100, so a
+monster that drops 297 gold comes as three rows. They are independent rolls, so the
+expected values *add* — which is exactly what makes the gold cross-check land. For the
+screen they fold into one source per creature, tagged with how many rolls it was.
+
+**A list is not a sum.** `lootBasket` is not `lootSources` run N times and added up:
+quantity does not add across different items (an amulet plus a coin is not two of
+anything). What adds is *coverage* — how many of your list drop there — and *gold*, in
+that order.
+
+**Prices** resolve the way the game resolves them: the item catalog's own `value` wins,
+and only where it is missing do the three loose tables apply, in order. The cascade is
+not decorative — the catalog holds 80 prices the tables lack (`gold coin` among them) and
+disagrees with them on 36 more. Flattening it into one object would give wrong gold on
+~116 items. All 864 reachable items end up priced.
+
+Two things the tab deliberately cannot tell you. Item **rarity**
+(Common/Uncommon/Rare/Epic/Legendary/Mythical) is a separate roll — the quality an item
+takes *when* it drops — served by the server, not in the bundle. And two creatures that
+appear in hunts (`minion_of_versperoth`, `bloodjaw`) have no loot table in the bundle at
+all; the hunts holding them say so in the detail instead of presenting a silent total.
+
 ## Re-extracting game data
 
-`data/monsters.json`, `data/charms.json` and the `resist` / `spawn` / `threat` /
-`boss.key` fields inside `data/hunts.json` come from the game bundle:
+`data/monsters.json`, `data/charms.json`, `data/loot.json`, `data/prices.json` and the
+`resist` / `spawn` / `threat` / `boss.key` fields inside `data/hunts.json` come from the
+game bundle:
 
 ```
 node tools/extract-game-data.js           # downloads the current bundle
 node tools/extract-game-data.js --dry     # shows what would change
 node tools/check-hunt-model.js            # then verify the model
 node tools/check-hunts-view.js            # ...and that the tab still renders
+node tools/check-loot.js                  # loot: the gold cross-check must stay exact
+node tools/check-loot-view.js             # ...and that the Loot tab still renders
 ```
 
-It rewrites `public/hunts.js` and `public/charms.js` from the JSON and never touches
-the HP / XP / gold already recorded. The bundle is minified and its variable names
+It rewrites `public/hunts.js`, `public/charms.js` and `public/loot.js` from the JSON and
+never touches the HP / XP / gold already recorded. The bundle is minified and its variable names
 change every build, so the script locates the monster tables by the *expression* that
 merges them and **fails loudly** rather than writing wrong data if the game changes shape.
 
