@@ -14,6 +14,7 @@
     <div class="navtab on" data-view="builds">Builds</div>
     <div class="navtab" data-view="bosses">Bosses</div>
     <div class="navtab" data-view="hunts">Hunts</div>
+    <div class="navtab" data-view="loot">Loot</div>
     <div class="navtab" data-view="sim">Simulator</div>
     <div class="navtab" data-view="stamina">Stamina</div>
   </div>
@@ -23,6 +24,7 @@
 <section class="view on" id="view-builds">
   <div class="wrap">
     <p class="lead">Set the level and pick an objective — the build is assembled automatically and the share code is ready to copy. Fine-tune it by clicking "Open in simulator".</p>
+    <div class="hidden-builds" id="hidden-builds"></div>
     <div class="slots" id="slots"></div>
   </div>
 </section>
@@ -77,6 +79,38 @@
   </div>
 </section>
 
+<!-- ===== LOOT ===== -->
+<section class="view" id="view-loot">
+  <div class="wrap">
+    <div class="hunts-bar loot-bar">
+      <div class="field lf-search"><span class="k">Item</span>
+        <div class="lf-wrap">
+          <input type="text" id="loot-search" placeholder="stone skin amulet" autocomplete="off" list="loot-items">
+          <button class="lstar big off" id="loot-star" title="Search an item to star it">☆</button>
+        </div>
+        <datalist id="loot-items"></datalist>
+      </div>
+      <div class="field"><span class="k">Level</span><input type="number" id="loot-level" min="1" max="9999999" value="500"></div>
+      <div class="field"><span class="k">Sort</span>
+        <select id="loot-sort">
+          <option value="clear">Most per clear</option>
+          <option value="chance">Best drop chance</option>
+          <option value="level">Level</option>
+        </select>
+      </div>
+    </div>
+    <div class="loot-favs" id="loot-favs"></div>
+    <div class="loot-info" id="loot-info"></div>
+    <div class="loot-note" id="loot-note"></div>
+    <div class="hunts-table" id="loot-table"></div>
+    <p class="note" style="margin-top:14px">Search an item to see which creature drops it and in which hunt it comes out most. Star the items you want
+      and leave the search empty to get <b>my list</b> — the hunts ranked by how much of your list they cover. Click a hunt to open its full drop table.
+      Chances come from the game bundle (<b>0.75%</b> means 750 per 100,000) and quantities assume a stackable rolls 1–max — the same assumptions that
+      reproduce the recorded gold per clear exactly, on all 79 hunts. Item <i>rarity</i> (Common/Uncommon/Rare…) is a separate roll served by the server
+      and is not part of this.</p>
+  </div>
+</section>
+
 <!-- ===== SIMULATOR ===== -->
 <section class="view" id="view-sim">
   <div class="iframe-wrap"><iframe id="simFrame" title="Build Simulator"></iframe></div>
@@ -97,5 +131,7 @@
 <script src="charms.js"></script>
 <script src="hunt-model.js"></script>
 <script src="hunts-view.js"></script>
+<script src="loot.js"></script>
+<script src="loot-view.js"></script>
 </body>
 </html>

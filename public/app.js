@@ -84,18 +84,35 @@ const CAT_LABEL = { damage:'Damage', speed:'Speed', crit:'Crit', sustain:'Sustai
 /* ---------- state ---------- */
 const LS_KEY = 'idlezada.builds.v3';
 const DEFAULT_SLOTS = [
-  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:E.defaultElement('knight'), perks:[], perksOpen:false, forcePerks:false },
-  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:E.defaultElement('druid'), perks:[], perksOpen:false, forcePerks:false },
-  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:E.defaultElement('sorcerer'), perks:[], perksOpen:false, forcePerks:false },
+  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:E.defaultElement('knight'), perks:[], perksOpen:false, forcePerks:false, shown:true },
+  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:E.defaultElement('druid'), perks:[], perksOpen:false, forcePerks:false, shown:true },
+  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:E.defaultElement('sorcerer'), perks:[], perksOpen:false, forcePerks:false, shown:true },
+  /* O paladino e o slot de quem esta subindo uma vocacao nova: ele existe pra voce
+     ja ir montando a build, mas comeca FORA da tela (`shown:false`) pra nao ocupar
+     espaco das tres que voce usa hoje. Aparece pelo chip acima dos cards e, quando
+     aparece, entra na mesma fileira que elas -- card inteiro, nao meia tela. */
+  { label:"Royal Paladin",   voc:'paladin',  level:500, obj:'dano', element:E.defaultElement('paladin'), perks:[], perksOpen:false, forcePerks:false, shown:false },
 ];
 let state = loadState();
 
+/* MIGRACAO: ate a versao passada isto exigia `slots.length === 3` e, quando nao
+   batia, caia nos padroes -- ou seja, ganhar um 4o slot teria APAGADO as tres
+   builds salvas de todo mundo, em silencio. E' o mesmo estrago que a nota do
+   tacticsNode conta, por outro caminho.
+
+   Entao aqui nao se compara tamanho: percorre-se os DEFAULT_SLOTS e, pra cada um,
+   usa-se o que estava salvo naquela posicao se houver. Save de 3 slots mantem os
+   3 e ganha o paladino; save de 4 volta inteiro; save maior nao perde nada
+   tambem, porque a cauda entra depois. Coberto no tools/check-builds-view.js. */
 function loadState(){
   try {
     const raw = JSON.parse(localStorage.getItem(LS_KEY));
-    if (raw && Array.isArray(raw.slots) && raw.slots.length === 3) {
+    if (raw && Array.isArray(raw.slots) && raw.slots.length) {
       // estado salvo antes desta versao pode ter objetivo que a vocacao nao oferece
-      return { slots: raw.slots.map((s,i)=>sanitizeSlot({ ...DEFAULT_SLOTS[i], ...s })), tab: raw.tab || 'builds' };
+      const base = DEFAULT_SLOTS.map((d, i) => sanitizeSlot({ ...d, ...(raw.slots[i] || {}) }));
+      const extra = raw.slots.slice(DEFAULT_SLOTS.length)
+        .map(s => sanitizeSlot({ ...DEFAULT_SLOTS[0], ...s }));
+      return { slots: base.concat(extra), tab: raw.tab || 'builds' };
     }
   } catch (e) { /* storage corrompido: ignora */ }
   return { slots: DEFAULT_SLOTS.map(s=>({...s})), tab:'builds' };
@@ -104,7 +121,37 @@ function saveState(){ try { localStorage.setItem(LS_KEY, JSON.stringify(state));
 
 /* ---------- render ---------- */
 const slotsEl = document.getElementById('slots');
-function render(){ slotsEl.innerHTML=''; state.slots.forEach(s=>slotsEl.appendChild(renderSlot(s))); }
+const hiddenEl = document.getElementById('hidden-builds');
+
+const isShown = s => s.shown !== false;
+function render(){
+  const vis = state.slots.filter(isShown);
+  /* a grade acompanha quantos cards estao na tela: com o paladino fora sao as tres
+     de sempre, com ele dentro sao quatro lado a lado. Classe em vez de style pra a
+     media query de tela estreita continuar mandando. */
+  slotsEl.className = 'slots n' + Math.min(vis.length, 4);
+  slotsEl.innerHTML = '';
+  vis.forEach(s => slotsEl.appendChild(renderSlot(s)));
+  renderHidden();
+}
+/* as builds que estao fora da tela viram chips: e' por eles que se traz de volta.
+   Sem nenhuma escondida a faixa some inteira, pra nao sobrar um vazio no topo. */
+function renderHidden(){
+  if (!hiddenEl) return;
+  const out = state.slots.map((s, i) => ({ s, i })).filter(x => !isShown(x.s));
+  hiddenEl.innerHTML = out.length
+    ? `<span class="hb-k">Hidden</span>` + out.map(x =>
+        `<button class="hb" data-show="${x.i}" style="--hb:${VCOL[x.s.voc] || '#6fdc8c'}">
+          <span class="hb-dot"></span>${escapeAttr(x.s.label)}<span class="hb-plus">+</span></button>`).join('')
+    : '';
+}
+if (hiddenEl) hiddenEl.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('[data-show]');
+  if (!b) return;
+  const s = state.slots[Number(b.dataset.show)];
+  if (!s) return;
+  s.shown = true; save(); render();
+});
 
 function renderSlot(s){
   const el = document.createElement('div');
@@ -137,6 +184,7 @@ function renderSlot(s){
     <div class="head">
       <div class="avatar" style="background:${col}">${VNAME[s.voc][0]}</div>
       <input class="label" type="text" maxlength="24" value="${escapeAttr(s.label)}" data-role="label">
+      <button type="button" class="card-hide" data-role="hide" title="Hide this build">✕</button>
     </div>
     <div class="row2">
       <div class="field" style="flex:1"><span class="k">Vocation</span>
@@ -163,6 +211,12 @@ function renderSlot(s){
   `;
 
   // ---- listeners ----
+  /* esconder nao apaga: o slot continua no state, some da grade e volta pelo chip
+     de cima. E' como o paladino comeca, e serve pra qualquer build que voce nao
+     esteja usando agora. */
+  el.querySelector('[data-role=hide]').addEventListener('click', ()=>{
+    s.shown = false; save(); render();
+  });
   el.querySelector('[data-role=label]').addEventListener('input', e=>{ s.label=e.target.value; save(); });
   el.querySelector('[data-role=voc]').addEventListener('change', e=>{
     s.voc = e.target.value;
@@ -495,7 +549,7 @@ let saveT=null;
 function save(){ clearTimeout(saveT); saveT=setTimeout(saveState, 200); }
 
 /* ---------- tabs ---------- */
-const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', sim:'view-sim', stamina:'view-stamina' };
+const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', loot:'view-loot', sim:'view-sim', stamina:'view-stamina' };
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){

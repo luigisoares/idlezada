@@ -27,7 +27,10 @@ function makeEl(tag) {
     tag, _html: '', _q: {}, className: '', textContent: '', value: '',
     hidden: false, checked: false, disabled: false, dataset: {}, handlers: {}, kids: [],
     get innerHTML() { return this._html; },
-    set innerHTML(v) { this._html = String(v); },
+    /* como no DOM de verdade, escrever innerHTML descarta os filhos. Sem isso o
+       render() da tela (que faz innerHTML='' e reanexa) DUPLICAVA os cards no stub,
+       e um teste que re-renderiza acabava lendo o card velho. */
+    set innerHTML(v) { this._html = String(v); this.kids.length = 0; },
     classList: { toggle() {}, add() {}, remove() {}, contains() { return false; } },
     addEventListener(ev, fn) { (this.handlers[ev] = this.handlers[ev] || []).push(fn); },
     setAttribute(k, v) { this['attr_' + k] = v; },
@@ -49,6 +52,10 @@ function makeEl(tag) {
     closest() { return null; },
   };
 }
+/* clique no chip de build escondida: o handler e' delegado na faixa */
+const showClick = i => ({
+  target: { closest: sel => (sel === '[data-show]' ? { dataset: { show: String(i) } } : null) },
+});
 /* clique do stepper: o handler e' delegado no container e le ev.target.closest */
 const stepClick = delta => ({
   target: { closest: s => (s === '[data-tac]' ? { dataset: { tac: String(delta) } } : null) },
@@ -81,7 +88,8 @@ function run(saved) {
   vm.createContext(sandbox);
   for (const f of ['trees.js', 'engine.js', 'app.js'])
     vm.runInContext(fs.readFileSync(path.join(PUB, f), 'utf8'), sandbox, { filename: f });
-  return { slots: doc.getElementById('slots').kids, E: sandbox.window.Engine, store };
+  return { slots: doc.getElementById('slots').kids, slotsEl: doc.getElementById('slots'),
+    hidden: doc.getElementById('hidden-builds'), E: sandbox.window.Engine, store };
 }
 
 /* rank do Battle Tactics dentro do share code que o card gerou */
@@ -89,6 +97,17 @@ function codedRank(E, voc, el) {
   const back = E.decode(el.querySelector('[data-role=code]').value);
   return back ? (back.ranks[E.tacticsNodeId(voc)] || 0) : null;
 }
+/* o stub nao parseia HTML: `querySelector` devolve um stub em branco, entao o que
+   a tela escreveu so existe no innerHTML. Estes leem de la, como o shownRank. */
+const attrOf = (el, role, attr) => {
+  const re = new RegExp(attr + '="([^"]*)"[^>]*data-role="' + role + '"');
+  const m = re.exec(el.innerHTML);
+  return m ? m[1] : null;
+};
+const labelOf = el => { const m = /value="([^"]*)"[^>]*data-role="label"/.exec(el.innerHTML); return m ? m[1] : null; };
+const levelOf = el => attrOf(el, 'level', 'value');
+const shownLabels = app => app.slots.map(labelOf);
+
 const shownRank = el => {
   const m = /data-role="tac-n">(\d+)</.exec(el.innerHTML);
   return m ? Number(m[1]) : null;
@@ -152,6 +171,96 @@ console.log('== builds view: a tela abre, e o marker do Battle Tactics faz o que
   ok(gravado[0].tactics === teto, `o rank escolhido nao foi pro localStorage (${gravado[0].tactics})`);
   ok(gravado[1].tactics == null,
     'o card que ninguem tocou gravou um rank explicito e parou de seguir o objetivo');
+}
+
+console.log('== o 4o slot (paladino) entra sem levar as builds salvas junto ==');
+{
+  /* A versao passada exigia `slots.length === 3` e, quando nao batia, caia nos
+     padroes. Ganhar um slot novo teria APAGADO as tres builds de todo mundo, em
+     silencio -- o mesmo estrago da nota do tacticsNode, por outro caminho. */
+  const tres = { tab: 'builds', slots: [
+    { label: 'MeuEK', voc: 'knight',   level: 900, obj: 'dano', element: 'physical', perks: [], perksOpen: false, forcePerks: false },
+    { label: 'MeuED', voc: 'druid',    level: 800, obj: 'xp',   element: 'none',     perks: [], perksOpen: false, forcePerks: false },
+    { label: 'MeuMS', voc: 'sorcerer', level: 700, obj: 'aoe',  element: 'none',     perks: [], perksOpen: false, forcePerks: false },
+  ] };
+  const app = run(tres);
+  ok(app.slots.length === 3, `com o paladino escondido a tela mostra 3, mostrou ${app.slots.length}`);
+  ok(labelOf(app.slots[0]) === 'MeuEK', `a build salva 1 sumiu: veio "${labelOf(app.slots[0])}"`);
+  ok(labelOf(app.slots[1]) === 'MeuED', `a build salva 2 sumiu: veio "${labelOf(app.slots[1])}"`);
+  ok(labelOf(app.slots[2]) === 'MeuMS', `a build salva 3 sumiu: veio "${labelOf(app.slots[2])}"`);
+  ok(levelOf(app.slots[0]) === '900', `o level da build 1 veio ${levelOf(app.slots[0])}`);
+  ok(levelOf(app.slots[1]) === '800', `o level da build 2 veio ${levelOf(app.slots[1])}`);
+  ok(codedRank(app.E, 'knight', app.slots[0]) != null, 'a build salva continua gerando share code');
+
+  /* o paladino existe no state mesmo fora da grade -- e o chip prova isso. A tela
+     nao grava no init (so em interacao), entao o storage so e conferido DEPOIS de
+     um clique de verdade. */
+  ok(app.hidden.innerHTML.includes('Royal Paladin'), 'o paladino devia estar la como chip');
+  app.hidden.fire('click', showClick(3));
+  const gravado = JSON.parse(app.store['idlezada.builds.v3']).slots;
+  ok(gravado.length === 4, `o state devia ter 4 slots, tem ${gravado.length}`);
+  ok(gravado[0].label === 'MeuEK', 'e as builds salvas foram junto pro storage');
+  ok(gravado[0].level === 900, 'com o level original');
+  ok(gravado[3].label === 'Royal Paladin', 'e o 4o e o paladino');
+
+  /* o save de 4 volta inteiro, sem duplicar nem trocar de lugar */
+  const volta = run(JSON.parse(app.store['idlezada.builds.v3']));
+  ok(volta.slots.length === 4, `save de 4 com o paladino visivel mostra 4, mostrou ${volta.slots.length}`);
+  ok(labelOf(volta.slots[0]) === 'MeuEK', 'as builds de uso continuam la');
+  ok(labelOf(volta.slots[3]) === 'Royal Paladin', 'e o paladino no mesmo lugar');
+}
+
+console.log('== o chip traz o paladino pra fileira dos outros tres ==');
+{
+  const app = run(null);
+  ok(app.slots.length === 3, 'comeca com 3 na tela');
+  ok(app.hidden.innerHTML.includes('Royal Paladin'), 'e o paladino aparece como chip de escondido');
+  ok(app.hidden.innerHTML.includes('data-show="3"'), 'o chip aponta pro indice 3');
+  ok(app.slotsEl.className === 'slots n3', `a grade devia estar em n3, esta "${app.slotsEl.className}"`);
+
+  /* clicar no chip traz o card pra grade, lado a lado */
+  app.hidden.fire('click', showClick(3));
+  ok(app.slots.length === 4, `depois do chip deviam ser 4 cards, sao ${app.slots.length}`);
+  ok(labelOf(app.slots[3]) === 'Royal Paladin', 'e o 4o e o paladino');
+  ok(app.slotsEl.className === 'slots n4', `a grade devia virar n4, esta "${app.slotsEl.className}"`);
+  ok(app.hidden.innerHTML === '', 'sem nada escondido, a faixa de chips some');
+  ok(JSON.parse(app.store['idlezada.builds.v3']).slots[3].shown === true, 'e o mostrar foi gravado');
+
+  /* o card trazido e um card inteiro: tem objetivo, code e botao de simulador */
+  const code = app.slots[3].querySelector('[data-role=code]').value;
+  ok(typeof code === 'string' && code.length > 0, 'o paladino trazido devia ter share code');
+  ok(app.E.decode(code) != null, 'e o code tem que decodificar');
+}
+
+console.log('== o ✕ do card esconde de volta, sem apagar a build ==');
+{
+  const app = run(null);
+  app.hidden.fire('click', showClick(3));
+  /* mexe no level do paladino antes de esconder: o dado tem que sobreviver */
+  app.slots[3].querySelector('[data-role=level]').fire('input', { target: { value: '150' } });
+  app.slots[3].querySelector('[data-role=hide]').fire('click');
+
+  ok(app.slots.length === 3, `esconder devia voltar pra 3 cards, ficaram ${app.slots.length}`);
+  ok(app.slotsEl.className === 'slots n3', 'e a grade volta pra n3');
+  ok(app.hidden.innerHTML.includes('Royal Paladin'), 'e o chip volta pra faixa');
+  const gravado = JSON.parse(app.store['idlezada.builds.v3']).slots;
+  ok(gravado.length === 4, 'esconder NAO apaga o slot');
+  ok(gravado[3].shown === false, 'so marca como escondido');
+  ok(gravado[3].level === 150, `e o level que voce digitou fica guardado (veio ${gravado[3].level})`);
+
+  /* e volta como estava */
+  app.hidden.fire('click', showClick(3));
+  ok(levelOf(app.slots[3]) === '150', `ao trazer de volta, o level devia ser 150, veio ${levelOf(app.slots[3])}`);
+}
+
+console.log('== esconder uma das tres tambem funciona ==');
+{
+  const app = run(null);
+  app.slots[0].querySelector('[data-role=hide]').fire('click');
+  ok(app.slots.length === 2, `deviam sobrar 2 cards, sobraram ${app.slots.length}`);
+  ok(app.slotsEl.className === 'slots n2', 'a grade acompanha');
+  ok(app.hidden.innerHTML.includes('Knight') && app.hidden.innerHTML.includes('Royal Paladin'),
+    'e os dois escondidos viram chips');
 }
 
 console.log(`\n${pass} ok, ${fail} falha(s)`);
