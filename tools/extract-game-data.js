@@ -11,9 +11,12 @@
      data/charms.json     os 24 charms: valores por tier e custo
      data/loot.json       tabela de loot do bestiary inteiro: item, chance, max
      data/prices.json     preco de venda de cada item, em gold
-     data/hunts.json      injeta `resist` (e `spawn`, quando a hunt nao divide o
-                          pack igual) nos monstros que ja estao la -- HP, XP e
-                          gold gravados NAO sao tocados
+     data/hunts.json      hunt nova entra montada do zero (buildHunt); gravada so e'
+                          recalculada se um insumo mudou no jogo; em todas injeta
+                          `resist`, `threat` e `spawn` (quando o pack nao divide igual)
+     data/bosses.json     salas de boss novas entram, as gravadas sao reescritas do
+                          bundle; world bosses ficam como estao
+     public/bosses.js     gerado a partir do data/bosses.json
      public/hunts.js      regenerado a partir do data/hunts.json
      public/charms.js     gerado a partir do data/charms.json
      public/loot.js       loot + precos, so das criaturas que aparecem em hunt
@@ -220,6 +223,77 @@ function extractHunts(src) {
   return out;
 }
 
+/* monta uma hunt INTEIRA do bundle, com as mesmas contas que geraram as 79
+   originais (conferido: reproduz todas, com no maximo ±1 de arredondamento):
+     - HP do monstro = bestiary ×2 (multiplicador global do servidor)
+     - o clear mata spawnCount(packBase) bichos pelo peso de spawn + 1 boss
+     - XP/clear = spawns × exp media + exp do boss ×2.5; min/max trocam a media
+       pelo bicho de menor/maior exp (as waves sorteiam a composicao)
+     - HP/clear = spawns × HP medio + HP do boss ×3
+     - gold/clear = moedas do loot (gold/platinum/crystal) pelas mortes do clear
+   Hunt sem bossKey: o repo sempre usou o bicho de maior exp como boss. */
+const HUNT_HP_MULT = 2, PHASE_BOSS_HP = 3, PHASE_BOSS_XP = 2.5;
+const COINS = ['gold coin', 'platinum coin', 'crystal coin'];
+function spawnCount(packBase) {
+  let n = 0;
+  for (let w = 1; w <= 9; w++) n += Math.min(9, packBase + Math.floor((w - 1) / 2));
+  return n;
+}
+function huntBossKey(bh, table) {
+  return bh.bossKey || bh.monsters.slice().sort((a, b) => (table[b].exp || 0) - (table[a].exp || 0))[0];
+}
+function buildHunt(bh, table, prices) {
+  const packBase = bh.maxAlive || 4, N = spawnCount(packBase);
+  const even = !(bh.weights && bh.weights.length === bh.monsters.length && new Set(bh.weights).size > 1);
+  const ws = even ? bh.monsters.map(() => 1) : bh.weights;
+  const tw = ws.reduce((s, x) => s + x, 0);
+  const mon = k => ({ key: k, name: table[k].name, hp: table[k].hp * HUNT_HP_MULT, exp: table[k].exp || 0 });
+  const monsters = bh.monsters.map(mon);
+  const bk = huntBossKey(bh, table), boss = mon(bk);
+  const avgExp = monsters.reduce((s, m, i) => s + m.exp * ws[i] / tw, 0);
+  const avgHp = monsters.reduce((s, m, i) => s + m.hp * ws[i] / tw, 0);
+  const bossXp = boss.exp * PHASE_BOSS_XP;
+  const coins = k => (table[k].loot || []).filter(r => COINS.includes(r.name))
+    .reduce((s, r) => s + r.chance / 1e5 * (r.max ? (1 + r.max) / 2 : 1) * (prices[r.name] || 0), 0);
+  const gold = monsters.reduce((s, m, i) => s + N * ws[i] / tw * coins(m.key), 0) + coins(bk);
+  const exps = monsters.map(m => m.exp);
+  return {
+    id: bh.id, name: bh.name, minLevel: bh.minLevel, packBase, monsters, boss,
+    avgExp: Math.round(avgExp), avgHp: Math.round(avgHp),
+    xpPerClear: Math.round(N * avgExp + bossXp), hpPerClear: Math.round(N * avgHp + boss.hp * PHASE_BOSS_HP),
+    goldPerClear: Math.round(gold),
+    xpMin: Math.round(N * Math.min(...exps) + bossXp), xpMax: Math.round(N * Math.max(...exps) + bossXp),
+    ...(bh.avail === 'test' ? { avail: 'test' } : {}),
+  };
+}
+/* o que mudou no JOGO entre a hunt gravada e a do bundle -- so os insumos das
+   contas acima. Diferenca de arredondamento nao conta: se nada disso mudou, a
+   hunt gravada fica como esta (o goldPerClear dela e' a prova independente que o
+   check-loot.js usa, e recalcular de graca apagaria essa prova). */
+function huntInputChanges(rec, bh, table) {
+  const d = [];
+  if (rec.minLevel !== bh.minLevel) d.push(`nivel ${rec.minLevel}->${bh.minLevel}`);
+  if (rec.packBase !== (bh.maxAlive || 4)) d.push(`pack ${rec.packBase}->${bh.maxAlive}`);
+  const keys = rec.monsters.map(m => m.key);
+  for (const k of keys) if (!bh.monsters.includes(k)) d.push(`-${k}`);
+  for (const k of bh.monsters) if (!keys.includes(k)) d.push(`+${k}`);
+  for (const m of rec.monsters) {
+    const t = table[m.key];
+    if (!t || !bh.monsters.includes(m.key)) continue;
+    if (m.hp !== t.hp * HUNT_HP_MULT) d.push(`${m.key} hp ${m.hp}->${t.hp * HUNT_HP_MULT}`);
+    if (m.exp !== (t.exp || 0)) d.push(`${m.key} exp ${m.exp}->${t.exp || 0}`);
+  }
+  /* peso de spawn: entra em toda media do buildHunt. Gravado so existe quando o pack
+     nao divide igual (o `spawn` de cada monstro), entao compara nessa mesma forma. */
+  const uneven = bh.weights && bh.weights.length === bh.monsters.length && new Set(bh.weights).size > 1;
+  const want = bh.monsters.map((k, i) => (uneven ? bh.weights[i] : null));
+  const have = bh.monsters.map(k => { const m = rec.monsters.find(x => x.key === k); return m && m.spawn != null ? m.spawn : null; });
+  if (JSON.stringify(want) !== JSON.stringify(have)) d.push(`spawn ${JSON.stringify(have)}->${JSON.stringify(want)}`);
+  const bk = huntBossKey(bh, table);
+  if (rec.boss && rec.boss.key && rec.boss.key !== bk) d.push(`boss ${rec.boss.key}->${bk}`);
+  return d;
+}
+
 /* ---------------------------------------------------------------- charms */
 function extractCharms(src) {
   const arr = arrayAround(src, 'key:"savage_blow"');
@@ -235,6 +309,103 @@ function extractCharms(src) {
     return row;
   }).sort((a, b) => (a.category === b.category ? 0 : a.category === 'major' ? -1 : 1)
     || a.key.localeCompare(b.key));
+}
+
+/* ---------------------------------------------------------------- bosses */
+/* as salas de boss: cada entrada e' `{id,name,minLevel,bossKey,summons,rarity?,avail}`
+   e mora num array que o bundle monta e depois estende com .push (os bosses novos
+   entram assim). Em vez de caçar o nome do array, pega TODO objeto com essa forma.
+   Tres grupos aparecem:
+     - avail:"on", sem mapId  -> sala de boss (o que a aba mostra)
+     - mapId:"worldboss"      -> boss cooperativo; o HP dele e' do servidor (escala
+                                 por jogador), entao o repo guarda a mao e aqui nao toca
+     - sem avail e sem mapId  -> listas que o cliente nunca exibe; ficam de fora */
+/* id do boss -> key do monstro, pra TODO boss que o jogo mostra (salas + world
+   bosses). O id nem sempre e' a key: "oberon" luta como grand_master_oberon. */
+function extractBossKeys(src) {
+  const re = /\{id:"[^"]+",name:"[^"]+",minLevel:\d+,bossKey:/g;
+  const out = {};
+  let m;
+  while ((m = re.exec(src))) {
+    const b = evalLiteral(matchBrackets(src, m.index, '{'));
+    if ((b.avail === 'on' && !b.mapId) || b.mapId === 'worldboss') out[b.id] = b.bossKey;
+  }
+  return out;
+}
+function extractBossRooms(src) {
+  const re = /\{id:"[^"]+",name:"[^"]+",minLevel:\d+,bossKey:/g;
+  const out = {};
+  let m;
+  while ((m = re.exec(src))) {
+    const b = evalLiteral(matchBrackets(src, m.index, '{'));
+    if (b.avail === 'on' && !b.mapId) out[b.id] = b;
+  }
+  if (Object.keys(out).length < 80) throw new Error(
+    `so ${Object.keys(out).length} salas de boss no bundle; esperado >80. A forma das entradas mudou.`);
+  return out;
+}
+
+/* "de que elemento o boss bate", em % do dano que chega em voce. Calibrado contra
+   os 101 bosses que o guia trazia (bate exato em 100, o outro erra por 1 ponto):
+   melee (max) ×0.6, golpe com alvo ×1.1, golpe de area ×0.3 -- ambos no max × chance.
+   O alvo pesa mais porque ele sempre te acha; a area depende de onde voce esta. */
+function bossElements(m) {
+  const w = {};
+  const add = (el, v) => { if (v > 0) w[el] = (w[el] || 0) + v; };
+  if (m.dmg) add('physical', m.dmg[1] * 0.6);
+  for (const a of m.abilities || []) {
+    if (!a.element || a.element === 'healing') continue;
+    add(a.element, a.max * (a.chance == null ? 100 : a.chance) / 100 * (a.target ? 1.1 : 0.3));
+  }
+  const tot = Object.values(w).reduce((s, v) => s + v, 0);
+  return Object.entries(w).sort((a, b) => b[1] - a[1])
+    .map(([el, v]) => ({ el, pct: Math.round(v / tot * 100) }))
+    .filter(e => e.pct > 0);
+}
+
+const ROOM_HP_MULT = 4.5, BOSS_XP_MULT = 2.5;   // data/xprates.json: roomBoss
+function bossRecord(b, m) {
+  const img = m.lookType
+    ? { lookType: m.lookType, imgKind: 'outfit', img: `${SITE}/api/things/outfit/${m.lookType}.png?v=5` }
+    : { lookType: 0, imgKind: 'object', img: `${SITE}/api/things/object/${m.lookTypeEx}.png?v=5` };
+  return {
+    id: b.id, name: b.name, rarity: b.rarity || 'normal', kind: 'room', minLevel: b.minLevel,
+    base: m.hp, hpReal: m.hp * ROOM_HP_MULT, mult: ROOM_HP_MULT,
+    hpPerPlayer: null, hpMin: null, hpMax: null,
+    exp: m.exp, elements: bossElements(m), summons: b.summons || [],
+    ...img, expReal: m.exp * BOSS_XP_MULT,
+  };
+}
+
+/* ---------------------------------------------------------------- arvores */
+/* SO CONFERE, nao escreve: data/trees.json tem forma propria (e o engine inteiro
+   calibrado em cima dela), entao arvore que mudou no jogo e' decisao de gente, nao
+   de script. Acha o array de cada vocacao pelo id de um no que o repo conhece e
+   compara custo, ranks, tier, requisitos, special e atributos. O bundle usa um
+   helper pra "absorb em todos os elementos" que o evalLiteral nao expande (vira {});
+   esse caso nao conta como diferenca. */
+function checkTrees(src) {
+  const repo = readJSON(path.join(DATA, 'trees.json'));
+  const out = [];
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  for (const [voc, nodes] of Object.entries(repo)) {
+    let arr = null;
+    for (const n of nodes) { try { arr = arrayAround(src, `id:"${n.id}"`); break; } catch (e) {} }
+    if (!arr) { out.push(`${voc}: nenhum no do repo achado no bundle`); continue; }
+    const byId = new Map(arr.filter(Boolean).map(n => [n.id, n]));
+    for (const n of nodes) {
+      const b = byId.get(n.id);
+      if (!b) { out.push(`${voc}: ${n.id} saiu do jogo`); continue; }
+      for (const k of ['cost', 'maxRank', 'tier']) if (b[k] !== n[k]) out.push(`${voc}: ${n.id} ${k} ${n[k]} -> ${b[k]}`);
+      if (!same(b.requires || [], n.requires || [])) out.push(`${voc}: ${n.id} requisitos mudaram`);
+      if (!same(b.special || null, n.special || null)) out.push(`${voc}: ${n.id} special ${JSON.stringify(n.special)} -> ${JSON.stringify(b.special)}`);
+      const bp = Object.assign({}, b.per || {}), np = Object.assign({}, n.per || {});
+      for (const k of Object.keys(bp)) if (bp[k] && typeof bp[k] === 'object' && !Object.keys(bp[k]).length) { delete bp[k]; delete np[k]; }
+      if (!same(bp, np)) out.push(`${voc}: ${n.id} atributos ${JSON.stringify(np)} -> ${JSON.stringify(bp)}`);
+    }
+    for (const id of byId.keys()) if (!nodes.find(n => n.id === id)) out.push(`${voc}: no novo no jogo: ${id}`);
+  }
+  return out;
 }
 
 /* ------------------------------------------------------------------ saida */
@@ -290,7 +461,40 @@ function main(src) {
     if (t && t.heal) ref.heal = t.heal; else delete ref.heal;
   };
 
-  const hunts = readJSON(path.join(DATA, 'hunts.json'));
+  /* HUNTS: as gravadas mantem a ordem do repo e as novas entram no fim, na ordem
+     do bundle. Nova entra montada do zero; gravada so e' recalculada quando um
+     insumo mudou no jogo (ver huntInputChanges). */
+  const recorded = new Map(readJSON(path.join(DATA, 'hunts.json')).map(h => [h.id, h]));
+  const order = [...recorded.keys()];
+  const hunts = [];
+  const bundleOrder = Object.values(bundleHunts)
+    .sort((a, b) => ((order.indexOf(a.id) + 1) || 1e9) - ((order.indexOf(b.id) + 1) || 1e9));
+  for (const bh of bundleOrder) {
+    const rec = recorded.get(bh.id);
+    const missing = [...bh.monsters, bh.bossKey].filter(k => k && !table[k]);
+    if (missing.length) {
+      /* key que sumiu do bestiary (renomeada, por exemplo): nao da pra montar nem
+         comparar. Hunt ja gravada FICA como esta -- sumir do site e o log dizer
+         "saiu do jogo" seria mentir duas vezes. Nova so entra quando o dado fechar. */
+      console.log(`  ! hunt ${bh.id} com monstro fora do bestiary: ${missing.join(', ')}`
+        + (rec ? ' -- mantida como estava' : ' -- nao entrou'));
+      if (rec) { hunts.push(rec); recorded.delete(bh.id); }
+      continue;
+    }
+    if (!rec) { hunts.push(buildHunt(bh, table, prices)); console.log(`  + hunt nova: ${bh.name} (nivel ${bh.minLevel})`); continue; }
+    const d = huntInputChanges(rec, bh, table);
+    if (d.length) console.log(`  ~ hunt ${bh.id}: ${d.join(', ')}`);
+    /* so o nivel mudou: nenhuma conta depende dele, entao nada e' recalculado */
+    if (d.length && d.every(x => x.startsWith('nivel '))) { rec.minLevel = bh.minLevel; hunts.push(rec); }
+    else hunts.push(d.length ? buildHunt(bh, table, prices) : rec);
+    /* avail:"test" nao tira a hunt do jogo (10 das que o site ja mostrava estao
+       assim); so vai junto no dado, sem disparar recalculo */
+    const h = hunts[hunts.length - 1];
+    if (bh.avail === 'test') h.avail = 'test'; else delete h.avail;
+    recorded.delete(bh.id);
+  }
+  for (const id of recorded.keys()) console.log(`  - hunt ${id} saiu do jogo`);
+
   let semResist = [], semThreat = [];
   for (const h of hunts) {
     const bh = bundleHunts[h.id];
@@ -314,6 +518,24 @@ function main(src) {
   if (semResist.length) console.log(`  ! sem resist: ${semResist.join(', ')}`);
   if (semThreat.length) console.log(`  ! sem dano (threat): ${semThreat.join(', ')}`);
 
+  /* BOSSES: sala nova entra, sala que ja existe e' regravada do bundle (HP, XP,
+     nivel, elementos). Os world bosses ficam como estao -- ver extractBossRooms. */
+  const rooms = extractBossRooms(src);
+  const bosses = readJSON(path.join(DATA, 'bosses.json'));
+  const bossIdx = new Map(bosses.map((b, i) => [b.id, i]));
+  const bossNew = [], bossMissing = [];
+  for (const b of Object.values(rooms)) {
+    const m = table[b.bossKey];
+    if (!m) { bossMissing.push(b.id); continue; }
+    const rec = bossRecord(b, m);
+    if (bossIdx.has(b.id)) bosses[bossIdx.get(b.id)] = rec;
+    else { bosses.push(rec); bossNew.push(b.name); }
+  }
+  bosses.sort((a, b) => a.name.localeCompare(b.name));
+  console.log(`${Object.keys(rooms).length} salas de boss`
+    + (bossNew.length ? ` · novas: ${bossNew.join(', ')}` : ''));
+  if (bossMissing.length) console.log(`  ! boss sem monstro no bundle: ${bossMissing.join(', ')}`);
+
   /* PAYLOAD DO LOOT: a aba Loot pergunta "que hunt me da o item X", entao o
      navegador so precisa dos bichos que APARECEM em hunt -- 239 dos 359. O
      data/loot.json fica com o bestiario inteiro (e a fonte, e nao e publicado);
@@ -332,15 +554,37 @@ function main(src) {
   for (const k of [...huntKeys].sort()) {
     if (loot[k]) lootPub[k] = loot[k].map(r => (r.max ? [r.name, r.chance, r.max] : [r.name, r.chance]));
   }
-  /* so os precos dos itens alcancaveis: os outros 500 nunca cairiam na tela */
+  /* LOOT DOS BOSSES, por id do boss (o que a aba Bosses e a busca da aba Loot
+     conhecem), lido pela key do monstro. Mesma forma compacta das criaturas. */
+  const bossKeys = extractBossKeys(src);
+  const bossLootPub = {}, bossSemLoot = [];
+  for (const b of bosses) {
+    const k = bossKeys[b.id] || b.id;
+    if (loot[k]) bossLootPub[b.id] = loot[k].map(r => (r.max ? [r.name, r.chance, r.max] : [r.name, r.chance]));
+    else bossSemLoot.push(b.id);
+  }
+  if (bossSemLoot.length) console.log(`  ! boss sem loot no bundle: ${bossSemLoot.join(', ')}`);
+
+  /* so os precos dos itens alcancaveis: os outros nunca cairiam na tela */
   const reachable = new Set();
   for (const rows of Object.values(lootPub)) for (const r of rows) reachable.add(r[0]);
+  for (const rows of Object.values(bossLootPub)) for (const r of rows) reachable.add(r[0]);
   const pricePub = {};
   for (const n of [...reachable].sort()) if (prices[n] != null) pricePub[n] = prices[n];
-  console.log(`  loot publicado: ${Object.keys(lootPub).length} criaturas · ${reachable.size} itens `
-    + `(${Object.keys(pricePub).length} com preco)`);
+  console.log(`  loot publicado: ${Object.keys(lootPub).length} criaturas + ${Object.keys(bossLootPub).length} bosses · `
+    + `${reachable.size} itens (${Object.keys(pricePub).length} com preco)`);
+
+  const treeDiff = checkTrees(src);
+  if (treeDiff.length) {
+    console.log(`  ! ARVORE MUDOU NO JOGO (${treeDiff.length}) -- data/trees.json NAO e' reescrito; ver o skill updating-game-data:`);
+    for (const d of treeDiff.slice(0, 20)) console.log(`      ${d}`);
+  } else console.log('arvores de talento: iguais ao bundle');
 
   console.log('arquivos:');
+  write(path.join(DATA, 'bosses.json'), JSON.stringify(bosses, null, 2) + '\n');
+  write(path.join(PUB, 'bosses.js'),
+    '// GERADO de data/bosses.json (tools/extract-game-data.js; XP real = base x2.5). Nao editar a mao.\n'
+    + 'window.BOSSES = ' + JSON.stringify(bosses) + ';\n');
   write(path.join(DATA, 'monsters.json'), JSON.stringify(monsters, null, 1) + '\n');
   write(path.join(DATA, 'charms.json'), JSON.stringify(charms, null, 1) + '\n');
   write(path.join(DATA, 'loot.json'), JSON.stringify(loot, null, 1) + '\n');
@@ -349,6 +593,15 @@ function main(src) {
   write(path.join(PUB, 'hunts.js'),
     '// GERADO do bundle do JOGO. HP dos monstros ×2; XP/clear medio + xpMin/xpMax (waves aleatorias). Nao editar a mao.\n'
     + 'window.HUNTS = ' + JSON.stringify(hunts) + ';\n');
+  /* os dois arquivos que NAO saem do bundle (trees.json e xprates.json sao editados a
+     mao -- ver o skill updating-game-data) ainda tem o .js regenerado aqui, no formato
+     exato de sempre: editou o JSON, roda o extrator e o public/ acompanha. */
+  write(path.join(PUB, 'trees.js'),
+    '// GERADO de trees.json — fonte unica dos dados das arvores. Nao editar a mao; rode o re-sync.\n'
+    + 'window.TREES = ' + JSON.stringify(readJSON(path.join(DATA, 'trees.json')), null, 1) + ';\n');
+  write(path.join(PUB, 'xprates.js'),
+    '// GERADO de data/xprates.json (valores vivos do servidor). Nao editar a mao.\n'
+    + 'window.XPRATES = ' + JSON.stringify(readJSON(path.join(DATA, 'xprates.json'))) + ';\n');
   write(path.join(PUB, 'charms.js'),
     '// GERADO do bundle do JOGO (tools/extract-game-data.js). Nao editar a mao.\n'
     + 'window.CHARMS = ' + JSON.stringify(charms) + ';\n');
@@ -356,9 +609,10 @@ function main(src) {
     '// GERADO do bundle do JOGO (tools/extract-game-data.js). Nao editar a mao.\n'
     + '// m: criatura -> [[item, chance, max?], ...]   chance e por 100.000 (750 = 0,75%);\n'
     + '//                                              max marca stackavel: rola 1..max.\n'
-    + '// p: item -> gold de venda. So as criaturas que aparecem em hunt entram aqui;\n'
+    + '// b: boss (id da aba Bosses) -> [[item, chance, max?], ...], mesma escala.\n'
+    + '// p: item -> gold de venda. So as criaturas de hunt e os bosses entram aqui;\n'
     + '//    o bestiario inteiro esta em data/loot.json.\n'
-    + 'window.LOOT = ' + JSON.stringify({ m: lootPub, p: pricePub }) + ';\n');
+    + 'window.LOOT = ' + JSON.stringify({ m: lootPub, b: bossLootPub, p: pricePub }) + ';\n');
 
   console.log(changed.length ? `\n${changed.length} arquivo(s) mudaram` : '\nnada mudou');
 }

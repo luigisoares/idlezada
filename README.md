@@ -16,7 +16,10 @@ idlezada/
 │  ├─ hunts.js           # hunt data (window.HUNTS) — generated from data/hunts.json
 │  ├─ charms.js          # charm table (window.CHARMS) — generated from data/charms.json
 │  ├─ loot-view.js       # loot screen: item → creature + hunt, starred list, drop tables
-│  ├─ loot.js            # loot + sell prices (window.LOOT) — generated from data/loot.json
+│  ├─ loot.js            # loot + sell prices (window.LOOT: m=creatures, b=bosses, p=prices) — generated
+│  ├─ bosses-view.js     # bosses screen: real HP, damage bar, loot per boss, favorites
+│  ├─ bosses.js          # boss data (window.BOSSES) — generated from data/bosses.json
+│  ├─ xprates.js         # live server XP rates (window.XPRATES) — generated from data/xprates.json
 │  ├─ styles.css
 │  ├─ simuladorbuild.html# interactive simulator (Simulator tab)
 │  └─ stamina.html       # stamina calculator (Stamina tab)
@@ -24,6 +27,8 @@ idlezada/
 ├─ data/monsters.json    # whole bestiary: hp/exp/armor/resist + dmg/abilities (not published)
 ├─ data/loot.json        # whole bestiary's loot: item / chance / max (not published)
 ├─ data/prices.json      # sell price in gold of every item (not published)
+├─ data/bosses.json      # room bosses (from the bundle) + world bosses (by hand)
+├─ data/xprates.json     # live XP rates, read by hand from the in-game wiki page
 ├─ tools/                # verification (not published, no dependencies)
 │  ├─ check-builds.js    # run after touching any weight: node tools/check-builds.js
 │  ├─ check-hunt-model.js# run after touching hunt-model.js or re-extracting
@@ -31,15 +36,40 @@ idlezada/
 │  ├─ check-builds-view.js # same, for the Builds tab (catches init + marker breaks)
 │  ├─ check-loot.js      # loot model + the gold cross-check that pins the chance scale
 │  ├─ check-loot-view.js # runs the Loot tab against a fake DOM
-│  ├─ extract-game-data.js # pulls resists, damage, charms, loot + prices out of the bundle
+│  ├─ check-bosses-view.js # runs the Bosses tab against a fake DOM (loot included)
+│  ├─ extract-game-data.js # the one data script: bundle → monsters, loot, prices, charms, hunts, bosses
+│  ├─ extract-wiki.js    # reads the game's wiki (shipped inside the bundle): the source of the rules
+│  ├─ bump-front-version.js # raises the ?v= cache version everywhere at once
 │  └─ model.js           # combat model used to compare objectives
-├─ docs/                 # internal specs (not published)
+├─ docs/                 # internal specs + docs/changelog/ (one entry per update round)
+├─ .claude/skills/updating-game-data/ # the step-by-step for refreshing the data
 └─ .github/workflows/deploy.yml
 ```
 
 ## Run locally
 
-Open `public/index.html` in a browser (double-click). No server, no dependencies.
+Open `public/index.html` in a browser (double-click). No server, no dependencies (fonts come
+from Google Fonts and fall back to system fonts offline).
+
+## Look and feel
+
+One stylesheet (`public/styles.css`) themes every tab, and the simulator and stamina pages
+carry the same tokens in their own `<style>`. The look is the site's original identity —
+dark green and gold — refined: one type family (Manrope, tabular numbers) for everything,
+gold as the only action color, and the seven element colors used strictly as data. Fonts
+load from Google Fonts with system fallbacks, so the page still works offline, just plainer.
+
+Every hunt answers the two element questions in plain chips: **Hit with** (the element the
+whole pack takes the most damage from, as extra damage over a neutral hit) and **Protect
+from** (the biggest damage sources grouped until they cover ~70% of what you take, two
+at most). The Hunts tab is a settings rail (character, level, party, Session paste, my
+charms, rank / find / "only hunts I can enter") next to a podium with the top three and a
+table you can sort by clicking its headers. Search and the level filter are screen-only —
+they never touch the ranking or the podium. Under 720px each row becomes a card.
+
+**Cache:** every CSS/JS include in `index.html` carries `?v=N`, and `FRONT_V` in `app.js`
+does the same for the simulator and stamina iframes. Bump both together on a front-end
+change, or browsers keep serving the old files.
 
 ## Objectives (build generator)
 
@@ -103,6 +133,22 @@ falls behind on a pack of four, and AoE is the reverse.
   stays a distinct build. If you want raw damage *with* the Avatar, that is the Avatar button.
 - **Atk Speed** — attack speed + light damage/crit.
 
+### "+ XP": any objective with an XP focus on top
+
+Druid and sorcerer players wanted Avatar *and* XP in the same build — the Avatar's
+guaranteed crits, while still levelling fast. XP used to be one button among the others, so
+it was one or the other. Now every card whose tree has exp (all but the knight) shows a
+**+ XP focus** switch under the objectives: on, the build keeps the chosen objective's whole
+profile and adds the XP profile's one XP-specific weight (`expPct`), so the exp nodes are
+bought first and everything else follows the objective. It is not a 50/50 blend on purpose
+— that would dilute exactly what the objective is (the Avatar node, its attack speed).
+Off, nothing changes. The Battle Tactics default follows the farming side (r3) unless you
+touched the marker, and the Hunts tab builds the same tree.
+
+Measured at level 900 with the `tools/model.js` index: druid Avatar goes from +0% to +22%
+exp with the same 43% Avatar uptime, XP/h index 2.84 → 3.16 (+11%); sorcerer Avatar gets
++10% exp at the same 46% uptime, 3.97 → 4.10 — ahead of the plain XP objective (3.95).
+
 ### Battle Tactics: a step you choose, not a step everyone pays for
 
 Every card's perk list opens with a **Battle Tactics marker** — a stepper from 0 to 10 that
@@ -148,20 +194,30 @@ just bought.
 *"Level too low for Battle Tactics r7 …"* — and reports what it did reach instead of silently
 delivering less.
 
-### Perks to prioritize
+### Perks to lock
 
 Each card has a collapsible list of the tree's **notables** (Avatar of Steel, Executioner,
-Cleaving Strikes, Gift of Life...). Checking one *prioritizes* it: the optimizer gives it a
-minimum cost/benefit ratio (`PERK_BOOST`) so it competes with the small nodes, but still refuses
-it when the points would gut the rest of the build. Marking Avatar of Steel + Executioner on a
-knight, for instance, brings in only the Executioner at level 500 — the Avatar's 300 points would
-drop attack from 60% to 26% — and brings in both from level 900, where the Avatar costs 8 points
-of attack and returns roughly +42% damage.
+Cleaving Strikes, Gift of Life...). **Checking one locks it**: the optimizer takes that perk
+first, whatever it costs, and builds the rest of the tree around it (`forcePerks`, always on
+from the UI). The walls that stay up are level ones, and the card names them: the path to the
+node alone costs more than your points, or the locked perks do not fit *together* — in which
+case unlock one or raise the level.
 
-When a perk is left out because it did not pay off, the card offers a checkbox to **take it
-anyway** (`forcePerks`), which shapes the rest of the build around it. The one wall that stays up
-is level: if the cheapest path to the node costs more than your whole budget, no amount of
-forcing helps, and the card says so instead of offering a control that cannot work.
+**Locking is also a closed list.** As soon as one perk is checked, the perks you left
+unchecked stay out: locking Executioner + Avatar of Steel on a knight tank no longer brings
+Gift of Life along just because the Tank objective values it. The only unchecked perks that
+can still come in are the ones a checked perk needs on the way (Cleaving Strikes III pulls
+I and II) and the one in front of Battle Tactics on the monk when the marker asks for it.
+With nothing checked the optimizer picks freely, exactly as before. Swept over every perk ×
+objective at level 900: no unchecked perk that could be removed without breaking the tree.
+
+It used to be two steps: checking only *prioritized* (`PERK_BOOST`, a minimum cost/benefit
+ratio that still let the optimizer refuse), and forcing was a second checkbox that appeared
+inside the warning only after the perk had already been dropped. In practice a knight tank at
+900 with Cleaving Strikes III checked came back without it. Measured at level 900, checking
+alone dropped the perk in 13 of 337 perk × objective combos; locked, 0 of ~1,100 (singles,
+pairs and random sets of 3–6 that fit). `PERK_BOOST` still exists in the engine for scripts
+that ask for it, and `check-builds-view.js` pins the knight case.
 
 The share-code format round-trips: paste a code into the simulator (or the game) and back.
 
@@ -203,9 +259,11 @@ creatures hold a charm at all. It is an exact DP over (creature × mask of used
 charms), not a greedy pass: the charm that pays most on the fat monster is often the
 only one that pays on the thin one.
 
-**The wave-10 boss is one of the pack creatures** — in all 79 hunts the bundle's
-`bossKey` points at a monster already in the list, same key and same bestiary entry,
-just ×3 HP. So there is no "charm for the boss" decision separate from that
+**The wave-10 boss is almost always one of the pack creatures** — in 86 of the 87 hunts
+the bundle's `bossKey` points at a monster already in the list, same key and same bestiary
+entry, just ×3 HP. The exception is Thalassara Surroundings (Sep 2026 update), whose boss
+is a Moonspawn Juggernaut that never spawns in the pack; there it is simply one more
+creature with a single kill per clear. So there is no "charm for the boss" decision separate from that
 creature's, and `huntCreatures` merges the two appearances into one row (keeping them
 apart internally, since the elemental proc caps at 5% of the *target's* HP and the
 boss fights with three times more). The wiki's "bosses receive no charm" is read as
@@ -260,6 +318,72 @@ percentages. Two known ways the model runs *low* on the elementals are documente
 the top of `hunt-model.js` (spell casts also proc them; the proc is assumed not to
 crit).
 
+### Critical hits, Avatar, and Low Blow vs Savage Blow
+
+A crit adds **+50%** on top of the hit, plus your crit damage — the game's own wiki says so
+twice ("Critical: +50% base (+ Crit Damage)" in the server data, and again in the Forge
+attributes). The charm model used to assume +100% (a crit hitting for 2×); `CRIT_BASE` in
+`hunt-model.js` and `critBase` in `tools/model.js` now carry 1.5.
+
+That is what answers "is Low Blow still worth it on an Avatar build?". Inside the Avatar
+form every hit already crits, so Low Blow's extra crit chance only counts outside it, while
+Savage Blow's extra crit damage counts on every crit, the Avatar's included. At level 900
+on the Avatar builds: Savage Blow T3 **+15–16%**, Low Blow T3 **+2.6–3.3%** (knight, druid,
+sorcerer, paladin; tree uptime 43–55%). Without Avatar it flips — Low Blow wins. Since each
+charm sits on one creature, Low Blow can still be the right pick for the *second* creature
+of a hunt, and the plan solves that; with Avatar in the build it now says the trade in one
+line.
+
+- **"The boss has a lot of HP, so an elemental charm should hit harder?"** No, for two
+  reasons from the game's wiki. Boss rooms cannot hold charms at all ("Bosses não recebem
+  charm"); only hunt creatures can, and the wave-10 boss is one of them with ×3 HP. And an
+  elemental proc is `min(2× your level, 5% of the target's HP)`: at level 900 it caps at
+  **1,800** damage once the target has more than 36k HP, so extra HP adds nothing. On
+  Asura Citadel at 900 (knight Avatar, 100k DPS) the plan is Savage Blow +15.3% on the
+  main creature, Low Blow +3.0% on the second, Carnage +2.4% on the third; the best
+  elemental is +0.14%.
+- **Carnage only hits who is standing next to the dead one.** The burst goes to the 4
+  tiles touching it; with the pack around you, one of those is you and one is outside the
+  ring, so at most 2 monsters can be hit — whether the dead one was in front of you or on
+  a diagonal. The model used to assume 2 every time. `carnageNeighbors` now counts, kill
+  by kill, how many are still alive: when the k-th of a wave of n dies, each of the 2 tiles
+  holds a monster with chance (n−k)/7. Averaged over waves 1–9 that is **0.73** for a pack
+  of 4, not 2 — which is why Low Blow now beats Carnage on the second creature. It assumes
+  the pack stays on you; kiting, they trail in a line and Carnage hits even less.
+- **House rule (Hunts tab): Savage Blow, Fatal Hold, Gut and Scavenge are always in the
+  plan** when the hunt has creatures for them; Adrenaline Burst is the reserve. Low Blow
+  is *not* fixed — it goes in only where it beats Carnage and the elementals. The rule is
+  passed in by the view (`must`), so `huntCharmPlan` on its own still follows the math
+  alone (with 30% crit and no Avatar, Low Blow does beat Savage, and the tests keep that).
+- **Carnage × elemental is decided by how many hits a creature takes.** At the level cap
+  both are fixed numbers: an elemental adds ~chance × min(2×level, 5% HP) **per hit**,
+  Carnage adds chance × min(15% HP, 6×level) × neighbours **per kill**. At 900 that is
+  ~198 per hit against ~867 per kill, so the elemental wins once a creature needs more
+  than ~4–5 of your hits. Hitting with runes from range means many small hits — many
+  procs. The model used to take your hit as DPS ÷ attack speed (all auto-attack), which
+  makes hits huge and few; the rail now takes **your average hit** (the damage number
+  you see, runes and spells included), and "Why these charms" states the break-even for
+  the creature holding Carnage or the elemental. On Bony Sea Devil at 900: with an 83k
+  hit the plan keeps Low Blow and Carnage; with a 2k hit it switches to Wound, Divine
+  Wrath and Enflame at +11–12% each.
+- **Minor charms by what they are worth.** Fatal Hold (the only one that is damage) goes
+  where it speeds up the clear most; then Scavenge (+20% of the coins) and Gut (+12% of
+  the other drops' chance, read as relative) go to the creatures where they add the most
+  gold per clear, counted on the hunt's real loot table and shown in the plan; utility
+  minors fill what is left. The creature's share of the clear (HP-weighted, boss ×3 included)
+  is what decides who gets the best charm — the one you spend the most time hitting.
+- **Avatar uptime** comes from the tree alone. Forge Transcendence (legs) and the potion of
+  transcendence add chance that is not in the repo, so the Hunts rail takes your own number;
+  empty uses the tree's. The higher it is, the less Low Blow is worth.
+- **My charms** now start with every charm owned (Low Blow and Carnage used to start
+  unchecked). The saved setting moved to `idlezada.charmCfg.v2`; from v1 only the slot count
+  carries over, because the owned list there was built on the old default.
+- **Why the optimizer did not change with it.** Pricing crit chance the game's way in
+  `engine.js` (and, to be exact, as a multiplier over the damage stack) was measured over
+  the 108 build combos: net **+0.04%** on the damage index, individual builds from −3.4% to
+  +5.4% — greedy noise, not a gain. Changing 70 share codes for nothing was not worth it, so
+  the heuristic weight stays, with the measurement written next to it.
+
 ## Loot: which creature drops it, and where it comes out most
 
 The Loot tab is the same list of hunts asked a different question, so it reuses the
@@ -290,7 +414,9 @@ can be checked in the client, because combat runs on the server.
 So they are checked against the repo instead. `data/hunts.json` already carried
 `goldPerClear` for every hunt, recorded from the game long before there was a loot table
 here. Summing the coins out of the loot with those three assumptions has to reproduce
-that number, and it does, **exactly, on all 79 hunts** — `check-loot.js` runs the
+that number, and it does, **exactly, on all 79 hunts recorded that way** (the 8 hunts
+added in the Sep 2026 update were built by the extractor with this same formula, so for
+those the check is consistency, not proof) — `check-loot.js` runs the
 equality. Get any of the three wrong and it fails immediately.
 
 **Deaths, not HP.** `packWeights` weighs each monster by the HP it represents, because
@@ -321,11 +447,32 @@ takes *when* it drops — served by the server, not in the bundle. And two creat
 appear in hunts (`minion_of_versperoth`, `bloodjaw`) have no loot table in the bundle at
 all; the hunts holding them say so in the detail instead of presenting a silent total.
 
+## Boss loot
+
+Every boss carries its drop table from the game bundle — the same `loot:[{name, chance, max}]`
+the hunts use, same scale (chance per 100,000, a stackable rolls 1 to max), but **per kill**
+instead of per clear, since a boss room is one fight. `public/loot.js` publishes it under
+`b` (boss id → rows), read through the monster key (the id is not always the key: "oberon"
+fights as `grand_master_oberon`). All 106 bosses have one.
+
+- **Bosses tab:** each card has a Loot button showing the average gold per kill; open it for
+  the full list with chance, quantity and sell price, most valuable first. Search also
+  matches items ("moonsilver bow" finds Phosphorus), and you can sort by loot value.
+- **Loot tab:** searching an item lists the bosses that drop it in their own table below
+  the hunts (chance and quantity per kill), and items that only drop from bosses are now
+  searchable — 1,433 items instead of 896.
+
+What the bundle does not carry, and so is not here: item rarity and the reward bag, both
+served by the server.
+
 ## Re-extracting game data
 
-`data/monsters.json`, `data/charms.json`, `data/loot.json`, `data/prices.json` and the
-`resist` / `spawn` / `threat` / `boss.key` fields inside `data/hunts.json` come from the
-game bundle:
+**The full procedure — what each line of output means, what is done by hand, how to ship —
+is the `updating-game-data` skill in `.claude/skills/`.** This section is the reference
+behind it.
+
+`data/monsters.json`, `data/charms.json`, `data/loot.json`, `data/prices.json`, the room
+bosses in `data/bosses.json` and the hunts in `data/hunts.json` come from the game bundle:
 
 ```
 node tools/extract-game-data.js           # downloads the current bundle
@@ -334,10 +481,33 @@ node tools/check-hunt-model.js            # then verify the model
 node tools/check-hunts-view.js            # ...and that the tab still renders
 node tools/check-loot.js                  # loot: the gold cross-check must stay exact
 node tools/check-loot-view.js             # ...and that the Loot tab still renders
+node tools/check-bosses-view.js           # ...and the Bosses tab, loot included
 ```
 
-It rewrites `public/hunts.js`, `public/charms.js` and `public/loot.js` from the JSON and
-never touches the HP / XP / gold already recorded. The bundle is minified and its variable names
+It rewrites `public/hunts.js`, `public/charms.js`, `public/loot.js` and `public/bosses.js`
+from the JSON, and regenerates `public/trees.js` and `public/xprates.js` from the two JSON
+files that are edited by hand. It also **compares the skill trees** in the bundle with
+`data/trees.json` and prints `! ARVORE MUDOU NO JOGO` with the differences — it never
+rewrites the trees, because the optimizer is calibrated on them. What it does with each kind of record:
+
+- **New hunt** in the bundle → built from scratch with the same formulas that produced the
+  original 79 (bestiary HP ×2, `spawnCount(packBase)` kills by spawn weight + 1 boss,
+  boss XP ×2.5 and HP ×3, gold from the coin rows of the loot table). Rebuilding the 79 this
+  way reproduces every one of them to within ±1 of rounding.
+- **Recorded hunt whose inputs changed** (monster list, a monster's HP or XP, pack size,
+  boss) → rebuilt the same way, and the script prints what changed. Only the level changed →
+  only the level is updated.
+- **Recorded hunt with nothing changed** → left alone, so its recorded gold stays an
+  independent proof for `check-loot.js`.
+- **Room bosses** (`avail:"on"`, no `mapId`) → added or rewritten from the bundle: HP ×4.5,
+  XP ×2.5, and damage elements weighted melee ×0.6 / targeted ×1.1 / area ×0.3 (max ×
+  chance), a weighting calibrated against the 101 bosses the community guide provided —
+  it reproduces 100 of them exactly and the other within 1 point.
+  **World bosses** (`mapId:"worldboss"`) are left alone: their HP scales with players on
+  the server and the bundle's number is not the one you fight. Two other boss lists in the
+  bundle (59 entries without `avail`) are never shown by the game client, so they stay out.
+- `avail:"test"` on a hunt is copied into the data and nothing else: 10 hunts the site
+  already showed carry it too, so it does not mean the hunt is out of the game. The bundle is minified and its variable names
 change every build, so the script locates the monster tables by the *expression* that
 merges them and **fails loudly** rather than writing wrong data if the game changes shape.
 

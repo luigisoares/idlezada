@@ -3,111 +3,162 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Idlezada — Builds</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="color-scheme" content="dark">
+<title>Idlezada — Baiak Idle toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
 
-<div class="topbar">
-  <h1 class="brand">Idlezada <small>build generator</small></h1>
-  <div class="navtabs" id="navtabs">
-    <div class="navtab on" data-view="builds">Builds</div>
-    <div class="navtab" data-view="bosses">Bosses</div>
-    <div class="navtab" data-view="hunts">Hunts</div>
-    <div class="navtab" data-view="loot">Loot</div>
-    <div class="navtab" data-view="sim">Simulator</div>
-    <div class="navtab" data-view="stamina">Stamina</div>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Idlezada</span>
+    <span class="brand-sub">Baiak Idle toolkit</span>
   </div>
-</div>
+  <nav class="navtabs" id="navtabs" aria-label="Sections">
+    <button type="button" class="navtab on" data-view="builds">Builds</button>
+    <button type="button" class="navtab" data-view="hunts">Hunts</button>
+    <button type="button" class="navtab" data-view="loot">Loot</button>
+    <button type="button" class="navtab" data-view="bosses">Bosses</button>
+    <button type="button" class="navtab" data-view="sim">Simulator</button>
+    <button type="button" class="navtab" data-view="stamina">Stamina</button>
+  </nav>
+</header>
 
 <!-- ===== BUILDS ===== -->
 <section class="view on" id="view-builds">
   <div class="wrap">
-    <p class="lead">Set the level and pick an objective — the build is assembled automatically and the share code is ready to copy. Fine-tune it by clicking "Open in simulator".</p>
+    <div class="vh">
+      <h2>Builds</h2>
+      <p>Set the level and pick an objective: the tree is allocated for you and the share code is ready to paste in the game. Lock the perks you want and the rest of the tree is built around them.</p>
+    </div>
     <div class="hidden-builds" id="hidden-builds"></div>
     <div class="slots" id="slots"></div>
-  </div>
-</section>
-
-<!-- ===== BOSSES ===== -->
-<section class="view" id="view-bosses">
-  <div class="wrap">
-    <div class="bosses-bar">
-      <input type="text" id="boss-search" placeholder="Search boss..." autocomplete="off">
-      <select id="boss-sort">
-        <option value="name">Name (A–Z)</option>
-        <option value="hp-desc">HP (high → low)</option>
-        <option value="hp-asc">HP (low → high)</option>
-        <option value="level">Level</option>
-      </select>
-      <button id="boss-suggest" title="Favorite the 40 meta farm bosses">Suggest 40</button>
-      <label class="chip2"><input type="checkbox" id="boss-favs"> <span id="favs-label">★ Favorites</span></label>
-      <span id="boss-count"></span>
-    </div>
-    <div class="bosses-grid" id="bosses-grid"></div>
-    <p class="note" style="margin-top:14px">Real HP = base × 4.5 for room bosses; cooperative bosses show the group base (scales with players). Data extracted from the community guide.</p>
   </div>
 </section>
 
 <!-- ===== HUNTS ===== -->
 <section class="view" id="view-hunts">
   <div class="wrap">
-    <div class="hunts-bar">
-      <div class="field"><span class="k">Level</span><input type="number" id="hunt-level" min="1" max="9999999" value="500"></div>
-      <div class="hunt-chars" id="hunt-chars"></div>
-      <label class="chip2"><input type="checkbox" id="hunt-party"> Party (leader 65%)</label>
-      <select id="hunt-sort">
-        <option value="xph">XP / hour</option>
-        <option value="xp">XP per clear</option>
-        <option value="gold">Gold per clear</option>
-        <option value="level">Level</option>
-      </select>
-      <span id="hunt-rate"></span>
+    <div class="vh">
+      <h2>Hunts</h2>
+      <p>Where to hunt at your level, ranked by real XP per hour once you paste your Session. Open a hunt for the element to hit with, the element to protect from, and where to put each charm.</p>
     </div>
-    <div class="hunts-bar dps-bar">
-      <div class="field" style="flex:1 1 260px"><span class="k">DPS — paste your Session (Ctrl+V)</span>
-        <textarea id="hunt-dps" rows="2" placeholder="Session&#10;05:27:35&#10;EK&#10;3.226/s · 63.410.078&#10;ED ..."></textarea></div>
-      <span id="hunt-dpsinfo" class="dpsinfo"></span>
+    <div class="hx">
+      <aside class="rail" aria-label="Hunt settings">
+        <div class="rail-card">
+          <span class="rail-k">Character</span>
+          <div class="hunt-chars" id="hunt-chars"></div>
+          <div class="rail-row">
+            <label class="field"><span class="k">Level</span><input type="number" id="hunt-level" min="1" max="9999999" value="900"></label>
+            <label class="switch"><input type="checkbox" id="hunt-party"><span>Party <em>leader gets 65%</em></span></label>
+          </div>
+          <label class="field"><span class="k">Avatar uptime % <em>— empty uses your tree; set it if forge Transcendence or potions make it proc more</em></span>
+            <input type="number" id="hunt-avatar" min="0" max="100" step="1" placeholder="from tree"></label>
+          <span class="rail-meta" id="hunt-rate"></span>
+        </div>
+
+        <div class="rail-card">
+          <label class="field"><span class="k">Your DPS <em>— paste the Session window (Ctrl+V)</em></span>
+            <textarea id="hunt-dps" rows="3" placeholder="Session&#10;05:27:35&#10;EK&#10;3.226/s · 63.410.078&#10;ED ..."></textarea></label>
+          <label class="field"><span class="k">Your average hit <em>— the damage number you see per hit, runes and spells included; decides elemental × Carnage</em></span>
+            <input type="number" id="hunt-hit" min="0" step="100" placeholder="from your DPS"></label>
+          <span id="hunt-dpsinfo" class="dpsinfo"></span>
+        </div>
+
+        <div class="rail-card charm-bar">
+          <button type="button" class="cfg-toggle perks-h" id="charm-cfg-toggle" aria-expanded="false" aria-controls="charm-cfg"></button>
+          <div class="cfg-body" id="charm-cfg" hidden></div>
+        </div>
+
+        <div class="rail-card">
+          <label class="field"><span class="k">Rank by</span>
+            <select id="hunt-sort">
+              <option value="xph">XP / hour</option>
+              <option value="xp">XP per clear</option>
+              <option value="gold">Gold per clear</option>
+              <option value="level">Level</option>
+            </select></label>
+          <label class="field"><span class="k">Find a hunt</span>
+            <input type="search" id="hunt-q" placeholder="name or monster" autocomplete="off"></label>
+          <label class="switch"><input type="checkbox" id="hunt-only"><span>Only hunts I can enter</span></label>
+        </div>
+      </aside>
+
+      <div class="hx-main">
+        <div id="hunt-reco"></div>
+        <div class="hunts-table" id="hunts-table"></div>
+        <details class="howto">
+          <summary>How these numbers are computed</summary>
+          <p>XP per clear is the hunt's base XP times your level's XP rate and your party share. XP per hour needs your DPS: clear time is the clear's total HP divided by the party DPS you pasted. <b>Hit with</b> is the element the whole pack takes the most damage from, as extra damage over a neutral hit (a monster immune to an element rules it out for the hunt). <b>Protect from</b> groups the biggest sources of the damage you take there — elements are added until they cover about 70% of it, two at most. Gold is coins only. Data comes from the game bundle; XP rates are the live server config.</p>
+        </details>
+      </div>
     </div>
-    <div class="hunts-bar charm-bar">
-      <button class="cfg-toggle perks-h" id="charm-cfg-toggle" aria-expanded="false" aria-controls="charm-cfg"></button>
-      <div class="cfg-body" id="charm-cfg" hidden></div>
-    </div>
-    <div id="hunt-reco"></div>
-    <div class="hunts-table" id="hunts-table"></div>
-    <p class="note" style="margin-top:14px">Ranked by <b>XP per clear</b> (your level's XP rate × party share). Click a hunt to expand its monsters and see base HP/XP — handy to cross-check with the game. Gold is coins only (approx). Data extracted from the game bundle; rates are live server config.</p>
   </div>
 </section>
 
 <!-- ===== LOOT ===== -->
 <section class="view" id="view-loot">
   <div class="wrap">
-    <div class="hunts-bar loot-bar">
+    <div class="vh">
+      <h2>Loot</h2>
+      <p>Search an item to see which creature drops it and which hunt gives the most of it per clear. Star items to build a list, clear the search, and the hunts are ranked by how much of your list they cover.</p>
+    </div>
+    <div class="toolbar loot-bar">
       <div class="field lf-search"><span class="k">Item</span>
         <div class="lf-wrap">
-          <input type="text" id="loot-search" placeholder="stone skin amulet" autocomplete="off" list="loot-items">
-          <button class="lstar big off" id="loot-star" title="Search an item to star it">☆</button>
+          <input type="search" id="loot-search" placeholder="stone skin amulet" autocomplete="off" list="loot-items">
+          <button type="button" class="lstar big off" id="loot-star" title="Search an item to star it">☆</button>
         </div>
         <datalist id="loot-items"></datalist>
       </div>
-      <div class="field"><span class="k">Level</span><input type="number" id="loot-level" min="1" max="9999999" value="500"></div>
-      <div class="field"><span class="k">Sort</span>
+      <label class="field"><span class="k">Level</span><input type="number" id="loot-level" min="1" max="9999999" value="900"></label>
+      <label class="field"><span class="k">Sort</span>
         <select id="loot-sort">
           <option value="clear">Most per clear</option>
           <option value="chance">Best drop chance</option>
           <option value="level">Level</option>
-        </select>
-      </div>
+        </select></label>
     </div>
     <div class="loot-favs" id="loot-favs"></div>
     <div class="loot-info" id="loot-info"></div>
     <div class="loot-note" id="loot-note"></div>
     <div class="hunts-table" id="loot-table"></div>
-    <p class="note" style="margin-top:14px">Search an item to see which creature drops it and in which hunt it comes out most. Star the items you want
-      and leave the search empty to get <b>my list</b> — the hunts ranked by how much of your list they cover. Click a hunt to open its full drop table.
-      Chances come from the game bundle (<b>0.75%</b> means 750 per 100,000) and quantities assume a stackable rolls 1–max — the same assumptions that
-      reproduce the recorded gold per clear exactly, on all 79 hunts. Item <i>rarity</i> (Common/Uncommon/Rare…) is a separate roll served by the server
-      and is not part of this.</p>
+    <details class="howto">
+      <summary>How these numbers are computed</summary>
+      <p>Chances come from the game bundle (<b>0.75%</b> means 750 per 100,000) and quantities assume a stackable item rolls 1 to max — the same assumptions that reproduce the recorded gold per clear exactly, on every hunt. Item <i>rarity</i> (Common/Uncommon/Rare…) is a separate roll served by the server and is not part of this.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===== BOSSES ===== -->
+<section class="view" id="view-bosses">
+  <div class="wrap">
+    <div class="vh">
+      <h2>Bosses</h2>
+      <p>Every boss room with its real HP, the XP it gives, the elements it hits you with and what it drops, so you know what to protect against — and whether the room is worth it — before you walk in.</p>
+    </div>
+    <div class="toolbar bosses-bar">
+      <input type="search" id="boss-search" placeholder="Search boss, rarity, element or item" autocomplete="off" aria-label="Search bosses">
+      <select id="boss-sort" aria-label="Sort bosses">
+        <option value="name">Name (A–Z)</option>
+        <option value="hp-desc">HP (high → low)</option>
+        <option value="hp-asc">HP (low → high)</option>
+        <option value="level">Level</option>
+        <option value="loot">Loot value (gold / kill)</option>
+      </select>
+      <label class="switch"><input type="checkbox" id="boss-favs"><span id="favs-label">★ Favorites</span></label>
+      <button type="button" id="boss-suggest" title="Favorite the 40 meta farm bosses">Suggest 40</button>
+      <span id="boss-count"></span>
+    </div>
+    <div class="bosses-grid" id="bosses-grid"></div>
+    <details class="howto">
+      <summary>How these numbers are computed</summary>
+      <p>Real HP is the base HP × 4.5 for room bosses; cooperative bosses show the group base, which scales with players. XP is the real reward (base × 2.5). The damage bar splits the boss's damage by element, weighting targeted attacks above area ones. Loot is the boss's drop table from the game data: chance per kill (1% = 1,000 per 100,000), quantity (a stackable rolls 1 to max) and sell price; the gold per kill on the button is the average over many kills. Item rarity and the reward bag are handled by the server and are not part of it. Data comes from the game bundle; ✎ lets you override the elements on your own browser.</p>
+    </details>
   </div>
 </section>
 
@@ -121,17 +172,17 @@
   <div class="iframe-wrap"><iframe id="staminaFrame" title="Stamina Calculator"></iframe></div>
 </section>
 
-<script src="trees.js"></script>
-<script src="engine.js"></script>
-<script src="app.js"></script>
-<script src="bosses.js"></script>
-<script src="bosses-view.js"></script>
-<script src="xprates.js"></script>
-<script src="hunts.js"></script>
-<script src="charms.js"></script>
-<script src="hunt-model.js"></script>
-<script src="hunts-view.js"></script>
-<script src="loot.js"></script>
-<script src="loot-view.js"></script>
+<script src="trees.js?v=12"></script>
+<script src="engine.js?v=12"></script>
+<script src="app.js?v=12"></script>
+<script src="xprates.js?v=12"></script>
+<script src="hunts.js?v=12"></script>
+<script src="charms.js?v=12"></script>
+<script src="hunt-model.js?v=12"></script>
+<script src="loot.js?v=12"></script>
+<script src="hunts-view.js?v=12"></script>
+<script src="bosses.js?v=12"></script>
+<script src="bosses-view.js?v=12"></script>
+<script src="loot-view.js?v=12"></script>
 </body>
 </html>

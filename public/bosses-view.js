@@ -12,6 +12,15 @@ const favLabel = document.getElementById('favs-label');
 const countEl = document.getElementById('boss-count');
 if (!grid) return;
 
+/* LOOT: a tabela de drop de cada boss vem do bundle (LOOT.b, via hunt-model).
+   Opcional -- sem loot.js/hunt-model.js a aba continua funcionando sem ela. */
+const HM = window.HuntModel, LOOT = window.LOOT;
+const hasLoot = !!(HM && HM.bossLoot && LOOT && LOOT.b);
+const lootCache = {};
+const lootOf = b => hasLoot ? (lootCache[b.id] = lootCache[b.id] || HM.bossLoot(b.id, LOOT)) : { items: [], gold: 0 };
+const openLoot = new Set();
+const pctChance = c => { const v = c / 1000; return (v >= 10 ? v.toFixed(0) : v >= 1 ? v.toFixed(1) : v >= 0.1 ? v.toFixed(2) : v.toFixed(3)) + '%'; };
+
 const ELEMENTS = ['physical','energy','earth','fire','ice','holy','death'];
 
 /* favoritos */
@@ -37,6 +46,13 @@ function loadJSON(key, ok, fallback){ try { return ok(JSON.parse(localStorage.ge
 function saveJSON(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
 
 const nf = n => (n == null ? '—' : Number(n).toLocaleString('en-US'));
+/* numero curto pro card (o exato fica no title): 4.5M le mais rapido que 4,500,000 */
+const short = n => {
+  if (n == null) return '—';
+  const a = Math.abs(n);
+  const f = (x, u) => (x >= 100 ? Math.round(x) : Math.round(x * 10) / 10) + u;
+  return a >= 1e9 ? f(n / 1e9, 'B') : a >= 1e6 ? f(n / 1e6, 'M') : a >= 1e4 ? f(n / 1e3, 'k') : nf(n);
+};
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 // elementos efetivos: override manual (se existir) tem prioridade sobre o scraped
@@ -52,6 +68,7 @@ function sortList(list, mode){
     'hp-asc':  (a,b)=> a.hpReal - b.hpReal,
     'level':   (a,b)=> (a.minLevel ?? 1e9) - (b.minLevel ?? 1e9) || a.name.localeCompare(b.name),
     'name':    (a,b)=> a.name.localeCompare(b.name),
+    'loot':    (a,b)=> lootOf(b).gold - lootOf(a).gold || a.name.localeCompare(b.name),
   }[mode] || ((a,b)=> a.name.localeCompare(b.name));
   return list.sort(by);
 }
@@ -63,11 +80,46 @@ function imgHtml(b){
   return '';
 }
 
+/* o dano do boss como UMA barra: a largura de cada fatia e' a fatia do dano. Os
+   chips embaixo repetem os tres maiores com o numero, que e' o que se le. Override
+   manual nao tem %: vira fatias iguais, na ordem de prioridade escolhida. */
 function elsHtml(b){
-  const els = effEls(b).slice(0, 3);
-  const badges = els.map(e =>
+  const all = effEls(b);
+  if (!all.length) return `<div class="boss-els"><span class="el-empty">no elements</span></div>`;
+  const manual = all.every(e => e.pct == null);
+  const segs = all.map(e => {
+    const w = manual ? 100 / all.length : e.pct;
+    return `<i class="dseg es-${esc(e.el)}" style="flex-basis:${w}%" title="${esc(e.el)}${e.pct != null ? ' ' + e.pct + '%' : ''}"></i>`;
+  }).join('');
+  const badges = all.slice(0, 3).map(e =>
     `<span class="el el-${esc(e.el)}">${esc(e.el)}${e.pct != null ? ` <b>${e.pct}%</b>` : ''}</span>`).join('');
-  return `<div class="boss-els">${badges || '<span class="el-empty">no elements</span>'}</div>`;
+  return `<div class="boss-els">
+    <span class="dbar-k">Hits you with${manual ? ' <em>· your override</em>' : ''}</span>
+    <span class="dbar">${segs}</span>
+    <span class="dchips">${badges}</span>
+  </div>`;
+}
+
+/* o drop do boss: fechado por padrao, com o gold medio por morte ja no botao --
+   e' o numero que decide se vale a sala. Aberto, a lista vai do que mais vale por
+   morte pro que menos vale, com chance, quantidade e preco de venda. */
+function lootHtml(b){
+  if (!hasLoot) return '';
+  const L = lootOf(b);
+  if (!L.items.length) return `<div class="boss-loot"><span class="el-empty">no loot table in the game data</span></div>`;
+  const isOpen = openLoot.has(b.id);
+  const btn = `<button type="button" class="loot-toggle${isOpen ? ' on' : ''}" data-loot="${esc(b.id)}" aria-expanded="${isOpen}">
+      <span>${isOpen ? '▾' : '▸'} Loot <em>${L.items.length} items</em></span><b title="average gold per kill">${short(L.gold)}<small> / kill</small></b></button>`;
+  if (!isOpen) return `<div class="boss-loot">${btn}</div>`;
+  const rows = L.items.map(it => `<div class="bl-row">
+      <span class="bl-n" title="${esc(it.name)}">${esc(it.name)}</span>
+      <span class="bl-c">${pctChance(it.chance)}${it.rows > 1 ? ` <em>×${it.rows}</em>` : ''}</span>
+      <span class="bl-q">${it.max ? `1–${it.max}` : '1'}</span>
+      <span class="bl-p">${it.price != null ? short(it.price) : '—'}</span>
+    </div>`).join('');
+  return `<div class="boss-loot">${btn}
+    <div class="bl-list"><div class="bl-row bl-head"><span>Item</span><span class="bl-c">Chance</span><span class="bl-q">Qty</span><span class="bl-p">Sells</span></div>${rows}</div>
+  </div>`;
 }
 
 function editorHtml(b){
@@ -106,11 +158,12 @@ function card(b){
         ${group ? '<span class="rb rb-group">group</span>' : ''}
       </div>
       <div class="boss-stats">
-        <div class="bs"><span>HP real</span><b>${nf(b.hpReal)}</b></div>
+        <div class="bs"><span>HP real</span><b title="${nf(b.hpReal)}">${short(b.hpReal)}</b></div>
+        <div class="bs"><span>XP</span><b title="${nf(b.expReal ?? b.exp)}">${short(b.expReal ?? b.exp)}</b></div>
         <div class="bs"><span>Level</span><b>${b.minLevel ?? '—'}</b></div>
-        <div class="bs"><span>XP</span><b>${nf(b.expReal ?? b.exp)}</b></div>
       </div>
       ${editingId === b.id ? editorHtml(b) : elsHtml(b)}
+      ${lootHtml(b)}
     </div>
   </div>`;
 }
@@ -127,8 +180,10 @@ function flashLimit(){
 
 function render(){
   const q = (search.value || '').trim().toLowerCase();
+  /* a busca tambem acha o boss pelo ITEM: "moonsilver" leva ao Phosphorus */
   let list = B.filter(b => !q || b.name.toLowerCase().includes(q) || (b.rarity||'').includes(q)
-    || effEls(b).some(e => e.el.includes(q)));
+    || effEls(b).some(e => e.el.includes(q))
+    || (q.length >= 3 && lootOf(b).items.some(it => it.name.toLowerCase().includes(q))));
   if (favToggle && favToggle.checked) list = list.filter(b => favs.has(b.id));
   list = sortList(list, sortSel.value);
   countEl.textContent = `${list.length} boss${list.length !== 1 ? 'es' : ''}`;
@@ -144,6 +199,13 @@ grid.addEventListener('click', e => {
   const save = e.target.closest('.edit-save');
   const reset = e.target.closest('.edit-reset');
   const cancel = e.target.closest('.edit-cancel');
+  const lootBtn = e.target.closest('.loot-toggle');
+
+  if (lootBtn) {
+    const id = lootBtn.dataset.loot;
+    openLoot.has(id) ? openLoot.delete(id) : openLoot.add(id);
+    render(); return;
+  }
 
   if (fav) {
     const id = fav.dataset.fav;

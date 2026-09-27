@@ -25,6 +25,19 @@ const rateEl = document.getElementById('hunt-rate');
 const recoEl = document.getElementById('hunt-reco');
 const dpsInp = document.getElementById('hunt-dps');
 const dpsInfo = document.getElementById('hunt-dpsinfo');
+/* filtros so de tela (nao mudam conta nenhuma): opcionais, a aba vive sem eles */
+const qInp = document.getElementById('hunt-q');
+/* uptime do Avatar: o calculado sai SO da arvore; Transcendence (forja, pernas) e a
+   potion of transcendence somam chance por fora, e isso nao existe no repo. Vazio =
+   o da arvore. Guardado, porque e' da conta, nao da sessao. */
+const upInp = document.getElementById('hunt-avatar');
+const UP_KEY = 'idlezada.avatarUptime.v1';
+/* golpe medio: o numero de dano que voce ve subir no jogo, com runas e magias. E' o
+   que decide elemental x Carnage (quantos golpes cada bicho leva). Vazio = dps/aps,
+   que supoe tudo no ataque basico. */
+const hitInp = document.getElementById('hunt-hit');
+const HIT_KEY = 'idlezada.avgHit.v1';
+const onlyToggle = document.getElementById('hunt-only');
 if (!grid) return;
 
 const open = new Set();
@@ -76,11 +89,11 @@ function dpsInfoText(){
 function ctxInfoText(ctx){
   const crit = ctx.up >= 0.995
     ? `always crits (Avatar)`
-    : `crit ${Math.round(ctx.cc)}%/+${Math.round(ctx.cd)}%${ctx.up > 0 ? ` · Avatar ${Math.round(ctx.up*100)}% uptime` : ''}`;
+    : `crit ${Math.round(ctx.cc)}%/+${Math.round(ctx.cd)}%${ctx.up > 0 ? ` · Avatar ${Math.round(ctx.up*100)}% uptime${ctx.upManual ? ' (yours)' : ''}` : ''}`;
   /* de onde saiu o DPS deste personagem importa: "party total" infla o dano por
      golpe e portanto SUBESTIMA os charms de dano fixo. Melhor dizer do que fingir. */
   const own = !ctx.dps ? 'no own DPS'
-    : ctx.dpsSrc === 'total' ? `${nf(ctx.dps)}/s <b>party total</b> — paste splits per character for a sharper number`
+    : ctx.dpsSrc === 'total' ? `${nf(ctx.dps)}/s party total — paste splits per character for a sharper number`
     : ctx.dpsSrc === 'solo' ? `${esc(ctx.dpsTag)} ${nf(ctx.dps)}/s (only entry in the paste)`
     : `${esc(ctx.dpsTag)} ${nf(ctx.dps)}/s`;
   return `${esc(ctx.label)}: ${crit} · ${own}`;
@@ -92,13 +105,14 @@ const share = () => (partyToggle && partyToggle.checked && XP.party) ? XP.party.
 
 /* ---------- personagem selecionado (vem dos slots da aba Builds) ---------- */
 const VOC_TAG = { knight:'EK', paladin:'RP', sorcerer:'MS', druid:'ED', monk:'MK' };
+const VOC_COL = { knight:'#ff7a68', paladin:'#ffd46b', sorcerer:'#b98cff', druid:'#76d69a', monk:'#6fd3ee' };
 let chars = [], charIdx = 0;
 
 function loadChars(){
   try { const raw = JSON.parse(localStorage.getItem('idlezada.builds.v3'));
     if (raw && Array.isArray(raw.slots)) return raw.slots.map(s => ({
       label: s.label || s.voc, level: s.level || 1, voc: s.voc, obj: s.obj,
-      element: s.element, perks: s.perks || [], forcePerks: !!s.forcePerks })); } catch (e) {}
+      element: s.element, perks: s.perks || [], tactics: s.tactics, xp: !!s.xp })); } catch (e) {}
   return [];
 }
 
@@ -111,11 +125,15 @@ function charCtx(level){
   /* o level que vale é o do campo: mexer nele é planejar noutro level, e aí a
      própria build muda (mais pontos = mais crit), não só o dano do proc. */
   const lv = Math.max(1, level || c.level);
-  const key = [c.voc, lv, c.obj, c.element, (c.perks||[]).join('.'), c.forcePerks].join('|');
+  const key = [c.voc, lv, c.obj, c.element, (c.perks||[]).join('.'), c.tactics, c.xp].join('|');
   if (!ctxCache[key]) {
     let ctx;
     try {
-      const b = E.autobuild(c.voc, lv, c.obj, { element: c.element, perks: c.perks, forcePerks: c.forcePerks });
+      /* a MESMA build da aba Builds: perk marcado e' garantido e o marker do Battle
+         Tactics vale (ausente = default do objetivo, igual la). Se isto divergir, o
+         plano de charms sai calculado numa arvore que o usuario nao esta vendo. */
+      const b = E.autobuild(c.voc, lv, c.obj, { element: c.element, perks: c.perks, forcePerks: true,
+        tactics: c.tactics == null ? undefined : c.tactics, xp: c.xp });
       const a = E.aggregate(c.voc, b.ranks);
       const v = E.valueCtx(c.voc, b.ranks);
       ctx = { level: lv, cc: v.cc, cd: v.cd, up: v.up,
@@ -126,8 +144,13 @@ function charCtx(level){
   }
   /* o DPS não entra no cache: muda quando o usuário cola outra Session */
   const own = ownDps(c);
-  return Object.assign({}, ctxCache[key], { dps: own.dps, dpsTag: own.tag, dpsSrc: own.src,
-    label: c.label, voc: c.voc });
+  const upOver = upInp ? parseFloat(String(upInp.value || '').replace(',', '.')) : NaN;
+  const base = ctxCache[key];
+  return Object.assign({}, base, { dps: own.dps, dpsTag: own.tag, dpsSrc: own.src,
+    label: c.label, voc: c.voc, upTree: base.up,
+    up: isFinite(upOver) ? Math.max(0, Math.min(100, upOver)) / 100 : base.up,
+    upManual: isFinite(upOver),
+    hit: hitInp ? (parseFloat(String(hitInp.value || '').replace(/[.,](?=\d{3}\b)/g, '')) || 0) : 0 });
 }
 
 /* qual fatia do DPS colado é DESTE personagem.
@@ -155,16 +178,22 @@ function renderChars(){
   chars = loadChars();
   if (charIdx >= chars.length) charIdx = 0;
   charsEl.innerHTML = chars.map((c, i) =>
-    `<button class="charpick${i === charIdx ? ' on' : ''}" data-idx="${i}">${esc(c.label)} <b>${c.level}</b></button>`).join('');
+    `<button type="button" class="charpick${i === charIdx ? ' on' : ''}" data-idx="${i}" style="--vc:${VOC_COL[c.voc] || '#9c9db6'}"
+      aria-pressed="${i === charIdx}"><span class="cp-dot"></span>${esc(c.label)} <b>${c.level}</b></button>`).join('')
+    || '<span class="rail-empty">Your builds from the Builds tab show up here.</span>';
 }
 
 /* ---------- charms que eu tenho, e quantos slots ----------
    O plano só serve se for executável hoje: charm que você não tem não entra. E
    slot (criaturas com charm ao mesmo tempo) é limite de CONTA — 2 free, 6 VIP, 25
    com a Charm Expansion — então ele é escolha do jogador, não constante do jogo. */
-const CFG_KEY = 'idlezada.charmCfg.v1';
+/* v2: o default passou a ser TODOS os charms (antes Low Blow e Carnage vinham
+   desmarcados). A lista "tenho/nao tenho" da v1 foi montada em cima do default
+   antigo, entao nao se herda; os slots, que sao escolha da conta, sim. */
+const CFG_KEY = 'idlezada.charmCfg.v2';
+const CFG_KEY_V1 = 'idlezada.charmCfg.v1';
 const SLOT_OPTS = [{ n:2, tag:'free' }, { n:6, tag:'VIP' }, { n:25, tag:'expansion' }];
-const MISSING_DEFAULT = ['low_blow', 'carnage'];
+const MISSING_DEFAULT = [];
 const cfgToggle = document.getElementById('charm-cfg-toggle');
 const cfgBody = document.getElementById('charm-cfg');
 let cfg = loadCfg();
@@ -173,6 +202,9 @@ function loadCfg(){
   const all = CHARMS.map(c => c.key);
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(CFG_KEY)); } catch(e){}
+  if (!saved) {
+    try { const v1 = JSON.parse(localStorage.getItem(CFG_KEY_V1)); if (v1 && v1.slots) saved = { slots: v1.slots }; } catch(e){}
+  }
   const owned = saved && Array.isArray(saved.owned)
     ? saved.owned.filter(k => all.indexOf(k) >= 0)
     : all.filter(k => MISSING_DEFAULT.indexOf(k) < 0);
@@ -211,7 +243,7 @@ function metrics(level, ctx){
     const xph = (D > 0 && h.hpPerClear) ? Math.round(xpVal * 3600 * D / h.hpPerClear) : 0;
     const clearSec = (D > 0 && h.hpPerClear) ? h.hpPerClear / D : 0;
     return { ...h, feasible: level >= h.minLevel, xpVal, xpMinVal, xpMaxVal, xph, clearSec,
-      goldVal: h.goldPerClear, els };
+      goldVal: h.goldPerClear, els, threat: HM ? HM.huntThreat(h) : null };
   });
 }
 function sortRows(rows, mode){
@@ -230,13 +262,34 @@ const fmtClear = s => s ? (s>=60 ? Math.floor(s/60)+'m'+String(Math.round(s%60))
 const pct = x => (x >= 0 ? '+' : '−') + Math.abs(Math.round(x * 1000) / 10) + '%';
 const elChip = (el, extra) => `<span class="el el-${esc(el)}">${esc(el)}${extra ? ` <b>${extra}</b>` : ''}</span>`;
 
-/* melhor elemento da hunt, pro chip da tabela */
-function bestEl(h){
-  const top = (h.els || []).filter(e => !e.immune)[0];
+/* AS DUAS RESPOSTAS DE ELEMENTO, simples: com o que bater e do que se defender.
+
+   Bater: o elemento que o pack inteiro mais apanha (o mult harmonico do
+   huntElements), dito como "% a mais de dano" -- ×1.12 vira +12%, que e' o que se
+   le. Pack sem preferencia diz isso em vez de inventar um vencedor.
+
+   Defender: os MAIORES danos agrupados, nao a lista inteira. Entra elemento ate
+   cobrir ~70% do dano que chega (huntThreat), no maximo 2 -- o terceiro quase
+   nunca muda o que voce equipa. */
+const PROTECT_COVER = 0.7, PROTECT_MAX = 2;
+const plusPct = m => { const v = Math.round((m - 1) * 100); return (v >= 0 ? '+' : '−') + Math.abs(v) + '%'; };
+function hitOf(h){
+  const els = h.els || [];
+  const flat = els.every(e => Math.abs(e.mult - 1) < 0.005);
+  const top = els.filter(e => !e.immune)[0];
   if (!top) return '<span class="el-empty">all immune</span>';
-  const flat = (h.els || []).every(e => Math.abs(e.mult - 1) < 0.005);
-  if (flat) return '<span class="el-empty">no bias</span>';
-  return elChip(top.el, (Math.round(top.mult * 100) / 100).toFixed(2) + '×');
+  if (flat) return '<span class="el-empty">any element</span>';
+  return elChip(top.el, plusPct(top.mult));
+}
+function protectOf(h){
+  const rows = (h.threat && h.threat.rows) || [];
+  if (!rows.length) return '<span class="el-empty">no data</span>';
+  const out = []; let acc = 0;
+  for (const r of rows) {
+    out.push(r); acc += r.share;
+    if (acc >= PROTECT_COVER || out.length >= PROTECT_MAX) break;
+  }
+  return out.map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join('');
 }
 
 /* resistências de um monstro: fraqueza primeiro, que é o que interessa */
@@ -259,7 +312,8 @@ const MINOR_TAG = { gut:'drop chance', scavenge:'gold', adrenaline_burst:'your s
   vampiric_embrace:'life leech', cripple:'slow', numb:'slow attacker',
   void_inversion:'mana shield', voids_call:'mana leech', bless:'death penalty' };
 
-const charmChip = c => `${c.element ? elChip(c.element) : ''}<b>${esc(c.name)}</b> <span class="pl-t">T${c.tier}</span>`;
+/* so o nome e o tier: a pilula de elemento repetia o que o nome ja diz */
+const charmChip = c => `<b>${esc(c.name)}</b> <span class="pl-t">T${c.tier}</span>`;
 
 /* ganho pequeno demais pra arredondar: "+0%" mente (não é zero), e a casa decimal
    extra não muda decisão nenhuma. */
@@ -271,13 +325,19 @@ function planCharm(c){
   if (!c) return '<span class="pl-none">—</span>';
   /* charm colocado por resistência (sem DPS pro número): mostra o que se sabe —
      o quanto o bicho apanha desse elemento — em vez de um ganho inventado. */
-  const val = c.blind ? `<em class="pl-q">${fmtMult(c.mult)} taken · no % without your DPS</em>`
+  /* uma informacao por charm, curta: o ganho de dano, ou o gold por clear (Scavenge,
+     Gut), ou o efeito. Colocado por resistencia (sem DPS) nao tem numero -- fica so
+     o nome, e o porque vai no title. */
+  const val = c.blind ? ''
     : c.gain != null && c.gain > 0 ? `<i>${pctTiny(c.gain)}</i>`
+    : c.goldClear > 0 ? `<i>+${nfShort(c.goldClear)}</i><em>gold / clear</em>`
     : MINOR_TAG[c.key] ? `<em>+${c.value}% ${esc(MINOR_TAG[c.key])}</em>`
     : c.note ? `<em>${esc(c.note)}</em>` : '';
-  const cost = c.points != null ? `${nfShort(c.points)} pts` : `${nfShort(c.echoes)} ech`;
-  return `<span class="pl-charm${c.marginal ? ' thin' : ''}" title="${esc(c.desc || '')}">
-    ${charmChip(c)} ${val} <u>${cost}</u></span>`;
+  const cost = (c.blind ? 'placed by resistance: paste your DPS for the % · ' : '')
+    + (c.points != null ? `${nfShort(c.points)} charm points` : `${nfShort(c.echoes)} echoes`);
+  /* limpo de proposito: nome, tier e o que rende. Custo e descricao ficam no title. */
+  return `<span class="pl-charm${c.marginal ? ' thin' : ''}" title="${esc((c.desc ? c.desc + ' · ' : '') + cost)}">
+    ${charmChip(c)} ${val}</span>`;
 }
 
 /* As notas do plano. Uma nota por FATO, não por linha: um charm mora numa criatura
@@ -287,9 +347,49 @@ function planCharm(c){
 const MAX_NOTES = 4;
 const ELEM_PLAUSIBLE = 10;   // acima disso o elemental não é "quase", é outra ordem
 
-function planNotes(plan){
+/* SAVAGE x LOW BLOW com Avatar. Dentro da forma todo golpe ja crita, entao chance
+   de critico a mais (Low Blow) so rende no tempo FORA dela, e dano critico a mais
+   (Savage Blow) rende em todo critico -- inclusive os do Avatar. A frase so aparece
+   quando ha Avatar, e com os dois numeros na criatura que mais pesa no clear. */
+function critNote(plan, ctx){
+  if (!ctx || !(ctx.up > 0.05) || !HM.charmRanking) return null;
+  const top = plan.rows.map(r => r.creature).sort((a, b) => b.share - a.share)[0];
+  if (!top) return null;
+  const rows = HM.charmRanking({ hp: top.hp, hpFight: top.hpFight, resist: top.resist || {} }, ctx,
+    CHARMS.filter(c => c.key === 'low_blow' || c.key === 'savage_blow'));
+  const lb = rows.find(r => r.key === 'low_blow'), sv = rows.find(r => r.key === 'savage_blow');
+  if (!lb || !sv || lb.gain == null || sv.gain == null) return null;
+  return `with Avatar up <b>${Math.round(ctx.up * 100)}%</b> of the time, <b>Savage Blow</b> gives ${pct(sv.gain)} on ${esc(top.name)} and <b>Low Blow</b> only ${pct(lb.gain)} — inside the form every hit already crits, so extra crit chance only counts outside it`;
+}
+
+/* CARNAGE x ELEMENTAL: a virada em GOLPES, na criatura que levou um dos dois. E' a
+   frase que responde "e se eu bato de runa, de longe?" -- mais golpes por bicho,
+   mais procs do elemental; o Carnage so rende quando o bicho morre. */
+function carnageNote(plan, ctx, hunt){
+  if (!HM.carnageBreakeven || !ctx) return null;
+  const carn = CHARMS.find(c => c.key === 'carnage');
+  const r = plan.rows.find(x => x.major && (x.major.key === 'carnage' || (CHARMS.find(c => c.key === x.major.key) || {}).element));
+  if (!carn || !r) return null;
+  const c = r.creature;
+  const els = CHARMS.filter(x => x.element);
+  /* o melhor elemental NESTA criatura (o que ela mais apanha) */
+  const el = els.map(e => ({ e, m: HM.elementMult(c.resist, e.element, ctx.pierce) })).sort((a, b) => b.m - a.m)[0];
+  if (!el) return null;
+  const n = HM.carnageBreakeven(c, ctx, carn, el.e, hunt);
+  if (n == null) return null;
+  const hit = ctx.hit > 0 ? ctx.hit : (ctx.dps > 0 && ctx.aps > 0 ? ctx.dps / ctx.aps : 0);
+  const now = hit ? (c.hp / hit) : null;
+  return `<b>Carnage × ${esc(el.e.name)}</b> on ${esc(c.name)}: the elemental wins once you need more than <b>${n.toFixed(1)} hits</b> to kill it`
+    + (now != null ? ` — ${ctx.hit > 0 ? 'with your average hit' : 'assuming all your DPS is auto-attack'} it takes ~${now < 10 ? now.toFixed(1) : Math.round(now)}${ctx.hit > 0 ? '' : '; set your average hit above if you fight with runes'}` : '');
+}
+
+function planNotes(plan, ctx, hunt){
   const out = [];
   const real = plan.rows.filter(r => r.major && !r.major.marginal);
+  const cn = critNote(plan, ctx);
+  if (cn) out.push(cn);
+  const kn = carnageNote(plan, ctx, hunt);
+  if (kn) out.push(kn);
   if (plan.needsDps) out.push('the elemental charms below are placed by <b>resistance</b> only — paste your DPS above to also get how much each one is worth');
 
   /* O charm que falta: só o melhor par (charm, criatura) do plano inteiro. O peso é
@@ -326,31 +426,36 @@ function planNotes(plan){
 
 function planBlock(h, ctx){
   if (!ctx) return '<div class="pl-hint">pick a character above to get the charm plan</div>';
-  const plan = HM.huntCharmPlan(h, ctx, { owned: cfg.owned, slots: cfg.slots, charms: CHARMS });
+  const plan = HM.huntCharmPlan(h, ctx, { owned: cfg.owned, slots: cfg.slots, charms: CHARMS, loot: window.LOOT,
+    must: HM.MUST_MAJOR });   // regra da casa: Savage fixa; Low Blow so se valer
   const threat = HM.huntThreat(h);
   const hit = (h.els || []).filter(e => !e.immune).slice(0, 2);
   const flat = (h.els || []).every(e => Math.abs(e.mult - 1) < 0.005);
 
   const hitLine = flat || !hit.length
     ? '<span class="el-empty">no element bias in this pack</span>'
-    : hit.map(e => elChip(e.el, (Math.round(e.mult * 100) / 100).toFixed(2) + '×')).join(' ');
+    : hit.map(e => elChip(e.el, plusPct(e.mult))).join(' ');
   const protLine = threat.rows.length
-    ? threat.rows.slice(0, 4).map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join(' ')
+    ? threat.rows.slice(0, 3).map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join(' ')
     : '<span class="el-empty">no damage data</span>';
 
+  /* UMA linha por criatura: onde prender cada charm. O "quanto do clear" diz por
+     que ela pega o melhor charm -- e' onde voce passa mais tempo batendo. */
   const row = r => {
     const c = r.creature;
     const tag = c.isBoss
-      ? `<em>wave-10 boss too · ${Math.round(c.share * 100)}% of the clear</em>`
+      ? `<em>${Math.round(c.share * 100)}% of the clear · wave-10 boss too</em>`
       : `<em>${Math.round(c.share * 100)}% of the clear</em>`;
-    const b = r.bestiary;
     return `<div class="pl-row${c.isBoss ? ' boss' : ''}">
       <span class="pl-c">${esc(c.name)} ${tag}</span>
       <span class="pl-maj">${planCharm(r.major)}</span>
       <span class="pl-min">${planCharm(r.minor)}</span>
-      <span class="pl-bst" title="a major charm needs this creature's bestiary closed; it then yields ${b.points} charm points">${'★'.repeat(b.stars)} ${nfShort(b.kills)} kills</span>
     </div>`;
   };
+  /* o custo em bestiary sai da linha e vai pro "por que": e' informacao de quando
+     voce ainda nao fechou o bestiary, nao do dia a dia */
+  const bst = plan.rows.map(r => `${esc(r.creature.name)} ${'★'.repeat(r.bestiary.stars)} ${nfShort(r.bestiary.kills)} kills`).join(' · ');
+  const notes = planNotes(plan, ctx, h);
 
   return `<div class="pl">
     <div class="pl-top">
@@ -358,8 +463,12 @@ function planBlock(h, ctx){
       <span class="pl-lab">Protect from</span><span class="pl-els">${protLine}</span>
       ${threat.healers.length ? `<span class="pl-heal">heals itself: ${threat.healers.map(esc).join(', ')}</span>` : ''}
     </div>
+    <div class="pl-head"><span>Creature</span><span>Major charm</span><span>Minor charm</span></div>
     <div class="pl-rows">${plan.rows.map(row).join('')}</div>
-    ${planNotes(plan)}
+    <details class="pl-why"><summary>Why these charms</summary>
+      ${notes}
+      <div class="pl-bst">Major charms need the creature's bestiary closed: ${bst}</div>
+    </details>
   </div>`;
 }
 
@@ -392,11 +501,19 @@ function detail(h, ctx){
       <div class="htd-res">${resistChips(m)}</div>
       ${charmRows(m, ctx)}
     </div>`;
+  /* a prova (valores base, resistencias, todo charm em todo bicho) fica recolhida:
+     o plano acima ja e' a resposta */
   return `<div class="ht-detail">
     ${planBlock(h, ctx)}
-    <div class="htd-row htd-head"><span>Monster (base values)</span><span class="num">HP</span><span class="num">XP</span></div>
-    ${mons.map(block).join('')}</div>`;
+    <details class="htd-more"><summary>Monsters — base HP and XP, resistances, every charm</summary>
+      <div class="htd-row htd-head"><span>Monster (base values)</span><span class="num">HP</span><span class="num">XP</span></div>
+      ${mons.map(block).join('')}
+    </details></div>`;
 }
+
+const SORT_COLS = { xp:'XP per clear', xph:'XP / hour', gold:'Gold per clear', level:'Level' };
+const th = (mode, label, cls) => `<button type="button" class="th${cls ? ' ' + cls : ''}${sortSel.value === mode ? ' on' : ''}"
+  data-sort="${mode}" title="Rank by ${SORT_COLS[mode]}">${label}</button>`;
 
 function render(){
   const level = Math.max(1, parseInt(levelInp.value || '1', 10));
@@ -409,33 +526,51 @@ function render(){
   const rows = metrics(level, ctx);
   const feasible = rows.filter(r => r.feasible);
   const top = feasible.slice().sort((a,b)=> hasDps ? (b.xph-a.xph) : (b.xpVal-a.xpVal)).slice(0,3);
+  /* PODIO: o numero que decide vem grande; o resto e' contexto. Sem DPS o numero
+     que decide e' o XP por clear, e o card diz o que falta pra virar XP/h. */
   recoEl.innerHTML = top.length
-    ? `<div class="reco"><div class="reco-h">★ ${hasDps?'Best XP/h':'Top XP'} for level ${level} <span>(${hasDps?'using your pasted DPS':'paste your DPS for real XP/h'})</span></div>
+    ? `<div class="reco"><div class="reco-h">${hasDps?'Best XP per hour':'Most XP per clear'} at level ${level}
+        <span>${hasDps?'using your pasted DPS':'paste your Session to rank by real XP per hour'}</span></div>
         <div class="reco-list">${top.map((h,i)=>
-          `<div class="reco-item${i===0?' win':''}"><span class="rk">#${i+1}</span>
+          `<button type="button" class="reco-item${i===0?' win':''}" data-hunt="${esc(h.id)}">
+            <span class="rk">${['1st','2nd','3rd'][i]}</span>
             <span class="rn">${esc(h.name)}</span>
-            ${hasDps?`<span class="rm">XP/h <b>${nf(h.xph)}</b></span><span class="rm">clear <b>${fmtClear(h.clearSec)}</b></span>`:''}
-            <span class="rm">XP/clear <b>${nf(h.xpVal)}</b> <em>${nfShort(h.xpMinVal)}–${nfShort(h.xpMaxVal)}</em></span>
-            <span class="rm">gold <b>${nf(h.goldVal)}</b></span></div>`).join('')}</div></div>`
+            <span class="rbig">${hasDps ? nfShort(h.xph) : nfShort(h.xpVal)}<small>${hasDps ? 'XP / hour' : 'XP / clear'}</small></span>
+            <span class="rmeta">
+              ${hasDps?`<span class="rm">clear <b>${fmtClear(h.clearSec)}</b></span><span class="rm">XP/clear <b>${nfShort(h.xpVal)}</b></span>`
+                :`<span class="rm">range <b>${nfShort(h.xpMinVal)}–${nfShort(h.xpMaxVal)}</b></span>`}
+              <span class="rm">gold <b>${nfShort(h.goldVal)}</b></span>
+              <span class="rm">lv <b>${h.minLevel}</b></span>
+            </span>
+            <span class="relem"><span class="rel"><em>Hit with</em>${hitOf(h)}</span><span class="rel"><em>Protect from</em>${protectOf(h)}</span></span>
+          </button>`).join('')}</div></div>`
     : `<div class="reco"><div class="reco-h">No hunt at or below level ${level}.</div></div>`;
 
-  const sorted = sortRows(rows, sortSel.value);
-  grid.innerHTML = `<div class="ht-head">
-      <span></span><span>Hunt</span><span>Lv</span><span>Monsters</span><span>Best el</span><span class="num">XP/clear</span><span class="num">XP/h</span><span class="num">Gold/clear</span>
-    </div>` + sorted.map(h => {
+  /* filtros de tela: nome/monstro e "so o que eu entro". Nao mexem no ranking. */
+  const q = qInp ? String(qInp.value || '').trim().toLowerCase() : '';
+  const only = !!(onlyToggle && onlyToggle.checked);
+  const shown = sortRows(rows, sortSel.value).filter(h => (!only || h.feasible)
+    && (!q || h.name.toLowerCase().includes(q) || h.monsters.some(m => m.name.toLowerCase().includes(q))));
+
+  const head = `<div class="ht-head">
+      <span></span>${th('level', 'Hunt · level', 'l')}<span title="The element the whole pack takes the most damage from">Hit with</span><span title="The elements behind most of the damage you take here">Protect from</span>
+      ${th('xp', 'XP / clear', 'num')}${th('xph', 'XP / hour', 'num')}${th('gold', 'Gold / clear', 'num')}
+    </div>`;
+  const body = shown.map(h => {
     const isOpen = open.has(h.id);
-    return `<div class="ht-item">
-      <div class="ht-row${h.feasible?'':' locked'}${isOpen?' open':''}" data-hunt="${esc(h.id)}">
-        <span class="caret">${isOpen?'▾':'▸'}</span>
-        <span class="hn">${esc(h.name)}</span>
-        <span class="hl${h.feasible?'':' bad'}">${h.minLevel}</span>
-        <span class="hm">${esc(monLabel(h))}</span>
-        <span class="he">${bestEl(h)}</span>
+    return `<div class="ht-item${isOpen?' is-open':''}">
+      <div class="ht-row${h.feasible?'':' locked'}${isOpen?' open':''}" data-hunt="${esc(h.id)}" role="button" tabindex="0" aria-expanded="${isOpen}">
+        <span class="caret" aria-hidden="true">${isOpen?'▾':'▸'}</span>
+        <span class="hcell"><span class="hn">${esc(h.name)}</span>
+          <span class="hm"><span class="hl${h.feasible?'':' bad'}">lv ${h.minLevel}</span> · ${esc(monLabel(h))}</span></span>
+        <span class="he">${hitOf(h)}</span>
+        <span class="hp">${protectOf(h)}</span>
         <span class="num xpc"><b>${nf(h.xpVal)}</b><em>${nfShort(h.xpMinVal)}–${nfShort(h.xpMaxVal)}</em></span>
-        <span class="num xph">${hasDps?nf(h.xph):'—'}</span>
-        <span class="num">${nf(h.goldVal)}</span>
+        <span class="num xph">${hasDps?nf(h.xph):'<span class="na" title="paste your Session to get XP per hour">—</span>'}${hasDps && h.clearSec ? `<em>${fmtClear(h.clearSec)} / clear</em>` : ''}</span>
+        <span class="num gold">${nf(h.goldVal)}</span>
       </div>${isOpen ? detail(h, ctx) : ''}</div>`;
   }).join('');
+  grid.innerHTML = head + (body || `<div class="ht-empty">No hunt matches${q ? ` <b>${esc(q)}</b>` : ''}${only ? ' at or below your level' : ''}.</div>`);
 }
 
 /* ---------- wiring ---------- */
@@ -460,7 +595,37 @@ charsEl.addEventListener('click', e => {
   levelInp.value = (chars[charIdx] || {}).level || levelInp.value;
   renderChars(); render();
 });
-grid.addEventListener('click', e => { const row = e.target.closest('.ht-row'); if (!row) return; const id = row.dataset.hunt; open.has(id)?open.delete(id):open.add(id); render(); });
+function toggleHunt(id){ open.has(id) ? open.delete(id) : open.add(id); render(); }
+grid.addEventListener('click', e => {
+  const t = e.target.closest('.th');
+  if (t) { sortSel.value = t.dataset.sort; render(); return; }
+  const row = e.target.closest('.ht-row'); if (!row) return;
+  toggleHunt(row.dataset.hunt);
+});
+/* a linha e' botao pro teclado tambem: Enter/Espaco abrem e fecham */
+grid.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const row = e.target.closest && e.target.closest('.ht-row'); if (!row) return;
+  e.preventDefault(); toggleHunt(row.dataset.hunt);
+  const again = grid.querySelector(`.ht-row[data-hunt="${row.dataset.hunt}"]`); if (again) again.focus();
+});
+/* clicar num card do podio abre a hunt na tabela e rola ate ela */
+recoEl.addEventListener('click', e => {
+  const c = e.target.closest && e.target.closest('.reco-item'); if (!c) return;
+  open.add(c.dataset.hunt); render();
+  const row = grid.querySelector && grid.querySelector(`.ht-row[data-hunt="${c.dataset.hunt}"]`);
+  if (row && row.scrollIntoView) row.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+if (qInp) qInp.addEventListener('input', render);
+if (hitInp) {
+  try { hitInp.value = localStorage.getItem(HIT_KEY) || ''; } catch(e){}
+  hitInp.addEventListener('input', () => { try { localStorage.setItem(HIT_KEY, hitInp.value || ''); } catch(e){} render(); });
+}
+if (upInp) {
+  try { upInp.value = localStorage.getItem(UP_KEY) || ''; } catch(e){}
+  upInp.addEventListener('input', () => { try { localStorage.setItem(UP_KEY, upInp.value || ''); } catch(e){} render(); });
+}
+if (onlyToggle) onlyToggle.addEventListener('change', render);
 levelInp.addEventListener('input', render);
 if (partyToggle) partyToggle.addEventListener('change', render);
 sortSel.addEventListener('change', render);

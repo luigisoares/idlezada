@@ -21,7 +21,9 @@
 (function () {
 'use strict';
 const HUNTS = window.HUNTS || [];
-const LOOT = window.LOOT || { m: {}, p: {} };
+const LOOT = window.LOOT || { m: {}, b: {}, p: {} };
+/* bosses sao opcionais: sem bosses.js a aba continua sendo so de hunts */
+const BOSSES = window.BOSSES || [];
 const HM = window.HuntModel;
 
 const grid = document.getElementById('loot-table');
@@ -92,11 +94,13 @@ function defaultLevel(){
     const lv = (raw && Array.isArray(raw.slots) ? raw.slots : []).map(s => s.level || 0);
     if (lv.length) return Math.max.apply(null, lv);
   } catch(e){}
-  return 500;
+  return 900;
 }
 
 /* ---------- catalogo de itens, pro autocomplete ---------- */
-const ITEMS = HM.lootItems(HUNTS, LOOT);
+/* o catalogo da busca inclui o que so cai de boss: procurar "moonsilver bow" e nao
+   achar nada, quando o Phosphorus dropa, seria a aba mentindo por omissao */
+const ITEMS = HM.lootItems(HUNTS, LOOT, { bosses: BOSSES.length > 0 });
 const BY_LOWER = new Map(ITEMS.map(it => [it.name.toLowerCase(), it]));
 if (listEl) listEl.innerHTML = ITEMS.map(it => `<option value="${esc(it.name)}"></option>`).join('');
 
@@ -129,6 +133,29 @@ const srcLabel = f => `${esc(f.name)} <b>${pctChance(f.chance)}</b>`
   + (f.rows > 1 ? `<em>×${f.rows} rolls</em>` : '')
   + `<em>×${f.kills < 10 ? f.kills.toFixed(1) : Math.round(f.kills)} kills</em>`;
 
+/* ======================= bosses que dropam o item ======================= */
+/* Por MORTE, nao por clear: sala de boss e' uma luta so. Por isso fica numa tabela
+   propria embaixo das hunts, e nao misturada no ranking delas. */
+function bossSection(item, level){
+  if (!HM.bossSources || !BOSSES.length) return '';
+  const rows = HM.bossSources(item.name, BOSSES, LOOT);
+  if (!rows.length) return '';
+  return `<div class="lb-h">Bosses that drop it <span>${rows.length} · chance per kill</span></div>
+    <div class="lt-head lb-row"><span></span><span>Boss</span><span>Lv</span><span>Rarity</span>
+      <span class="num">Chance</span><span class="num">Per kill</span><span class="num">Kills / 1</span></div>`
+    + rows.map(r => {
+      const feasible = r.minLevel == null || level >= r.minLevel;
+      return `<div class="lt-item"><div class="lb-row lb-body${feasible ? '' : ' locked'}">
+        <span></span><span class="hn">${esc(r.name)}</span>
+        <span class="hl${feasible ? '' : ' bad'}">${r.minLevel ?? '—'}</span>
+        <span><span class="rb rb-${esc(r.rarity || 'normal')}">${esc(r.rarity || 'normal')}</span></span>
+        <span class="num big">${pctChance(r.chance)}${r.rows > 1 ? `<em> ×${r.rows} rolls</em>` : ''}</span>
+        <span class="num">${qty(r.perKill)}${r.max ? `<em> 1–${r.max}</em>` : ''}</span>
+        <span class="num">${clearsFor(r.perKill)}</span>
+      </div></div>`;
+    }).join('');
+}
+
 /* ============================ modo item ============================ */
 function sortItemRows(rows, mode){
   const by = {
@@ -145,13 +172,19 @@ function renderItem(item, level){
     topChance: r.from.length ? r.from[0].chance : 0,
   })), sortSel.value);
   const reach = rows.filter(r => r.feasible).length;
+  const bosses = bossSection(item, level);
+  const nBoss = item.bosses || 0;
 
   infoEl.innerHTML = `${star(item.name, 'big')}<b>${esc(item.name)}</b>`
     + ` · dropped in ${rows.length} hunt${rows.length===1?'':'s'}`
-    + ` · ${reach} at or below level ${nf(level)}`
+    + (nBoss ? ` and by ${nBoss} boss${nBoss===1?'':'es'}` : '')
+    + ` · ${reach} hunt${reach===1?'':'s'} at or below level ${nf(level)}`
     + ` · sells for ${item.price != null ? nf(item.price) + 'g' : '—'}`;
 
-  if (!rows.length) { grid.innerHTML = `<div class="lt-empty">No hunt drops <b>${esc(item.name)}</b>.</div>`; return; }
+  if (!rows.length) {
+    grid.innerHTML = `<div class="lt-empty">No hunt drops <b>${esc(item.name)}</b>${bosses ? ' — only bosses do:' : '.'}</div>` + bosses;
+    return;
+  }
 
   grid.innerHTML = `<div class="lt-head">
       <span></span><span>Hunt</span><span>Lv</span><span>Drops from</span>
@@ -167,7 +200,7 @@ function renderItem(item, level){
         <span class="num big">${qty(r.perClear)}</span>
         <span class="num">${clearsFor(r.perClear)}</span>
       </div>${isOpen ? huntDetail(r.hunt) : ''}</div>`;
-  }).join('');
+  }).join('') + bosses;
 }
 
 /* ========================= modo MINHA LISTA ========================= */

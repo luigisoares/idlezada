@@ -40,12 +40,18 @@ function makeEl(tag) {
     querySelector(sel) { return this._q[sel] || (this._q[sel] = makeEl('stub')); },
     /* [data-x] e' lido do proprio HTML: assim o dataset dos stubs e' o que a tela
        realmente escreveu, e nao o que o teste imaginou. */
+    /* memoizado enquanto o HTML nao muda: o listener que a tela pendura em cada
+       checkbox tem que ser o mesmo stub que o teste clica depois. */
     querySelectorAll(sel) {
       const m = /^\[data-([a-z-]+)\]$/.exec(sel);
       if (!m) return [];
+      this._qa = this._qa || {};
+      const hit = this._qa[sel];
+      if (hit && hit.html === this._html) return hit.out;
       const out = [], re = new RegExp('data-' + m[1] + '="([^"]*)"', 'g');
       let x;
       while ((x = re.exec(this._html))) { const e = makeEl('stub'); e.dataset[camel(m[1])] = x[1]; out.push(e); }
+      this._qa[sel] = { html: this._html, out };
       return out;
     },
     fire(ev, e) { for (const fn of this.handlers[ev] || []) fn(e || {}); },
@@ -261,6 +267,99 @@ console.log('== esconder uma das tres tambem funciona ==');
   ok(app.slotsEl.className === 'slots n2', 'a grade acompanha');
   ok(app.hidden.innerHTML.includes('Knight') && app.hidden.innerHTML.includes('Royal Paladin'),
     'e os dois escondidos viram chips');
+}
+
+console.log('== perk marcado e perk garantido: a arvore sempre traz o que voce travou ==');
+{
+  /* o caso que motivou a mudanca: knight tank 900 com Cleaving Strikes III marcado.
+     Quando marcar so priorizava, o motor achava que nao valia e a arvore vinha sem
+     ele -- o forcar de verdade era um checkbox escondido dentro do aviso. */
+  const cs3 = 'k_slash3';
+  const salvo = { tab: 'builds', slots: [
+    { label: 'EK', voc: 'knight', level: 900, obj: 'tank', element: 'physical', perks: [], perksOpen: true, shown: true },
+    { label: 'ED', voc: 'druid', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+    { label: 'MS', voc: 'sorcerer', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+  ] };
+  const app = run(salvo);
+  const card = app.slots[0];
+  const back = () => app.E.decode(card.querySelector('[data-role=code]').value);
+  ok(!(back().ranks[cs3] > 0), 'sem marcar, o tank 900 nao compra Cleaving Strikes III (e o que torna o teste util)');
+
+  const cb = card.querySelectorAll('[data-perk]').find(e => e.dataset.perk === cs3);
+  ok(!!cb, `o checkbox de ${cs3} devia estar na lista de perks do knight`);
+  if (cb) {
+    cb.checked = true;
+    cb.closest = () => makeEl('stub');
+    cb.fire('change');
+    ok(back().ranks[cs3] > 0, 'marcado, Cleaving Strikes III TEM que estar na arvore do share code');
+    ok(!/class="warn"/.test(card.querySelector('[data-role=warn]').innerHTML),
+      'e cabendo no level, nao aparece aviso nenhum');
+    ok(JSON.parse(app.store['idlezada.builds.v3']).slots[0].perks.includes(cs3), 'e a marca fica salva');
+  }
+}
+
+console.log('== lista fechada: perk NAO marcado fica de fora ==');
+{
+  /* o caso relatado: knight tank 900 com Executioner + Avatar of Steel travados, e o
+     Gift of Life aparecia sozinho no resumo porque o Tank valoriza ele. */
+  const gol = 'k_gift_of_life';
+  const salvo = { tab: 'builds', slots: [
+    { label: 'EK', voc: 'knight', level: 900, obj: 'tank', element: 'physical', perks: [], perksOpen: true, shown: true, tactics: 0 },
+    { label: 'ED', voc: 'druid', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+    { label: 'MS', voc: 'sorcerer', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+  ] };
+  const livre = run(salvo);
+  const ranksOf = app => app.E.decode(app.slots[0].querySelector('[data-role=code]').value).ranks;
+  ok(ranksOf(livre)[gol] > 0, 'sem nada travado, o tank 900 compra Gift of Life (e o que torna o teste util)');
+
+  salvo.slots[0].perks = ['k_executioner', 'k_avatar_steel'];
+  const fechado = run(salvo);
+  const rk = ranksOf(fechado);
+  ok(rk.k_executioner > 0 && rk.k_avatar_steel > 0, 'os dois travados tem que estar na arvore');
+  ok(!(rk[gol] > 0), 'Gift of Life nao foi marcado, entao NAO pode entrar');
+  ok(fechado.slots[0].innerHTML.includes('perks-hint'), 'a regra da lista fechada aparece na lista de perks');
+}
+
+console.log('== "+ XP": o objetivo com foco em XP por cima ==');
+{
+  const slot = (voc, extra) => Object.assign({ label: voc, voc, level: 900, obj: 'avatar', element: 'none', perks: [], perksOpen: false, shown: true }, extra || {});
+  const salvo = { tab: 'builds', slots: [slot('knight', { element: 'physical' }), slot('druid'), slot('sorcerer')] };
+  const app = run(salvo);
+  ok(!app.slots[0].innerHTML.includes('data-role="xp"'), 'o knight nao tem exp na arvore: sem interruptor');
+  ok(app.slots[1].innerHTML.includes('data-role="xp"') && app.slots[2].innerHTML.includes('data-role="xp"'), 'druid e sorcerer tem o interruptor');
+
+  const E = app.E;
+  const expOf = card => E.aggregate(E.decode(card.querySelector('[data-role=code]').value).voc,
+    E.decode(card.querySelector('[data-role=code]').value).ranks).bonus.expPct || 0;
+  ok(expOf(app.slots[1]) === 0, 'druid Avatar sem o combo nao compra exp');
+
+  salvo.slots[1].xp = true;
+  const app2 = run(salvo);
+  const back = E.decode(app2.slots[1].querySelector('[data-role=code]').value);
+  ok(expOf(app2.slots[1]) > 0, `com "+ XP" o druid compra exp (veio +${expOf(app2.slots[1])}%)`);
+  ok(back.ranks[E.avatarNodeId('druid')] > 0, 'e continua com o Avatar (o objetivo nao some)');
+  ok(app2.slots[1].querySelector('[data-role=summary]').innerHTML.includes('AVATAR + XP'), 'o resumo diz que e o combo');
+
+  salvo.slots[1].obj = 'xp';
+  const app3 = run(salvo);
+  ok(!app3.slots[1].innerHTML.includes('data-role="xp"'), 'no proprio objetivo XP o interruptor some');
+}
+
+console.log('== resumo: todo perk travado aparece, inclusive o que so da atributo ==');
+{
+  /* o caso relatado: Battle Healing (+4% leech, +5% HP, sem special) travado junto de
+     Executioner e Avatar -- estava na arvore, mas o resumo so listava quem tinha special */
+  const salvo = { tab: 'builds', slots: [
+    { label: 'EK', voc: 'knight', level: 900, obj: 'tank', element: 'physical',
+      perks: ['k_executioner', 'k_avatar_steel', 'k_battle_healing'], perksOpen: false, shown: true, tactics: 0 },
+    { label: 'ED', voc: 'druid', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+    { label: 'MS', voc: 'sorcerer', level: 900, obj: 'dano', element: 'none', perks: [], perksOpen: false, shown: true },
+  ] };
+  const app = run(salvo);
+  const sum = app.slots[0].querySelector('[data-role=summary]').innerHTML;
+  ok(sum.includes('Battle Healing'), 'Battle Healing (so atributo) aparece no resumo');
+  ok(sum.includes('Executioner') && sum.includes('Avatar of Steel'), 'junto dos outros dois travados');
+  ok((sum.match(/class="lock"/g) || []).length === 3, `os tres travados levam a etiqueta, vieram ${(sum.match(/class="lock"/g) || []).length}`);
 }
 
 console.log(`\n${pass} ok, ${fail} falha(s)`);

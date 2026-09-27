@@ -29,7 +29,7 @@ const PUB = path.join(ROOT, 'public'), DATA = path.join(ROOT, 'data');
 const sandbox = { window: {}, console };
 sandbox.window.window = sandbox.window;
 vm.createContext(sandbox);
-for (const f of ['hunts.js', 'loot.js', 'hunt-model.js']) {
+for (const f of ['hunts.js', 'loot.js', 'bosses.js', 'hunt-model.js']) {
   vm.runInContext(fs.readFileSync(path.join(PUB, f), 'utf8'), sandbox, { filename: f });
 }
 const M = sandbox.window.HuntModel;
@@ -96,7 +96,7 @@ console.log('== por morte: chance e por 100.000, max e quantidade uniforme 1..ma
 }
 
 /* ----------------------------------------------- 3. A PROVA CONTRA O REPO */
-console.log('== gold: as moedas do loot reproduzem o goldPerClear das 79 hunts ==');
+console.log(`== gold: as moedas do loot reproduzem o goldPerClear das ${HUNTS.length} hunts ==`);
 {
   /* O `goldPerClear` de data/hunts.json foi gravado do jogo antes de existir
      tabela de loot no repo. Se a escala da chance, a media do max ou a contagem
@@ -120,7 +120,12 @@ console.log('== gold: as moedas do loot reproduzem o goldPerClear das 79 hunts =
     const off = Math.abs(gold - h.goldPerClear);
     if (off > worst) { worst = off; worstHunt = `${h.name}: calc ${gold.toFixed(2)} vs gravado ${h.goldPerClear}`; }
   }
-  ok(checked === 79, `deviam ser 79 hunts com goldPerClear, foram ${checked}`);
+  /* 79 com o gold gravado do jogo (a prova de verdade) + as 8 da atualizacao de
+     set/2026, que o extrator ja montou por esta mesma conta (nelas e' coerencia) */
+  /* toda hunt tem goldPerClear: as gravadas vieram do jogo (a prova de verdade), as
+     montadas pelo extrator sairam desta mesma conta (nelas e' coerencia). Contagem
+     tirada do dado, nao escrita a mao: hunt nova nao pode quebrar este teste. */
+  ok(checked === HUNTS.length, `todas as ${HUNTS.length} hunts deviam ter goldPerClear, foram ${checked}`);
   ok(worst <= 1, `o pior erro devia ser <= 1 gold (arredondamento), deu ${worst.toFixed(2)} em ${worstHunt}`);
 }
 
@@ -218,9 +223,13 @@ console.log('== lootBasket: uma lista de itens contra as hunts ==');
 console.log('== lootItems: o universo buscavel ==');
 {
   const items = M.lootItems(HUNTS, LOOT);
-  ok(items.length === 864, `864 itens alcancaveis pelas hunts, veio ${items.length}`);
+  /* o esperado sai direto do LOOT.m das criaturas de hunt, sem passar pela funcao
+     testada -- e sem numero escrito a mao, que quebrava a cada atualizacao do jogo */
+  const want = new Set();
+  for (const h of HUNTS) for (const k of M.killsPerClear(h)) for (const r of (LOOT.m[k.key] || [])) want.add(r[0]);
+  ok(items.length === want.size, `${want.size} itens alcancaveis pelas hunts, veio ${items.length}`);
   ok(items.every(it => it.hunts > 0), 'todo item da busca cai em pelo menos uma hunt');
-  ok(items.every(it => it.price != null), 'todos os 864 tem preco (a cascata do extrator cobre 100%)');
+  ok(items.every(it => it.price != null), `todos os ${items.length} tem preco (a cascata do extrator cobre 100%)`);
   const sorted = items.slice().sort((a, b) => a.name.localeCompare(b.name));
   ok(JSON.stringify(items.map(i => i.name)) === JSON.stringify(sorted.map(i => i.name)),
     'a lista vem em ordem alfabetica, que e como a busca mostra');
@@ -253,10 +262,11 @@ console.log('== dados: o public/loot.js e uma fatia fiel do data/loot.json ==');
   ok(!extra.length, `public/loot.js leva criatura que nao aparece em hunt: ${extra.join(', ')}`);
   ok(!faltando.length, `criatura de hunt COM loot ficou fora do public/loot.js: ${faltando.join(', ')}`);
 
-  /* nenhum preco carregado a mais: payload e' pra ser so o alcancavel */
-  const reachable = new Set(Object.values(LOOT.m).flatMap(rows => rows.map(r => r[0])));
+  /* nenhum preco carregado a mais: payload e' pra ser so o alcancavel -- o que
+     cai em hunt OU de boss (LOOT.b, a aba Bosses e a busca da aba Loot usam) */
+  const reachable = new Set([...Object.values(LOOT.m), ...Object.values(LOOT.b || {})].flatMap(rows => rows.map(r => r[0])));
   const sobrando = Object.keys(LOOT.p).filter(n => !reachable.has(n));
-  ok(!sobrando.length, `public/loot.js carrega ${sobrando.length} precos de item que nenhuma hunt solta`);
+  ok(!sobrando.length, `public/loot.js carrega ${sobrando.length} precos de item que nenhuma hunt nem boss solta`);
 }
 
 console.log('== dados: as linhas de loot sao sas ==');
@@ -312,5 +322,35 @@ console.log('== dados: item repetido na mesma criatura e stack de moeda, e SOMA 
 }
 
 /* ------------------------------------------------------------------- resultado */
+console.log('== loot de boss: por morte, na mesma escala das hunts ==');
+{
+  const BOSSES = sandbox.window.BOSSES;
+  const semLoot = BOSSES.filter(b => !(LOOT.b || {})[b.id]);
+  ok(!semLoot.length, `todo boss da aba devia ter tabela de loot (faltam ${semLoot.map(b => b.id).join(', ')})`);
+
+  /* Phosphorus, conta na mao: crystal 100% × media(1..60)=30,5 × 10.000
+     + figurine 2% × 5,7M + 5 armas de 1% × 126k + sigil 5% × 1.500 */
+  const ph = M.bossLoot('phosphorus', LOOT);
+  const want = 1 * 30.5 * 10000 + 0.02 * 5700000 + 5 * 0.01 * 126000 + 0.05 * 1500;
+  ok(near(ph.gold, want, 1e-6), `Phosphorus devia render ${want} gold por morte, deu ${ph.gold}`);
+  ok(ph.items[0].name === 'crystal coin', 'o que mais vale por morte vem primeiro');
+  ok(ph.items.every(it => it.price != null), 'todo item de boss tem preco (a cascata cobre)');
+
+  /* o id da aba nem sempre e' a key do monstro: oberon luta como grand_master_oberon */
+  ok(M.bossLoot('oberon', LOOT).items.length > 0, 'Oberon devia achar o loot pela key do monstro');
+
+  const src = M.bossSources('moonsilver bow', BOSSES, LOOT);
+  ok(src.length === 1 && src[0].id === 'phosphorus' && src[0].chance === 1000,
+    `moonsilver bow so cai do Phosphorus, a 1% (veio ${JSON.stringify(src.map(x => [x.id, x.chance]))})`);
+
+  const soHunt = M.lootItems(HUNTS, LOOT).length;
+  const comBoss = M.lootItems(HUNTS, LOOT, { bosses: true });
+  const soM = new Set();
+  for (const h of HUNTS) for (const k of M.killsPerClear(h)) for (const r of (LOOT.m[k.key] || [])) soM.add(r[0]);
+  ok(soHunt === soM.size, `sem a opcao, o catalogo continua so de hunts (${soM.size}), veio ${soHunt}`);
+  ok(comBoss.length > soHunt && comBoss.some(it => it.name === 'moonsilver bow' && it.bosses === 1 && it.hunts === 0),
+    'com bosses, o item que so cai de boss entra no catalogo, marcado como tal');
+}
+
 console.log(`\n${pass} ok, ${fail} falha(s)`);
 process.exit(fail ? 1 : 0);

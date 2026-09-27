@@ -453,6 +453,11 @@
  ],
  "grand_master_oberon": [
   {
+   "name": "patch of fine cloth",
+   "chance": 100000,
+   "max": 1
+  },
+  {
    "name": "bone",
    "chance": 30000,
    "max": 1
@@ -11404,6 +11409,10 @@
   },
   {
    "name": "dawnfire sherwani",
+   "chance": 800
+  },
+  {
+   "name": "dawnfire pantaloons",
    "chance": 800
   },
   {
@@ -26834,6 +26843,82 @@
    "chance": 1000
   }
  ],
+ "sopping_carcass": [
+  {
+   "name": "crystal coin",
+   "chance": 6961,
+   "max": 1
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 10285,
+   "max": 2
+  },
+  {
+   "name": "crimson sword",
+   "chance": 10090,
+   "max": 1
+  },
+  {
+   "name": "ring of green plasma",
+   "chance": 3073,
+   "max": 1
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 10285,
+   "max": 2
+  },
+  {
+   "name": "organic acid",
+   "chance": 7678,
+   "max": 1
+  },
+  {
+   "name": "rotten roots",
+   "chance": 13133,
+   "max": 1
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 8558,
+   "max": 1
+  },
+  {
+   "name": "underworld rod",
+   "chance": 8380,
+   "max": 1
+  },
+  {
+   "name": "violet gem",
+   "chance": 5084,
+   "max": 1
+  },
+  {
+   "name": "blue gem",
+   "chance": 9808,
+   "max": 1
+  },
+  {
+   "name": "relic sword",
+   "chance": 6964,
+   "max": 1
+  },
+  {
+   "name": "skullcracker armor",
+   "chance": 7270,
+   "max": 1
+  },
+  {
+   "name": "tainted heart",
+   "chance": 25,
+   "max": 1
+  },
+  {
+   "name": "stone skin amulet",
+   "chance": 1000
+  }
+ ],
  "creepy_crawler": [
   {
    "name": "crystal coin",
@@ -29346,6 +29431,5789 @@
    "name": "crystal coin",
    "chance": 70000,
    "max": 100
+  }
+ ],
+ "gazharagoth": [
+  {
+   "name": "crystal coin",
+   "chance": 10000,
+   "max": 6
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 10000,
+   "max": 15
+  },
+  {
+   "name": "assassin star",
+   "chance": 10000,
+   "max": 100
+  },
+  {
+   "name": "unrealized dream",
+   "chance": 7000,
+   "max": 3
+  },
+  {
+   "name": "demonic essence",
+   "chance": 1000,
+   "max": 2
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 10000,
+   "max": 100
+  },
+  {
+   "name": "great mana potion",
+   "chance": 10000,
+   "max": 100
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 10000,
+   "max": 100
+  },
+  {
+   "name": "dream matter",
+   "chance": 2000,
+   "max": 3
+  },
+  {
+   "name": "cluster of solace",
+   "chance": 12000,
+   "max": 14
+  },
+  {
+   "name": "blue gem",
+   "chance": 10000,
+   "max": 2
+  },
+  {
+   "name": "green crystal splinter",
+   "chance": 10000,
+   "max": 10
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 10000,
+   "max": 15
+  },
+  {
+   "name": "infernal bolt",
+   "chance": 6000
+  },
+  {
+   "name": "demonic tapestry",
+   "chance": 6000
+  },
+  {
+   "name": "yellow piece of cloth",
+   "chance": 6000
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 6000
+  },
+  {
+   "name": "dream warden mask",
+   "chance": 1100
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 6000
+  },
+  {
+   "name": "demon horn",
+   "chance": 6000
+  },
+  {
+   "name": "nightmare horn",
+   "chance": 6000
+  },
+  {
+   "name": "life ring",
+   "chance": 6000
+  },
+  {
+   "name": "nightmare beacon",
+   "chance": 6000
+  },
+  {
+   "name": "eye pod",
+   "chance": 6000
+  },
+  {
+   "name": "psychedelic tapestry",
+   "chance": 6000
+  },
+  {
+   "name": "crude umbral blade",
+   "chance": 800
+  },
+  {
+   "name": "crude umbral slayer",
+   "chance": 1000
+  },
+  {
+   "name": "crude umbral axe",
+   "chance": 1000
+  },
+  {
+   "name": "crude umbral chopper",
+   "chance": 1000
+  },
+  {
+   "name": "crude umbral hammer",
+   "chance": 1000
+  },
+  {
+   "name": "crude umbral mace",
+   "chance": 500
+  },
+  {
+   "name": "crude umbral bow",
+   "chance": 1000
+  },
+  {
+   "name": "crude umbral crossbow",
+   "chance": 400
+  },
+  {
+   "name": "crude umbral spellbook",
+   "chance": 700
+  },
+  {
+   "name": "crude umbral katar",
+   "chance": 700
+  },
+  {
+   "name": "umbral blade",
+   "chance": 100
+  },
+  {
+   "name": "umbral slayer",
+   "chance": 200
+  },
+  {
+   "name": "umbral axe",
+   "chance": 1000
+  },
+  {
+   "name": "umbral chopper",
+   "chance": 500
+  },
+  {
+   "name": "umbral hammer",
+   "chance": 1000
+  },
+  {
+   "name": "umbral mace",
+   "chance": 500
+  },
+  {
+   "name": "umbral bow",
+   "chance": 250
+  },
+  {
+   "name": "umbral crossbow",
+   "chance": 400
+  },
+  {
+   "name": "umbral spellbook",
+   "chance": 200
+  },
+  {
+   "name": "umbral katar",
+   "chance": 200
+  },
+  {
+   "name": "umbral masterblade",
+   "chance": 300
+  },
+  {
+   "name": "umbral master slayer",
+   "chance": 700
+  },
+  {
+   "name": "umbral master axe",
+   "chance": 500
+  },
+  {
+   "name": "umbral master chopper",
+   "chance": 300
+  },
+  {
+   "name": "umbral master hammer",
+   "chance": 250
+  },
+  {
+   "name": "umbral master mace",
+   "chance": 300
+  },
+  {
+   "name": "umbral master bow",
+   "chance": 1300
+  },
+  {
+   "name": "umbral master crossbow",
+   "chance": 1000
+  },
+  {
+   "name": "umbral master spellbook",
+   "chance": 140
+  },
+  {
+   "name": "umbral master katar",
+   "chance": 200
+  },
+  {
+   "name": "solitude charm",
+   "chance": 6000
+  },
+  {
+   "name": "twin sun charm",
+   "chance": 6000
+  },
+  {
+   "name": "spiritual charm",
+   "chance": 6000
+  },
+  {
+   "name": "unity charm",
+   "chance": 6000
+  },
+  {
+   "name": "phoenix charm",
+   "chance": 6000
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "ghazbaran": [
+  {
+   "name": "blue tome",
+   "chance": 20000
+  },
+  {
+   "name": "teddy bear",
+   "chance": 12500
+  },
+  {
+   "name": "crystal ring",
+   "chance": 8333
+  },
+  {
+   "name": "white pearl",
+   "chance": 25000,
+   "max": 15
+  },
+  {
+   "name": "black pearl",
+   "chance": 11111,
+   "max": 14
+  },
+  {
+   "name": "small diamond",
+   "chance": 25000,
+   "max": 5
+  },
+  {
+   "name": "small sapphire",
+   "chance": 25000,
+   "max": 10
+  },
+  {
+   "name": "small emerald",
+   "chance": 25000,
+   "max": 10
+  },
+  {
+   "name": "small amethyst",
+   "chance": 25000,
+   "max": 17
+  },
+  {
+   "name": "talon",
+   "chance": 12500,
+   "max": 7
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 69
+  },
+  {
+   "name": "green gem",
+   "chance": 20000
+  },
+  {
+   "name": "blue gem",
+   "chance": 14285
+  },
+  {
+   "name": "might ring",
+   "chance": 12500
+  },
+  {
+   "name": "stealth ring",
+   "chance": 12500
+  },
+  {
+   "name": "strange symbol",
+   "chance": 11111
+  },
+  {
+   "name": "life crystal",
+   "chance": 12500
+  },
+  {
+   "name": "mind stone",
+   "chance": 20000
+  },
+  {
+   "name": "gold ring",
+   "chance": 20000
+  },
+  {
+   "name": "ring of healing",
+   "chance": 20000
+  },
+  {
+   "name": "twin axe",
+   "chance": 11111
+  },
+  {
+   "name": "golden armor",
+   "chance": 8333
+  },
+  {
+   "name": "magic plate armor",
+   "chance": 8333
+  },
+  {
+   "name": "demon shield",
+   "chance": 12500
+  },
+  {
+   "name": "golden boots",
+   "chance": 8333
+  },
+  {
+   "name": "demon horn",
+   "chance": 33333,
+   "max": 2
+  },
+  {
+   "name": "death ring",
+   "chance": 25000
+  },
+  {
+   "name": "demonic essence",
+   "chance": 100000
+  },
+  {
+   "name": "ruthless axe",
+   "chance": 14285
+  },
+  {
+   "name": "assassin star",
+   "chance": 12500,
+   "max": 44
+  },
+  {
+   "name": "havoc blade",
+   "chance": 16666
+  },
+  {
+   "name": "ravenwing",
+   "chance": 14285
+  },
+  {
+   "name": "great mana potion",
+   "chance": 20000
+  },
+  {
+   "name": "great health potion",
+   "chance": 20000
+  },
+  {
+   "name": "glacier kilt",
+   "chance": 8333
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 25000
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 25000
+  },
+  {
+   "name": "oceanborn leviathan armor",
+   "chance": 16666
+  },
+  {
+   "name": "frozen plate",
+   "chance": 8333
+  },
+  {
+   "name": "spellbook of warding",
+   "chance": 20000
+  },
+  {
+   "name": "spellbook of mind control",
+   "chance": 11111
+  },
+  {
+   "name": "spellbook of lost souls",
+   "chance": 16666
+  },
+  {
+   "name": "spellscroll of prophecies",
+   "chance": 25000
+  },
+  {
+   "name": "spellbook of dark mysteries",
+   "chance": 20000
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "morgaroth": [
+  {
+   "name": "platinum coin",
+   "chance": 95000,
+   "max": 74
+  },
+  {
+   "name": "demonic essence",
+   "chance": 95000,
+   "max": 5
+  },
+  {
+   "name": "green gem",
+   "chance": 50000
+  },
+  {
+   "name": "great mana potion",
+   "chance": 45000
+  },
+  {
+   "name": "small amethyst",
+   "chance": 36000,
+   "max": 18
+  },
+  {
+   "name": "devileye",
+   "chance": 36000
+  },
+  {
+   "name": "small emerald",
+   "chance": 27000,
+   "max": 7
+  },
+  {
+   "name": "small sapphire",
+   "chance": 27000,
+   "max": 9
+  },
+  {
+   "name": "red tome",
+   "chance": 27000
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 27000
+  },
+  {
+   "name": "talon",
+   "chance": 22000,
+   "max": 7
+  },
+  {
+   "name": "demon horn",
+   "chance": 22000,
+   "max": 2
+  },
+  {
+   "name": "death ring",
+   "chance": 22000
+  },
+  {
+   "name": "ring of healing",
+   "chance": 22000
+  },
+  {
+   "name": "chain bolter",
+   "chance": 22000
+  },
+  {
+   "name": "dark lord's cape",
+   "chance": 22000
+  },
+  {
+   "name": "ironworker",
+   "chance": 25000
+  },
+  {
+   "name": "double axe",
+   "chance": 18000
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 18000
+  },
+  {
+   "name": "magic plate armor",
+   "chance": 18000
+  },
+  {
+   "name": "might ring",
+   "chance": 18000
+  },
+  {
+   "name": "mind stone",
+   "chance": 18000
+  },
+  {
+   "name": "stealth ring",
+   "chance": 18000
+  },
+  {
+   "name": "fireborn giant armor",
+   "chance": 18000
+  },
+  {
+   "name": "royal crossbow",
+   "chance": 18000
+  },
+  {
+   "name": "teddy bear",
+   "chance": 18000
+  },
+  {
+   "name": "white pearl",
+   "chance": 13000,
+   "max": 11
+  },
+  {
+   "name": "black pearl",
+   "chance": 13000,
+   "max": 13
+  },
+  {
+   "name": "assassin star",
+   "chance": 13000,
+   "max": 35
+  },
+  {
+   "name": "demonbone",
+   "chance": 13000
+  },
+  {
+   "name": "golden mug",
+   "chance": 13000
+  },
+  {
+   "name": "morgaroth's heart",
+   "chance": 13000
+  },
+  {
+   "name": "obsidian truncheon",
+   "chance": 13000
+  },
+  {
+   "name": "stomper",
+   "chance": 13000
+  },
+  {
+   "name": "blue gem",
+   "chance": 9000
+  },
+  {
+   "name": "gold ring",
+   "chance": 9000
+  },
+  {
+   "name": "demon shield",
+   "chance": 9000
+  },
+  {
+   "name": "energy ring",
+   "chance": 9000
+  },
+  {
+   "name": "giant sword",
+   "chance": 9000
+  },
+  {
+   "name": "golden legs",
+   "chance": 9000
+  },
+  {
+   "name": "life crystal",
+   "chance": 9000
+  },
+  {
+   "name": "magic light wand",
+   "chance": 9000
+  },
+  {
+   "name": "orb",
+   "chance": 9000
+  },
+  {
+   "name": "strange symbol",
+   "chance": 9000
+  },
+  {
+   "name": "steel boots",
+   "chance": 9000
+  },
+  {
+   "name": "thunder hammer",
+   "chance": 9000
+  },
+  {
+   "name": "small diamond",
+   "chance": 4500,
+   "max": 5
+  },
+  {
+   "name": "crystal ring",
+   "chance": 4500
+  },
+  {
+   "name": "fire axe",
+   "chance": 4500
+  },
+  {
+   "name": "great health potion",
+   "chance": 4500
+  },
+  {
+   "name": "mastermind shield",
+   "chance": 4500
+  },
+  {
+   "name": "dragon robe",
+   "chance": 4500
+  },
+  {
+   "name": "molten plate",
+   "chance": 4500
+  },
+  {
+   "name": "great shield",
+   "chance": 500
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "morshabaal": [
+  {
+   "name": "crystal coin",
+   "chance": 60000,
+   "max": 35
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 69
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 40000,
+   "max": 100
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 30000,
+   "max": 100
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 30000,
+   "max": 100
+  },
+  {
+   "name": "morshabaal's extract",
+   "chance": 100000
+  },
+  {
+   "name": "watermelon tourmaline",
+   "chance": 100000
+  },
+  {
+   "name": "watermelon tourmaline",
+   "chance": 100000
+  },
+  {
+   "name": "amber with a dragonfly",
+   "chance": 40000
+  },
+  {
+   "name": "unicorn figurine",
+   "chance": 20000
+  },
+  {
+   "name": "sea horse figurine",
+   "chance": 20000
+  },
+  {
+   "name": "morshabaal's mask",
+   "chance": 10000
+  },
+  {
+   "name": "giant emerald",
+   "chance": 10000
+  },
+  {
+   "name": "bar of gold",
+   "chance": 10000
+  },
+  {
+   "name": "morshabaal's brain",
+   "chance": 6666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 6666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 6666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 6666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 6666
+  },
+  {
+   "name": "dragon figurine",
+   "chance": 6666
+  },
+  {
+   "name": "thunder hammer",
+   "chance": 6666
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "omrafir": [
+  {
+   "name": "blue crystal shard",
+   "chance": 37500,
+   "max": 5
+  },
+  {
+   "name": "cluster of solace",
+   "chance": 62500,
+   "max": 4
+  },
+  {
+   "name": "cyan crystal fragment",
+   "chance": 43750,
+   "max": 3
+  },
+  {
+   "name": "demon horn",
+   "chance": 100000
+  },
+  {
+   "name": "demonic essence",
+   "chance": 100000,
+   "max": 4
+  },
+  {
+   "name": "demonic tapestry",
+   "chance": 6250
+  },
+  {
+   "name": "dream matter",
+   "chance": 81250,
+   "max": 2
+  },
+  {
+   "name": "dream warden mask",
+   "chance": 3250
+  },
+  {
+   "name": "eye pod",
+   "chance": 2500
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 43750
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 43750
+  },
+  {
+   "name": "gold coin",
+   "chance": 18750,
+   "max": 100
+  },
+  {
+   "name": "great mana potion",
+   "chance": 6250,
+   "max": 8
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 56250,
+   "max": 8
+  },
+  {
+   "name": "green crystal fragment",
+   "chance": 37500,
+   "max": 3
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 18750,
+   "max": 5
+  },
+  {
+   "name": "green gem",
+   "chance": 18750
+  },
+  {
+   "name": "lightning boots",
+   "chance": 12500
+  },
+  {
+   "name": "lightning robe",
+   "chance": 18750
+  },
+  {
+   "name": "nightmare hook",
+   "chance": 12500
+  },
+  {
+   "name": "nightmare horn",
+   "chance": 100000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 93750,
+   "max": 20
+  },
+  {
+   "name": "psychedelic tapestry",
+   "chance": 6250
+  },
+  {
+   "name": "red crystal fragment",
+   "chance": 6250,
+   "max": 3
+  },
+  {
+   "name": "ring of healing",
+   "chance": 6250
+  },
+  {
+   "name": "skull helmet",
+   "chance": 6250
+  },
+  {
+   "name": "steel boots",
+   "chance": 6250
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 31250,
+   "max": 8
+  },
+  {
+   "name": "unrealized dream",
+   "chance": 81250,
+   "max": 3
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 18750,
+   "max": 5
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "the_abomination": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 100
+  },
+  {
+   "name": "platinum coin",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "demonic essence",
+   "chance": 2857
+  },
+  {
+   "name": "soul orb",
+   "chance": 2500
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "the_mutated_pumpkin": [
+  {
+   "name": "pumpkin",
+   "chance": 100000
+  },
+  {
+   "name": "yummy gummy worm",
+   "chance": 100000,
+   "max": 20
+  },
+  {
+   "name": "candy cane",
+   "chance": 1000,
+   "max": 50
+  },
+  {
+   "name": "candy",
+   "chance": 1000,
+   "max": 50
+  },
+  {
+   "name": "spiderwebs",
+   "chance": 1000
+  },
+  {
+   "name": "toy spider",
+   "chance": 1000
+  },
+  {
+   "name": "bat decoration",
+   "chance": 1000
+  },
+  {
+   "name": "skeleton decoration",
+   "chance": 1000
+  },
+  {
+   "name": "bar of chocolate",
+   "chance": 1000
+  },
+  {
+   "name": "surprise bag",
+   "chance": 1000
+  },
+  {
+   "name": "surprise bag",
+   "chance": 1000
+  },
+  {
+   "name": "pumpkinhead",
+   "chance": 1000
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "great shield",
+   "chance": 26000
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  },
+  {
+   "name": "thunder hammer",
+   "chance": 26666
+  }
+ ],
+ "arachir_the_ancient_one": [
+  {
+   "name": "bloody edge",
+   "chance": 1200
+  },
+  {
+   "name": "strong health potion",
+   "chance": 10000
+  },
+  {
+   "name": "skull",
+   "chance": 10000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 98
+  },
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "vampire shield",
+   "chance": 6300
+  },
+  {
+   "name": "black pearl",
+   "chance": 8980
+  }
+ ],
+ "battlemaster_zunzu": [
+  {
+   "name": "great health potion",
+   "chance": 2775,
+   "max": 2
+  },
+  {
+   "name": "red lantern",
+   "chance": 100000
+  },
+  {
+   "name": "zaoan armor",
+   "chance": 1050
+  },
+  {
+   "name": "zaoan shoes",
+   "chance": 3150
+  },
+  {
+   "name": "zaoan legs",
+   "chance": 2625
+  },
+  {
+   "name": "zaogun flag",
+   "chance": 11250
+  },
+  {
+   "name": "zaogun shoulderplates",
+   "chance": 100000
+  }
+ ],
+ "diblis_the_fair": [
+  {
+   "name": "gold coin",
+   "chance": 100000
+  },
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "blood preservation",
+   "chance": 94000
+  },
+  {
+   "name": "vampire shield",
+   "chance": 22000
+  },
+  {
+   "name": "strong health potion",
+   "chance": 18000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 12000,
+   "max": 5
+  },
+  {
+   "name": "ring of healing",
+   "chance": 12000
+  },
+  {
+   "name": "skull",
+   "chance": 12000
+  },
+  {
+   "name": "spellbook of lost souls",
+   "chance": 2000
+  }
+ ],
+ "furyosa": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 200
+  },
+  {
+   "name": "jalapeno pepper",
+   "chance": 100000,
+   "max": 5
+  },
+  {
+   "name": "silver raid token",
+   "chance": 45000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 85000,
+   "max": 25
+  },
+  {
+   "name": "flask of demonic blood",
+   "chance": 35000,
+   "max": 3
+  },
+  {
+   "name": "demonic essence",
+   "chance": 22500
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 4000
+  },
+  {
+   "name": "soul orb",
+   "chance": 21500
+  },
+  {
+   "name": "soul orb",
+   "chance": 50
+  },
+  {
+   "name": "crystal ring",
+   "chance": 410
+  },
+  {
+   "name": "death ring",
+   "chance": 60
+  },
+  {
+   "name": "phoenix shield",
+   "chance": 100
+  },
+  {
+   "name": "furious frock",
+   "chance": 100
+  }
+ ],
+ "hirintror": [
+  {
+   "name": "runic ice shield",
+   "chance": 200
+  },
+  {
+   "name": "gold coin",
+   "chance": 70000,
+   "max": 100
+  },
+  {
+   "name": "silver raid token",
+   "chance": 200
+  },
+  {
+   "name": "icicle bow",
+   "chance": 200
+  },
+  {
+   "name": "strange helmet",
+   "chance": 1200
+  },
+  {
+   "name": "ice rapier",
+   "chance": 2200
+  },
+  {
+   "name": "shard",
+   "chance": 4200
+  },
+  {
+   "name": "ice cube",
+   "chance": 2200
+  },
+  {
+   "name": "glacier shoes",
+   "chance": 3200
+  },
+  {
+   "name": "glacier mask",
+   "chance": 1200
+  },
+  {
+   "name": "crystal sword",
+   "chance": 900
+  },
+  {
+   "name": "blue piece of cloth",
+   "chance": 900
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 20000,
+   "max": 5
+  },
+  {
+   "name": "strong health potion",
+   "chance": 2000,
+   "max": 5
+  },
+  {
+   "name": "small diamond",
+   "chance": 2000,
+   "max": 5
+  },
+  {
+   "name": "platinum coin",
+   "chance": 20000
+  }
+ ],
+ "mawhawk": [
+  {
+   "name": "cluster of solace",
+   "chance": 30000,
+   "max": 2
+  },
+  {
+   "name": "frazzle tongue",
+   "chance": 30000
+  },
+  {
+   "name": "unrealized dream",
+   "chance": 30000,
+   "max": 2
+  },
+  {
+   "name": "gold coin",
+   "chance": 10000,
+   "max": 100
+  },
+  {
+   "name": "platinum coin",
+   "chance": 10000,
+   "max": 25
+  },
+  {
+   "name": "fire sword",
+   "chance": 10000
+  },
+  {
+   "name": "iron ore",
+   "chance": 10000
+  },
+  {
+   "name": "fish fin",
+   "chance": 10000
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "hardened bone",
+   "chance": 10000
+  },
+  {
+   "name": "assassin dagger",
+   "chance": 10000
+  },
+  {
+   "name": "haunted blade",
+   "chance": 10000
+  },
+  {
+   "name": "nightmare blade",
+   "chance": 10000
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "green crystal splinter",
+   "chance": 10000,
+   "max": 5
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 10000,
+   "max": 5
+  }
+ ],
+ "sir_valorcrest": [
+  {
+   "name": "chaos mace",
+   "chance": 250
+  },
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "strong health potion",
+   "chance": 1500
+  },
+  {
+   "name": "sword ring",
+   "chance": 1400
+  },
+  {
+   "name": "skull",
+   "chance": 15000
+  },
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 93
+  },
+  {
+   "name": "vampire shield",
+   "chance": 6300
+  }
+ ],
+ "the_old_widow": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 99
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 10
+  },
+  {
+   "name": "spider silk",
+   "chance": 100000
+  },
+  {
+   "name": "steel helmet",
+   "chance": 100000
+  },
+  {
+   "name": "great health potion",
+   "chance": 100000,
+   "max": 4
+  },
+  {
+   "name": "knight armor",
+   "chance": 50000
+  },
+  {
+   "name": "stealth ring",
+   "chance": 33333
+  },
+  {
+   "name": "energy ring",
+   "chance": 33333
+  },
+  {
+   "name": "time ring",
+   "chance": 33333
+  },
+  {
+   "name": "sweet smelling bait",
+   "chance": 33333
+  },
+  {
+   "name": "knight legs",
+   "chance": 25000
+  },
+  {
+   "name": "platinum amulet",
+   "chance": 25000
+  },
+  {
+   "name": "spool of yarn",
+   "chance": 25000
+  },
+  {
+   "name": "bloody edge",
+   "chance": 3225
+  },
+  {
+   "name": "dreaded cleaver",
+   "chance": 1639
+  }
+ ],
+ "the_pale_count": [
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "vampire's cape chain",
+   "chance": 100000
+  },
+  {
+   "name": "vampire count's medal",
+   "chance": 5000
+  },
+  {
+   "name": "vampire's signet ring",
+   "chance": 5000
+  },
+  {
+   "name": "blood preservation",
+   "chance": 50000
+  },
+  {
+   "name": "vampire teeth",
+   "chance": 50000
+  },
+  {
+   "name": "silver raid token",
+   "chance": 5000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 100
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 5
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 50000,
+   "max": 3
+  },
+  {
+   "name": "strong health potion",
+   "chance": 50000,
+   "max": 3
+  },
+  {
+   "name": "stealth ring",
+   "chance": 10000
+  },
+  {
+   "name": "ring of healing",
+   "chance": 10000
+  },
+  {
+   "name": "white piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "blue piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "chaos mace",
+   "chance": 5000
+  },
+  {
+   "name": "epee",
+   "chance": 10000
+  },
+  {
+   "name": "dreaded cleaver",
+   "chance": 5000
+  },
+  {
+   "name": "spellbook of lost souls",
+   "chance": 5000
+  },
+  {
+   "name": "haunted mirror piece",
+   "chance": 5000
+  },
+  {
+   "name": "vampire shield",
+   "chance": 5000
+  },
+  {
+   "name": "vampire silk slippers",
+   "chance": 5000
+  },
+  {
+   "name": "small diamond",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "black pearl",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "small sapphire",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "small emerald",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "violet gem",
+   "chance": 10000
+  }
+ ],
+ "the_welter": [
+  {
+   "name": "silver raid token",
+   "chance": 200
+  },
+  {
+   "name": "triple bolt crossbow",
+   "chance": 200
+  },
+  {
+   "name": "warrior helmet",
+   "chance": 2000
+  },
+  {
+   "name": "shrunken head necklace",
+   "chance": 500
+  },
+  {
+   "name": "boots of haste",
+   "chance": 1000
+  },
+  {
+   "name": "medusa shield",
+   "chance": 2000
+  },
+  {
+   "name": "ice rapier",
+   "chance": 2000
+  },
+  {
+   "name": "small sapphire",
+   "chance": 20000,
+   "max": 2
+  },
+  {
+   "name": "knight armor",
+   "chance": 3000
+  },
+  {
+   "name": "strong health potion",
+   "chance": 20000,
+   "max": 2
+  },
+  {
+   "name": "sacred tree amulet",
+   "chance": 1000
+  },
+  {
+   "name": "stone skin amulet",
+   "chance": 20000
+  },
+  {
+   "name": "gold ingot",
+   "chance": 800
+  },
+  {
+   "name": "royal helmet",
+   "chance": 500
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 600
+  },
+  {
+   "name": "hydra egg",
+   "chance": 2000
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 20000,
+   "max": 2
+  },
+  {
+   "name": "platinum coin",
+   "chance": 20000,
+   "max": 10
+  },
+  {
+   "name": "gold coin",
+   "chance": 20000,
+   "max": 100
+  }
+ ],
+ "tyrn": [
+  {
+   "name": "silver raid token",
+   "chance": 5000
+  },
+  {
+   "name": "sun mirror",
+   "chance": 3000
+  },
+  {
+   "name": "dragon ham",
+   "chance": 55000,
+   "max": 3
+  },
+  {
+   "name": "sudden death rune",
+   "chance": 15000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 50
+  },
+  {
+   "name": "platinum coin",
+   "chance": 60000,
+   "max": 8
+  },
+  {
+   "name": "assassin star",
+   "chance": 30000,
+   "max": 5
+  },
+  {
+   "name": "strong health potion",
+   "chance": 25000,
+   "max": 5
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 25000,
+   "max": 5
+  },
+  {
+   "name": "wyrm scale",
+   "chance": 100000
+  },
+  {
+   "name": "red gem",
+   "chance": 9000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 9000
+  },
+  {
+   "name": "violet gem",
+   "chance": 9000
+  },
+  {
+   "name": "guardian shield",
+   "chance": 9000
+  },
+  {
+   "name": "hibiscus dress",
+   "chance": 9000
+  },
+  {
+   "name": "small diamond",
+   "chance": 15000,
+   "max": 5
+  },
+  {
+   "name": "small amethyst",
+   "chance": 15000,
+   "max": 5
+  },
+  {
+   "name": "small emerald",
+   "chance": 15000,
+   "max": 5
+  },
+  {
+   "name": "small sapphire",
+   "chance": 15000,
+   "max": 5
+  },
+  {
+   "name": "small topaz",
+   "chance": 15000,
+   "max": 5
+  },
+  {
+   "name": "small ruby",
+   "chance": 15000,
+   "max": 5
+  }
+ ],
+ "weakened_shlorg": [
+  {
+   "name": "silver raid token",
+   "chance": 3000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 105
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 8
+  },
+  {
+   "name": "glass of goo",
+   "chance": 3000
+  },
+  {
+   "name": "goo shell",
+   "chance": 3000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 10000
+  },
+  {
+   "name": "green gem",
+   "chance": 10000
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "great mana potion",
+   "chance": 10000,
+   "max": 3
+  },
+  {
+   "name": "small emerald",
+   "chance": 10000,
+   "max": 5
+  },
+  {
+   "name": "small topaz",
+   "chance": 10000,
+   "max": 5
+  },
+  {
+   "name": "belted cape",
+   "chance": 20000
+  },
+  {
+   "name": "green piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "yellow piece of cloth",
+   "chance": 10000
+  },
+  {
+   "name": "serpent sword",
+   "chance": 20000
+  },
+  {
+   "name": "springsprout rod",
+   "chance": 20000
+  },
+  {
+   "name": "paladin armor",
+   "chance": 10000
+  },
+  {
+   "name": "boggy dreads",
+   "chance": 100000
+  }
+ ],
+ "white_pale": [
+  {
+   "name": "silver raid token",
+   "chance": 200
+  },
+  {
+   "name": "gold coin",
+   "chance": 80000,
+   "max": 100
+  },
+  {
+   "name": "gold coin",
+   "chance": 70000,
+   "max": 100
+  },
+  {
+   "name": "horn",
+   "chance": 500
+  },
+  {
+   "name": "albino plate",
+   "chance": 500
+  },
+  {
+   "name": "life ring",
+   "chance": 1000
+  },
+  {
+   "name": "small diamond",
+   "chance": 7000
+  },
+  {
+   "name": "meat",
+   "chance": 70000,
+   "max": 4
+  },
+  {
+   "name": "lump of dirt",
+   "chance": 70000
+  },
+  {
+   "name": "daramian mace",
+   "chance": 70000
+  },
+  {
+   "name": "carrion worm fang",
+   "chance": 70000
+  }
+ ],
+ "grand_mother_foulscale": [
+  {
+   "name": "gold coin",
+   "chance": 37500,
+   "max": 70
+  },
+  {
+   "name": "gold coin",
+   "chance": 37500,
+   "max": 50
+  },
+  {
+   "name": "burst arrow",
+   "chance": 4000,
+   "max": 12
+  },
+  {
+   "name": "dragon ham",
+   "chance": 15500,
+   "max": 3
+  },
+  {
+   "name": "short sword",
+   "chance": 25000
+  },
+  {
+   "name": "mace",
+   "chance": 21500
+  },
+  {
+   "name": "steel shield",
+   "chance": 14000
+  },
+  {
+   "name": "crossbow",
+   "chance": 10000
+  },
+  {
+   "name": "longsword",
+   "chance": 5000
+  },
+  {
+   "name": "steel helmet",
+   "chance": 3000
+  },
+  {
+   "name": "plate legs",
+   "chance": 2000
+  },
+  {
+   "name": "broadsword",
+   "chance": 2000
+  },
+  {
+   "name": "double axe",
+   "chance": 1333
+  },
+  {
+   "name": "wand of inferno",
+   "chance": 1800
+  },
+  {
+   "name": "green dragon scale",
+   "chance": 100000
+  },
+  {
+   "name": "dragon hammer",
+   "chance": 600
+  },
+  {
+   "name": "green dragon leather",
+   "chance": 100000
+  },
+  {
+   "name": "dragon shield",
+   "chance": 500
+  },
+  {
+   "name": "dragonbone staff",
+   "chance": 650
+  }
+ ],
+ "midnight_panther": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 57
+  },
+  {
+   "name": "life ring",
+   "chance": 12500
+  },
+  {
+   "name": "meat",
+   "chance": 25000,
+   "max": 4
+  },
+  {
+   "name": "panther head",
+   "chance": 12500
+  },
+  {
+   "name": "panther paw",
+   "chance": 100000
+  }
+ ],
+ "draptor": [
+  {
+   "name": "gold coin",
+   "chance": 33750,
+   "max": 90
+  },
+  {
+   "name": "gold coin",
+   "chance": 33750,
+   "max": 60
+  },
+  {
+   "name": "strong health potion",
+   "chance": 3150
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 4150
+  },
+  {
+   "name": "dragon robe",
+   "chance": 950
+  },
+  {
+   "name": "draptor scales",
+   "chance": 6650
+  }
+ ],
+ "ferumbras": [
+  {
+   "name": "ferumbras' hat",
+   "chance": 100000
+  },
+  {
+   "name": "bag you desire",
+   "chance": 10000
+  },
+  {
+   "name": "primal bag",
+   "chance": 10000
+  },
+  {
+   "name": "bag you covet",
+   "chance": 10000
+  },
+  {
+   "name": "ancient chest +5",
+   "chance": 10000
+  },
+  {
+   "name": "ancient chest +4",
+   "chance": 10000
+  },
+  {
+   "name": "reroll gem",
+   "chance": 1000
+  },
+  {
+   "name": "reroll gem",
+   "chance": 100000
+  },
+  {
+   "name": "upgrade gem",
+   "chance": 1000
+  },
+  {
+   "name": "upgrade gem",
+   "chance": 100000
+  },
+  {
+   "name": "attribute gem",
+   "chance": 1000
+  },
+  {
+   "name": "attribute gem",
+   "chance": 100000
+  },
+  {
+   "name": "dust bottle",
+   "chance": 25000
+  },
+  {
+   "name": "redemption book",
+   "chance": 5000
+  },
+  {
+   "name": "addon casket",
+   "chance": 1000
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 1000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "infernal magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "amber magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "thorn magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "cyan magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "sunset magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "lemon magic wall",
+   "chance": 1000
+  },
+  {
+   "name": "gold coin",
+   "chance": 98000,
+   "max": 184
+  },
+  {
+   "name": "gold ingot",
+   "chance": 75000,
+   "max": 2
+  },
+  {
+   "name": "great shield",
+   "chance": 26000
+  },
+  {
+   "name": "spellbook of lost souls",
+   "chance": 26000
+  },
+  {
+   "name": "golden armor",
+   "chance": 24000
+  },
+  {
+   "name": "golden legs",
+   "chance": 22000
+  },
+  {
+   "name": "spellbook of mind control",
+   "chance": 22000
+  },
+  {
+   "name": "velvet mantle",
+   "chance": 22000
+  },
+  {
+   "name": "demon shield",
+   "chance": 20000
+  },
+  {
+   "name": "divine plate",
+   "chance": 20000
+  },
+  {
+   "name": "magma legs",
+   "chance": 20000
+  },
+  {
+   "name": "tempest shield",
+   "chance": 20000
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 18000
+  },
+  {
+   "name": "glacier kilt",
+   "chance": 18000
+  },
+  {
+   "name": "lightning legs",
+   "chance": 18000
+  },
+  {
+   "name": "phoenix shield",
+   "chance": 18000
+  },
+  {
+   "name": "spellbook of dark mysteries",
+   "chance": 18000
+  },
+  {
+   "name": "terra legs",
+   "chance": 18000
+  },
+  {
+   "name": "emerald sword",
+   "chance": 16000
+  },
+  {
+   "name": "havoc blade",
+   "chance": 16000
+  },
+  {
+   "name": "shadow sceptre",
+   "chance": 16000
+  },
+  {
+   "name": "small emerald",
+   "chance": 16000,
+   "max": 100
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 14000,
+   "max": 5
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 14000,
+   "max": 5
+  },
+  {
+   "name": "magic plate armor",
+   "chance": 14000
+  },
+  {
+   "name": "mastermind shield",
+   "chance": 14000
+  },
+  {
+   "name": "runed sword",
+   "chance": 14000
+  },
+  {
+   "name": "spellscroll of prophecies",
+   "chance": 14000
+  },
+  {
+   "name": "chaos mace",
+   "chance": 12000
+  },
+  {
+   "name": "demonwing axe",
+   "chance": 12000
+  },
+  {
+   "name": "greenwood coat",
+   "chance": 12000
+  },
+  {
+   "name": "small sapphire",
+   "chance": 12000,
+   "max": 98
+  },
+  {
+   "name": "white pearl",
+   "chance": 12000,
+   "max": 88
+  },
+  {
+   "name": "haunted blade",
+   "chance": 10000
+  },
+  {
+   "name": "hellforged axe",
+   "chance": 10000
+  },
+  {
+   "name": "ornamented axe",
+   "chance": 10000
+  },
+  {
+   "name": "small amethyst",
+   "chance": 10000,
+   "max": 54
+  },
+  {
+   "name": "small topaz",
+   "chance": 10000,
+   "max": 87
+  },
+  {
+   "name": "demonrage sword",
+   "chance": 8000
+  },
+  {
+   "name": "jade hammer",
+   "chance": 8000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 8000,
+   "max": 58
+  },
+  {
+   "name": "skullcrusher",
+   "chance": 8000
+  },
+  {
+   "name": "soul orb",
+   "chance": 8000,
+   "max": 9
+  }
+ ],
+ "orshabaal": [
+  {
+   "name": "purple tome",
+   "chance": 20000
+  },
+  {
+   "name": "golden mug",
+   "chance": 12500
+  },
+  {
+   "name": "crystal necklace",
+   "chance": 20000
+  },
+  {
+   "name": "white pearl",
+   "chance": 33333,
+   "max": 15
+  },
+  {
+   "name": "black pearl",
+   "chance": 25000,
+   "max": 8
+  },
+  {
+   "name": "small diamond",
+   "chance": 20000,
+   "max": 5
+  },
+  {
+   "name": "small sapphire",
+   "chance": 33333,
+   "max": 8
+  },
+  {
+   "name": "small emerald",
+   "chance": 25000,
+   "max": 7
+  },
+  {
+   "name": "small amethyst",
+   "chance": 20000,
+   "max": 17
+  },
+  {
+   "name": "talon",
+   "chance": 20000,
+   "max": 3
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 69
+  },
+  {
+   "name": "green gem",
+   "chance": 6666
+  },
+  {
+   "name": "blue gem",
+   "chance": 20000
+  },
+  {
+   "name": "magic light wand",
+   "chance": 6666
+  },
+  {
+   "name": "might ring",
+   "chance": 6666
+  },
+  {
+   "name": "silver amulet",
+   "chance": 20000
+  },
+  {
+   "name": "platinum amulet",
+   "chance": 12500
+  },
+  {
+   "name": "strange symbol",
+   "chance": 20000
+  },
+  {
+   "name": "orb",
+   "chance": 6666
+  },
+  {
+   "name": "life crystal",
+   "chance": 12500
+  },
+  {
+   "name": "mind stone",
+   "chance": 20000
+  },
+  {
+   "name": "boots of haste",
+   "chance": 12500
+  },
+  {
+   "name": "protection amulet",
+   "chance": 20000
+  },
+  {
+   "name": "ring of healing",
+   "chance": 33333
+  },
+  {
+   "name": "two handed sword",
+   "chance": 12500
+  },
+  {
+   "name": "giant sword",
+   "chance": 25000
+  },
+  {
+   "name": "silver dagger",
+   "chance": 6666
+  },
+  {
+   "name": "golden sickle",
+   "chance": 6666
+  },
+  {
+   "name": "fire axe",
+   "chance": 12500
+  },
+  {
+   "name": "dragon hammer",
+   "chance": 6666
+  },
+  {
+   "name": "devil helmet",
+   "chance": 33333
+  },
+  {
+   "name": "golden legs",
+   "chance": 12500
+  },
+  {
+   "name": "magic plate armor",
+   "chance": 6666
+  },
+  {
+   "name": "mastermind shield",
+   "chance": 6666
+  },
+  {
+   "name": "demon shield",
+   "chance": 25000
+  },
+  {
+   "name": "orshabaal's brain",
+   "chance": 6666
+  },
+  {
+   "name": "thunder hammer",
+   "chance": 6666
+  },
+  {
+   "name": "demon horn",
+   "chance": 50000
+  },
+  {
+   "name": "death ring",
+   "chance": 50000
+  },
+  {
+   "name": "demonic essence",
+   "chance": 100000
+  },
+  {
+   "name": "assassin star",
+   "chance": 12500,
+   "max": 42
+  },
+  {
+   "name": "great mana potion",
+   "chance": 33333
+  },
+  {
+   "name": "great health potion",
+   "chance": 20000
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 12500
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 33333
+  },
+  {
+   "name": "gold ingot",
+   "chance": 6666
+  },
+  {
+   "name": "addon casket",
+   "chance": 100000
+  },
+  {
+   "name": "mount casket",
+   "chance": 100000
+  },
+  {
+   "name": "boss pass",
+   "chance": 26666
+  },
+  {
+   "name": "green demon armor",
+   "chance": 26666
+  },
+  {
+   "name": "green demon helmet",
+   "chance": 26666
+  },
+  {
+   "name": "green demon legs",
+   "chance": 26666
+  },
+  {
+   "name": "green demon slippers",
+   "chance": 26666
+  }
+ ],
+ "zushuka": [
+  {
+   "name": "gold coin",
+   "chance": 92000,
+   "max": 200
+  },
+  {
+   "name": "silver raid token",
+   "chance": 92000
+  },
+  {
+   "name": "shard",
+   "chance": 57000
+  },
+  {
+   "name": "crystal sword",
+   "chance": 42000
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 42000,
+   "max": 5
+  },
+  {
+   "name": "ice rapier",
+   "chance": 42000
+  },
+  {
+   "name": "life ring",
+   "chance": 42000
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 35000
+  },
+  {
+   "name": "glacier shoes",
+   "chance": 35000
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 35000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 35000
+  },
+  {
+   "name": "white piece of cloth",
+   "chance": 35000,
+   "max": 2
+  },
+  {
+   "name": "berserk potion",
+   "chance": 28000
+  },
+  {
+   "name": "blue gem",
+   "chance": 28000
+  },
+  {
+   "name": "mystic turban",
+   "chance": 28000
+  },
+  {
+   "name": "glacier amulet",
+   "chance": 21000
+  },
+  {
+   "name": "great mana potion",
+   "chance": 21000,
+   "max": 5
+  },
+  {
+   "name": "blue piece of cloth",
+   "chance": 14000
+  },
+  {
+   "name": "crystal mace",
+   "chance": 14000
+  },
+  {
+   "name": "dragon necklace",
+   "chance": 14000
+  },
+  {
+   "name": "glacier kilt",
+   "chance": 14000
+  },
+  {
+   "name": "glacier robe",
+   "chance": 14000
+  },
+  {
+   "name": "gold ingot",
+   "chance": 14000
+  },
+  {
+   "name": "great health potion",
+   "chance": 14000,
+   "max": 5
+  },
+  {
+   "name": "pair of earmuffs",
+   "chance": 14000
+  },
+  {
+   "name": "skull staff",
+   "chance": 14000
+  },
+  {
+   "name": "boots of haste",
+   "chance": 7000
+  },
+  {
+   "name": "glacier mask",
+   "chance": 7000
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 7000
+  },
+  {
+   "name": "trapped lightning",
+   "chance": 7000
+  },
+  {
+   "name": "icy culottes",
+   "chance": 3000
+  },
+  {
+   "name": "queen's sceptre",
+   "chance": 3000
+  }
+ ],
+ "zulazza_the_corruptor": [
+  {
+   "name": "great health potion",
+   "chance": 30500
+  },
+  {
+   "name": "platinum coin",
+   "chance": 41325,
+   "max": 30
+  },
+  {
+   "name": "gold coin",
+   "chance": 49650,
+   "max": 100
+  },
+  {
+   "name": "heavily rusted armor",
+   "chance": 50500
+  },
+  {
+   "name": "gold ingot",
+   "chance": 33000,
+   "max": 4
+  },
+  {
+   "name": "blue gem",
+   "chance": 30500
+  },
+  {
+   "name": "green gem",
+   "chance": 20500
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 10500
+  },
+  {
+   "name": "dragon scale boots",
+   "chance": 5500
+  },
+  {
+   "name": "soul orb",
+   "chance": 19250,
+   "max": 4
+  },
+  {
+   "name": "tower shield",
+   "chance": 15500
+  },
+  {
+   "name": "viper star",
+   "chance": 8100,
+   "max": 67
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 28000,
+   "max": 2
+  },
+  {
+   "name": "yellow gem",
+   "chance": 15500
+  },
+  {
+   "name": "red gem",
+   "chance": 10500
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 10500
+  },
+  {
+   "name": "violet gem",
+   "chance": 25500
+  },
+  {
+   "name": "great mana potion",
+   "chance": 20500
+  },
+  {
+   "name": "earthborn titan armor",
+   "chance": 5500
+  },
+  {
+   "name": "mastermind shield",
+   "chance": 5500
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 10500
+  },
+  {
+   "name": "paladin armor",
+   "chance": 5500
+  },
+  {
+   "name": "guardian shield",
+   "chance": 5500
+  }
+ ],
+ "chizzoron_the_distorter": [
+  {
+   "name": "gold ingot",
+   "chance": 71550,
+   "max": 2
+  },
+  {
+   "name": "gold coin",
+   "chance": 69825,
+   "max": 100
+  },
+  {
+   "name": "gold coin",
+   "chance": 69825,
+   "max": 10
+  },
+  {
+   "name": "small emerald",
+   "chance": 5750
+  },
+  {
+   "name": "lizard scale",
+   "chance": 100000
+  },
+  {
+   "name": "green gem",
+   "chance": 16300
+  },
+  {
+   "name": "time ring",
+   "chance": 11025
+  },
+  {
+   "name": "great health potion",
+   "chance": 5750
+  },
+  {
+   "name": "dragon scale mail",
+   "chance": 5750
+  }
+ ],
+ "zevelon_duskbringer": [
+  {
+   "name": "strong health potion",
+   "chance": 4000
+  },
+  {
+   "name": "black pearl",
+   "chance": 8000
+  },
+  {
+   "name": "vampire lord token",
+   "chance": 100000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 50000,
+   "max": 5
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 75
+  },
+  {
+   "name": "vampire shield",
+   "chance": 4500
+  }
+ ],
+ "necropharus": [
+  {
+   "name": "book of necromantic rituals",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 99
+  },
+  {
+   "name": "necromantic robe",
+   "chance": 100000
+  },
+  {
+   "name": "soul stone",
+   "chance": 100000
+  },
+  {
+   "name": "clerical mace",
+   "chance": 52000
+  },
+  {
+   "name": "skull staff",
+   "chance": 47000
+  },
+  {
+   "name": "bone club",
+   "chance": 38000
+  },
+  {
+   "name": "skull",
+   "chance": 19000
+  },
+  {
+   "name": "green mushroom",
+   "chance": 14000
+  },
+  {
+   "name": "moonlight rod",
+   "chance": 14000
+  },
+  {
+   "name": "big bone",
+   "chance": 9500
+  },
+  {
+   "name": "bone shield",
+   "chance": 9500
+  },
+  {
+   "name": "boots of haste",
+   "chance": 4700
+  },
+  {
+   "name": "mystic turban",
+   "chance": 4700
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 4700
+  }
+ ],
+ "ocyakao": [
+  {
+   "name": "silver raid token",
+   "chance": 200
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 20
+  },
+  {
+   "name": "fish",
+   "chance": 100000,
+   "max": 5
+  },
+  {
+   "name": "white pearl",
+   "chance": 100000
+  },
+  {
+   "name": "white piece of cloth",
+   "chance": 100000
+  },
+  {
+   "name": "mace",
+   "chance": 37500
+  },
+  {
+   "name": "eye of the storm",
+   "chance": 200
+  },
+  {
+   "name": "bone shield",
+   "chance": 37570
+  },
+  {
+   "name": "mammoth whopper",
+   "chance": 25050
+  },
+  {
+   "name": "ice cube",
+   "chance": 62570
+  }
+ ],
+ "chayenne": [
+  {
+   "name": "surprise bag",
+   "chance": 100000,
+   "max": 2
+  },
+  {
+   "name": "giant shimmering pearl",
+   "chance": 100000
+  },
+  {
+   "name": "anniversary cake",
+   "chance": 100000
+  },
+  {
+   "name": "chayenne's magical key",
+   "chance": 100000
+  }
+ ],
+ "dharalion": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 100
+  },
+  {
+   "name": "holy orchid",
+   "chance": 100000
+  },
+  {
+   "name": "elvish talisman",
+   "chance": 88000
+  },
+  {
+   "name": "elven astral observer",
+   "chance": 82000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 41790
+  },
+  {
+   "name": "blank rune",
+   "chance": 25370
+  },
+  {
+   "name": "melon",
+   "chance": 22390
+  },
+  {
+   "name": "bread",
+   "chance": 16420
+  },
+  {
+   "name": "elven amulet",
+   "chance": 14930
+  },
+  {
+   "name": "great mana potion",
+   "chance": 13430
+  },
+  {
+   "name": "life crystal",
+   "chance": 13430
+  },
+  {
+   "name": "sling herb",
+   "chance": 8960
+  },
+  {
+   "name": "cornucopia",
+   "chance": 7460
+  },
+  {
+   "name": "green tunic",
+   "chance": 4480
+  },
+  {
+   "name": "royal spear",
+   "chance": 1490,
+   "max": 2
+  }
+ ],
+ "fernfang": [
+  {
+   "name": "book of prayers",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 95
+  },
+  {
+   "name": "platinum coin",
+   "chance": 93000,
+   "max": 3
+  },
+  {
+   "name": "star herb",
+   "chance": 86000
+  },
+  {
+   "name": "rope belt",
+   "chance": 53000
+  },
+  {
+   "name": "power ring",
+   "chance": 40000
+  },
+  {
+   "name": "safety pin",
+   "chance": 40000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 33000
+  },
+  {
+   "name": "brown flask",
+   "chance": 20000
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 20000
+  },
+  {
+   "name": "lamp",
+   "chance": 13000
+  },
+  {
+   "name": "staff",
+   "chance": 13000
+  },
+  {
+   "name": "wooden whistle",
+   "chance": 13000
+  },
+  {
+   "name": "blank rune",
+   "chance": 7000
+  },
+  {
+   "name": "bread",
+   "chance": 7000
+  },
+  {
+   "name": "green tunic",
+   "chance": 7000
+  },
+  {
+   "name": "life crystal",
+   "chance": 7000
+  },
+  {
+   "name": "sling herb",
+   "chance": 7000
+  },
+  {
+   "name": "wolf tooth chain",
+   "chance": 7000
+  }
+ ],
+ "mad_mage": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 340
+  },
+  {
+   "name": "platinum coin",
+   "chance": 48000,
+   "max": 5
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 21000,
+   "max": 5
+  },
+  {
+   "name": "strong health potion",
+   "chance": 17000,
+   "max": 5
+  },
+  {
+   "name": "mind stone",
+   "chance": 9000
+  },
+  {
+   "name": "stealth ring",
+   "chance": 6000
+  },
+  {
+   "name": "assassin star",
+   "chance": 4000,
+   "max": 4
+  },
+  {
+   "name": "dark mushroom",
+   "chance": 4000,
+   "max": 3
+  },
+  {
+   "name": "red piece of cloth",
+   "chance": 5000
+  },
+  {
+   "name": "small amethyst",
+   "chance": 4000,
+   "max": 3
+  },
+  {
+   "name": "mage's cap",
+   "chance": 1680
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 1100
+  },
+  {
+   "name": "crystal of focus",
+   "chance": 740
+  },
+  {
+   "name": "boots of haste",
+   "chance": 2370
+  },
+  {
+   "name": "luminous orb",
+   "chance": 370
+  },
+  {
+   "name": "piggy bank",
+   "chance": 1370
+  },
+  {
+   "name": "ring of the sky",
+   "chance": 1370
+  },
+  {
+   "name": "spellbook of warding",
+   "chance": 2370
+  }
+ ],
+ "the_horned_fox": [
+  {
+   "name": "nose ring",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 96000,
+   "max": 99
+  },
+  {
+   "name": "platinum coin",
+   "chance": 38890,
+   "max": 3
+  },
+  {
+   "name": "minotaur leather",
+   "chance": 100000
+  },
+  {
+   "name": "minotaur horn",
+   "chance": 92590,
+   "max": 2
+  },
+  {
+   "name": "piece of warrior armor",
+   "chance": 85000
+  },
+  {
+   "name": "power bolt",
+   "chance": 48000,
+   "max": 14
+  },
+  {
+   "name": "meat",
+   "chance": 18000,
+   "max": 3
+  },
+  {
+   "name": "stealth ring",
+   "chance": 10000
+  },
+  {
+   "name": "fishing rod",
+   "chance": 7410
+  },
+  {
+   "name": "strong health potion",
+   "chance": 7410
+  },
+  {
+   "name": "minotaur trophy",
+   "chance": 900
+  },
+  {
+   "name": "mino lance",
+   "chance": 12000
+  },
+  {
+   "name": "mino shield",
+   "chance": 6000
+  }
+ ],
+ "grorlam": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 20
+  },
+  {
+   "name": "scale armor",
+   "chance": 10000
+  },
+  {
+   "name": "small stone",
+   "chance": 20000,
+   "max": 5
+  },
+  {
+   "name": "carlin sword",
+   "chance": 2500
+  }
+ ],
+ "barbaria": [
+  {
+   "name": "gold coin",
+   "chance": 48000,
+   "max": 35
+  },
+  {
+   "name": "chain armor",
+   "chance": 11000
+  },
+  {
+   "name": "hunting spear",
+   "chance": 12500
+  },
+  {
+   "name": "fur bag",
+   "chance": 1000
+  },
+  {
+   "name": "torch",
+   "chance": 25000
+  },
+  {
+   "name": "book",
+   "chance": 15000
+  }
+ ],
+ "brutus_bloodbeard": [
+  {
+   "name": "brutus bloodbeard's hat",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 200
+  },
+  {
+   "name": "skull",
+   "chance": 75000,
+   "max": 2
+  },
+  {
+   "name": "dagger",
+   "chance": 25000
+  },
+  {
+   "name": "knight armor",
+   "chance": 25000
+  },
+  {
+   "name": "meat",
+   "chance": 25000
+  },
+  {
+   "name": "plate armor",
+   "chance": 25000
+  }
+ ],
+ "captain_jones": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 150
+  },
+  {
+   "name": "stealth ring",
+   "chance": 33000
+  },
+  {
+   "name": "crown legs",
+   "chance": 5070
+  },
+  {
+   "name": "focus cape",
+   "chance": 3070
+  },
+  {
+   "name": "red robe",
+   "chance": 1110
+  },
+  {
+   "name": "spike sword",
+   "chance": 1110
+  }
+ ],
+ "deadeye_devious": [
+  {
+   "name": "deadeye devious' eye patch",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 140
+  },
+  {
+   "name": "skull",
+   "chance": 85000,
+   "max": 2
+  },
+  {
+   "name": "plate armor",
+   "chance": 78000
+  },
+  {
+   "name": "meat",
+   "chance": 42000,
+   "max": 3
+  },
+  {
+   "name": "knight armor",
+   "chance": 28000
+  },
+  {
+   "name": "dagger",
+   "chance": 21000
+  },
+  {
+   "name": "small diamond",
+   "chance": 14000
+  },
+  {
+   "name": "double axe",
+   "chance": 7000
+  },
+  {
+   "name": "pirate backpack",
+   "chance": 7000
+  }
+ ],
+ "lethal_lissy": [
+  {
+   "name": "small diamond",
+   "chance": 12500
+  },
+  {
+   "name": "meat",
+   "chance": 18750,
+   "max": 3
+  },
+  {
+   "name": "gold coin",
+   "chance": 50000,
+   "max": 60
+  },
+  {
+   "name": "gold coin",
+   "chance": 50000,
+   "max": 61
+  },
+  {
+   "name": "skull",
+   "chance": 81250,
+   "max": 2
+  },
+  {
+   "name": "pirate backpack",
+   "chance": 6250
+  },
+  {
+   "name": "plate armor",
+   "chance": 56250
+  },
+  {
+   "name": "knight armor",
+   "chance": 12500
+  },
+  {
+   "name": "very old piece of paper",
+   "chance": 25000
+  },
+  {
+   "name": "lethal lissy's shirt",
+   "chance": 100000
+  }
+ ],
+ "ron_the_ripper": [
+  {
+   "name": "ron the ripper's sabre",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 128
+  },
+  {
+   "name": "skull",
+   "chance": 81000,
+   "max": 2
+  },
+  {
+   "name": "plate armor",
+   "chance": 63000
+  },
+  {
+   "name": "dagger",
+   "chance": 45000
+  },
+  {
+   "name": "great health potion",
+   "chance": 18000
+  },
+  {
+   "name": "knight armor",
+   "chance": 18000
+  },
+  {
+   "name": "meat",
+   "chance": 18000
+  },
+  {
+   "name": "pirate backpack",
+   "chance": 18000
+  },
+  {
+   "name": "small diamond",
+   "chance": 9000
+  }
+ ],
+ "foreman_kneebiter": [
+  {
+   "name": "iron ore",
+   "chance": 2500,
+   "max": 2
+  },
+  {
+   "name": "gold coin",
+   "chance": 90000,
+   "max": 100
+  },
+  {
+   "name": "battle shield",
+   "chance": 6666
+  }
+ ],
+ "fleabringer": [
+  {
+   "name": "meat",
+   "chance": 25000,
+   "max": 3
+  },
+  {
+   "name": "worm",
+   "chance": 75000,
+   "max": 3
+  },
+  {
+   "name": "shaggy tail",
+   "chance": 99990
+  }
+ ],
+ "giant_spider_wyda": [
+  {
+   "name": "gold coin",
+   "chance": 65150,
+   "max": 5
+  },
+  {
+   "name": "spider fangs",
+   "chance": 960
+  }
+ ],
+ "glooth_fairy": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 199
+  },
+  {
+   "name": "platinum coin",
+   "chance": 37170,
+   "max": 14
+  },
+  {
+   "name": "glooth injection tube",
+   "chance": 14630
+  },
+  {
+   "name": "great mana potion",
+   "chance": 11270
+  },
+  {
+   "name": "glooth sandwich",
+   "chance": 10550
+  },
+  {
+   "name": "small topaz",
+   "chance": 4320,
+   "max": 2
+  },
+  {
+   "name": "small emerald",
+   "chance": 3600,
+   "max": 2
+  },
+  {
+   "name": "glooth amulet",
+   "chance": 2400
+  },
+  {
+   "name": "gear wheel",
+   "chance": 1920
+  },
+  {
+   "name": "glooth axe",
+   "chance": 1200
+  },
+  {
+   "name": "glooth spear",
+   "chance": 1200
+  },
+  {
+   "name": "heat core",
+   "chance": 1200
+  },
+  {
+   "name": "yellow gem",
+   "chance": 960
+  },
+  {
+   "name": "glooth blade",
+   "chance": 720
+  },
+  {
+   "name": "glooth club",
+   "chance": 480
+  },
+  {
+   "name": "rubber cap",
+   "chance": 480
+  },
+  {
+   "name": "red gem",
+   "chance": 980
+  },
+  {
+   "name": "feedbag",
+   "chance": 480
+  },
+  {
+   "name": "iron ore",
+   "chance": 980
+  },
+  {
+   "name": "bowl of glooth soup",
+   "chance": 280
+  }
+ ],
+ "man_in_the_cave": [
+  {
+   "name": "rope",
+   "chance": 100000,
+   "max": 3
+  },
+  {
+   "name": "mercenary sword",
+   "chance": 38000
+  },
+  {
+   "name": "brown piece of cloth",
+   "chance": 30000
+  },
+  {
+   "name": "gold coin",
+   "chance": 30000,
+   "max": 39
+  },
+  {
+   "name": "fur cap",
+   "chance": 15000
+  },
+  {
+   "name": "shard",
+   "chance": 8000
+  }
+ ],
+ "rottie_the_rotworm": [
+  {
+   "name": "gold coin",
+   "chance": 6230,
+   "max": 30
+  },
+  {
+   "name": "copper shield",
+   "chance": 2850
+  },
+  {
+   "name": "meat",
+   "chance": 3260,
+   "max": 2
+  },
+  {
+   "name": "worm",
+   "chance": 32500,
+   "max": 5
+  },
+  {
+   "name": "mace",
+   "chance": 3335
+  },
+  {
+   "name": "ham",
+   "chance": 3160,
+   "max": 2
+  },
+  {
+   "name": "sword",
+   "chance": 3335
+  },
+  {
+   "name": "katana",
+   "chance": 900
+  },
+  {
+   "name": "legion helmet",
+   "chance": 1250
+  }
+ ],
+ "rotworm_queen": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 47
+  },
+  {
+   "name": "gland",
+   "chance": 3333
+  },
+  {
+   "name": "worm",
+   "chance": 20000,
+   "max": 45
+  }
+ ],
+ "the_voice_of_ruin": [
+  {
+   "name": "gold coin",
+   "chance": 33000,
+   "max": 100
+  },
+  {
+   "name": "gold coin",
+   "chance": 32000,
+   "max": 100
+  },
+  {
+   "name": "gold coin",
+   "chance": 32000,
+   "max": 36
+  },
+  {
+   "name": "corrupted flag",
+   "chance": 5800
+  },
+  {
+   "name": "platinum coin",
+   "chance": 2920,
+   "max": 5
+  },
+  {
+   "name": "cursed shoulder spikes",
+   "chance": 3800
+  },
+  {
+   "name": "gold ingot",
+   "chance": 3800
+  },
+  {
+   "name": "spiked iron ball",
+   "chance": 3800
+  },
+  {
+   "name": "zaoan shoes",
+   "chance": 3800
+  }
+ ],
+ "xenia": [
+  {
+   "name": "skull",
+   "chance": 100000,
+   "max": 2
+  },
+  {
+   "name": "gold coin",
+   "chance": 66666,
+   "max": 34
+  },
+  {
+   "name": "sabre",
+   "chance": 33000
+  },
+  {
+   "name": "studded shield",
+   "chance": 33000
+  }
+ ],
+ "yakchal": [
+  {
+   "name": "shard",
+   "chance": 100000
+  },
+  {
+   "name": "gold coin",
+   "chance": 97000,
+   "max": 283
+  },
+  {
+   "name": "blue piece of cloth",
+   "chance": 74000
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 65000
+  },
+  {
+   "name": "gold ingot",
+   "chance": 33000
+  },
+  {
+   "name": "crystal sword",
+   "chance": 22000
+  },
+  {
+   "name": "dragon necklace",
+   "chance": 15000
+  },
+  {
+   "name": "glacier kilt",
+   "chance": 12000
+  },
+  {
+   "name": "great mana potion",
+   "chance": 9500
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 8000
+  },
+  {
+   "name": "glacier robe",
+   "chance": 8000
+  },
+  {
+   "name": "skull staff",
+   "chance": 8000
+  },
+  {
+   "name": "pair of earmuffs",
+   "chance": 6350
+  },
+  {
+   "name": "berserk potion",
+   "chance": 4700
+  },
+  {
+   "name": "life ring",
+   "chance": 4700
+  },
+  {
+   "name": "queen's sceptre",
+   "chance": 4700
+  },
+  {
+   "name": "boots of haste",
+   "chance": 1500
+  },
+  {
+   "name": "green mushroom",
+   "chance": 1500
+  }
+ ],
+ "zomba": [
+  {
+   "name": "gold coin",
+   "chance": 100000,
+   "max": 25
+  },
+  {
+   "name": "lion's mane",
+   "chance": 100000,
+   "max": 2
+  },
+  {
+   "name": "platinum coin",
+   "chance": 25000
+  },
+  {
+   "name": "life ring",
+   "chance": 12500
+  }
+ ],
+ "moonstone_excavator": [
+  {
+   "name": "platinum coin",
+   "chance": 79340,
+   "max": 15
+  },
+  {
+   "name": "small diamond",
+   "chance": 32080
+  },
+  {
+   "name": "small sapphire",
+   "chance": 18150
+  },
+  {
+   "name": "small emerald",
+   "chance": 13930
+  },
+  {
+   "name": "small ruby",
+   "chance": 12990
+  },
+  {
+   "name": "small topaz",
+   "chance": 12210,
+   "max": 2
+  },
+  {
+   "name": "small amethyst",
+   "chance": 10640,
+   "max": 2
+  },
+  {
+   "name": "candlestick",
+   "chance": 4070
+  },
+  {
+   "name": "iron ore",
+   "chance": 2500
+  },
+  {
+   "name": "moonstone",
+   "chance": 1410
+  },
+  {
+   "name": "gold nugget",
+   "chance": 470
+  },
+  {
+   "name": "pick",
+   "chance": 470
+  }
+ ],
+ "moonstone_overseer": [
+  {
+   "name": "platinum coin",
+   "chance": 61950,
+   "max": 10
+  },
+  {
+   "name": "red gem",
+   "chance": 4640
+  },
+  {
+   "name": "green gem",
+   "chance": 4180
+  },
+  {
+   "name": "blue gem",
+   "chance": 3480
+  },
+  {
+   "name": "yellow gem",
+   "chance": 3480
+  },
+  {
+   "name": "crystal sword",
+   "chance": 2780
+  },
+  {
+   "name": "iron ore",
+   "chance": 930
+  },
+  {
+   "name": "plate armor",
+   "chance": 930
+  },
+  {
+   "name": "diamond",
+   "chance": 700
+  },
+  {
+   "name": "moonstone",
+   "chance": 460
+  }
+ ],
+ "winged_jaracal": [
+  {
+   "name": "platinum coin",
+   "chance": 90850,
+   "max": 16
+  },
+  {
+   "name": "strong health potion",
+   "chance": 14510
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5890
+  },
+  {
+   "name": "furry club",
+   "chance": 5320
+  },
+  {
+   "name": "beastslayer axe",
+   "chance": 2760
+  },
+  {
+   "name": "ham",
+   "chance": 2180
+  },
+  {
+   "name": "stealth ring",
+   "chance": 1530
+  },
+  {
+   "name": "catnip",
+   "chance": 1280
+  },
+  {
+   "name": "dark shield",
+   "chance": 1200
+  },
+  {
+   "name": "fur armor",
+   "chance": 450
+  },
+  {
+   "name": "skullcracker armor",
+   "chance": 330
+  }
+ ],
+ "iceplume_strider": [
+  {
+   "name": "platinum coin",
+   "chance": 89600,
+   "max": 15
+  },
+  {
+   "name": "small sapphire",
+   "chance": 15180,
+   "max": 3
+  },
+  {
+   "name": "crystal coin",
+   "chance": 6980
+  },
+  {
+   "name": "ice shard",
+   "chance": 4530,
+   "max": 19
+  },
+  {
+   "name": "blue gem",
+   "chance": 2690
+  },
+  {
+   "name": "northwind rod",
+   "chance": 1960
+  },
+  {
+   "name": "crystal ring",
+   "chance": 860
+  },
+  {
+   "name": "blue robe",
+   "chance": 730
+  }
+ ],
+ "silverfrost_sentinel": [
+  {
+   "name": "platinum coin",
+   "chance": 87860,
+   "max": 20
+  },
+  {
+   "name": "small sapphire",
+   "chance": 20890,
+   "max": 3
+  },
+  {
+   "name": "crystal coin",
+   "chance": 8620
+  },
+  {
+   "name": "ice shard",
+   "chance": 3920,
+   "max": 9
+  },
+  {
+   "name": "diamond sceptre",
+   "chance": 3520
+  },
+  {
+   "name": "ice rapier",
+   "chance": 2740
+  },
+  {
+   "name": "blue gem",
+   "chance": 2220
+  },
+  {
+   "name": "glacier mask",
+   "chance": 1040
+  },
+  {
+   "name": "crystal ring",
+   "chance": 910
+  }
+ ],
+ "moonspawn_blightspitter": [
+  {
+   "name": "platinum coin",
+   "chance": 76600,
+   "max": 22
+  },
+  {
+   "name": "mushroom pie",
+   "chance": 7660
+  },
+  {
+   "name": "moonspawn headpiece",
+   "chance": 5110
+  },
+  {
+   "name": "green mushroom",
+   "chance": 3830
+  },
+  {
+   "name": "terra amulet",
+   "chance": 3830
+  },
+  {
+   "name": "green gem",
+   "chance": 2980
+  },
+  {
+   "name": "muck rod",
+   "chance": 2130
+  },
+  {
+   "name": "terra legs",
+   "chance": 2130
+  },
+  {
+   "name": "terra boots",
+   "chance": 1700
+  },
+  {
+   "name": "terra mantle",
+   "chance": 1700
+  },
+  {
+   "name": "moonstone",
+   "chance": 1280
+  },
+  {
+   "name": "mushroom backpack",
+   "chance": 430
+  }
+ ],
+ "moonspawn_oozecrown": [
+  {
+   "name": "platinum coin",
+   "chance": 80000,
+   "max": 28
+  },
+  {
+   "name": "mushroom pie",
+   "chance": 10000
+  },
+  {
+   "name": "moonspawn tentacle",
+   "chance": 6300
+  },
+  {
+   "name": "dark mushroom",
+   "chance": 4070
+  },
+  {
+   "name": "yellow gem",
+   "chance": 2220
+  },
+  {
+   "name": "wand of decay",
+   "chance": 1850
+  },
+  {
+   "name": "moonstone",
+   "chance": 1000
+  },
+  {
+   "name": "lunar staff",
+   "chance": 740
+  },
+  {
+   "name": "magic sulphur",
+   "chance": 370
+  },
+  {
+   "name": "mushroom backpack",
+   "chance": 370
+  },
+  {
+   "name": "mycological bow",
+   "chance": 200
+  }
+ ],
+ "moonspawn_juggernaut": [
+  {
+   "name": "platinum coin",
+   "chance": 92000,
+   "max": 40
+  },
+  {
+   "name": "mushroom pie",
+   "chance": 12000
+  },
+  {
+   "name": "moonspawn tentacle",
+   "chance": 7000
+  },
+  {
+   "name": "moonspawn headpiece",
+   "chance": 7000
+  },
+  {
+   "name": "dark mushroom",
+   "chance": 4500
+  },
+  {
+   "name": "green mushroom",
+   "chance": 4500
+  },
+  {
+   "name": "green gem",
+   "chance": 3000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 2500
+  },
+  {
+   "name": "moonstone",
+   "chance": 2000
+  },
+  {
+   "name": "terra mantle",
+   "chance": 1800
+  },
+  {
+   "name": "terra legs",
+   "chance": 1800
+  },
+  {
+   "name": "crystal coin",
+   "chance": 1500,
+   "max": 2
+  },
+  {
+   "name": "terra boots",
+   "chance": 1500
+  },
+  {
+   "name": "terra amulet",
+   "chance": 1500
+  },
+  {
+   "name": "muck rod",
+   "chance": 1200
+  },
+  {
+   "name": "wand of decay",
+   "chance": 1200
+  },
+  {
+   "name": "lunar staff",
+   "chance": 800
+  },
+  {
+   "name": "magic sulphur",
+   "chance": 600
+  },
+  {
+   "name": "mushroom backpack",
+   "chance": 500
+  },
+  {
+   "name": "mycological bow",
+   "chance": 300
+  }
+ ],
+ "true_feverbloom_asura": [
+  {
+   "name": "platinum coin",
+   "chance": 87320,
+   "max": 15
+  },
+  {
+   "name": "flask of demonic blood",
+   "chance": 20170
+  },
+  {
+   "name": "peacock feather fan",
+   "chance": 19790
+  },
+  {
+   "name": "golden lotus brooch",
+   "chance": 18440
+  },
+  {
+   "name": "demonic essence",
+   "chance": 13830
+  },
+  {
+   "name": "pyrophyte seed pod",
+   "chance": 9800
+  },
+  {
+   "name": "seeds",
+   "chance": 7780
+  },
+  {
+   "name": "wild flowers",
+   "chance": 6820
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5760
+  },
+  {
+   "name": "muck rod",
+   "chance": 1250
+  },
+  {
+   "name": "oriental shoes",
+   "chance": 1250
+  }
+ ],
+ "radiant_acolyte": [
+  {
+   "name": "book of faith",
+   "chance": 500
+  },
+  {
+   "name": "blank imbuement scroll",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5617,
+   "max": 7
+  },
+  {
+   "name": "giant sapphire",
+   "chance": 1460
+  },
+  {
+   "name": "blue crystal shard",
+   "chance": 7864,
+   "max": 3
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 11235,
+   "max": 5
+  },
+  {
+   "name": "white pearl",
+   "chance": 13482,
+   "max": 8
+  },
+  {
+   "name": "small topaz",
+   "chance": 13482,
+   "max": 8
+  },
+  {
+   "name": "silver brooch",
+   "chance": 12358
+  },
+  {
+   "name": "ice rapier",
+   "chance": 8988
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 10111,
+   "max": 10
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 11235,
+   "max": 12
+  },
+  {
+   "name": "mysterious remains",
+   "chance": 13000
+  },
+  {
+   "name": "rusted armor",
+   "chance": 12000
+  },
+  {
+   "name": "slightly rusted helmet",
+   "chance": 14000
+  }
+ ],
+ "radiant_paragon": [
+  {
+   "name": "broken arrow",
+   "chance": 500
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5211,
+   "max": 7
+  },
+  {
+   "name": "giant emerald",
+   "chance": 729
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 7295,
+   "max": 3
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 9379,
+   "max": 3
+  },
+  {
+   "name": "small emerald",
+   "chance": 12505,
+   "max": 8
+  },
+  {
+   "name": "prismatic quartz",
+   "chance": 11463,
+   "max": 6
+  },
+  {
+   "name": "yellow gem",
+   "chance": 8337,
+   "max": 2
+  },
+  {
+   "name": "knight axe",
+   "chance": 7295
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 10421,
+   "max": 12
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 1251,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted legs",
+   "chance": 13000
+  },
+  {
+   "name": "rusted shield",
+   "chance": 12000
+  },
+  {
+   "name": "slightly rusted armor",
+   "chance": 14000
+  }
+ ],
+ "radiant_warden": [
+  {
+   "name": "crimson sword",
+   "chance": 5000
+  },
+  {
+   "name": "tatty robe",
+   "chance": 500
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5652,
+   "max": 7
+  },
+  {
+   "name": "twiceslicer",
+   "chance": 1582
+  },
+  {
+   "name": "rubber cap",
+   "chance": 2487
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 7912,
+   "max": 3
+  },
+  {
+   "name": "talon",
+   "chance": 13564,
+   "max": 8
+  },
+  {
+   "name": "small ruby",
+   "chance": 13564,
+   "max": 8
+  },
+  {
+   "name": "red gem",
+   "chance": 9043
+  },
+  {
+   "name": "glorious axe",
+   "chance": 7912
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 10173,
+   "max": 10
+  },
+  {
+   "name": "berserk potion",
+   "chance": 1356,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted armor",
+   "chance": 13000
+  },
+  {
+   "name": "rusted helmet",
+   "chance": 12000
+  },
+  {
+   "name": "slightly rusted legs",
+   "chance": 14000
+  }
+ ],
+ "radiant_inquisitor": [
+  {
+   "name": "golden belt",
+   "chance": 500
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5384,
+   "max": 7
+  },
+  {
+   "name": "rubber cap",
+   "chance": 4091
+  },
+  {
+   "name": "shadow sceptre",
+   "chance": 4091
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 7537,
+   "max": 3
+  },
+  {
+   "name": "prismatic quartz",
+   "chance": 11844,
+   "max": 6
+  },
+  {
+   "name": "small topaz",
+   "chance": 12921,
+   "max": 8
+  },
+  {
+   "name": "yellow gem",
+   "chance": 8614,
+   "max": 2
+  },
+  {
+   "name": "silver brooch",
+   "chance": 11844
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 10767,
+   "max": 12
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 1292,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted shield",
+   "chance": 13000
+  },
+  {
+   "name": "rusted armor",
+   "chance": 12000
+  },
+  {
+   "name": "mysterious remains",
+   "chance": 14000
+  }
+ ],
+ "radiant_templar": [
+  {
+   "name": "ceremonial bowl",
+   "chance": 500
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5316,
+   "max": 7
+  },
+  {
+   "name": "giant ruby",
+   "chance": 957
+  },
+  {
+   "name": "red gem",
+   "chance": 8506
+  },
+  {
+   "name": "small ruby",
+   "chance": 12759,
+   "max": 8
+  },
+  {
+   "name": "blue crystal shard",
+   "chance": 7443,
+   "max": 3
+  },
+  {
+   "name": "white pearl",
+   "chance": 12759,
+   "max": 8
+  },
+  {
+   "name": "knight axe",
+   "chance": 7443
+  },
+  {
+   "name": "haunted blade",
+   "chance": 2765
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 9570,
+   "max": 10
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 10633,
+   "max": 12
+  },
+  {
+   "name": "heavily rusted helmet",
+   "chance": 13000
+  },
+  {
+   "name": "rusted legs",
+   "chance": 12000
+  },
+  {
+   "name": "slightly rusted shield",
+   "chance": 14000
+  }
+ ],
+ "radiant_zealot": [
+  {
+   "name": "etcher",
+   "chance": 1200
+  },
+  {
+   "name": "loose prayer beads",
+   "chance": 500
+  },
+  {
+   "name": "crystal coin",
+   "chance": 5798,
+   "max": 7
+  },
+  {
+   "name": "haunted blade",
+   "chance": 4175
+  },
+  {
+   "name": "glorious axe",
+   "chance": 7537
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 8117,
+   "max": 3
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 11596,
+   "max": 5
+  },
+  {
+   "name": "small emerald",
+   "chance": 13915,
+   "max": 8
+  },
+  {
+   "name": "talon",
+   "chance": 13915,
+   "max": 8
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 10437,
+   "max": 3
+  },
+  {
+   "name": "ice rapier",
+   "chance": 9277
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 10437,
+   "max": 10
+  },
+  {
+   "name": "transcendence potion",
+   "chance": 1392,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted legs",
+   "chance": 13000
+  },
+  {
+   "name": "slightly rusted armor",
+   "chance": 12000
+  },
+  {
+   "name": "rusted shield",
+   "chance": 14000
+  }
+ ],
+ "devoted_radiant_acolyte": [
+  {
+   "name": "book of faith",
+   "chance": 672
+  },
+  {
+   "name": "blank imbuement scroll",
+   "chance": 1613
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7553,
+   "max": 7
+  },
+  {
+   "name": "giant sapphire",
+   "chance": 1964
+  },
+  {
+   "name": "blue crystal shard",
+   "chance": 10573,
+   "max": 3
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 15105,
+   "max": 5
+  },
+  {
+   "name": "white pearl",
+   "chance": 18127,
+   "max": 8
+  },
+  {
+   "name": "small topaz",
+   "chance": 18127,
+   "max": 8
+  },
+  {
+   "name": "silver brooch",
+   "chance": 16616
+  },
+  {
+   "name": "ice rapier",
+   "chance": 12085
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 13595,
+   "max": 10
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 15105,
+   "max": 12
+  },
+  {
+   "name": "mysterious remains",
+   "chance": 17478
+  },
+  {
+   "name": "rusted armor",
+   "chance": 16134
+  },
+  {
+   "name": "slightly rusted helmet",
+   "chance": 18822
+  }
+ ],
+ "devoted_radiant_paragon": [
+  {
+   "name": "broken arrow",
+   "chance": 672
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7005,
+   "max": 7
+  },
+  {
+   "name": "giant emerald",
+   "chance": 980
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 9807,
+   "max": 3
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 12608,
+   "max": 3
+  },
+  {
+   "name": "small emerald",
+   "chance": 16810,
+   "max": 8
+  },
+  {
+   "name": "prismatic quartz",
+   "chance": 15410,
+   "max": 6
+  },
+  {
+   "name": "yellow gem",
+   "chance": 11208,
+   "max": 2
+  },
+  {
+   "name": "knight axe",
+   "chance": 9807
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 14009,
+   "max": 12
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 1682,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted legs",
+   "chance": 17478
+  },
+  {
+   "name": "rusted shield",
+   "chance": 16134
+  },
+  {
+   "name": "slightly rusted armor",
+   "chance": 18822
+  }
+ ],
+ "devoted_radiant_warden": [
+  {
+   "name": "crimson sword",
+   "chance": 6722
+  },
+  {
+   "name": "tatty robe",
+   "chance": 672
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7599,
+   "max": 7
+  },
+  {
+   "name": "twiceslicer",
+   "chance": 2127
+  },
+  {
+   "name": "rubber cap",
+   "chance": 3344
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 10637,
+   "max": 3
+  },
+  {
+   "name": "talon",
+   "chance": 18236,
+   "max": 8
+  },
+  {
+   "name": "small ruby",
+   "chance": 18236,
+   "max": 8
+  },
+  {
+   "name": "red gem",
+   "chance": 12157
+  },
+  {
+   "name": "glorious axe",
+   "chance": 10637
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 13676,
+   "max": 10
+  },
+  {
+   "name": "berserk potion",
+   "chance": 1823,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted armor",
+   "chance": 17478
+  },
+  {
+   "name": "rusted helmet",
+   "chance": 16134
+  },
+  {
+   "name": "slightly rusted legs",
+   "chance": 18822
+  }
+ ],
+ "devoted_radiant_inquisitor": [
+  {
+   "name": "golden belt",
+   "chance": 672
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7238,
+   "max": 7
+  },
+  {
+   "name": "rubber cap",
+   "chance": 5500
+  },
+  {
+   "name": "shadow sceptre",
+   "chance": 5500
+  },
+  {
+   "name": "violet crystal shard",
+   "chance": 10133,
+   "max": 3
+  },
+  {
+   "name": "prismatic quartz",
+   "chance": 15924,
+   "max": 6
+  },
+  {
+   "name": "small topaz",
+   "chance": 17371,
+   "max": 8
+  },
+  {
+   "name": "yellow gem",
+   "chance": 11581,
+   "max": 2
+  },
+  {
+   "name": "silver brooch",
+   "chance": 15924
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 14475,
+   "max": 12
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 1737,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted shield",
+   "chance": 17478
+  },
+  {
+   "name": "rusted armor",
+   "chance": 16134
+  },
+  {
+   "name": "mysterious remains",
+   "chance": 18822
+  }
+ ],
+ "devoted_radiant_templar": [
+  {
+   "name": "ceremonial bowl",
+   "chance": 672
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7147,
+   "max": 7
+  },
+  {
+   "name": "giant ruby",
+   "chance": 1287
+  },
+  {
+   "name": "red gem",
+   "chance": 11436
+  },
+  {
+   "name": "small ruby",
+   "chance": 17153,
+   "max": 8
+  },
+  {
+   "name": "blue crystal shard",
+   "chance": 10007,
+   "max": 3
+  },
+  {
+   "name": "white pearl",
+   "chance": 17153,
+   "max": 8
+  },
+  {
+   "name": "knight axe",
+   "chance": 10007
+  },
+  {
+   "name": "haunted blade",
+   "chance": 3717
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 12867,
+   "max": 10
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 14296,
+   "max": 12
+  },
+  {
+   "name": "heavily rusted helmet",
+   "chance": 17478
+  },
+  {
+   "name": "rusted legs",
+   "chance": 16134
+  },
+  {
+   "name": "slightly rusted shield",
+   "chance": 18822
+  }
+ ],
+ "devoted_radiant_zealot": [
+  {
+   "name": "etcher",
+   "chance": 1613
+  },
+  {
+   "name": "loose prayer beads",
+   "chance": 672
+  },
+  {
+   "name": "cloud familiar",
+   "chance": 1200
+  },
+  {
+   "name": "crystal coin",
+   "chance": 7795,
+   "max": 7
+  },
+  {
+   "name": "haunted blade",
+   "chance": 5613
+  },
+  {
+   "name": "glorious axe",
+   "chance": 10133
+  },
+  {
+   "name": "green crystal shard",
+   "chance": 10912,
+   "max": 3
+  },
+  {
+   "name": "blue crystal splinter",
+   "chance": 15589,
+   "max": 5
+  },
+  {
+   "name": "small emerald",
+   "chance": 18708,
+   "max": 8
+  },
+  {
+   "name": "talon",
+   "chance": 18708,
+   "max": 8
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 14032,
+   "max": 3
+  },
+  {
+   "name": "ice rapier",
+   "chance": 12472
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 14032,
+   "max": 10
+  },
+  {
+   "name": "transcendence potion",
+   "chance": 1871,
+   "max": 2
+  },
+  {
+   "name": "heavily rusted legs",
+   "chance": 17478
+  },
+  {
+   "name": "slightly rusted armor",
+   "chance": 16134
+  },
+  {
+   "name": "rusted shield",
+   "chance": 18822
+  }
+ ],
+ "rakesh_moonfang": [
+  {
+   "name": "crystal coin",
+   "chance": 100000
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 45
+  },
+  {
+   "name": "werepanther claw",
+   "chance": 31356
+  },
+  {
+   "name": "golden sickle",
+   "chance": 28814
+  },
+  {
+   "name": "small topaz",
+   "chance": 18644,
+   "max": 4
+  },
+  {
+   "name": "moonlight crystals",
+   "chance": 11864
+  },
+  {
+   "name": "yellow gem",
+   "chance": 11864
+  },
+  {
+   "name": "lightning pendant",
+   "chance": 8475
+  },
+  {
+   "name": "meat",
+   "chance": 5932
+  },
+  {
+   "name": "lightning headband",
+   "chance": 5085
+  },
+  {
+   "name": "gemmed figurine",
+   "chance": 4237
+  },
+  {
+   "name": "ripper lance",
+   "chance": 3390
+  },
+  {
+   "name": "werepanther trophy",
+   "chance": 1695
+  },
+  {
+   "name": "fur armor",
+   "chance": 847
+  }
+ ],
+ "the_moonsnow_magnolia": [
+  {
+   "name": "ice shard",
+   "chance": 100000,
+   "max": 20
+  },
+  {
+   "name": "platinum coin",
+   "chance": 97143,
+   "max": 177
+  },
+  {
+   "name": "golden lotus brooch",
+   "chance": 65714
+  },
+  {
+   "name": "flask of demonic blood",
+   "chance": 54286,
+   "max": 6
+  },
+  {
+   "name": "demonic essence",
+   "chance": 42857,
+   "max": 2
+  },
+  {
+   "name": "peacock feather fan",
+   "chance": 34286
+  },
+  {
+   "name": "black pearl",
+   "chance": 31429
+  },
+  {
+   "name": "onyx chip",
+   "chance": 31429,
+   "max": 4
+  },
+  {
+   "name": "white pearl",
+   "chance": 31429,
+   "max": 2
+  },
+  {
+   "name": "moonstone",
+   "chance": 28571,
+   "max": 2
+  },
+  {
+   "name": "crystal coin",
+   "chance": 25714,
+   "max": 10
+  },
+  {
+   "name": "small topaz",
+   "chance": 25714,
+   "max": 8
+  },
+  {
+   "name": "cyan crystal fragment",
+   "chance": 20000,
+   "max": 2
+  },
+  {
+   "name": "ice rapier",
+   "chance": 17143,
+   "max": 2
+  },
+  {
+   "name": "gold ingot",
+   "chance": 14286
+  },
+  {
+   "name": "ice cube",
+   "chance": 14286
+  },
+  {
+   "name": "moonlight rod",
+   "chance": 14286
+  },
+  {
+   "name": "lunar staff",
+   "chance": 8571
+  },
+  {
+   "name": "oriental shoes",
+   "chance": 8571
+  },
+  {
+   "name": "assassin dagger",
+   "chance": 5714
+  },
+  {
+   "name": "blue robe",
+   "chance": 5714
+  },
+  {
+   "name": "frozen peacock feather",
+   "chance": 4000
+  },
+  {
+   "name": "enchanted flamingo amulet of nature",
+   "chance": 2857
+  },
+  {
+   "name": "enchanted swan amulet of balance",
+   "chance": 2857
+  },
+  {
+   "name": "silver token",
+   "chance": 2857
+  },
+  {
+   "name": "enchanted flamingo amulet of valor",
+   "chance": 2857
+  },
+  {
+   "name": "enchanted flamingo amulet of precision",
+   "chance": 2857
+  },
+  {
+   "name": "enchanted flamingo amulet of destruction",
+   "chance": 2857
+  }
+ ],
+ "mimar_haffar": [
+  {
+   "name": "crystal coin",
+   "chance": 100000,
+   "max": 38
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 88
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 60000,
+   "max": 15
+  },
+  {
+   "name": "emerald bangle",
+   "chance": 60000
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 60000,
+   "max": 23
+  },
+  {
+   "name": "great mana potion",
+   "chance": 50000,
+   "max": 28
+  },
+  {
+   "name": "amber with a bug",
+   "chance": 40000
+  },
+  {
+   "name": "giant emerald",
+   "chance": 40000
+  },
+  {
+   "name": "blue gem",
+   "chance": 30000
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 30000,
+   "max": 30
+  },
+  {
+   "name": "red gem",
+   "chance": 30000
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 30000,
+   "max": 32
+  },
+  {
+   "name": "wand of defiance",
+   "chance": 30000
+  },
+  {
+   "name": "amber with a dragonfly",
+   "chance": 20000
+  },
+  {
+   "name": "berserk potion",
+   "chance": 20000,
+   "max": 13
+  },
+  {
+   "name": "gold ring",
+   "chance": 20000
+  },
+  {
+   "name": "green gem",
+   "chance": 20000
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 20000,
+   "max": 14
+  },
+  {
+   "name": "moonstone",
+   "chance": 20000
+  },
+  {
+   "name": "supreme health potion",
+   "chance": 20000,
+   "max": 5
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 20000,
+   "max": 19
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 20000,
+   "max": 19
+  },
+  {
+   "name": "wooden spellbook",
+   "chance": 20000
+  },
+  {
+   "name": "yellow gem",
+   "chance": 20000,
+   "max": 2
+  },
+  {
+   "name": "dragon figurine",
+   "chance": 10000
+  },
+  {
+   "name": "spellbook of mind control",
+   "chance": 10000
+  },
+  {
+   "name": "dirty turban",
+   "chance": 10000
+  },
+  {
+   "name": "moonsilver battle visor",
+   "chance": 1500
+  },
+  {
+   "name": "moonsilver spirit mask",
+   "chance": 1500
+  },
+  {
+   "name": "figurine of mimar haffar",
+   "chance": 2000
+  }
+ ],
+ "maior_domus": [
+  {
+   "name": "crystal coin",
+   "chance": 100000,
+   "max": 44
+  },
+  {
+   "name": "platinum coin",
+   "chance": 100000,
+   "max": 99
+  },
+  {
+   "name": "great mana potion",
+   "chance": 66667,
+   "max": 30
+  },
+  {
+   "name": "strong mana potion",
+   "chance": 55556,
+   "max": 23
+  },
+  {
+   "name": "amber with a dragonfly",
+   "chance": 44444
+  },
+  {
+   "name": "bullseye potion",
+   "chance": 44444,
+   "max": 15
+  },
+  {
+   "name": "crusader helmet",
+   "chance": 44444
+  },
+  {
+   "name": "green gem",
+   "chance": 44444
+  },
+  {
+   "name": "ultimate health potion",
+   "chance": 44444,
+   "max": 16
+  },
+  {
+   "name": "amber with a bug",
+   "chance": 33333
+  },
+  {
+   "name": "berserk potion",
+   "chance": 33333,
+   "max": 12
+  },
+  {
+   "name": "red gem",
+   "chance": 33333
+  },
+  {
+   "name": "titan axe",
+   "chance": 33333
+  },
+  {
+   "name": "giant emerald",
+   "chance": 22222
+  },
+  {
+   "name": "great spirit potion",
+   "chance": 22222,
+   "max": 26
+  },
+  {
+   "name": "mastermind potion",
+   "chance": 22222,
+   "max": 14
+  },
+  {
+   "name": "plate armor",
+   "chance": 22222
+  },
+  {
+   "name": "sapphire hammer",
+   "chance": 22222
+  },
+  {
+   "name": "ultimate mana potion",
+   "chance": 22222,
+   "max": 28
+  },
+  {
+   "name": "axe ring",
+   "chance": 11111,
+   "max": 2
+  },
+  {
+   "name": "golden armor",
+   "chance": 11111
+  },
+  {
+   "name": "hammer of wrath",
+   "chance": 11111
+  },
+  {
+   "name": "piece of hell steel",
+   "chance": 11111
+  },
+  {
+   "name": "raw watermelon tourmaline",
+   "chance": 11111
+  },
+  {
+   "name": "royal helmet",
+   "chance": 11111
+  },
+  {
+   "name": "ultimate spirit potion",
+   "chance": 11111,
+   "max": 14
+  },
+  {
+   "name": "unicorn figurine",
+   "chance": 11111
+  },
+  {
+   "name": "warrior helmet",
+   "chance": 11111
+  },
+  {
+   "name": "moonsilver strike helm",
+   "chance": 1500
+  },
+  {
+   "name": "moonsilver trail hood",
+   "chance": 1500
+  },
+  {
+   "name": "figurine of maior domus",
+   "chance": 2000
+  }
+ ],
+ "phosphorus": [
+  {
+   "name": "crystal coin",
+   "chance": 100000,
+   "max": 60
+  },
+  {
+   "name": "moonsilver epee",
+   "chance": 1000
+  },
+  {
+   "name": "moonsilver claymore",
+   "chance": 1000
+  },
+  {
+   "name": "moonsilver channeler",
+   "chance": 1000
+  },
+  {
+   "name": "moonsilver sceptre",
+   "chance": 1000
+  },
+  {
+   "name": "moonsilver bow",
+   "chance": 1000
+  },
+  {
+   "name": "figurine of phosphorus",
+   "chance": 2000
+  },
+  {
+   "name": "auric moon sigil",
+   "chance": 5000
   }
  ]
 }
