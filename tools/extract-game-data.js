@@ -377,6 +377,37 @@ function bossRecord(b, m) {
   };
 }
 
+/* ---------------------------------------------------------------- arvores */
+/* SO CONFERE, nao escreve: data/trees.json tem forma propria (e o engine inteiro
+   calibrado em cima dela), entao arvore que mudou no jogo e' decisao de gente, nao
+   de script. Acha o array de cada vocacao pelo id de um no que o repo conhece e
+   compara custo, ranks, tier, requisitos, special e atributos. O bundle usa um
+   helper pra "absorb em todos os elementos" que o evalLiteral nao expande (vira {});
+   esse caso nao conta como diferenca. */
+function checkTrees(src) {
+  const repo = readJSON(path.join(DATA, 'trees.json'));
+  const out = [];
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  for (const [voc, nodes] of Object.entries(repo)) {
+    let arr = null;
+    for (const n of nodes) { try { arr = arrayAround(src, `id:"${n.id}"`); break; } catch (e) {} }
+    if (!arr) { out.push(`${voc}: nenhum no do repo achado no bundle`); continue; }
+    const byId = new Map(arr.filter(Boolean).map(n => [n.id, n]));
+    for (const n of nodes) {
+      const b = byId.get(n.id);
+      if (!b) { out.push(`${voc}: ${n.id} saiu do jogo`); continue; }
+      for (const k of ['cost', 'maxRank', 'tier']) if (b[k] !== n[k]) out.push(`${voc}: ${n.id} ${k} ${n[k]} -> ${b[k]}`);
+      if (!same(b.requires || [], n.requires || [])) out.push(`${voc}: ${n.id} requisitos mudaram`);
+      if (!same(b.special || null, n.special || null)) out.push(`${voc}: ${n.id} special ${JSON.stringify(n.special)} -> ${JSON.stringify(b.special)}`);
+      const bp = Object.assign({}, b.per || {}), np = Object.assign({}, n.per || {});
+      for (const k of Object.keys(bp)) if (bp[k] && typeof bp[k] === 'object' && !Object.keys(bp[k]).length) { delete bp[k]; delete np[k]; }
+      if (!same(bp, np)) out.push(`${voc}: ${n.id} atributos ${JSON.stringify(np)} -> ${JSON.stringify(bp)}`);
+    }
+    for (const id of byId.keys()) if (!nodes.find(n => n.id === id)) out.push(`${voc}: no novo no jogo: ${id}`);
+  }
+  return out;
+}
+
 /* ------------------------------------------------------------------ saida */
 const readJSON = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 const changed = [];
@@ -543,6 +574,12 @@ function main(src) {
   console.log(`  loot publicado: ${Object.keys(lootPub).length} criaturas + ${Object.keys(bossLootPub).length} bosses · `
     + `${reachable.size} itens (${Object.keys(pricePub).length} com preco)`);
 
+  const treeDiff = checkTrees(src);
+  if (treeDiff.length) {
+    console.log(`  ! ARVORE MUDOU NO JOGO (${treeDiff.length}) -- data/trees.json NAO e' reescrito; ver o skill updating-game-data:`);
+    for (const d of treeDiff.slice(0, 20)) console.log(`      ${d}`);
+  } else console.log('arvores de talento: iguais ao bundle');
+
   console.log('arquivos:');
   write(path.join(DATA, 'bosses.json'), JSON.stringify(bosses, null, 2) + '\n');
   write(path.join(PUB, 'bosses.js'),
@@ -556,6 +593,15 @@ function main(src) {
   write(path.join(PUB, 'hunts.js'),
     '// GERADO do bundle do JOGO. HP dos monstros ×2; XP/clear medio + xpMin/xpMax (waves aleatorias). Nao editar a mao.\n'
     + 'window.HUNTS = ' + JSON.stringify(hunts) + ';\n');
+  /* os dois arquivos que NAO saem do bundle (trees.json e xprates.json sao editados a
+     mao -- ver o skill updating-game-data) ainda tem o .js regenerado aqui, no formato
+     exato de sempre: editou o JSON, roda o extrator e o public/ acompanha. */
+  write(path.join(PUB, 'trees.js'),
+    '// GERADO de trees.json — fonte unica dos dados das arvores. Nao editar a mao; rode o re-sync.\n'
+    + 'window.TREES = ' + JSON.stringify(readJSON(path.join(DATA, 'trees.json')), null, 1) + ';\n');
+  write(path.join(PUB, 'xprates.js'),
+    '// GERADO de data/xprates.json (valores vivos do servidor). Nao editar a mao.\n'
+    + 'window.XPRATES = ' + JSON.stringify(readJSON(path.join(DATA, 'xprates.json'))) + ';\n');
   write(path.join(PUB, 'charms.js'),
     '// GERADO do bundle do JOGO (tools/extract-game-data.js). Nao editar a mao.\n'
     + 'window.CHARMS = ' + JSON.stringify(charms) + ';\n');

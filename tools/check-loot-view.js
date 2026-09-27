@@ -101,14 +101,16 @@ console.log('== sem favorito e sem busca: ranking pelo valor da tabela de loot =
   const r = run({ storage: favStore([]) });
   const h = r.html();
   ok(h.includes('lt-row-g'), 'sem busca e sem estrela, cai no modo gold');
-  ok((h.match(/lt-item/g) || []).length === 87, `deviam ser as 87 hunts, vieram ${(h.match(/lt-item/g) || []).length}`);
+  const nh = r.win.HUNTS.length;
+  ok((h.match(/lt-item/g) || []).length === nh, `deviam ser as ${nh} hunts, vieram ${(h.match(/lt-item/g) || []).length}`);
   ok(h.includes('Coins / clear') && h.includes('Drops / clear') && h.includes('Total / clear'),
     'o cabecalho devia separar moeda, drop e total');
   ok(!h.includes('1M HP'), 'a coluna por 1M de HP saiu junto com o DPS');
   ok(clean(h), 'a tabela do modo gold nao devia ter undefined/NaN');
   ok(r.els['loot-info'].innerHTML.includes('star items'), 'a barra devia sugerir favoritar');
   ok(r.favs() === '', 'sem favorito, a faixa de chips fica vazia');
-  ok((r.els['loot-items'].innerHTML.match(/<option/g) || []).length === 896, 'os 896 itens no datalist');
+  const ni = r.win.HuntModel.lootItems(r.win.HUNTS, r.win.LOOT).length;
+  ok((r.els['loot-items'].innerHTML.match(/<option/g) || []).length === ni, `os ${ni} itens de hunt no datalist`);
 }
 
 console.log('== buscar um item: hunts, criatura, chance, por clear e clears/1 ==');
@@ -323,7 +325,7 @@ console.log('== abrir uma hunt mostra o loot INTEIRO dela ==');
 
 console.log('== hunt com criatura sem tabela de loot AVISA ==');
 {
-  /* lista vazia de proposito: so o modo gold lista as 87 hunts, e a hunt com
+  /* lista vazia de proposito: so o modo gold lista todas as hunts, e a hunt com
      criatura sem loot pode nao cobrir nenhum favorito. */
   const base = run({ storage: favStore([]) });
   const HM = base.win.HuntModel, HUNTS = base.win.HUNTS, LOOT = base.win.LOOT;
@@ -379,7 +381,8 @@ console.log('== bosses na busca de item ==');
   ok(r.html().includes('Phosphorus') && r.html().includes('1.00%'), 'e listar o Phosphorus com a chance de 1%');
   ok(r.els['loot-info'].innerHTML.includes('by 1 boss'), 'a barra de info conta o boss');
   const n = (r.els['loot-items'].innerHTML.match(/<option/g) || []).length;
-  ok(n > 896, `com bosses, o datalist devia passar dos 896 itens de hunt, veio ${n}`);
+  const soHunt = r.win.HuntModel.lootItems(r.win.HUNTS, r.win.LOOT).length;
+  ok(n > soHunt, `com bosses, o datalist devia passar dos ${soHunt} itens de hunt, veio ${n}`);
 
   /* item de hunt E de boss: as hunts vem primeiro, os bosses numa tabela propria */
   const r2 = run({ bosses: true, search: 'crystal coin' });

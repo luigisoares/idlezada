@@ -112,7 +112,7 @@ function loadChars(){
   try { const raw = JSON.parse(localStorage.getItem('idlezada.builds.v3'));
     if (raw && Array.isArray(raw.slots)) return raw.slots.map(s => ({
       label: s.label || s.voc, level: s.level || 1, voc: s.voc, obj: s.obj,
-      element: s.element, perks: s.perks || [], tactics: s.tactics })); } catch (e) {}
+      element: s.element, perks: s.perks || [], tactics: s.tactics, xp: !!s.xp })); } catch (e) {}
   return [];
 }
 
@@ -125,7 +125,7 @@ function charCtx(level){
   /* o level que vale é o do campo: mexer nele é planejar noutro level, e aí a
      própria build muda (mais pontos = mais crit), não só o dano do proc. */
   const lv = Math.max(1, level || c.level);
-  const key = [c.voc, lv, c.obj, c.element, (c.perks||[]).join('.'), c.tactics].join('|');
+  const key = [c.voc, lv, c.obj, c.element, (c.perks||[]).join('.'), c.tactics, c.xp].join('|');
   if (!ctxCache[key]) {
     let ctx;
     try {
@@ -133,7 +133,7 @@ function charCtx(level){
          Tactics vale (ausente = default do objetivo, igual la). Se isto divergir, o
          plano de charms sai calculado numa arvore que o usuario nao esta vendo. */
       const b = E.autobuild(c.voc, lv, c.obj, { element: c.element, perks: c.perks, forcePerks: true,
-        tactics: c.tactics == null ? undefined : c.tactics });
+        tactics: c.tactics == null ? undefined : c.tactics, xp: c.xp });
       const a = E.aggregate(c.voc, b.ranks);
       const v = E.valueCtx(c.voc, b.ranks);
       ctx = { level: lv, cc: v.cc, cd: v.cd, up: v.up,

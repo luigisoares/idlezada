@@ -96,7 +96,7 @@ console.log('== por morte: chance e por 100.000, max e quantidade uniforme 1..ma
 }
 
 /* ----------------------------------------------- 3. A PROVA CONTRA O REPO */
-console.log('== gold: as moedas do loot reproduzem o goldPerClear das 87 hunts ==');
+console.log(`== gold: as moedas do loot reproduzem o goldPerClear das ${HUNTS.length} hunts ==`);
 {
   /* O `goldPerClear` de data/hunts.json foi gravado do jogo antes de existir
      tabela de loot no repo. Se a escala da chance, a media do max ou a contagem
@@ -122,7 +122,10 @@ console.log('== gold: as moedas do loot reproduzem o goldPerClear das 87 hunts =
   }
   /* 79 com o gold gravado do jogo (a prova de verdade) + as 8 da atualizacao de
      set/2026, que o extrator ja montou por esta mesma conta (nelas e' coerencia) */
-  ok(checked === 87, `deviam ser 87 hunts com goldPerClear, foram ${checked}`);
+  /* toda hunt tem goldPerClear: as gravadas vieram do jogo (a prova de verdade), as
+     montadas pelo extrator sairam desta mesma conta (nelas e' coerencia). Contagem
+     tirada do dado, nao escrita a mao: hunt nova nao pode quebrar este teste. */
+  ok(checked === HUNTS.length, `todas as ${HUNTS.length} hunts deviam ter goldPerClear, foram ${checked}`);
   ok(worst <= 1, `o pior erro devia ser <= 1 gold (arredondamento), deu ${worst.toFixed(2)} em ${worstHunt}`);
 }
 
@@ -220,9 +223,13 @@ console.log('== lootBasket: uma lista de itens contra as hunts ==');
 console.log('== lootItems: o universo buscavel ==');
 {
   const items = M.lootItems(HUNTS, LOOT);
-  ok(items.length === 896, `896 itens alcancaveis pelas hunts, veio ${items.length}`);
+  /* o esperado sai direto do LOOT.m das criaturas de hunt, sem passar pela funcao
+     testada -- e sem numero escrito a mao, que quebrava a cada atualizacao do jogo */
+  const want = new Set();
+  for (const h of HUNTS) for (const k of M.killsPerClear(h)) for (const r of (LOOT.m[k.key] || [])) want.add(r[0]);
+  ok(items.length === want.size, `${want.size} itens alcancaveis pelas hunts, veio ${items.length}`);
   ok(items.every(it => it.hunts > 0), 'todo item da busca cai em pelo menos uma hunt');
-  ok(items.every(it => it.price != null), 'todos os 896 tem preco (a cascata do extrator cobre 100%)');
+  ok(items.every(it => it.price != null), `todos os ${items.length} tem preco (a cascata do extrator cobre 100%)`);
   const sorted = items.slice().sort((a, b) => a.name.localeCompare(b.name));
   ok(JSON.stringify(items.map(i => i.name)) === JSON.stringify(sorted.map(i => i.name)),
     'a lista vem em ordem alfabetica, que e como a busca mostra');
@@ -338,7 +345,9 @@ console.log('== loot de boss: por morte, na mesma escala das hunts ==');
 
   const soHunt = M.lootItems(HUNTS, LOOT).length;
   const comBoss = M.lootItems(HUNTS, LOOT, { bosses: true });
-  ok(soHunt === 896, `sem a opcao, o catalogo continua so de hunts (896), veio ${soHunt}`);
+  const soM = new Set();
+  for (const h of HUNTS) for (const k of M.killsPerClear(h)) for (const r of (LOOT.m[k.key] || [])) soM.add(r[0]);
+  ok(soHunt === soM.size, `sem a opcao, o catalogo continua so de hunts (${soM.size}), veio ${soHunt}`);
   ok(comBoss.length > soHunt && comBoss.some(it => it.name === 'moonsilver bow' && it.bosses === 1 && it.hunts === 0),
     'com bosses, o item que so cai de boss entra no catalogo, marcado como tal');
 }

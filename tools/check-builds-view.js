@@ -320,6 +320,31 @@ console.log('== lista fechada: perk NAO marcado fica de fora ==');
   ok(fechado.slots[0].innerHTML.includes('perks-hint'), 'a regra da lista fechada aparece na lista de perks');
 }
 
+console.log('== "+ XP": o objetivo com foco em XP por cima ==');
+{
+  const slot = (voc, extra) => Object.assign({ label: voc, voc, level: 900, obj: 'avatar', element: 'none', perks: [], perksOpen: false, shown: true }, extra || {});
+  const salvo = { tab: 'builds', slots: [slot('knight', { element: 'physical' }), slot('druid'), slot('sorcerer')] };
+  const app = run(salvo);
+  ok(!app.slots[0].innerHTML.includes('data-role="xp"'), 'o knight nao tem exp na arvore: sem interruptor');
+  ok(app.slots[1].innerHTML.includes('data-role="xp"') && app.slots[2].innerHTML.includes('data-role="xp"'), 'druid e sorcerer tem o interruptor');
+
+  const E = app.E;
+  const expOf = card => E.aggregate(E.decode(card.querySelector('[data-role=code]').value).voc,
+    E.decode(card.querySelector('[data-role=code]').value).ranks).bonus.expPct || 0;
+  ok(expOf(app.slots[1]) === 0, 'druid Avatar sem o combo nao compra exp');
+
+  salvo.slots[1].xp = true;
+  const app2 = run(salvo);
+  const back = E.decode(app2.slots[1].querySelector('[data-role=code]').value);
+  ok(expOf(app2.slots[1]) > 0, `com "+ XP" o druid compra exp (veio +${expOf(app2.slots[1])}%)`);
+  ok(back.ranks[E.avatarNodeId('druid')] > 0, 'e continua com o Avatar (o objetivo nao some)');
+  ok(app2.slots[1].querySelector('[data-role=summary]').innerHTML.includes('AVATAR + XP'), 'o resumo diz que e o combo');
+
+  salvo.slots[1].obj = 'xp';
+  const app3 = run(salvo);
+  ok(!app3.slots[1].innerHTML.includes('data-role="xp"'), 'no proprio objetivo XP o interruptor some');
+}
+
 console.log('== resumo: todo perk travado aparece, inclusive o que so da atributo ==');
 {
   /* o caso relatado: Battle Healing (+4% leech, +5% HP, sem special) travado junto de

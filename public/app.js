@@ -193,7 +193,9 @@ function renderSlot(s){
       <div class="field"><span class="k">Level</span>
         <input type="number" min="1" max="9999999" value="${s.level}" data-role="level"></div>
     </div>
-    <div class="field"><span class="k">Objective</span><div class="objgroups">${objBtns}</div></div>
+    <div class="field"><span class="k">Objective</span><div class="objgroups">${objBtns}</div>
+      ${xpAllowed(s) ? `<label class="switch xpsw"><input type="checkbox" data-role="xp"${s.xp ? ' checked' : ''}>
+        <span>+ XP focus <em>exp nodes first, the rest follows ${esc((OBJS.find(o => o.key === s.obj) || {}).label || '')}</em></span></label>` : ''}</div>
     <div class="field" data-role="elemfield" style="${showElem?'':'display:none'}">
       <span class="k">Damage element</span><select data-role="element">${elemOptions}</select></div>
     <div class="field">
@@ -230,6 +232,8 @@ function renderSlot(s){
   el.querySelectorAll('[data-obj]').forEach(b => b.addEventListener('click', ()=>{
     s.obj = b.dataset.obj; save(); render();
   }));
+  const xpBox = el.querySelector('[data-role=xp]');
+  if (xpBox) xpBox.addEventListener('change', e => { s.xp = !!e.target.checked; save(); render(); });
   const elemSel = el.querySelector('[data-role=element]');
   if (elemSel) elemSel.addEventListener('change', e=>{ s.element=e.target.value; save(); recompute(el, s); });
   el.querySelector('[data-role=perks-toggle]').addEventListener('click', ()=>{
@@ -345,7 +349,9 @@ function tacticsNode(voc){
 function tacticsWant(s){
   const n = tacticsNode(s.voc);
   if (!n) return 0;
-  const w = s.tactics == null ? E.defaultTactics(s.obj) : s.tactics;
+  const w = s.tactics == null
+    ? Math.max(E.defaultTactics(s.obj), s.xp && xpAllowed(s) ? E.defaultTactics('xp') : 0)
+    : s.tactics;
   return Math.max(0, Math.min(n.maxRank, Math.floor(w) || 0));
 }
 function tacticsRow(s){
@@ -402,9 +408,12 @@ function perkRows(s){
    o perk primeiro e monta o resto em volta. A unica parede que fica e' o level
    (caminho mais caro que os pontos), e ai o card diz exatamente isso.
    `s.forcePerks` de estado salvo antigo e' ignorado. */
+/* "+ XP": qualquer objetivo com foco em XP por cima (ver xpProfile no engine). So
+   onde a arvore tem exp (o knight nao tem) e nao no proprio objetivo XP. */
+function xpAllowed(s){ return s.obj !== 'xp' && E.objAvailable(s.voc, 'xp'); }
 function recompute(el, s){
   const build = E.autobuild(s.voc, s.level, s.obj,
-    { element: s.element, perks: s.perks || [], forcePerks: true, tactics: tacticsWant(s) });
+    { element: s.element, perks: s.perks || [], forcePerks: true, tactics: tacticsWant(s), xp: !!s.xp && xpAllowed(s) });
   el.querySelector('[data-role=code]').value = E.encode(s.voc, build.ranks, s.level);
 
   const warn = el.querySelector('[data-role=warn]');
@@ -526,7 +535,7 @@ function renderSummary(box, s, build){
 
   const titleEl = (ELEM_OBJS.includes(s.obj) && s.element!=='none') ? ` / ${ (ELNAME[s.element]||s.element).toUpperCase() }` : '';
   box.innerHTML = `
-    <div class="sum-title">◆ BUILD SUMMARY · ${OBJTITLE[s.obj]||''}${titleEl}</div>
+    <div class="sum-title">◆ BUILD SUMMARY · ${OBJTITLE[s.obj]||''}${titleEl}${s.xp && xpAllowed(s) ? ' + XP' : ''}</div>
     <div class="sum-body">
       <div class="sum-cats">${rows}</div>
       <div class="sum-gauge">${gauge(I)}</div>
@@ -563,7 +572,7 @@ const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', 
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
 /* versao do front: vai na query dos iframes pra o navegador nao servir a pagina
    velha do cache. Suba junto com o ?v= do index.html. */
-const FRONT_V = '10';
+const FRONT_V = '12';
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){
   state.tab = view; saveState();

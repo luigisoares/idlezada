@@ -16,7 +16,10 @@ idlezada/
 │  ├─ hunts.js           # hunt data (window.HUNTS) — generated from data/hunts.json
 │  ├─ charms.js          # charm table (window.CHARMS) — generated from data/charms.json
 │  ├─ loot-view.js       # loot screen: item → creature + hunt, starred list, drop tables
-│  ├─ loot.js            # loot + sell prices (window.LOOT) — generated from data/loot.json
+│  ├─ loot.js            # loot + sell prices (window.LOOT: m=creatures, b=bosses, p=prices) — generated
+│  ├─ bosses-view.js     # bosses screen: real HP, damage bar, loot per boss, favorites
+│  ├─ bosses.js          # boss data (window.BOSSES) — generated from data/bosses.json
+│  ├─ xprates.js         # live server XP rates (window.XPRATES) — generated from data/xprates.json
 │  ├─ styles.css
 │  ├─ simuladorbuild.html# interactive simulator (Simulator tab)
 │  └─ stamina.html       # stamina calculator (Stamina tab)
@@ -24,6 +27,8 @@ idlezada/
 ├─ data/monsters.json    # whole bestiary: hp/exp/armor/resist + dmg/abilities (not published)
 ├─ data/loot.json        # whole bestiary's loot: item / chance / max (not published)
 ├─ data/prices.json      # sell price in gold of every item (not published)
+├─ data/bosses.json      # room bosses (from the bundle) + world bosses (by hand)
+├─ data/xprates.json     # live XP rates, read by hand from the in-game wiki page
 ├─ tools/                # verification (not published, no dependencies)
 │  ├─ check-builds.js    # run after touching any weight: node tools/check-builds.js
 │  ├─ check-hunt-model.js# run after touching hunt-model.js or re-extracting
@@ -31,9 +36,13 @@ idlezada/
 │  ├─ check-builds-view.js # same, for the Builds tab (catches init + marker breaks)
 │  ├─ check-loot.js      # loot model + the gold cross-check that pins the chance scale
 │  ├─ check-loot-view.js # runs the Loot tab against a fake DOM
-│  ├─ extract-game-data.js # pulls resists, damage, charms, loot + prices out of the bundle
+│  ├─ check-bosses-view.js # runs the Bosses tab against a fake DOM (loot included)
+│  ├─ extract-game-data.js # the one data script: bundle → monsters, loot, prices, charms, hunts, bosses
+│  ├─ extract-wiki.js    # reads the game's wiki (shipped inside the bundle): the source of the rules
+│  ├─ bump-front-version.js # raises the ?v= cache version everywhere at once
 │  └─ model.js           # combat model used to compare objectives
-├─ docs/                 # internal specs (not published)
+├─ docs/                 # internal specs + docs/changelog/ (one entry per update round)
+├─ .claude/skills/updating-game-data/ # the step-by-step for refreshing the data
 └─ .github/workflows/deploy.yml
 ```
 
@@ -123,6 +132,22 @@ falls behind on a pack of four, and AoE is the reverse.
   a bug and not XP being secretly better — it is Damage deliberately declining the Avatar node so it
   stays a distinct build. If you want raw damage *with* the Avatar, that is the Avatar button.
 - **Atk Speed** — attack speed + light damage/crit.
+
+### "+ XP": any objective with an XP focus on top
+
+Druid and sorcerer players wanted Avatar *and* XP in the same build — the Avatar's
+guaranteed crits, while still levelling fast. XP used to be one button among the others, so
+it was one or the other. Now every card whose tree has exp (all but the knight) shows a
+**+ XP focus** switch under the objectives: on, the build keeps the chosen objective's whole
+profile and adds the XP profile's one XP-specific weight (`expPct`), so the exp nodes are
+bought first and everything else follows the objective. It is not a 50/50 blend on purpose
+— that would dilute exactly what the objective is (the Avatar node, its attack speed).
+Off, nothing changes. The Battle Tactics default follows the farming side (r3) unless you
+touched the marker, and the Hunts tab builds the same tree.
+
+Measured at level 900 with the `tools/model.js` index: druid Avatar goes from +0% to +22%
+exp with the same 43% Avatar uptime, XP/h index 2.84 → 3.16 (+11%); sorcerer Avatar gets
++10% exp at the same 46% uptime, 3.97 → 4.10 — ahead of the plain XP objective (3.95).
 
 ### Battle Tactics: a step you choose, not a step everyone pays for
 
@@ -442,6 +467,10 @@ served by the server.
 
 ## Re-extracting game data
 
+**The full procedure — what each line of output means, what is done by hand, how to ship —
+is the `updating-game-data` skill in `.claude/skills/`.** This section is the reference
+behind it.
+
 `data/monsters.json`, `data/charms.json`, `data/loot.json`, `data/prices.json`, the room
 bosses in `data/bosses.json` and the hunts in `data/hunts.json` come from the game bundle:
 
@@ -456,7 +485,10 @@ node tools/check-bosses-view.js           # ...and the Bosses tab, loot included
 ```
 
 It rewrites `public/hunts.js`, `public/charms.js`, `public/loot.js` and `public/bosses.js`
-from the JSON. What it does with each kind of record:
+from the JSON, and regenerates `public/trees.js` and `public/xprates.js` from the two JSON
+files that are edited by hand. It also **compares the skill trees** in the bundle with
+`data/trees.json` and prints `! ARVORE MUDOU NO JOGO` with the differences — it never
+rewrites the trees, because the optimizer is calibrated on them. What it does with each kind of record:
 
 - **New hunt** in the bundle → built from scratch with the same formulas that produced the
   original 79 (bestiary HP ×2, `spawnCount(packBase)` kills by spawn weight + 1 boss,

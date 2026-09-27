@@ -288,6 +288,26 @@ PROFILES.curadano = blend(PROFILES.healer, PROFILES.dano, 0.65);
    do notavel, e o otimizador acerta em gastar isso em absorb/HP. */
 PROFILES.puller = blend(PROFILES.tank, PROFILES.aoe, 0.65);
 
+/* "+ XP": o objetivo escolhido COM foco em XP (pedido pro druid e o sorcerer: Avatar
+   com XP, pra ter o crit do Avatar e ainda subir rapido). Nao e' um blend 50/50 --
+   isso diluiria justo o que o objetivo tem de proprio (o peso do no do Avatar, o
+   atk speed dele). O que o perfil XP tem de XP e' UMA coisa: expPct alto, que faz os
+   nos de exp entrarem primeiro; o resto dele ja e' dano. Entao o combo e' o perfil
+   do objetivo + o expPct do XP. Fica fora de PROFILES de proposito: PROFILES e' a
+   lista de botoes, e o combo e' um interruptor em cima de qualquer um deles. */
+const XP_MIX = {};
+function xpKey(obj){ return obj + '+xp'; }
+function xpProfile(obj){
+  const k = xpKey(obj);
+  if(!XP_MIX[k]){
+    const base = PROFILES[obj] || PROFILES.dano;
+    XP_MIX[k] = Object.assign({}, base, {
+      stats: Object.assign({}, base.stats, { expPct: PROFILES.xp.stats.expPct }),
+    });
+  }
+  return XP_MIX[k];
+}
+
 /* ---------------------------------------------------------------------------
    VALORACAO CIENTE DO ESTADO.
 
@@ -406,7 +426,7 @@ function tacticsMinCost(v, want){
 
 /* floor=true -> modo reserva: todo peso zerado vira FALLBACK_W. */
 function nodeValue(n, obj, elem, ctx, floor){
-  const W = PROFILES[obj] || PROFILES.dano;
+  const W = PROFILES[obj] || XP_MIX[obj] || PROFILES.dano;
   const C = ctx || NO_CTX;
   const w = x => floor ? Math.max(x||0, FALLBACK_W) : (x||0);
   // chance efetiva de critar: dentro do avatar e' 100%, fora e' a crit chance
@@ -635,9 +655,12 @@ function autobuild(v, level, obj, opts){
   /* opts.tactics ausente = a build nao mexeu no marker -> default do objetivo. Um pedido
      explicito (inclusive 0) manda, limitado ao maxRank da arvore. */
   const tNode = tacticsNodeId(v);
+  /* com "+ XP" a build farma: o default do marker e' o de quem farma sozinho */
+  const withXp = !!opts.xp && obj !== 'xp' && objAvailable(v, 'xp');
   const tWant = Math.max(0, Math.min(
-    opts.tactics == null ? defaultTactics(obj) : Math.floor(opts.tactics),
+    opts.tactics == null ? Math.max(defaultTactics(obj), withXp ? defaultTactics('xp') : 0) : Math.floor(opts.tactics),
     tNode ? nd(v, tNode).maxRank : 0));
+  if(withXp){ xpProfile(obj); obj = xpKey(obj); }
   let blocked = null;
   const grow = (floor, noNewBranch) => growGreedy(v, budget, obj, elem, rk, perkSet,
     !!opts.forcePerks, floor, noNewBranch, tWant, blocked);
