@@ -7,7 +7,7 @@ const TREES = window.TREES;
 
 /* ---------- labels / colors ---------- */
 const VNAME = { knight:'Knight', paladin:'Paladin', sorcerer:'Sorcerer', druid:'Druid', monk:'Monk' };
-const VCOL  = { knight:'#ff6b5e', paladin:'#ffd76a', sorcerer:'#b060ff', druid:'#6fdc8c', monk:'#5fd4e8' };
+const VCOL  = { knight:'#ff7a68', paladin:'#ffd46b', sorcerer:'#b98cff', druid:'#76d69a', monk:'#6fd3ee' };
 
 const OBJS = [
   { key:'dano',     label:'Damage' },
@@ -84,14 +84,14 @@ const CAT_LABEL = { damage:'Damage', speed:'Speed', crit:'Crit', sustain:'Sustai
 /* ---------- state ---------- */
 const LS_KEY = 'idlezada.builds.v3';
 const DEFAULT_SLOTS = [
-  { label:"Knight",          voc:'knight',   level:500, obj:'dano', element:E.defaultElement('knight'), perks:[], perksOpen:false, forcePerks:false, shown:true },
-  { label:"Elder Druid",     voc:'druid',    level:500, obj:'dano', element:E.defaultElement('druid'), perks:[], perksOpen:false, forcePerks:false, shown:true },
-  { label:"Master Sorcerer", voc:'sorcerer', level:500, obj:'dano', element:E.defaultElement('sorcerer'), perks:[], perksOpen:false, forcePerks:false, shown:true },
+  { label:"Knight",          voc:'knight',   level:900, obj:'dano', element:E.defaultElement('knight'), perks:[], perksOpen:false, shown:true },
+  { label:"Elder Druid",     voc:'druid',    level:900, obj:'dano', element:E.defaultElement('druid'), perks:[], perksOpen:false, shown:true },
+  { label:"Master Sorcerer", voc:'sorcerer', level:900, obj:'dano', element:E.defaultElement('sorcerer'), perks:[], perksOpen:false, shown:true },
   /* O paladino e o slot de quem esta subindo uma vocacao nova: ele existe pra voce
      ja ir montando a build, mas comeca FORA da tela (`shown:false`) pra nao ocupar
      espaco das tres que voce usa hoje. Aparece pelo chip acima dos cards e, quando
      aparece, entra na mesma fileira que elas -- card inteiro, nao meia tela. */
-  { label:"Royal Paladin",   voc:'paladin',  level:500, obj:'dano', element:E.defaultElement('paladin'), perks:[], perksOpen:false, forcePerks:false, shown:false },
+  { label:"Royal Paladin",   voc:'paladin',  level:900, obj:'dano', element:E.defaultElement('paladin'), perks:[], perksOpen:false, shown:false },
 ];
 let state = loadState();
 
@@ -156,14 +156,15 @@ if (hiddenEl) hiddenEl.addEventListener('click', e => {
 function renderSlot(s){
   const el = document.createElement('div');
   el.className = 'slot';
-  const col = VCOL[s.voc] || '#6fdc8c';
+  const col = VCOL[s.voc] || '#76d69a';
+  el.setAttribute('style', '--vc:' + col);
 
   const objBtns = OBJ_GROUPS.map(g => {
     const keys = g.objs.filter(k => E.objAvailable(s.voc, k));
     if (!keys.length) return '';                            // grupo inteiro indisponivel
     const chips = keys.map(k => {
       const o = OBJS.find(x => x.key === k);
-      return `<div class="obj${k===s.obj?' on':''}" data-obj="${k}">${o.label}</div>`;
+      return `<button type="button" class="obj${k===s.obj?' on':''}" data-obj="${k}" aria-pressed="${k===s.obj}">${o.label}</button>`;
     }).join('');
     return `<div class="objgroup"><span class="objgroup-k">${g.label}</span>
       <div class="objs">${chips}</div></div>`;
@@ -198,7 +199,7 @@ function renderSlot(s){
     <div class="field">
       <button type="button" class="perks-h" data-role="perks-toggle" aria-expanded="${s.perksOpen?'true':'false'}">
         <span class="perks-caret">${s.perksOpen?'▾':'▸'}</span>
-        <span class="perks-t">Perks to prioritize</span>
+        <span class="perks-t">Perks to lock</span>
         <span class="perks-n" data-role="perks-n">${perkCountLabel(s)}</span>
       </button>
       <div class="perks" data-role="perks"${s.perksOpen?'':' hidden'}>${perkRows(s)}</div>
@@ -231,10 +232,6 @@ function renderSlot(s){
   }));
   const elemSel = el.querySelector('[data-role=element]');
   if (elemSel) elemSel.addEventListener('change', e=>{ s.element=e.target.value; save(); recompute(el, s); });
-  el.querySelector('[data-role=warn]').addEventListener('change', e=>{
-    if (!e.target.matches('[data-role=force]')) return;
-    s.forcePerks = e.target.checked; save(); recompute(el, s);
-  });
   el.querySelector('[data-role=perks-toggle]').addEventListener('click', ()=>{
     s.perksOpen = !s.perksOpen; save();
     const box = el.querySelector('[data-role=perks]');
@@ -321,7 +318,7 @@ function perkCountLabel(s){
   const n = (s.perks||[]).length, t = tacticsWant(s);
   const bits = [];
   if (t) bits.push(`tactics r${t}`);
-  if (n) bits.push(`${n} perk${n===1?'':'s'}`);
+  if (n) bits.push(`${n} locked`);
   return bits.length ? bits.join(' · ') : 'none';
 }
 
@@ -382,8 +379,12 @@ function updateTacticsRow(el, s){
   });
   el.querySelector('[data-role=perks-n]').textContent = perkCountLabel(s);
 }
+/* a regra dos perks em uma linha, no topo da lista: travar e' garantir E fechar a
+   lista (ver closedPerks no engine) -- sem isto o Gift of Life "sumir" do tank pareceria bug. */
+const PERKS_HINT = `<p class="perks-hint">Checked perks are always taken, and the ones you leave unchecked stay out
+  — unless a checked perk needs them on the way. Check nothing and the optimizer picks freely.</p>`;
 function perkRows(s){
-  return tacticsRow(s) + E.perkNodes(s.voc).map(n => {
+  return PERKS_HINT + tacticsRow(s) + E.perkNodes(s.voc).map(n => {
     const on = (s.perks||[]).includes(n.id);
     return `<label class="perk${on?' on':''}">
       <input type="checkbox" data-perk="${n.id}"${on?' checked':''}>
@@ -394,43 +395,42 @@ function perkRows(s){
   }).join('');
 }
 
+/* PERK MARCADO E' PERK GARANTIDO. Antes marcar so priorizava (PERK_BOOST) e o
+   "forcar" era um segundo checkbox que so aparecia dentro do aviso, DEPOIS que o
+   perk ja tinha caido fora -- na pratica, voce marcava Cleaving Strikes III num
+   knight tank e a arvore vinha sem ele. Agora a marca e' a ordem: o motor persegue
+   o perk primeiro e monta o resto em volta. A unica parede que fica e' o level
+   (caminho mais caro que os pontos), e ai o card diz exatamente isso.
+   `s.forcePerks` de estado salvo antigo e' ignorado. */
 function recompute(el, s){
   const build = E.autobuild(s.voc, s.level, s.obj,
-    { element: s.element, perks: s.perks || [], forcePerks: !!s.forcePerks, tactics: tacticsWant(s) });
+    { element: s.element, perks: s.perks || [], forcePerks: true, tactics: tacticsWant(s) });
   el.querySelector('[data-role=code]').value = E.encode(s.voc, build.ranks, s.level);
 
   const warn = el.querySelector('[data-role=warn]');
   const nameOfNode = id => (TREES[s.voc].find(n => n.id === id) || {}).name || id;
   const P = build.perks || { reached:[], missing:[], unaffordable:[], forced:false };
-  const hasPerks = (s.perks||[]).length > 0;
-  // "nao cabe no level" e "cabia mas nao valeu" sao problemas diferentes: o primeiro
-  // nao tem solucao a nao ser subir de level, e forcar nao muda nada. Por isso o
-  // checkbox de forcar so e' oferecido no segundo caso.
+  // "nao cabe sozinho no level" e "cabe sozinho, mas nao junto com os outros" sao
+  // avisos diferentes: o primeiro so se resolve subindo de level, o segundo tambem
+  // desmarcando algum dos outros.
   const tooExpensive = P.unaffordable.map(nameOfNode);
-  const notWorth = P.missing.filter(id => !P.unaffordable.includes(id)).map(nameOfNode);
-  const plural = n => n === 1 ? 'perk' : 'perks';
+  const noRoom = P.missing.filter(id => !P.unaffordable.includes(id)).map(nameOfNode);
 
   let msg = null;
   if (s.obj === 'avatar' && !build.reachedAvatar) {
     msg = 'Level too low to reach the Avatar node — built the best damage setup with the available points.';
   } else if (tooExpensive.length) {
     msg = `Level too low for ${tooExpensive.join(', ')} — the path alone costs more than your points.`;
-  } else if (notWorth.length) {
-    msg = s.forcePerks
-      ? `Even forced, ${notWorth.join(', ')} does not fit alongside your other picks at this level.`
-      : `${notWorth.join(', ')} left out: at this level the points cost more than the perk gives back.`;
+  } else if (noRoom.length) {
+    /* com um perk so nao existe "os outros" pra desmarcar: o que disputa os pontos
+       e' o marker do Battle Tactics (ou nada, e ai e' o level). */
+    const tw = tacticsWant(s);
+    msg = (s.perks||[]).length > 1
+      ? `${noRoom.join(', ')} does not fit alongside your other locked perks at this level — unlock one of them or raise the level.`
+      : tw > 0
+        ? `${noRoom.join(', ')} and Battle Tactics r${tw} do not fit together at this level — lower the marker or raise the level.`
+        : `${noRoom.join(', ')} does not fit at this level — raise the level.`;
   }
-  // o controle de forcar fica visivel enquanto estiver ligado, senao nao daria pra
-  // desligar depois que o aviso que o ofereceu desaparece.
-  const forceRow = (hasPerks && (notWorth.length || s.forcePerks))
-    ? `<label class="forcebox"><input type="checkbox" data-role="force"${s.forcePerks?' checked':''}>
-        <span>Take ${(s.perks||[]).length===1?'it':'them'} anyway — build the rest around ${(s.perks||[]).length===1?'it':'them'}</span></label>`
-    : '';
-  // !msg: se ja existe um aviso, o forceRow vai nele -- senao dois checkboxes iguais
-  // renderizariam juntos (ex.: preset Avatar em level baixo + perks forcados).
-  const forcedNote = (!msg && s.forcePerks && hasPerks && !notWorth.length && !tooExpensive.length)
-    ? `Forcing ${P.reached.length} ${plural(P.reached.length)} — the rest of the build is shaped around ${P.reached.length===1?'it':'them'}.`
-    : null;
   // acima do custo total da arvore todo objetivo produz a MESMA build (tudo maxado),
   // entao trocar de botao deixa de fazer efeito -- melhor dizer isso que deixar o
   // usuario clicando sem entender.
@@ -446,8 +446,7 @@ function recompute(el, s){
     ? `Level ${s.level.toLocaleString('en-US')} maxes this entire tree (${cap.toLocaleString('en-US')} points) — every objective builds the same thing from here.`
     : null;
   warn.innerHTML =
-      (msg ? `<div class="warn">${esc(msg)}${forceRow}</div>` : '')
-    + (forcedNote ? `<div class="info">${esc(forcedNote)}${forceRow}</div>` : '')
+      (msg ? `<div class="warn">${esc(msg)}</div>` : '')
     + (tacMsg ? `<div class="warn">${esc(tacMsg)}</div>` : '')
     + (capped ? `<div class="info">${esc(capped)}</div>` : '');
 
@@ -498,18 +497,29 @@ function renderSummary(box, s, build){
   if (elemJoin) pills.push(`elem. dmg: ${esc(elemJoin)}`);
   if (absKeys.length) pills.push(absUniform ? `absorb: all +${fmtNum(absorb[absKeys[0]])}%`
     : `absorb: ${absKeys.map(e=>`${ELNAME[e]} +${fmtNum(absorb[e])}%`).join(' · ')}`);
-  // specials: nome do nó (inglês, vem do dado) + resumo em inglês
+  /* PERKS DA BUILD, um por linha: todo notavel alocado (e todo no com special).
+     Antes so entrava quem tinha `special`, entao um perk que so da atributo -- Battle
+     Healing: +4% leech e +5% HP -- sumia dentro da soma dos bonus, e parecia que o
+     perk travado nao tinha sido pego. O travado ganha o cadeado. */
   const specialPills = [];
   const upt = E.avatarUptime(voc, build.ranks);
+  const locked = new Set(s.perks || []);
   for (const n of TREES[voc]) {
-    if (n.special && (build.ranks[n.id]||0) >= 1) {
+    if ((build.ranks[n.id]||0) < 1) continue;
+    if (!n.special && n.kind === 'small') continue;        // no pequeno so de atributo: ja esta nos bonus
+    const lock = locked.has(n.id) ? '<span class="lock">locked</span> ' : '';
+    if (!n.special) {
+      specialPills.push(`<div class="pill2 sp">${lock}★ ${esc(n.name)} — ${esc(perkEffect(n))}</div>`);
+      continue;
+    }
+    {
       const s2 = SPL[n.special.key] ? SPL[n.special.key](fmtNum(n.special.value*(build.ranks[n.id]||1))) : '';
       // no Avatar a chance por hit sozinha nao diz nada: o que importa e' quanto do
       // tempo a build passa na forma -- e' o uptime que faz o crit damage compensar.
       const extra = (n.special.key==='avatar' && upt>0)
         ? `<b>~${Math.round(upt*100)}% uptime</b> — always crits while active`
         : '';
-      specialPills.push(`<div class="pill2 sp">★ ${esc(n.name)}${s2?` — ${s2}`:''}${extra?` · ${extra}`:''}</div>`);
+      specialPills.push(`<div class="pill2 sp">${lock}★ ${esc(n.name)}${s2?` — ${s2}`:''}${extra?` · ${extra}`:''}</div>`);
     }
   }
   const pillsHtml = pills.map(p=>`<div class="pill2">${p}</div>`).join('') + specialPills.join('');
@@ -551,13 +561,16 @@ function save(){ clearTimeout(saveT); saveT=setTimeout(saveState, 200); }
 /* ---------- tabs ---------- */
 const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', loot:'view-loot', sim:'view-sim', stamina:'view-stamina' };
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
+/* versao do front: vai na query dos iframes pra o navegador nao servir a pagina
+   velha do cache. Suba junto com o ?v= do index.html. */
+const FRONT_V = '10';
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){
   state.tab = view; saveState();
   document.querySelectorAll('.navtab').forEach(t=>t.classList.toggle('on', t.dataset.view===view));
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById(views[view]).classList.add('on');
-  if (frames[view] && !frames[view].src) frames[view].src = iframeSrc[view];
+  if (frames[view] && !frames[view].src) frames[view].src = `${iframeSrc[view]}?v=${FRONT_V}`;
 }
 document.getElementById('navtabs').addEventListener('click', e=>{
   const t = e.target.closest('.navtab'); if (t) switchTab(t.dataset.view);
@@ -571,7 +584,7 @@ document.getElementById('navtabs').addEventListener('click', e=>{
    conta propria; aqui a recarga e' o caminho deterministico. */
 let simNonce = 0;
 function openInSimulator(code){
-  frames.sim.src = `${iframeSrc.sim}?n=${++simNonce}#${code}`;
+  frames.sim.src = `${iframeSrc.sim}?v=${FRONT_V}&n=${++simNonce}#${code}`;
   switchTab('sim');
 }
 

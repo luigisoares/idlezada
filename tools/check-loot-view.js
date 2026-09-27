@@ -63,7 +63,7 @@ function run(opts) {
   sandbox.window.localStorage = sandbox.localStorage;
   sandbox.window.document = sandbox.document;
   vm.createContext(sandbox);
-  for (const f of ['hunts.js', 'loot.js', 'hunt-model.js', 'loot-view.js']) {
+  for (const f of ['hunts.js', 'loot.js', ...(opts.bosses ? ['bosses.js'] : []), 'hunt-model.js', 'loot-view.js']) {
     vm.runInContext(fs.readFileSync(path.join(PUB, f), 'utf8'), sandbox, { filename: f });
   }
   const type = q => { els['loot-search'].value = q; els['loot-search'].fire('input'); };
@@ -101,14 +101,14 @@ console.log('== sem favorito e sem busca: ranking pelo valor da tabela de loot =
   const r = run({ storage: favStore([]) });
   const h = r.html();
   ok(h.includes('lt-row-g'), 'sem busca e sem estrela, cai no modo gold');
-  ok((h.match(/lt-item/g) || []).length === 79, `deviam ser as 79 hunts, vieram ${(h.match(/lt-item/g) || []).length}`);
+  ok((h.match(/lt-item/g) || []).length === 87, `deviam ser as 87 hunts, vieram ${(h.match(/lt-item/g) || []).length}`);
   ok(h.includes('Coins / clear') && h.includes('Drops / clear') && h.includes('Total / clear'),
     'o cabecalho devia separar moeda, drop e total');
   ok(!h.includes('1M HP'), 'a coluna por 1M de HP saiu junto com o DPS');
   ok(clean(h), 'a tabela do modo gold nao devia ter undefined/NaN');
   ok(r.els['loot-info'].innerHTML.includes('star items'), 'a barra devia sugerir favoritar');
   ok(r.favs() === '', 'sem favorito, a faixa de chips fica vazia');
-  ok((r.els['loot-items'].innerHTML.match(/<option/g) || []).length === 864, 'os 864 itens no datalist');
+  ok((r.els['loot-items'].innerHTML.match(/<option/g) || []).length === 896, 'os 896 itens no datalist');
 }
 
 console.log('== buscar um item: hunts, criatura, chance, por clear e clears/1 ==');
@@ -323,7 +323,7 @@ console.log('== abrir uma hunt mostra o loot INTEIRO dela ==');
 
 console.log('== hunt com criatura sem tabela de loot AVISA ==');
 {
-  /* lista vazia de proposito: so o modo gold lista as 79 hunts, e a hunt com
+  /* lista vazia de proposito: so o modo gold lista as 87 hunts, e a hunt com
      criatura sem loot pode nao cobrir nenhum favorito. */
   const base = run({ storage: favStore([]) });
   const HM = base.win.HuntModel, HUNTS = base.win.HUNTS, LOOT = base.win.LOOT;
@@ -357,7 +357,7 @@ console.log('== o level marca a hunt fora do alcance, sem esconder ==');
 
 console.log('== o level default vem do maior personagem da aba Builds ==');
 {
-  ok(run().els['loot-level'].value === '500', 'sem builds salvas, o default e 500');
+  ok(run().els['loot-level'].value === '900', 'sem builds salvas, o default e 900');
   ok(run({ storage: { 'idlezada.builds.v3': BUILDS } }).els['loot-level'].value === '350',
     'com uma build de 350, o level default devia ser 350');
 }
@@ -369,6 +369,24 @@ console.log('== trocar de busca fecha os detalhes abertos ==');
   ok(r.html().includes('class="ltd"'), 'abriu');
   r.type('boots of haste');
   ok(!r.html().includes('class="ltd"'), 'trocar o item devia fechar o que estava aberto');
+}
+
+console.log('== bosses na busca de item ==');
+{
+  /* item que so cai de boss: antes da busca conhecer bosses, isso dava "nada" */
+  const r = run({ bosses: true, search: 'moonsilver bow' });
+  ok(r.html().includes('only bosses do'), 'item so de boss devia dizer que so boss dropa');
+  ok(r.html().includes('Phosphorus') && r.html().includes('1.00%'), 'e listar o Phosphorus com a chance de 1%');
+  ok(r.els['loot-info'].innerHTML.includes('by 1 boss'), 'a barra de info conta o boss');
+  const n = (r.els['loot-items'].innerHTML.match(/<option/g) || []).length;
+  ok(n > 896, `com bosses, o datalist devia passar dos 896 itens de hunt, veio ${n}`);
+
+  /* item de hunt E de boss: as hunts vem primeiro, os bosses numa tabela propria */
+  const r2 = run({ bosses: true, search: 'crystal coin' });
+  const h = r2.html();
+  ok(h.includes('lt-row') && h.includes('Bosses that drop it'), 'hunts e bosses aparecem juntos');
+  ok(h.indexOf('lt-row') < h.indexOf('Bosses that drop it'), 'as hunts vem antes dos bosses');
+  ok(!/class="lb-row lt-row/.test(h), 'linha de boss nao e linha de hunt (o clique nao abre nada)');
 }
 
 console.log(`\n${pass} ok, ${fail} falha(s)`);

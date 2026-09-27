@@ -12,8 +12,8 @@
      pack = 4        [medido] packBase de data/hunts.json: 4 em 78 das 79 hunts
                      (a excecao e' Dragon Lair, com 3).
      adj = 2         adjacentes ao alvo num pack de 4, pro cleave alcancar.
-     critBase = 2    um crit acerta por 2x + critDmg. O multiplicador real e'
-                     desconhecido; testar em 1.5 e 3 nao muda a ordem dos objetivos.
+     critBase = 1.5  [jogo] um crit acerta por 1,5x + critDmg: a wiki do jogo diz
+                     "Critico: +50% de base (+ Crit Damage)". Era 2 por suposicao.
      baseAps = 1.0   ataques por segundo com 0% de atk speed. Importa porque define
                      a velocidade com que o Avatar dispara.
      avatarDur = 15  segundos da forma Avatar (do texto do proprio no), sem reset
@@ -28,7 +28,7 @@
    ============================================================================ */
 'use strict';
 
-const DEFAULTS = { pack:4, adj:2, critBase:2, baseAps:1.0, avatarDur:15, execFrac:0.25 };
+const DEFAULTS = { pack:4, adj:2, critBase:1.5, baseAps:1.0, avatarDur:15, execFrac:0.25 };
 
 /* recebe o Engine ja carregado e devolve metrics(voc, level, objetivo, [cfg]). */
 module.exports = function (E) {

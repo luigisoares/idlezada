@@ -4,38 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stamina Calculator — Idlezada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-  /* paleta alinhada ao resto do Idlezada (verde/dourado escuro) */
+  /* mesmo tema do site (styles.css V3): verde-escuro + dourado, Manrope */
   :root{
-    --bg:#0d1210; --panel:#141c19; --panel-2:#1a241f; --line:#26332c;
-    --ink:#dbe7e0; --muted:#8fa398;
-    --hunt:#e0a76a; --train:#6fdc8c; --night:#8aa0e0; --warn:#e8c56a; --danger:#ff6b5e;
+    --bg:#0e1311; --panel:#151c19; --panel-2:#1b2420; --line:#25312b; --sunken:#0a0f0d;
+    --ink:#e4ece7; --muted:#95a89d;
+    --hunt:#e0a76a; --train:#6fdc8c; --night:#8aa0e0; --warn:#e8c56a; --danger:#ff7a68;
+    --f-display:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{
-    background:radial-gradient(1000px 500px at 50% -180px,#16241c,transparent),var(--bg);
-    color:var(--ink); font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink); font:15px/1.55 var(--f-body);
     -webkit-font-smoothing:antialiased; padding:24px 16px 56px;
   }
   .wrap{max-width:560px;margin:0 auto}
-  h1{font-size:20px;margin:0 0 4px;display:flex;align-items:center;gap:9px;font-family:Georgia,serif;color:var(--warn)}
+  h1{font:800 22px/1.1 var(--f-display);letter-spacing:-.01em;margin:0 0 6px;display:flex;align-items:center;gap:10px;color:var(--ink)}
   h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--train);box-shadow:0 0 12px var(--train)}
   .lead{color:var(--muted);font-size:13px;margin:0 0 18px}
 
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
   .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 14px;font-weight:700}
   .toprow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
   .chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;user-select:none;font-size:14px}
   .chip input{accent-color:var(--train);width:16px;height:16px}
   .seg{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:3px}
   .seg button{border:0;background:transparent;color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
-  .seg button.on{background:var(--warn);color:#0d1210}
+  .seg button.on{background:var(--warn);color:#11160f}
 
   .row{display:flex;gap:14px;flex-wrap:wrap}
   .col{flex:1 1 130px;min-width:120px}
   label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
-  input[type=text],input[type=number]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px;font-size:16px;font-variant-numeric:tabular-nums}
-  input:focus{outline:2px solid var(--train);outline-offset:1px;border-color:transparent}
+  input[type=text],input[type=number]{width:100%;background:var(--sunken);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px;font-size:16px;font-variant-numeric:tabular-nums}
+  input:focus{outline:0;border-color:rgba(232,197,106,.36);box-shadow:0 0 0 3px rgba(232,197,106,.13)}
   .timewrap{display:flex;gap:8px}
   .agora{background:var(--panel-2);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:0 12px;cursor:pointer;font-size:12px;white-space:nowrap}
   .agora:hover{color:var(--ink);border-color:var(--train)}
@@ -43,14 +48,14 @@
   .cap{font-size:12px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
   .hide{display:none !important}
 
-  .result{background:linear-gradient(180deg,#18241d,#131b17)}
+  .result{background:linear-gradient(170deg,rgba(232,197,106,.06),transparent 55%),var(--panel);border-color:rgba(232,197,106,.3)}
   .heads{display:flex;gap:12px;margin-bottom:12px}
   .big{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
   .big .k{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-  .big .v{font-size:24px;font-weight:700;margin-top:5px;font-variant-numeric:tabular-nums}
+  .big .v{font:800 24px/1.1 var(--f-display);margin-top:6px;font-variant-numeric:tabular-nums}
   .big.hunt{border-color:rgba(224,167,106,.4)}.big.hunt .v{color:var(--hunt)}
   .big.train{border-color:rgba(111,220,140,.4)}.big.train .v{color:var(--train)}
-  .bar{height:10px;border-radius:6px;background:#0b100e;border:1px solid var(--line);overflow:hidden;display:flex}
+  .bar{height:10px;border-radius:6px;background:var(--sunken);border:1px solid var(--line);overflow:hidden;display:flex}
   .bar i{display:block;height:100%}.bar .h{background:var(--hunt)}.bar .t{background:var(--train)}
   .barlbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:5px}
 
@@ -68,8 +73,8 @@
   .step .aft .dl{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 
   .tip{font-size:14px;margin-top:8px;padding:11px 13px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
-  .tip.warn{background:rgba(232,197,106,.1);border-color:rgba(232,197,106,.35);color:#ffe08a}
-  .tip.bad{background:rgba(255,107,94,.1);border-color:rgba(255,107,94,.35);color:#ff9a9a}
+  .tip.warn{background:rgba(232,197,106,.09);border-color:rgba(232,197,106,.32);color:#ffd9a8}
+  .tip.bad{background:rgba(255,122,104,.09);border-color:rgba(255,122,104,.35);color:#ff9b8b}
   .tip b{color:var(--ink)}.tip.warn b,.tip.bad b{color:inherit}
 
   details{margin-top:2px}summary{cursor:pointer;color:var(--muted);font-size:13px}

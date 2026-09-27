@@ -118,9 +118,13 @@ function huntElements(hunt, ctx) {
    nenhum do repo (a arvore da %, nao o valor absoluto). Eles saem com gain null e
    uma nota, em vez de um numero inventado.
    ============================================================================ */
-const CRIT_BASE = 2;     // um crit acerta por 2x + crit damage (mesma premissa do model.js)
+/* um crit acerta por 1,5x + crit damage. Da wiki do jogo, duas vezes: "Critico:
+   +50% de base (+ Crit Damage)" (Dados do Servidor) e "um critico da +50% de base e
+   este atributo soma por cima" (atributos da Forja). Era 2 por suposicao -- e com 2 o
+   critico valia mais do que vale, o que inflava Low Blow e Savage Blow juntas. */
+const CRIT_BASE = 1.5;
 const EXEC_FRAC = 0.25;  // fatia da luta com o alvo abaixo de 25% do HP
-const CARNAGE_ADJ = 2;   // vizinhos que o estouro alcanca num pack (model.js)
+const CARNAGE_ADJ = 2;   // teto: vizinhos que o estouro PODE alcancar (ver carnageNeighbors)
 
 /* que conta cada charm usa. O que nao esta aqui nao e dano e fica fora. */
 const EFFECT = {
@@ -144,7 +148,11 @@ function charmGain(charm, tier, monster, ctx) {
   const v = (charm.values || [])[tier] || 0;
   const hp = monster.hpFight || monster.hp || 0, lv = ctx.level || 1;
   const base = critMult(ctx.cc, ctx.cd, ctx.up);
-  const dmgPerHit = (ctx.dps > 0 && ctx.aps > 0) ? ctx.dps / ctx.aps : 0;
+  /* dano por GOLPE. Sem o golpe medio informado, dps/aps -- que supoe todo o DPS no
+     ataque basico e por isso da golpes grandes e POUCOS, subestimando o elemental
+     (que proca a cada acerto, runa e magia inclusive). ctx.hit e' o golpe medio que
+     o jogador ve no jogo, com runas e magias -- quando existe, manda. */
+  const dmgPerHit = ctx.hit > 0 ? ctx.hit : (ctx.dps > 0 && ctx.aps > 0) ? ctx.dps / ctx.aps : 0;
 
   switch (EFFECT[charm.key]) {
     case 'critDmg':    return { gain: critMult(ctx.cc, (ctx.cd||0) + v, ctx.up) / base - 1 };
@@ -161,12 +169,55 @@ function charmGain(charm, tier, monster, ctx) {
       if (!hp) return { gain: null, note: 'sem HP do monstro' };
       if (monster.boss) return { gain: 0, note: 'o boss da wave 10 luta sozinho: nao ha vizinho pra estourar' };
       const burst = Math.min(0.15 * hp, 6 * lv);
-      return { gain: (v / 100) * burst * CARNAGE_ADJ / hp };
+      const adj = ctx.carnageAdj != null ? ctx.carnageAdj : CARNAGE_ADJ;
+      return { gain: (v / 100) * burst * adj / hp };
     }
     case 'ownHp':   return { gain: null, note: 'depende do seu HP maximo (a arvore da %, nao o valor)' };
     case 'ownMana': return { gain: null, note: 'depende da sua mana maxima (a arvore da %, nao o valor)' };
     default:        return { gain: null, note: 'nao e dano' };
   }
+}
+
+/* QUANTOS BICHOS O CARNAGE ACERTA, em media, numa hunt.
+
+   O estouro vai nas 4 casas coladas no bicho que morreu (wiki). Com o pack colado
+   em voce, das 4 casas de um bicho do anel uma e' VOCE e outra fica pra fora do
+   anel; sobram 2 casas do proprio anel -- e so contam se tiver bicho vivo nelas.
+   Vale tanto pro bicho na sua frente (acerta os dois do lado dele) quanto pro da
+   diagonal (acerta os dois colados nele).
+
+   Entao a conta e' por morte: quando o k-esimo bicho de uma wave de n morre,
+   sobram n-k vivos espalhados pelas outras 7 casas do anel, e cada uma das 2 casas
+   do alcance tem bicho com chance min(n-k,7)/7. Media sobre todas as mortes das
+   waves 1-9 (a wave 10 e' o boss sozinho). Pack que comeca em 4: 0,73 -- nao 2.
+
+   Premissa: o pack fica colado em voce (melee, ou o ranged com tank). Kitando, eles
+   andam em fila e o Carnage acerta ainda menos. */
+function carnageNeighbors(hunt) {
+  const pb = (hunt && hunt.packBase) || 4;
+  let hits = 0, kills = 0;
+  for (let w = 1; w <= WAVES; w++) {
+    const n = Math.min(PACK_CAP, pb + Math.floor((w - 1) / 2));
+    for (let k = 1; k <= n; k++) { hits += CARNAGE_ADJ * Math.min(n - k, 7) / 7; kills++; }
+  }
+  return kills ? hits / kills : 0;
+}
+
+/* CARNAGE x ELEMENTAL, pela quantidade de golpes. No teto de level os dois viram
+   numeros fixos: o elemental rende chance x min(2 x level, 5% do HP) POR GOLPE, o
+   Carnage rende chance x min(15% do HP, 6 x level) x vizinhos POR MORTE. O elemental
+   passa o Carnage quando os golpes pra matar o bicho passam da razao entre os dois
+   -- e isso nao depende do tamanho do golpe, so de quantos voce da. Devolve os
+   golpes de virada (null se nao ha como comparar). */
+function carnageBreakeven(creature, ctx, carnage, elem, hunt) {
+  if (!carnage || !elem) return null;
+  const hp = creature.hpFight || creature.hp || 0, lv = ctx.level || 1;
+  if (!hp) return null;
+  const tc = (carnage.values || []).length - 1, te = (elem.values || []).length - 1;
+  const perKill = (carnage.values[tc] / 100) * Math.min(0.15 * hp, 6 * lv) * carnageNeighbors(hunt);
+  const perHit = (elem.values[te] / 100) * Math.min(2 * lv, 0.05 * hp) * elementMult(creature.resist, elem.element, ctx.pierce);
+  if (!perHit) return null;
+  return perKill / perHit;
 }
 
 /* comparativo de charms contra UM monstro, do melhor pro pior.
@@ -347,7 +398,15 @@ const COST_TIEBREAK = 1e-12;
    mais gold" e "6% mais dano" que nao seja inventado. Entao Fatal Hold (o unico
    que e' dano puro) entra pela conta, e o resto segue esta ordem declarada, que e'
    a que o jogador pediu: loot antes de sustain. */
-const MINOR_ORDER = ['fatal_hold', 'gut', 'scavenge', 'adrenaline_burst', 'vampiric_embrace'];
+const MINOR_ORDER = ['fatal_hold', 'gut', 'scavenge', 'adrenaline_burst'];
+
+/* REGRA DA CASA: Maiores que o jogador quer SEMPRE no plano (opts.must). E' politica
+   dele, nao conta -- por isso vem de fora e o default e' vazio: sem ela o plano segue
+   so a matematica (com crit 30% e sem Avatar, a Low Blow ganha da Savage, e o plano
+   tem que dizer isso). A aba Hunts passa ['savage_blow']: Savage fixa, Low Blow so se
+   valer. O bonus e' constante, entao nao muda QUAL criatura leva o que. */
+const MUST_MAJOR = ['savage_blow'];   // a regra que a aba Hunts aplica
+const MUST_BONUS = 1;
 
 /* as criaturas da hunt, com o boss da wave 10 dobrado na criatura dele.
    `parts` guarda as duas aparicoes separadas porque elas rendem diferente: o proc
@@ -397,13 +456,14 @@ function charmValue(charm, tier, creature, ctx) {
 
 /* atribuicao otima de charms Maiores: DP sobre (criatura, mascara de charms usados).
    Valor de um par = ganho na criatura x peso dela no clear = ganho na hunt. */
-function assign(creatures, cands, ctx, slots) {
+function assign(creatures, cands, ctx, slots, must) {
   const n = creatures.length, k = cands.length;
   if (!n || !k) return [];
   const val = creatures.map(c => cands.map(ch => {
     const v = charmValue(ch.charm, ch.tier, c, ctx);
     if (v.gain == null) return null;
-    return v.gain * c.share - (sumCost(ch.charm, ch.tier) || 0) * COST_TIEBREAK;
+    return v.gain * c.share - (sumCost(ch.charm, ch.tier) || 0) * COST_TIEBREAK
+      + (must && must.indexOf(ch.charm.key) >= 0 ? MUST_BONUS : 0);
   }));
   const FULL = 1 << k;
   const popcount = m => { let n2 = 0; while (m) { n2 += m & 1; m >>= 1; } return n2; };
@@ -474,8 +534,10 @@ function assignBlind(creatures, assigned, blind, ctx, slots) {
 
 /* o plano da hunt: um Maior + um Menor por criatura, cada charm usado uma vez.
    opts: { owned:[keys] | null, slots:n, charms:[tabela] } */
-function huntCharmPlan(hunt, ctx, opts) {
+function huntCharmPlan(hunt, ctxIn, opts) {
   const o = opts || {};
+  /* o Carnage da hunt usa os vizinhos que ESTA hunt tem, nao o teto */
+  const ctx = Object.assign({}, ctxIn || {}, { carnageAdj: carnageNeighbors(hunt) });
   const table = o.charms || global.CHARMS || [];
   const owned = o.owned ? new Set(o.owned) : null;
   const slots = o.slots || CHARM_SLOTS;
@@ -487,7 +549,7 @@ function huntCharmPlan(hunt, ctx, opts) {
   const majors = table.filter(c => c.category === 'major' && EFFECT[c.key] && has(c));
   const cands = majors.map(c => ({ charm: c, tier: topTier(c) })).filter(c => c.tier >= 0);
   const scored = cands.filter(c => creatures.some(cr => charmValue(c.charm, c.tier, cr, ctx).gain != null));
-  const assigned = assign(creatures, scored, ctx, slots);
+  const assigned = assign(creatures, scored, ctx, slots, o.must || null);
 
   /* ELEMENTAL SEM DPS COLADO ainda entra -- pela RESISTENCIA.
 
@@ -517,36 +579,85 @@ function huntCharmPlan(hunt, ctx, opts) {
       locked: bestLocked(major, c, ctx, table, owned) };
   });
 
-  /* Menores. Slot e' POR CRIATURA: um bicho com Maior+Menor gasta um slot so, por
-     isso os Menores vao nas criaturas que ja levaram Maior antes de abrir slot novo. */
+  /* MENORES, pelo que cada um rende de verdade:
+       1. Fatal Hold (dano) onde rende mais na hunt -- e' o unico Menor que acelera o clear;
+       2. Scavenge (+20% das MOEDAS) e Gut (+12% da chance dos outros DROPS) nas criaturas
+          em que valem mais gold por clear, contado no loot real da hunt (sem loot na
+          mao, caem na ordem declarada);
+       3. o resto (utilidade) desce pelo peso da criatura.
+     Slot e' POR CRIATURA: Menor vai primeiro em quem ja levou Maior. */
   const withMajor = rows.filter(r => r.major);
   const order = withMajor.concat(rows.filter(r => !r.major)).slice(0, slots);
-  const minors = MINOR_ORDER.map(k => table.find(c => c.key === k)).filter(c => c && has(c));
-  for (const m of minors) {
-    const tier = topTier(m);
-    if (tier < 0) continue;
-    let target = null;
-    if (EFFECT[m.key]) {
-      /* e' dano: vai onde rende mais na hunt */
-      let best = -Infinity;
-      for (const r of order) {
-        if (r.minor) continue;
-        const v = charmValue(m, tier, r.creature, ctx);
-        if (v.gain == null) continue;
-        const score = v.gain * r.creature.share;
-        if (score > best) { best = score; target = r; }
-      }
-    } else {
-      target = order.find(r => !r.minor) || null;   // utilidade: desce pelo peso
+  const minorOf = k => { const c = table.find(x => x.key === k); return c && has(c) && topTier(c) >= 0 ? c : null; };
+  const put = (r, m) => { r.minor = describe(m, topTier(m), r.creature, ctx); };
+
+  const fh = minorOf('fatal_hold');
+  if (fh) {
+    let best = -Infinity, target = null;
+    for (const r of order) {
+      if (r.minor) continue;
+      const v = charmValue(fh, topTier(fh), r.creature, ctx);
+      if (v.gain == null) continue;
+      if (v.gain * r.creature.share > best) { best = v.gain * r.creature.share; target = r; }
     }
-    if (!target) continue;
-    target.minor = describe(m, tier, target.creature, ctx);
+    if (target) put(target, fh);
+  }
+
+  const gold = o.loot ? creatureGold(hunt, o.loot) : null;
+  const sc = minorOf('scavenge'), gt = minorOf('gut');
+  if (gold && (sc || gt)) {
+    const val = (m, r) => {
+      const g = gold.get(r.creature.key || r.creature.id) || { coins: 0, drops: 0 };
+      const pctv = (m.values || [])[topTier(m)] / 100;
+      return m.key === 'scavenge' ? g.coins * pctv : g.drops * pctv;
+    };
+    /* dois charms, criaturas diferentes: testa todos os pares (sao poucas). Os dois
+       sao FIXOS (regra da casa): com criatura livre pros dois, os dois entram, mesmo
+       que um renda pouco; so com uma criatura sobrando e' que se escolhe o melhor. */
+    const free = order.filter(r => !r.minor);
+    let best = { v: -1, a: null, b: null };
+    const both = sc && gt && free.length >= 2;
+    const optsA = sc ? (both ? free : [null, ...free]) : [null];
+    const optsB = gt ? (both ? free : [null, ...free]) : [null];
+    for (const ra of optsA) for (const rb of optsB) {
+      if (ra && rb && ra === rb) continue;
+      const v = (ra ? val(sc, ra) : 0) + (rb ? val(gt, rb) : 0);
+      if (v > best.v) best = { v, a: ra, b: rb };
+    }
+    if (best.a && sc) { put(best.a, sc); best.a.minor.goldClear = val(sc, best.a); }
+    if (best.b && gt) { put(best.b, gt); best.b.minor.goldClear = val(gt, best.b); }
+  }
+
+  for (const k of MINOR_ORDER) {
+    if (k === 'fatal_hold' || (gold && (k === 'scavenge' || k === 'gut'))) continue;
+    const m = minorOf(k);
+    if (!m || rows.some(r => r.minor && r.minor.key === k)) continue;
+    const target = order.find(r => !r.minor);
+    if (target) put(target, m);
   }
 
   const needsDps = !(ctx && ctx.dps > 0) && majors.some(c => EFFECT[c.key] === 'elem');
   return { rows, slots, slotsUsed: rows.filter(r => r.major || r.minor).length,
     missing: majors.length !== table.filter(c => c.category === 'major' && EFFECT[c.key]).length,
     needsDps };
+}
+
+/* gold por clear que cada criatura solta: MOEDAS (o que o Scavenge aumenta) e o
+   resto do loot com preco (o que o Gut aumenta, pela chance de drop). */
+function creatureGold(hunt, loot) {
+  const prices = lootPrices(loot);
+  const out = new Map();
+  for (const k of killsPerClear(hunt)) {
+    const rows = lootRows(k.key, loot);
+    if (!rows) continue;
+    let coins = 0, drops = 0;
+    for (const r of rows) {
+      const g = k.kills * lootPerKill(r) * (prices[r.name] || 0);
+      if (/(gold|platinum|crystal) coin/.test(r.name)) coins += g; else drops += g;
+    }
+    out.set(k.key, { coins, drops });
+  }
+  return out;
 }
 
 const sumCost = (c, tier) => (c.points ? sumTo(c.points, tier) : null);
@@ -838,28 +949,94 @@ function lootBasket(names, hunts, loot) {
   return out.sort((a, b) => b.covered - a.covered || b.gold - a.gold);
 }
 
-/* todo item alcancavel pelas hunts, pra alimentar a busca */
-function lootItems(hunts, loot) {
+/* todo item alcancavel pelas hunts, pra alimentar a busca. Com opts.bosses os
+   itens que so caem de boss entram tambem (e `bosses` conta de quantos). */
+function lootItems(hunts, loot, opts) {
   const list = hunts || global.HUNTS || [];
   const prices = lootPrices(loot);
   const seen = new Map();
+  const get = name => {
+    if (!seen.has(name)) seen.set(name, { name, hunts: 0, bosses: 0, price: prices[name] != null ? prices[name] : null });
+    return seen.get(name);
+  };
   for (const h of list) {
     for (const k of killsPerClear(h)) {
       const rows = lootRows(k.key, loot);
       if (!rows) continue;
-      for (const r of rows) {
-        if (!seen.has(r.name)) seen.set(r.name, { name: r.name, hunts: 0, price: prices[r.name] != null ? prices[r.name] : null });
-        seen.get(r.name).hunts++;
-      }
+      for (const r of rows) get(r.name).hunts++;
+    }
+  }
+  if (opts && opts.bosses) {
+    const table = bossTable(loot);
+    for (const id of Object.keys(table)) {
+      const names = new Set(bossLootRows(id, loot).map(r => r.name));
+      for (const n of names) get(n).bosses++;
     }
   }
   return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/* ============================================================================
+   LOOT DE BOSS
+
+   O mesmo `loot:[{name, chance, max}]` do bundle, na mesma escala (chance por
+   100.000, stackavel rola 1..max), so que por MORTE do boss e nao por clear: uma
+   sala de boss e' uma luta, nao um pack que respawna. Fica em LOOT.b, indexado
+   pelo id da aba Bosses.
+
+   O que NAO esta aqui: o que o servidor faz por cima (raridade do item, reward
+   bag). Isso nao vem no bundle; o que vem e' a chance de cair, e e' ela que
+   aparece.
+   ============================================================================ */
+function bossTable(loot) {
+  const src = loot || global.LOOT || {};
+  return src.b || {};
+}
+function bossLootRows(id, loot) {
+  const raw = bossTable(loot)[id];
+  if (!raw) return [];
+  return raw.map(r => (Array.isArray(r)
+    ? { name: r[0], chance: r[1], max: r[2] || 0 }
+    : { name: r.name, chance: r.chance, max: r.max || 0 }));
+}
+/* tudo que UMA morte do boss rende. Linhas repetidas do mesmo item (stack com
+   teto) somam, igual nas hunts. Ordem: o que mais vale por morte primeiro. */
+function bossLoot(id, loot) {
+  const prices = lootPrices(loot);
+  const byItem = new Map();
+  for (const r of bossLootRows(id, loot)) {
+    if (!byItem.has(r.name)) byItem.set(r.name, { name: r.name, chance: 0, max: 0, perKill: 0, rows: 0 });
+    const it = byItem.get(r.name);
+    it.rows++;
+    it.perKill += lootPerKill(r);
+    if (r.chance > it.chance) it.chance = r.chance;
+    if ((r.max || 0) > it.max) it.max = r.max || 0;
+  }
+  const items = [...byItem.values()].map(it => {
+    const price = prices[it.name] != null ? prices[it.name] : null;
+    return Object.assign(it, { price, gold: price != null ? it.perKill * price : 0 });
+  }).sort((a, b) => b.gold - a.gold || b.chance - a.chance);
+  return { items, gold: items.reduce((s, it) => s + it.gold, 0) };
+}
+/* o inverso: quais bosses dropam o item, com a chance e quanto sai por morte */
+function bossSources(itemName, bosses, loot) {
+  const want = String(itemName || '').toLowerCase();
+  if (!want) return [];
+  const out = [];
+  for (const b of (bosses || global.BOSSES || [])) {
+    const it = bossLoot(b.id, loot).items.find(x => x.name.toLowerCase() === want);
+    if (!it) continue;
+    out.push({ boss: b, id: b.id, name: b.name, minLevel: b.minLevel, rarity: b.rarity,
+      chance: it.chance, max: it.max, rows: it.rows, perKill: it.perKill });
+  }
+  return out.sort((a, b) => b.perKill - a.perKill || b.chance - a.chance);
 }
 
 global.HuntModel = { ELEMENTS, spawnCount, elementMult, packWeights, huntElements,
   critMult, charmRanking, bestiary, monsterThreat, huntThreat, huntCreatures,
   charmValue, huntCharmPlan, MINOR_ORDER, CHARM_SLOTS,
   killsPerClear, lootPerKill, huntLoot, lootSources, lootItems, lootBasket,
-  CRIT_BASE, EXEC_FRAC, CARNAGE_ADJ, BOSS_DMG_MULT, MELEE_MS };
+  bossLoot, bossSources,
+  CRIT_BASE, EXEC_FRAC, CARNAGE_ADJ, BOSS_DMG_MULT, MELEE_MS, carnageNeighbors, carnageBreakeven, MUST_MAJOR };
 
 })(typeof window !== 'undefined' ? window : globalThis);

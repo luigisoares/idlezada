@@ -1644,6 +1644,39 @@
     "expReal": 297000
   },
   {
+    "id": "maior_domus",
+    "name": "Maior Domus",
+    "rarity": "archfoe",
+    "kind": "room",
+    "minLevel": 360,
+    "base": 1000000,
+    "hpReal": 4500000,
+    "mult": 4.5,
+    "hpPerPlayer": null,
+    "hpMin": null,
+    "hpMax": null,
+    "exp": 8000000,
+    "elements": [
+      {
+        "el": "holy",
+        "pct": 58
+      },
+      {
+        "el": "physical",
+        "pct": 29
+      },
+      {
+        "el": "energy",
+        "pct": 13
+      }
+    ],
+    "summons": [],
+    "lookType": 1959,
+    "imgKind": "outfit",
+    "img": "https://baiakidle.com/api/things/outfit/1959.png?v=5",
+    "expReal": 20000000
+  },
+  {
     "id": "mazzinor",
     "name": "Mazzinor",
     "rarity": "archfoe",
@@ -1712,6 +1745,35 @@
     "imgKind": "object",
     "img": "https://baiakidle.com/api/things/object/36928.png?v=5",
     "expReal": 140250
+  },
+  {
+    "id": "mimar_haffar",
+    "name": "Mimar Haffar",
+    "rarity": "archfoe",
+    "kind": "room",
+    "minLevel": 360,
+    "base": 1000000,
+    "hpReal": 4500000,
+    "mult": 4.5,
+    "hpPerPlayer": null,
+    "hpMin": null,
+    "hpMax": null,
+    "exp": 8000000,
+    "elements": [
+      {
+        "el": "death",
+        "pct": 67
+      },
+      {
+        "el": "physical",
+        "pct": 33
+      }
+    ],
+    "summons": [],
+    "lookType": 1953,
+    "imgKind": "outfit",
+    "img": "https://baiakidle.com/api/things/outfit/1953.png?v=5",
+    "expReal": 20000000
   },
   {
     "id": "mitmah_vanguard",
@@ -1920,6 +1982,47 @@
     "expReal": 318000
   },
   {
+    "id": "phosphorus",
+    "name": "Phosphorus",
+    "rarity": "nemesis",
+    "kind": "room",
+    "minLevel": 400,
+    "base": 8000000,
+    "hpReal": 36000000,
+    "mult": 4.5,
+    "hpPerPlayer": null,
+    "hpMin": null,
+    "hpMax": null,
+    "exp": 10000000,
+    "elements": [
+      {
+        "el": "ice",
+        "pct": 40
+      },
+      {
+        "el": "holy",
+        "pct": 25
+      },
+      {
+        "el": "physical",
+        "pct": 18
+      },
+      {
+        "el": "fire",
+        "pct": 11
+      },
+      {
+        "el": "death",
+        "pct": 6
+      }
+    ],
+    "summons": [],
+    "lookType": 1955,
+    "imgKind": "outfit",
+    "img": "https://baiakidle.com/api/things/outfit/1955.png?v=5",
+    "expReal": 25000000
+  },
+  {
     "id": "plagirath",
     "name": "Plagirath",
     "rarity": "archfoe",
@@ -2005,6 +2108,39 @@
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/862.png?v=5",
     "expReal": 1250000
+  },
+  {
+    "id": "rakesh_moonfang",
+    "name": "Rakesh Moonfang",
+    "rarity": "bane",
+    "kind": "room",
+    "minLevel": 70,
+    "base": 25500,
+    "hpReal": 114750,
+    "mult": 4.5,
+    "hpPerPlayer": null,
+    "hpMin": null,
+    "hpMax": null,
+    "exp": 55000,
+    "elements": [
+      {
+        "el": "physical",
+        "pct": 79
+      },
+      {
+        "el": "ice",
+        "pct": 16
+      },
+      {
+        "el": "energy",
+        "pct": 5
+      }
+    ],
+    "summons": [],
+    "lookType": 1648,
+    "imgKind": "outfit",
+    "img": "https://baiakidle.com/api/things/outfit/1648.png?v=5",
+    "expReal": 137500
   },
   {
     "id": "ratmiral",
@@ -2763,6 +2899,39 @@
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1600.png?v=5",
     "expReal": 369000
+  },
+  {
+    "id": "the_moonsnow_magnolia",
+    "name": "The Moonsnow Magnolia",
+    "rarity": "archfoe",
+    "kind": "room",
+    "minLevel": 80,
+    "base": 52000,
+    "hpReal": 234000,
+    "mult": 4.5,
+    "hpPerPlayer": null,
+    "hpMin": null,
+    "hpMax": null,
+    "exp": 240000,
+    "elements": [
+      {
+        "el": "physical",
+        "pct": 72
+      },
+      {
+        "el": "ice",
+        "pct": 23
+      },
+      {
+        "el": "death",
+        "pct": 5
+      }
+    ],
+    "summons": [],
+    "lookType": 1068,
+    "imgKind": "outfit",
+    "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
+    "expReal": 600000
   },
   {
     "id": "nightmare_beast",

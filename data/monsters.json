@@ -13945,6 +13945,18 @@
    }
   ]
  },
+ "sopping_carcass": {
+  "name": "Sopping Carcass",
+  "hp": 33400,
+  "exp": 22465,
+  "armor": null,
+  "dmg": [
+   0,
+   668
+  ],
+  "resist": {},
+  "abilities": []
+ },
  "creepy_crawler": {
   "name": "Creepy Crawler",
   "hp": 27000,
@@ -16549,6 +16561,4540 @@
     "max": 2800,
     "chance": 50,
     "interval": 3000
+   }
+  ]
+ },
+ "arkanox": {
+  "name": "Arkanox",
+  "hp": 500000,
+  "exp": 10000000,
+  "armor": 120,
+  "dmg": [
+   800,
+   900
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 70,
+   "earth": 20,
+   "fire": 20,
+   "ice": 20,
+   "holy": 20,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 800,
+    "max": 1500,
+    "chance": 15,
+    "interval": 4000
+   },
+   {
+    "element": "energy",
+    "min": 900,
+    "max": 1500,
+    "chance": 20,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 400,
+    "max": 900,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 1800,
+    "max": 2500,
+    "chance": 15,
+    "interval": 9000
+   }
+  ]
+ },
+ "plaguehorn": {
+  "name": "Plaguehorn",
+  "hp": 600000,
+  "exp": 10000000,
+  "armor": 120,
+  "dmg": [
+   800,
+   1900
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 20,
+   "earth": 70,
+   "fire": 20,
+   "ice": 20,
+   "holy": 20,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 1160,
+    "max": 2270,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1120,
+    "max": 2170,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1400,
+    "max": 2640,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 400,
+    "max": 900,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 1800,
+    "max": 2500,
+    "chance": 15,
+    "interval": 9000
+   }
+  ]
+ },
+ "soulcleaver": {
+  "name": "Soulcleaver",
+  "hp": 500000,
+  "exp": 10000000,
+  "armor": 120,
+  "dmg": [
+   800,
+   900
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 20,
+   "earth": 20,
+   "fire": 20,
+   "ice": 20,
+   "holy": 20,
+   "death": 70
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 800,
+    "max": 1650,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1350,
+    "max": 1720,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 400,
+    "max": 900,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 1800,
+    "max": 2500,
+    "chance": 15,
+    "interval": 9000
+   }
+  ]
+ },
+ "crystal_dragon": {
+  "name": "Crystal Dragon",
+  "hp": 32000,
+  "exp": 0,
+  "armor": 50,
+  "dmg": [
+   900,
+   1400
+  ],
+  "resist": {
+   "physical": 15,
+   "energy": 10,
+   "earth": -10,
+   "fire": -30,
+   "holy": 0,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 1440,
+    "max": 2160,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1320,
+    "max": 1920,
+    "chance": 40,
+    "interval": 2000
+   }
+  ]
+ },
+ "arctic_sentinel": {
+  "name": "Arctic Sentinel",
+  "hp": 30000,
+  "exp": 0,
+  "armor": 45,
+  "dmg": [
+   800,
+   1200
+  ],
+  "resist": {
+   "physical": 20,
+   "energy": 0,
+   "earth": -10,
+   "fire": -25,
+   "ice": 80,
+   "holy": 0,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 1200,
+    "max": 1800,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1200,
+    "max": 1800,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 900,
+    "max": 1400,
+    "chance": 8,
+    "interval": 2000
+   }
+  ]
+ },
+ "arctic_warrior": {
+  "name": "Arctic Warrior",
+  "hp": 28000,
+  "exp": 0,
+  "armor": 44,
+  "dmg": [
+   850,
+   1250
+  ],
+  "resist": {
+   "physical": 25,
+   "energy": 0,
+   "earth": -10,
+   "fire": -25,
+   "ice": 70,
+   "holy": 0,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 950,
+    "max": 1400,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1080,
+    "max": 1620,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1080,
+    "max": 1620,
+    "chance": 35,
+    "interval": 2000
+   }
+  ]
+ },
+ "arctic_berserk": {
+  "name": "Arctic Berserk",
+  "hp": 32000,
+  "exp": 0,
+  "armor": 42,
+  "dmg": [
+   950,
+   1400
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 0,
+   "earth": -15,
+   "fire": -30,
+   "ice": 60,
+   "holy": 0,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 1100,
+    "max": 1600,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1200,
+    "max": 1800,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1200,
+    "max": 1800,
+    "chance": 35,
+    "interval": 2000
+   }
+  ]
+ },
+ "frostimp": {
+  "name": "Frostimp",
+  "hp": 20000,
+  "exp": 0,
+  "armor": 40,
+  "dmg": [
+   600,
+   900
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": -25,
+   "holy": -10,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 960,
+    "max": 1440,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1080,
+    "max": 1440,
+    "chance": 40,
+    "interval": 2000
+   }
+  ]
+ },
+ "permafrost_demon": {
+  "name": "Permafrost Demon",
+  "hp": 35000,
+  "exp": 0,
+  "armor": 48,
+  "dmg": [
+   900,
+   1350
+  ],
+  "resist": {
+   "physical": 15,
+   "energy": 10,
+   "earth": -15,
+   "fire": -35,
+   "holy": -20,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 1320,
+    "max": 1980,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1200,
+    "max": 1800,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 960,
+    "max": 1440,
+    "chance": 30,
+    "interval": 2000
+   }
+  ]
+ },
+ "azure_dragon": {
+  "name": "Azure Dragon",
+  "hp": 8000,
+  "exp": 6000,
+  "armor": 38,
+  "dmg": [
+   300,
+   530
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 20,
+   "earth": 80,
+   "ice": -10,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 350,
+    "max": 550,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 450,
+    "max": 750,
+    "chance": 22,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 200,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "shadow_dragon": {
+  "name": "Shadow Dragon",
+  "hp": 16000,
+  "exp": 12000,
+  "armor": 38,
+  "dmg": [
+   500,
+   830
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 20,
+   "earth": 80,
+   "ice": -10,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 550,
+    "max": 950,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 850,
+    "max": 1550,
+    "chance": 22,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 200,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "nocthrys": {
+  "name": "Nocthrys",
+  "hp": 1250000,
+  "exp": 0,
+  "armor": 38,
+  "dmg": [
+   1100,
+   2050
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 20,
+   "earth": 80,
+   "ice": -10,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1650,
+    "max": 2800,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2200,
+    "max": 2950,
+    "chance": 22,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 200,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "jotunn": {
+  "name": "Jotunn",
+  "hp": 1200000,
+  "exp": 0,
+  "armor": 80,
+  "dmg": [
+   2000,
+   3200
+  ],
+  "resist": {
+   "physical": 35,
+   "energy": 20,
+   "earth": -20,
+   "fire": -40,
+   "holy": 0,
+   "death": 40
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 2500,
+    "max": 3800,
+    "chance": 22,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2200,
+    "max": 3500,
+    "chance": 18,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 2000,
+    "max": 3200,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1800,
+    "max": 2800,
+    "chance": 12,
+    "interval": 2500
+   },
+   {
+    "element": "healing",
+    "min": 2500,
+    "max": 4000,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "hellflame_soul": {
+  "name": "Hellflame Soul",
+  "hp": 40000,
+  "exp": 0,
+  "armor": 62,
+  "dmg": [
+   1200,
+   2200
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 20,
+   "earth": 0,
+   "ice": -25,
+   "holy": 0,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1800,
+    "max": 2600,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 1500,
+    "max": 2000,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "hellflame_guard": {
+  "name": "Hellflame Guard",
+  "hp": 50000,
+  "exp": 0,
+  "armor": 62,
+  "dmg": [
+   1800,
+   2800
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 20,
+   "earth": 0,
+   "ice": -25,
+   "holy": 0,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 2000,
+    "max": 2900,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2000,
+    "max": 2500,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "hellflame_demon": {
+  "name": "Hellflame Demon",
+  "hp": 60000,
+  "exp": 0,
+  "armor": 44,
+  "dmg": [
+   1900,
+   3000
+  ],
+  "resist": {
+   "physical": 25,
+   "energy": 50,
+   "earth": 40,
+   "ice": -12,
+   "holy": -12,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1500,
+    "max": 2500,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1800,
+    "max": 2000,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2800,
+    "max": 3000,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 1800,
+    "max": 2500,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "hellflame_juggernaut": {
+  "name": "Hellflame Juggernaut",
+  "hp": 65000,
+  "exp": 0,
+  "armor": 70,
+  "dmg": [
+   2200,
+   2800
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": -10,
+   "earth": 20,
+   "ice": 10,
+   "holy": -5,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1800,
+    "max": 4000,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 400,
+    "max": 900,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "ignaroth": {
+  "name": "Ignaroth",
+  "hp": 2500000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   3200,
+   4300
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -5,
+   "earth": 20,
+   "ice": 5,
+   "holy": -5,
+   "death": 25
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 2870,
+    "max": 3200,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3750,
+    "max": 4300,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1550,
+    "max": 2200,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2200,
+    "max": 3850,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2200,
+    "max": 3300,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 80,
+    "max": 95,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "ashscale_ravager": {
+  "name": "Ashscale Ravager",
+  "hp": 35000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   1100,
+   2000
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 30,
+   "fire": 30,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 2000,
+    "max": 3000,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 510,
+    "max": 600,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "ashscale_hexbinder": {
+  "name": "Ashscale Hexbinder",
+  "hp": 30000,
+  "exp": 0,
+  "armor": 25,
+  "dmg": [
+   900,
+   1200
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 30,
+   "earth": 30,
+   "fire": 30,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1200,
+    "max": 1800,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 1000,
+    "max": 1700,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 1500,
+    "max": 2000,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1600,
+    "max": 2800,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 270,
+    "max": 530,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "ashscale_venomstriker": {
+  "name": "Ashscale Venomstriker",
+  "hp": 30000,
+  "exp": 0,
+  "armor": 17,
+  "dmg": [
+   1000,
+   1800
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 1500,
+    "max": 2000,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1500,
+    "max": 2000,
+    "chance": 30,
+    "interval": 2000
+   }
+  ]
+ },
+ "zerakthar": {
+  "name": "Zerak'thar",
+  "hp": 1800000,
+  "exp": 0,
+  "armor": 55,
+  "dmg": [
+   2400,
+   3700
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 0,
+   "earth": 20,
+   "fire": 50,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 2270,
+    "max": 2800,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 2750,
+    "max": 3300,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 1550,
+    "max": 2200,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2200,
+    "max": 3850,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2200,
+    "max": 3300,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 80,
+    "max": 95,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "gazharagoth": {
+  "name": "Gaz'Haragoth",
+  "hp": 7000000,
+  "exp": 1158400,
+  "armor": 55,
+  "dmg": [
+   0,
+   2813
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 50,
+   "earth": 50,
+   "fire": 50,
+   "ice": 50,
+   "holy": 50,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 2025,
+    "max": 2475,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "death",
+    "min": 281,
+    "max": 2813,
+    "chance": 13,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 281,
+    "max": 2250,
+    "chance": 19,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 6250,
+    "max": 9375,
+    "chance": 30,
+    "interval": 3000
+   },
+   {
+    "element": "fire",
+    "min": 3000,
+    "max": 6375,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 563,
+    "max": 1350,
+    "chance": 20,
+    "interval": 2500
+   },
+   {
+    "element": "healing",
+    "min": 3125,
+    "max": 4375,
+    "chance": 35,
+    "interval": 3000
+   }
+  ]
+ },
+ "ghazbaran": {
+  "name": "Ghazbaran",
+  "hp": 7000000,
+  "exp": 730800,
+  "armor": 55,
+  "dmg": [
+   0,
+   2739
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 0,
+   "holy": -5,
+   "death": 1
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 469,
+    "max": 938,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 225,
+    "max": 938,
+    "chance": 34,
+    "interval": 3000
+   },
+   {
+    "element": "energy",
+    "min": 188,
+    "max": 1500,
+    "chance": 30,
+    "interval": 4000
+   },
+   {
+    "element": "physical",
+    "min": 375,
+    "max": 900,
+    "chance": 20,
+    "interval": 3000
+   },
+   {
+    "element": "physical",
+    "min": 188,
+    "max": 1219,
+    "chance": 15,
+    "interval": 4000
+   },
+   {
+    "element": "physical",
+    "min": 375,
+    "max": 1125,
+    "chance": 18,
+    "interval": 4000
+   },
+   {
+    "element": "physical",
+    "min": 375,
+    "max": 1406,
+    "chance": 15,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 300,
+    "max": 800,
+    "chance": 35,
+    "interval": 3000
+   }
+  ]
+ },
+ "morgaroth": {
+  "name": "Morgaroth",
+  "hp": 7000000,
+  "exp": 824100,
+  "armor": 130,
+  "dmg": [
+   0,
+   2813
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 80,
+   "ice": -5,
+   "holy": -5,
+   "death": 80
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 750,
+    "max": 1815,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 1088,
+    "chance": 40,
+    "interval": 1800
+   },
+   {
+    "element": "energy",
+    "min": 450,
+    "max": 2175,
+    "chance": 30,
+    "interval": 3000
+   },
+   {
+    "element": "physical",
+    "min": 375,
+    "max": 900,
+    "chance": 20,
+    "interval": 2500
+   },
+   {
+    "element": "physical",
+    "min": 469,
+    "max": 938,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 375,
+    "max": 844,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 188,
+    "max": 375,
+    "chance": 15,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 800,
+    "max": 1100,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 3800,
+    "max": 4000,
+    "chance": 15,
+    "interval": 9000
+   }
+  ]
+ },
+ "morshabaal": {
+  "name": "Morshabaal",
+  "hp": 7000000,
+  "exp": 1167300,
+  "armor": 160,
+  "dmg": [
+   0,
+   2625
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 5,
+   "earth": 0,
+   "fire": 5,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 6875,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 5000,
+    "max": 37500,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 750,
+    "max": 1313,
+    "chance": 13,
+    "interval": 1000
+   },
+   {
+    "element": "fire",
+    "min": 188,
+    "max": 1688,
+    "chance": 34,
+    "interval": 1000
+   },
+   {
+    "element": "death",
+    "min": 938,
+    "max": 1594,
+    "chance": 15,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 5000,
+    "max": 10000,
+    "chance": 15,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 2000,
+    "max": 3000,
+    "chance": 25,
+    "interval": 1000
+   }
+  ]
+ },
+ "omrafir": {
+  "name": "Omrafir",
+  "hp": 7000000,
+  "exp": 1066500,
+  "armor": 155,
+  "dmg": [
+   0,
+   10050
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 50,
+   "earth": 50,
+   "ice": 50,
+   "holy": 50,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 1250,
+    "max": 3750,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 375,
+    "max": 750,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 281,
+    "max": 563,
+    "chance": 19,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 440,
+    "max": 800,
+    "chance": 22,
+    "interval": 2000
+   }
+  ]
+ },
+ "the_abomination": {
+  "name": "The Abomination",
+  "hp": 7000000,
+  "exp": 429900,
+  "armor": 25,
+  "dmg": [
+   0,
+   600
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 50,
+   "earth": 50,
+   "fire": 50,
+   "ice": 50,
+   "holy": 50,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 375,
+    "max": 1219,
+    "chance": 9,
+    "interval": 1000
+   },
+   {
+    "element": "death",
+    "min": 750,
+    "max": 1688,
+    "chance": 11,
+    "interval": 1000
+   },
+   {
+    "element": "physical",
+    "min": 656,
+    "max": 1594,
+    "chance": 19,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 505,
+    "max": 605,
+    "chance": 75,
+    "interval": 1000
+   }
+  ]
+ },
+ "the_mutated_pumpkin": {
+  "name": "The Mutated Pumpkin",
+  "hp": 7000000,
+  "exp": 359400,
+  "armor": 60,
+  "dmg": [
+   0,
+   489
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 188,
+    "max": 563,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 75,
+    "max": 563,
+    "chance": 14,
+    "interval": 3000
+   },
+   {
+    "element": "death",
+    "min": 56,
+    "max": 563,
+    "chance": 10,
+    "interval": 1000
+   },
+   {
+    "element": "earth",
+    "min": 188,
+    "max": 563,
+    "chance": 12,
+    "interval": 3000
+   },
+   {
+    "element": "death",
+    "min": 188,
+    "max": 750,
+    "chance": 10,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 2000,
+    "max": 2900,
+    "chance": 15,
+    "interval": 4000
+   }
+  ]
+ },
+ "arachir_the_ancient_one": {
+  "name": "Arachir the Ancient One",
+  "hp": 1600,
+  "exp": 15600,
+  "armor": 30,
+  "dmg": [
+   0,
+   380
+  ],
+  "resist": {
+   "physical": 1,
+   "energy": 5,
+   "fire": -1,
+   "ice": 5,
+   "holy": -5
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 120,
+    "max": 300,
+    "chance": 100,
+    "interval": 9000
+   },
+   {
+    "element": "death",
+    "min": 0,
+    "max": 120,
+    "chance": 12,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 235,
+    "chance": 12,
+    "interval": 1000
+   }
+  ]
+ },
+ "battlemaster_zunzu": {
+  "name": "Battlemaster Zunzu",
+  "hp": 4000,
+  "exp": 16100,
+  "armor": 45,
+  "dmg": [
+   0,
+   300
+  ],
+  "resist": {
+   "physical": 15,
+   "energy": 20,
+   "fire": 25,
+   "ice": 15,
+   "holy": 0,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 115,
+    "max": 350,
+    "chance": 25,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 400,
+    "chance": 18,
+    "interval": 1000
+   }
+  ]
+ },
+ "diblis_the_fair": {
+  "name": "Diblis the Fair",
+  "hp": 1500,
+  "exp": 12000,
+  "armor": 30,
+  "dmg": [
+   0,
+   380
+  ],
+  "resist": {
+   "physical": 40,
+   "energy": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": -5
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 0,
+    "max": 155,
+    "chance": 12,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 235,
+    "chance": 12,
+    "interval": 1000
+   }
+  ]
+ },
+ "furyosa": {
+  "name": "Furyosa",
+  "hp": 25000,
+  "exp": 44500,
+  "armor": 20,
+  "dmg": [
+   0,
+   625
+  ],
+  "resist": {
+   "physical": 10,
+   "energy": 10,
+   "earth": 0,
+   "ice": 40,
+   "holy": 40,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 260,
+    "max": 310,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 200,
+    "max": 300,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 300,
+    "max": 800,
+    "chance": 5,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 150,
+    "chance": 18,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 500,
+    "max": 700,
+    "chance": 20,
+    "interval": 7000
+   }
+  ]
+ },
+ "hirintror": {
+  "name": "Hirintror",
+  "hp": 1500,
+  "exp": 12000,
+  "armor": 25,
+  "dmg": [
+   0,
+   300
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -20,
+   "earth": 0
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 75,
+    "max": 150,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "mawhawk": {
+  "name": "Mawhawk",
+  "hp": 45000,
+  "exp": 42200,
+  "armor": 55,
+  "dmg": [
+   0,
+   450
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 20,
+   "fire": 20,
+   "ice": 15,
+   "holy": -5,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 300,
+    "max": 685,
+    "chance": 10,
+    "interval": 1800
+   },
+   {
+    "element": "earth",
+    "min": 250,
+    "max": 590,
+    "chance": 9,
+    "interval": 2000
+   }
+  ]
+ },
+ "sir_valorcrest": {
+  "name": "Sir Valorcrest",
+  "hp": 1600,
+  "exp": 12000,
+  "armor": 38,
+  "dmg": [
+   0,
+   380
+  ],
+  "resist": {
+   "physical": 55,
+   "energy": -5,
+   "fire": -5,
+   "ice": 0,
+   "holy": -5
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 0,
+    "max": 190,
+    "chance": 12,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 235,
+    "chance": 12,
+    "interval": 1000
+   }
+  ]
+ },
+ "the_old_widow": {
+  "name": "The Old Widow",
+  "hp": 3200,
+  "exp": 18500,
+  "armor": 45,
+  "dmg": [
+   100,
+   500
+  ],
+  "resist": {
+   "physical": 20,
+   "energy": 10,
+   "fire": 20,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 250,
+    "max": 300,
+    "chance": 15,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 225,
+    "max": 275,
+    "chance": 17,
+    "interval": 1000
+   }
+  ]
+ },
+ "the_pale_count": {
+  "name": "The Pale Count",
+  "hp": 50000,
+  "exp": 44300,
+  "armor": 75,
+  "dmg": [
+   0,
+   540
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 30,
+   "earth": 0,
+   "fire": 15,
+   "ice": 30,
+   "holy": -10
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 130,
+    "max": 350,
+    "chance": 21,
+    "interval": 2000
+   }
+  ]
+ },
+ "the_welter": {
+  "name": "The Welter",
+  "hp": 25000,
+  "exp": 47100,
+  "armor": 27,
+  "dmg": [
+   0,
+   500
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 50,
+   "holy": 0,
+   "death": 25
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 500,
+    "max": 660,
+    "chance": 17,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 200,
+    "max": 450,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 150,
+    "max": 270,
+    "chance": 18,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 120,
+    "max": 230,
+    "chance": 13,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 250,
+    "max": 600,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 150,
+    "max": 700,
+    "chance": 12,
+    "interval": 2000
+   }
+  ]
+ },
+ "tyrn": {
+  "name": "Tyrn",
+  "hp": 12000,
+  "exp": 30100,
+  "armor": 58,
+  "dmg": [
+   0,
+   520
+  ],
+  "resist": {
+   "physical": 0,
+   "earth": 80,
+   "fire": 30,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 100,
+    "max": 190,
+    "chance": 33,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 200,
+    "max": 300,
+    "chance": 12,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 300,
+    "chance": 33,
+    "interval": 2000
+   }
+  ]
+ },
+ "weakened_shlorg": {
+  "name": "Weakened Shlorg",
+  "hp": 10000,
+  "exp": 24800,
+  "armor": 10,
+  "dmg": [
+   0,
+   400
+  ],
+  "resist": {
+   "physical": 5,
+   "energy": 0,
+   "earth": 40,
+   "fire": 80,
+   "ice": -10,
+   "holy": -5,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 90,
+    "max": 180,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 150,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 360,
+    "max": 440,
+    "chance": 13,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 95,
+    "max": 150,
+    "chance": 35,
+    "interval": 2000
+   }
+  ]
+ },
+ "white_pale": {
+  "name": "White Pale",
+  "hp": 500,
+  "exp": 12000,
+  "armor": 8,
+  "dmg": [
+   0,
+   110
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 100,
+    "max": 110,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 200,
+    "max": 300,
+    "chance": 12,
+    "interval": 2000
+   }
+  ]
+ },
+ "grand_mother_foulscale": {
+  "name": "Grand Mother Foulscale",
+  "hp": 1850,
+  "exp": 12000,
+  "armor": 27,
+  "dmg": [
+   20,
+   170
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 25,
+   "earth": 80,
+   "ice": -5,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 45,
+    "max": 85,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 90,
+    "max": 150,
+    "chance": 8,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 34,
+    "max": 66,
+    "chance": 17,
+    "interval": 1000
+   }
+  ]
+ },
+ "midnight_panther": {
+  "name": "Midnight Panther",
+  "hp": 1200,
+  "exp": 12000,
+  "armor": 30,
+  "dmg": [
+   0,
+   90
+  ],
+  "resist": {
+   "physical": 0,
+   "earth": 0,
+   "fire": 20,
+   "ice": 0,
+   "holy": 0,
+   "death": -5
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 75,
+    "max": 215,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 125,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "draptor": {
+  "name": "Draptor",
+  "hp": 3000,
+  "exp": 15400,
+  "armor": 40,
+  "dmg": [
+   0,
+   150
+  ],
+  "resist": {
+   "physical": -20,
+   "earth": -20,
+   "fire": 50,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 130,
+    "max": 310,
+    "chance": 30,
+    "interval": 3000
+   },
+   {
+    "element": "energy",
+    "min": 200,
+    "max": 300,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "fire",
+    "min": 70,
+    "max": 250,
+    "chance": 17,
+    "interval": 2500
+   },
+   {
+    "element": "healing",
+    "min": 57,
+    "max": 93,
+    "chance": 25,
+    "interval": 1000
+   }
+  ]
+ },
+ "ferumbras": {
+  "name": "Ferumbras",
+  "hp": 80000000,
+  "exp": 5478500,
+  "armor": 100,
+  "dmg": [
+   4800,
+   8470
+  ],
+  "resist": {
+   "physical": 10,
+   "energy": 90,
+   "earth": 90,
+   "fire": 90,
+   "ice": 20,
+   "holy": 20,
+   "death": 5
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 1440,
+    "max": 5032,
+    "chance": 35,
+    "interval": 1200
+   },
+   {
+    "element": "physical",
+    "min": 1620,
+    "max": 6780,
+    "chance": 30,
+    "interval": 1300
+   },
+   {
+    "element": "ice",
+    "min": 3280,
+    "max": 6340,
+    "chance": 55,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3400,
+    "max": 5600,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 3400,
+    "max": 5600,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3400,
+    "max": 4900,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3600,
+    "max": 5750,
+    "chance": 37,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3300,
+    "max": 6100,
+    "chance": 42,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 3600,
+    "max": 5260,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 5400,
+    "max": 9700,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 5600,
+    "max": 9000,
+    "chance": 24,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 4200,
+    "max": 10400,
+    "chance": 28,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 900,
+    "max": 1500,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "orshabaal": {
+  "name": "Orshabaal",
+  "hp": 7000000,
+  "exp": 604700,
+  "armor": 90,
+  "dmg": [
+   0,
+   2488
+  ],
+  "resist": {
+   "physical": 20,
+   "energy": 80,
+   "ice": -1,
+   "holy": -1,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 581,
+    "max": 1125,
+    "chance": 34,
+    "interval": 1000
+   },
+   {
+    "element": "energy",
+    "min": 750,
+    "max": 1275,
+    "chance": 15,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 1500,
+    "max": 2500,
+    "chance": 9,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 600,
+    "max": 1000,
+    "chance": 17,
+    "interval": 1000
+   }
+  ]
+ },
+ "zushuka": {
+  "name": "Zushuka",
+  "hp": 15000,
+  "exp": 34100,
+  "armor": 20,
+  "dmg": [
+   0,
+   560
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -10,
+   "earth": 50,
+   "fire": 50,
+   "holy": 30,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 0,
+    "max": 100,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 0,
+    "max": 110,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 300,
+    "max": 750,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 7500,
+    "max": 7515,
+    "chance": 1,
+    "interval": 10000
+   },
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 500,
+    "chance": 15,
+    "interval": 3000
+   }
+  ]
+ },
+ "zulazza_the_corruptor": {
+  "name": "Zulazza the Corruptor",
+  "hp": 46500,
+  "exp": 105000,
+  "armor": 96,
+  "dmg": [
+   0,
+   2100
+  ],
+  "resist": {
+   "physical": 0,
+   "earth": 70,
+   "fire": 0,
+   "ice": 20,
+   "holy": 20,
+   "death": 30
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 500,
+    "max": 800,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 300,
+    "max": 800,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 2000,
+    "max": 3000,
+    "chance": 20,
+    "interval": 2000
+   }
+  ]
+ },
+ "chizzoron_the_distorter": {
+  "name": "Chizzoron the Distorter",
+  "hp": 16000,
+  "exp": 34200,
+  "armor": 70,
+  "dmg": [
+   0,
+   455
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 20,
+   "fire": 0,
+   "ice": 20,
+   "holy": 10,
+   "death": 30
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 0,
+    "max": 430,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 0,
+    "max": 874,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 646,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 148,
+    "max": 250,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "zevelon_duskbringer": {
+  "name": "Zevelon Duskbringer",
+  "hp": 1400,
+  "exp": 12000,
+  "armor": 30,
+  "dmg": [
+   0,
+   282
+  ],
+  "resist": {
+   "physical": 50,
+   "energy": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": -5
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 0,
+    "max": 200,
+    "chance": 12,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 235,
+    "chance": 12,
+    "interval": 1000
+   }
+  ]
+ },
+ "feroxa": {
+  "name": "Feroxa",
+  "hp": 100000,
+  "exp": 144200,
+  "armor": 50,
+  "dmg": [
+   1400,
+   1800
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 30,
+   "earth": 30,
+   "fire": 30,
+   "ice": 30,
+   "holy": 30,
+   "death": 30
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 700,
+    "max": 1250,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 700,
+    "max": 1250,
+    "chance": 20,
+    "interval": 2000
+   }
+  ]
+ },
+ "necropharus": {
+  "name": "Necropharus",
+  "hp": 750,
+  "exp": 12000,
+  "armor": 25,
+  "dmg": [
+   0,
+   80
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 60,
+    "max": 217,
+    "chance": 70,
+    "interval": 3000
+   },
+   {
+    "element": "death",
+    "min": 80,
+    "max": 120,
+    "chance": 20,
+    "interval": 1000
+   },
+   {
+    "element": "fire",
+    "min": 50,
+    "max": 140,
+    "chance": 17,
+    "interval": 1000
+   },
+   {
+    "element": "energy",
+    "min": 50,
+    "max": 140,
+    "chance": 17,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 0,
+    "max": 300,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "ocyakao": {
+  "name": "Ocyakao",
+  "hp": 700,
+  "exp": 12000,
+  "armor": 10,
+  "dmg": [
+   0,
+   88
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -10,
+   "earth": 0,
+   "fire": 10,
+   "holy": 0,
+   "death": 50
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 70,
+    "max": 185,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "chayenne": {
+  "name": "Chayenne",
+  "hp": 100000,
+  "exp": 123800,
+  "armor": 15,
+  "dmg": [
+   0,
+   2325
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 0,
+    "max": 1250,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 0,
+    "max": 10000,
+    "chance": 1,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 1000,
+    "max": 1000,
+    "chance": 30,
+    "interval": 3500
+   }
+  ]
+ },
+ "dharalion": {
+  "name": "Dharalion",
+  "hp": 380,
+  "exp": 12000,
+  "armor": 15,
+  "dmg": [
+   0,
+   57
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": -10,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 70,
+    "max": 90,
+    "chance": 13,
+    "interval": 1000
+   },
+   {
+    "element": "physical",
+    "min": 80,
+    "max": 151,
+    "chance": 10,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 90,
+    "max": 120,
+    "chance": 20,
+    "interval": 1000
+   }
+  ]
+ },
+ "fernfang": {
+  "name": "Fernfang",
+  "hp": 400,
+  "exp": 12000,
+  "armor": 15,
+  "dmg": [
+   0,
+   50
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 50,
+   "fire": 0,
+   "ice": 70,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 65,
+    "max": 180,
+    "chance": 13,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 10,
+    "max": 200,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "mad_mage": {
+  "name": "Mad Mage",
+  "hp": 2500,
+  "exp": 12000,
+  "armor": 20,
+  "dmg": [
+   0,
+   30
+  ],
+  "resist": {
+   "physical": -20,
+   "earth": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "fire",
+    "min": 0,
+    "max": 200,
+    "chance": 12,
+    "interval": 1000
+   },
+   {
+    "element": "energy",
+    "min": 100,
+    "max": 200,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 35,
+    "max": 80,
+    "chance": 25,
+    "interval": 2000
+   }
+  ]
+ },
+ "the_horned_fox": {
+  "name": "The Horned Fox",
+  "hp": 7990,
+  "exp": 23400,
+  "armor": 30,
+  "dmg": [
+   0,
+   525
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": -1,
+   "holy": 0,
+   "death": -1
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 20,
+    "chance": 25,
+    "interval": 1000
+   },
+   {
+    "element": "physical",
+    "min": 10,
+    "max": 200,
+    "chance": 40,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 80,
+    "max": 100,
+    "chance": 15,
+    "interval": 1000
+   }
+  ]
+ },
+ "grorlam": {
+  "name": "Grorlam",
+  "hp": 3000,
+  "exp": 12300,
+  "armor": 15,
+  "dmg": [
+   0,
+   255
+  ],
+  "resist": {
+   "physical": 30,
+   "energy": 20,
+   "fire": -10,
+   "ice": 0,
+   "holy": 20,
+   "death": -1
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 150,
+    "max": 200,
+    "chance": 15,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 100,
+    "max": 150,
+    "chance": 25,
+    "interval": 1000
+   }
+  ]
+ },
+ "barbaria": {
+  "name": "Barbaria",
+  "hp": 345,
+  "exp": 12000,
+  "armor": 10,
+  "dmg": [
+   0,
+   70
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 30,
+    "max": 80,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 35,
+    "max": 70,
+    "chance": 20,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 80,
+    "chance": 25,
+    "interval": 1000
+   }
+  ]
+ },
+ "brutus_bloodbeard": {
+  "name": "Brutus Bloodbeard",
+  "hp": 1555,
+  "exp": 12000,
+  "armor": 35,
+  "dmg": [
+   0,
+   175
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -1,
+   "earth": 0,
+   "fire": 0,
+   "ice": -1,
+   "holy": 1,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 175,
+    "chance": 20,
+    "interval": 2000
+   }
+  ]
+ },
+ "captain_jones": {
+  "name": "Captain Jones",
+  "hp": 555,
+  "exp": 12000,
+  "armor": 0,
+  "dmg": [
+   0,
+   95
+  ],
+  "resist": {
+   "energy": 10,
+   "fire": 10,
+   "ice": 20,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 30,
+    "max": 80,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 130,
+    "max": 150,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 40,
+    "max": 70,
+    "chance": 5,
+    "interval": 2000
+   }
+  ]
+ },
+ "deadeye_devious": {
+  "name": "Deadeye Devious",
+  "hp": 1450,
+  "exp": 12000,
+  "armor": 35,
+  "dmg": [
+   0,
+   150
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 350,
+    "chance": 60,
+    "interval": 4000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 150,
+    "chance": 25,
+    "interval": 4000
+   }
+  ]
+ },
+ "lethal_lissy": {
+  "name": "Lethal Lissy",
+  "hp": 1450,
+  "exp": 12000,
+  "armor": 35,
+  "dmg": [
+   0,
+   250
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 250,
+    "chance": 65,
+    "interval": 6000
+   }
+  ]
+ },
+ "ron_the_ripper": {
+  "name": "Ron the Ripper",
+  "hp": 1500,
+  "exp": 12000,
+  "armor": 35,
+  "dmg": [
+   0,
+   250
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 160,
+    "chance": 60,
+    "interval": 4000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 150,
+    "chance": 25,
+    "interval": 4000
+   }
+  ]
+ },
+ "foreman_kneebiter": {
+  "name": "Foreman Kneebiter",
+  "hp": 570,
+  "exp": 12000,
+  "armor": 15,
+  "dmg": [
+   60,
+   200
+  ],
+  "resist": {
+   "physical": 20,
+   "energy": 0,
+   "earth": 90,
+   "fire": -5,
+   "ice": 0,
+   "holy": 0,
+   "death": -5
+  },
+  "abilities": []
+ },
+ "fleabringer": {
+  "name": "Fleabringer",
+  "hp": 265,
+  "exp": 12000,
+  "armor": 10,
+  "dmg": [
+   0,
+   90
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": []
+ },
+ "giant_spider_wyda": {
+  "name": "Giant Spider Wyda",
+  "hp": 20,
+  "exp": 12000,
+  "armor": 2,
+  "dmg": [
+   0,
+   9
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": -20,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": []
+ },
+ "glooth_fairy": {
+  "name": "Glooth Fairy",
+  "hp": 59000,
+  "exp": 91300,
+  "armor": 165,
+  "dmg": [
+   0,
+   1900
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 5,
+   "fire": -5,
+   "ice": 0,
+   "holy": 15,
+   "death": 30
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 300,
+    "max": 4000,
+    "chance": 7,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 250,
+    "chance": 10,
+    "interval": 1000
+   },
+   {
+    "element": "healing",
+    "min": 7500,
+    "max": 8000,
+    "chance": 1,
+    "interval": 1000
+   }
+  ]
+ },
+ "man_in_the_cave": {
+  "name": "Man in the Cave",
+  "hp": 485,
+  "exp": 12000,
+  "armor": 15,
+  "dmg": [
+   0,
+   62
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 0,
+    "max": 95,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 10,
+    "max": 50,
+    "chance": 25,
+    "interval": 2000
+   }
+  ]
+ },
+ "rottie_the_rotworm": {
+  "name": "Rottie the Rotworm",
+  "hp": 65,
+  "exp": 12000,
+  "armor": 8,
+  "dmg": [
+   0,
+   60
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": []
+ },
+ "rotworm_queen": {
+  "name": "Rotworm Queen",
+  "hp": 105,
+  "exp": 12000,
+  "armor": 10,
+  "dmg": [
+   5,
+   80
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 40,
+   "fire": -20,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": []
+ },
+ "spawn_of_the_welter": {
+  "name": "Spawn of the Welter",
+  "hp": 1850,
+  "exp": 12000,
+  "armor": 27,
+  "dmg": [
+   0,
+   270
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": -10,
+   "fire": 0,
+   "ice": 50,
+   "holy": 30,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "healing",
+    "min": 260,
+    "max": 407,
+    "chance": 25,
+    "interval": 2000
+   }
+  ]
+ },
+ "the_voice_of_ruin": {
+  "name": "The Voice of Ruin",
+  "hp": 5500,
+  "exp": 24800,
+  "armor": 45,
+  "dmg": [
+   0,
+   450
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 440,
+    "max": 820,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 290,
+    "max": 540,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 190,
+    "max": 480,
+    "chance": 10,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 475,
+    "max": 625,
+    "chance": 10,
+    "interval": 2000
+   }
+  ]
+ },
+ "xenia": {
+  "name": "Xenia",
+  "hp": 200,
+  "exp": 12000,
+  "armor": 15,
+  "dmg": [
+   0,
+   50
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": []
+ },
+ "yakchal": {
+  "name": "Yakchal",
+  "hp": 5750,
+  "exp": 21400,
+  "armor": 15,
+  "dmg": [
+   0,
+   389
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -5,
+   "earth": 80,
+   "fire": 0,
+   "ice": 0,
+   "holy": 50,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 0,
+    "max": 430,
+    "chance": 18,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 200,
+    "max": 300,
+    "chance": 34,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 100,
+    "chance": 25,
+    "interval": 1000
+   }
+  ]
+ },
+ "zomba": {
+  "name": "Zomba",
+  "hp": 300,
+  "exp": 12000,
+  "armor": 6,
+  "dmg": [
+   0,
+   40
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 40,
+   "fire": 0,
+   "ice": -15,
+   "holy": 20,
+   "death": -8
+  },
+  "abilities": []
+ },
+ "moonstone_excavator": {
+  "name": "Moonstone Excavator",
+  "hp": 5100,
+  "exp": 4670,
+  "armor": 47,
+  "dmg": [
+   0,
+   1000
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": -10,
+   "earth": 80,
+   "fire": -10,
+   "ice": 15,
+   "holy": 10,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 60,
+    "max": 150,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "moonstone_overseer": {
+  "name": "Moonstone Overseer",
+  "hp": 5450,
+  "exp": 4920,
+  "armor": 45,
+  "dmg": [
+   0,
+   1000
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": -10,
+   "earth": 30,
+   "fire": -10,
+   "ice": 5,
+   "holy": 15,
+   "death": 25
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 250,
+    "max": 500,
+    "chance": 18,
+    "interval": 2000
+   }
+  ]
+ },
+ "winged_jaracal": {
+  "name": "Winged Jaracal",
+  "hp": 8200,
+  "exp": 7830,
+  "armor": 75,
+  "dmg": [
+   0,
+   760
+  ],
+  "resist": {
+   "physical": 5,
+   "energy": -5,
+   "earth": -5,
+   "fire": 15,
+   "ice": -10,
+   "holy": 10,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 350,
+    "max": 620,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 300,
+    "max": 550,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 250,
+    "max": 500,
+    "chance": 12,
+    "interval": 3000
+   }
+  ]
+ },
+ "iceplume_strider": {
+  "name": "Iceplume Strider",
+  "hp": 8500,
+  "exp": 8150,
+  "armor": 75,
+  "dmg": [
+   0,
+   640
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": 10,
+   "earth": -5,
+   "fire": -5,
+   "ice": 10,
+   "holy": 10,
+   "death": -5
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 400,
+    "max": 700,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 350,
+    "max": 600,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 150,
+    "max": 300,
+    "chance": 12,
+    "interval": 3000
+   }
+  ]
+ },
+ "silverfrost_sentinel": {
+  "name": "Silverfrost Sentinel",
+  "hp": 9500,
+  "exp": 8450,
+  "armor": 110,
+  "dmg": [
+   0,
+   820
+  ],
+  "resist": {
+   "physical": -10,
+   "energy": 10,
+   "earth": -10,
+   "fire": -5,
+   "ice": 15,
+   "holy": 10,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 420,
+    "max": 740,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 380,
+    "max": 650,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 300,
+    "max": 560,
+    "chance": 12,
+    "interval": 3000
+   }
+  ]
+ },
+ "moonspawn_blightspitter": {
+  "name": "Moonspawn Blightspitter",
+  "hp": 8500,
+  "exp": 6670,
+  "armor": 80,
+  "dmg": [
+   0,
+   1000
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": 15,
+   "earth": 25,
+   "fire": -12,
+   "ice": 0,
+   "holy": -2,
+   "death": 15
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 400,
+    "max": 750,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 350,
+    "max": 650,
+    "chance": 18,
+    "interval": 2500
+   },
+   {
+    "element": "death",
+    "min": 300,
+    "max": 600,
+    "chance": 15,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 200,
+    "max": 400,
+    "chance": 12,
+    "interval": 3000
+   }
+  ]
+ },
+ "moonspawn_oozecrown": {
+  "name": "Moonspawn Oozecrown",
+  "hp": 9200,
+  "exp": 7320,
+  "armor": 75,
+  "dmg": [
+   0,
+   1000
+  ],
+  "resist": {
+   "physical": -5,
+   "energy": 5,
+   "earth": 18,
+   "fire": -8,
+   "ice": -6,
+   "holy": -6,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 450,
+    "max": 800,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 400,
+    "max": 700,
+    "chance": 16,
+    "interval": 2500
+   },
+   {
+    "element": "death",
+    "min": 350,
+    "max": 650,
+    "chance": 14,
+    "interval": 3000
+   },
+   {
+    "element": "healing",
+    "min": 250,
+    "max": 450,
+    "chance": 12,
+    "interval": 3000
+   }
+  ]
+ },
+ "moonspawn_juggernaut": {
+  "name": "Moonspawn Juggernaut",
+  "hp": 60000,
+  "exp": 10000,
+  "armor": 90,
+  "dmg": [
+   0,
+   1200
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 15,
+   "fire": -5,
+   "ice": 15,
+   "holy": 0,
+   "death": 35
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 500,
+    "max": 900,
+    "chance": 22,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 450,
+    "max": 800,
+    "chance": 18,
+    "interval": 2500
+   },
+   {
+    "element": "death",
+    "min": 400,
+    "max": 750,
+    "chance": 16,
+    "interval": 3000
+   },
+   {
+    "element": "physical",
+    "min": 500,
+    "max": 1000,
+    "chance": 14,
+    "interval": 4000
+   },
+   {
+    "element": "healing",
+    "min": 400,
+    "max": 800,
+    "chance": 10,
+    "interval": 3000
+   }
+  ]
+ },
+ "true_feverbloom_asura": {
+  "name": "True Feverbloom Asura",
+  "hp": 8600,
+  "exp": 7850,
+  "armor": 90,
+  "dmg": [
+   0,
+   780
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -5,
+   "earth": 15,
+   "ice": -10,
+   "holy": -5,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "earth",
+    "min": 500,
+    "max": 800,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 450,
+    "max": 700,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 400,
+    "max": 650,
+    "chance": 15,
+    "interval": 2000
+   },
+   {
+    "element": "healing",
+    "min": 50,
+    "max": 100,
+    "chance": 15,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_acolyte": {
+  "name": "Radiant Acolyte",
+  "hp": 34600,
+  "exp": 32960,
+  "armor": 110,
+  "dmg": [
+   0,
+   2800
+  ],
+  "resist": {
+   "physical": 5,
+   "energy": -5,
+   "earth": -5,
+   "fire": 40,
+   "ice": 10,
+   "holy": 5,
+   "death": 30
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 3500,
+    "max": 4500,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2900,
+    "max": 3600,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 2700,
+    "max": 3400,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 2500,
+    "max": 3200,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2600,
+    "max": 3300,
+    "chance": 28,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_paragon": {
+  "name": "Radiant Paragon",
+  "hp": 36000,
+  "exp": 34780,
+  "armor": 120,
+  "dmg": [
+   0,
+   2650
+  ],
+  "resist": {
+   "physical": 10,
+   "energy": -10,
+   "earth": -15,
+   "fire": 30,
+   "ice": 5,
+   "holy": 0,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 3500,
+    "max": 4500,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2900,
+    "max": 3700,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2800,
+    "max": 3500,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2400,
+    "max": 3100,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2500,
+    "max": 3200,
+    "chance": 28,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_warden": {
+  "name": "Radiant Warden",
+  "hp": 38500,
+  "exp": 35540,
+  "armor": 140,
+  "dmg": [
+   0,
+   3200
+  ],
+  "resist": {
+   "physical": 10,
+   "energy": -10,
+   "earth": -5,
+   "fire": 30,
+   "ice": 10,
+   "holy": -10,
+   "death": 20
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 3400,
+    "max": 4400,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2900,
+    "max": 3600,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 2600,
+    "max": 3300,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 2400,
+    "max": 3000,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2500,
+    "max": 3200,
+    "chance": 28,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_inquisitor": {
+  "name": "Radiant Inquisitor",
+  "hp": 34800,
+  "exp": 32460,
+  "armor": 115,
+  "dmg": [
+   0,
+   2650
+  ],
+  "resist": {
+   "physical": -10,
+   "energy": 20,
+   "earth": 5,
+   "fire": -5,
+   "ice": -10,
+   "holy": 25,
+   "death": -5
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 3500,
+    "max": 4500,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2900,
+    "max": 3700,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2800,
+    "max": 3500,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2400,
+    "max": 3100,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2500,
+    "max": 3200,
+    "chance": 28,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_templar": {
+  "name": "Radiant Templar",
+  "hp": 37000,
+  "exp": 34520,
+  "armor": 135,
+  "dmg": [
+   0,
+   3100
+  ],
+  "resist": {
+   "physical": 5,
+   "energy": 20,
+   "earth": 5,
+   "fire": -10,
+   "ice": -10,
+   "holy": 25,
+   "death": -5
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 3400,
+    "max": 4400,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2900,
+    "max": 3600,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 2600,
+    "max": 3300,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2400,
+    "max": 3000,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 2500,
+    "max": 3200,
+    "chance": 28,
+    "interval": 2000
+   }
+  ]
+ },
+ "radiant_zealot": {
+  "name": "Radiant Zealot",
+  "hp": 36500,
+  "exp": 35210,
+  "armor": 110,
+  "dmg": [
+   0,
+   3300
+  ],
+  "resist": {
+   "physical": -15,
+   "energy": 40,
+   "earth": 10,
+   "fire": -5,
+   "ice": -5,
+   "holy": 20,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 3400,
+    "max": 4400,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 2900,
+    "max": 3600,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 2600,
+    "max": 3300,
+    "chance": 32,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 2400,
+    "max": 3000,
+    "chance": 30,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_acolyte": {
+  "name": "Devoted Radiant Acolyte",
+  "hp": 39790,
+  "exp": 47830,
+  "armor": 130,
+  "dmg": [
+   0,
+   3850
+  ],
+  "resist": {},
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 5040,
+    "max": 6480,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 4180,
+    "max": 5180,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 3890,
+    "max": 4900,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 3600,
+    "max": 4610,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 3740,
+    "max": 4750,
+    "chance": 32,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_paragon": {
+  "name": "Devoted Radiant Paragon",
+  "hp": 41400,
+  "exp": 50560,
+  "armor": 140,
+  "dmg": [
+   0,
+   3650
+  ],
+  "resist": {},
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 5040,
+    "max": 6480,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 4180,
+    "max": 5330,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 4030,
+    "max": 5040,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 3460,
+    "max": 4460,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 3600,
+    "max": 4610,
+    "chance": 32,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_warden": {
+  "name": "Devoted Radiant Warden",
+  "hp": 44275,
+  "exp": 51280,
+  "armor": 160,
+  "dmg": [
+   0,
+   4450
+  ],
+  "resist": {},
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 4900,
+    "max": 6340,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 4180,
+    "max": 5180,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 3740,
+    "max": 4750,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 3460,
+    "max": 4320,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 3600,
+    "max": 4610,
+    "chance": 32,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_inquisitor": {
+  "name": "Devoted Radiant Inquisitor",
+  "hp": 40020,
+  "exp": 47030,
+  "armor": 135,
+  "dmg": [
+   0,
+   3650
+  ],
+  "resist": {
+   "physical": -10,
+   "energy": 25,
+   "earth": 10,
+   "fire": -5,
+   "ice": -5,
+   "holy": 25,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 5040,
+    "max": 6480,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 4180,
+    "max": 5330,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 4030,
+    "max": 5040,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 3460,
+    "max": 4460,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 3600,
+    "max": 4610,
+    "chance": 32,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_templar": {
+  "name": "Devoted Radiant Templar",
+  "hp": 42550,
+  "exp": 49910,
+  "armor": 155,
+  "dmg": [
+   0,
+   4300
+  ],
+  "resist": {
+   "physical": 5,
+   "energy": 20,
+   "earth": 5,
+   "fire": -10,
+   "ice": -10,
+   "holy": 25,
+   "death": -5
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 4900,
+    "max": 6340,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 4180,
+    "max": 5180,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3740,
+    "max": 4750,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 3460,
+    "max": 4320,
+    "chance": 34,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 3600,
+    "max": 4610,
+    "chance": 32,
+    "interval": 2000
+   }
+  ]
+ },
+ "devoted_radiant_zealot": {
+  "name": "Devoted Radiant Zealot",
+  "hp": 41980,
+  "exp": 50500,
+  "armor": 130,
+  "dmg": [
+   0,
+   4700
+  ],
+  "resist": {
+   "physical": -15,
+   "energy": 40,
+   "earth": 10,
+   "fire": -5,
+   "ice": -5,
+   "holy": 20,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 4900,
+    "max": 6340,
+    "chance": 45,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 4180,
+    "max": 5180,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3740,
+    "max": 4750,
+    "chance": 36,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 3460,
+    "max": 4320,
+    "chance": 34,
+    "interval": 2000
+   }
+  ]
+ },
+ "rakesh_moonfang": {
+  "name": "Rakesh Moonfang",
+  "hp": 25500,
+  "exp": 55000,
+  "armor": 90,
+  "dmg": [
+   0,
+   1500
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 20,
+   "earth": -25,
+   "fire": -15,
+   "ice": 20,
+   "holy": 0,
+   "death": -10
+  },
+  "abilities": [
+   {
+    "element": "energy",
+    "min": 700,
+    "max": 1050,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 650,
+    "max": 950,
+    "chance": 18,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 800,
+    "max": 1200,
+    "chance": 15,
+    "interval": 3000
+   }
+  ]
+ },
+ "the_moonsnow_magnolia": {
+  "name": "The Moonsnow Magnolia",
+  "hp": 52000,
+  "exp": 240000,
+  "armor": 110,
+  "dmg": [
+   0,
+   1200
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": -5,
+   "earth": -10,
+   "fire": -5,
+   "ice": 15,
+   "holy": 0
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 700,
+    "max": 1100,
+    "chance": 25,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 800,
+    "max": 1200,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 750,
+    "max": 1150,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 1300,
+    "max": 1800,
+    "chance": 15,
+    "interval": 5000
+   },
+   {
+    "element": "healing",
+    "min": 500,
+    "max": 1000,
+    "chance": 15,
+    "interval": 3000
+   }
+  ]
+ },
+ "mimar_haffar": {
+  "name": "Mimar Haffar",
+  "hp": 1000000,
+  "exp": 8000000,
+  "armor": 150,
+  "dmg": [
+   1200,
+   2400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "death",
+    "min": 3400,
+    "max": 5600,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 3600,
+    "max": 7200,
+    "chance": 20,
+    "interval": 2000
+   }
+  ]
+ },
+ "maior_domus": {
+  "name": "Maior Domus",
+  "hp": 1000000,
+  "exp": 8000000,
+  "armor": 150,
+  "dmg": [
+   1200,
+   2400
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "holy",
+    "min": 3400,
+    "max": 5600,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "holy",
+    "min": 3500,
+    "max": 6100,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 3600,
+    "max": 7200,
+    "chance": 30,
+    "interval": 3000
+   },
+   {
+    "element": "holy",
+    "min": 3600,
+    "max": 7200,
+    "chance": 20,
+    "interval": 2000
+   }
+  ]
+ },
+ "phosphorus": {
+  "name": "Phosphorus",
+  "hp": 8000000,
+  "exp": 10000000,
+  "armor": 250,
+  "dmg": [
+   2400,
+   4800
+  ],
+  "resist": {
+   "physical": 0,
+   "energy": 0,
+   "earth": 0,
+   "fire": 0,
+   "ice": 0,
+   "holy": 0,
+   "death": 0
+  },
+  "abilities": [
+   {
+    "element": "ice",
+    "min": 6800,
+    "max": 11200,
+    "chance": 40,
+    "interval": 2000
+   },
+   {
+    "element": "ice",
+    "min": 8400,
+    "max": 14450,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 8600,
+    "max": 17100,
+    "chance": 35,
+    "interval": 3000
+   },
+   {
+    "element": "holy",
+    "min": 7200,
+    "max": 14400,
+    "chance": 25,
+    "interval": 2000
+   },
+   {
+    "element": "death",
+    "min": 9300,
+    "max": 16700,
+    "chance": 20,
+    "interval": 4000
    }
   ]
  }

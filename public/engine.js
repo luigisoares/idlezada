@@ -431,7 +431,13 @@ function nodeValue(n, obj, elem, ctx, floor){
       for(const e in x) val += w(e==='physical' ? W.absorb : W.absorbElem) * x[e];
     } else if(k==='critChance'){
       // +1% de chance rende (1 + critDmg atual) de dano extra; durante o avatar
-      // a chance ja e' 100%, logo esse ganho so valeria nos (1-uptime) restantes
+      // a chance ja e' 100%, logo esse ganho so valeria nos (1-uptime) restantes.
+      /* PESO HEURISTICO, e de proposito. O jogo diz que o critico soma +50% de base
+         (nao +100%), e a conta "certa" em % de ataque equivalente tambem teria que
+         dividir pelo multCrit e multiplicar pelo bolo de dano. As duas correcoes
+         juntas foram MEDIDAS (set/2026, 108 builds, indice do tools/model.js ja com
+         critBase 1.5): saldo +0,04%, com builds indo de -3,4% a +5,4% -- ruido do
+         greedy, nao ganho. Mudar 70 share codes por zero nao vale; este peso fica. */
       val += w(W.stats.critChance) * x * (1-C.up) * (1 + C.cd/100);
     } else if(k==='critDmg'){
       // +1% de crit damage rende so na fracao dos hits que critam
@@ -463,12 +469,16 @@ const defaultElement = v => {
 
 /* Dijkstra: custo minimo pra deixar cada no alocado+conectado, dado rk atual.
    Nos ja alocados sao waypoints de custo 0. Nos tier-0 sao entradas (custo do 1o rank). */
-function unlockDijkstra(v, rk){
+/* `blocked` (opcional): nos que nao podem ser comprados -- nem como alvo nem como
+   caminho -- a nao ser que ja estejam alocados. E' o que fecha a lista de perks
+   travados (ver closedPerks no autobuild). */
+function unlockDijkstra(v, rk, blocked){
   const dist={}, pred={};
+  const shut = id => blocked && blocked.has(id) && (rk[id]||0) < 1;
   for(const n of TREES[v]) dist[n.id]=Infinity;
   for(const n of TREES[v]){
     if((rk[n.id]||0)>=1){ dist[n.id]=0; }
-    else if(n.tier===0 && n.cost<dist[n.id]){ dist[n.id]=n.cost; pred[n.id]=null; }
+    else if(n.tier===0 && !shut(n.id) && n.cost<dist[n.id]){ dist[n.id]=n.cost; pred[n.id]=null; }
   }
   const done=new Set();
   while(true){
@@ -477,7 +487,7 @@ function unlockDijkstra(v, rk){
     if(u===null||ud===Infinity) break;
     done.add(u);
     for(const w of (ADJ[v].get(u)||[])){
-      if(done.has(w)) continue;
+      if(done.has(w) || shut(w)) continue;
       const c = (rk[w]||0)>=1 ? 0 : nd(v,w).cost;
       const alt = dist[u]+c;
       if(alt<dist[w]){ dist[w]=alt; pred[w]=u; }
@@ -523,7 +533,7 @@ const PERK_FORCE = 100;
 /* um passe do greedy custo-beneficio. Continua de onde `rk` esta (nao exige arvore
    vazia), o que e' o que permite rodar de novo depois da poda e no passe de sobra.
    `floor` liga o modo reserva do nodeValue. Devolve quantos pontos gastou. */
-function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewBranch, tactics){
+function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewBranch, tactics, blocked){
   const nodes = TREES[v];
   const tid = tacticsNodeId(v);
   const val = {};
@@ -543,11 +553,12 @@ function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewB
       // alvo, o no e' perseguido como um perk forcado (ver TACTICS_DEFAULT).
       if(n.id === tid && (rk[n.id]||0) < tactics) val[n.id] += n.cost * PERK_FORCE;
     }
-    const {dist,pred} = unlockDijkstra(v, rk);
+    const {dist,pred} = unlockDijkstra(v, rk, blocked);
     let best = null;
     for(const n of nodes){
       const r = rk[n.id]||0;
       if(r >= n.maxRank) continue;
+      if(blocked && blocked.has(n.id) && r < 1) continue;   // perk fora da lista fechada
       // noNewBranch==='deepen': so engrossa no que a build JA tem, nao acende no novo
       if(noNewBranch === 'deepen' && r < 1) continue;
       if(val[n.id] <= DEAD_EPS) continue;        // nao mira nos sem valor (mas eles entram como caminho)
@@ -587,10 +598,13 @@ function growGreedy(v, budget, obj, elem, rk, perkSet, forcePerks, floor, noNewB
    Remove do mais barato pro mais caro: tirar o barato primeiro abre a cascata (um no
    de 1 ponto que segurava outro de 3 sai antes, e ai o de 3 tambem passa a sair).
    Devolve os pontos liberados. */
-function pruneDeadWeight(v, rk, obj, elem, floor){
+function pruneDeadWeight(v, rk, obj, elem, floor, keep){
   const ctx = valueCtx(v, rk);
   const dead = Object.keys(rk)
-    .filter(id => (rk[id]||0) > 0 && nodeValue(nd(v,id), obj, elem, ctx, floor) <= DEAD_EPS)
+    // `keep`: perk travado. Ele pode valer 0 no perfil (Avatar num tank) e mesmo
+    // assim nao e' peso morto -- foi pedido.
+    .filter(id => (rk[id]||0) > 0 && !(keep && keep.has(id))
+      && nodeValue(nd(v,id), obj, elem, ctx, floor) <= DEAD_EPS)
     .map(id => ({ id, pts: totalCost(nd(v,id), rk[id]) }))
     .sort((a,b) => a.pts - b.pts);
   let freed = 0;
@@ -624,8 +638,46 @@ function autobuild(v, level, obj, opts){
   const tWant = Math.max(0, Math.min(
     opts.tactics == null ? defaultTactics(obj) : Math.floor(opts.tactics),
     tNode ? nd(v, tNode).maxRank : 0));
+  let blocked = null;
   const grow = (floor, noNewBranch) => growGreedy(v, budget, obj, elem, rk, perkSet,
-    !!opts.forcePerks, floor, noNewBranch, tWant);
+    !!opts.forcePerks, floor, noNewBranch, tWant, blocked);
+  const keep = opts.forcePerks ? perkSet : null;
+
+  /* PERK TRAVADO VEM PRIMEIRO, pelo caminho mais barato. O bonus PERK_FORCE sozinho
+     nao garante: o greedy compara bonus / custo do CAMINHO INTEIRO, entao um perk no
+     fim de um caminho longo pode perder pro melhor no pequeno ate o orcamento acabar.
+     Comprar antes torna a garantia estrutural. Do mais barato pro mais caro: se nao
+     couberem todos, entram os que cabem, e o relatorio aponta o resto. */
+  if(opts.forcePerks && perks.length){
+    const base = unlockDijkstra(v, {}).dist;
+    for(const id of perks.slice().sort((a,b) => base[a] - base[b])){
+      let guard = 0;
+      while((rk[id]||0) < 1 && guard++ < 500){
+        const {dist, pred} = unlockDijkstra(v, rk);
+        if(!isFinite(dist[id]) || dist[id] > budget - spent(v, rk)) break;
+        const step = firstStepOnPath(id, pred, rk);
+        if(!canAlloc(v, rk, step, budget)) break;
+        rk[step] = (rk[step]||0) + 1;
+      }
+    }
+
+    /* LISTA FECHADA. Com algum perk travado, os perks que voce NAO marcou ficam de
+       fora: travar Executioner + Avatar num tank e ver Gift of Life aparecer sozinho
+       e' o otimizador decidindo por cima do que foi pedido. Sem nada travado ele
+       continua livre (e ai o Tank compra o Gift of Life, que e' o certo).
+       Duas passagens continuam abertas, porque sem elas o pedido nao existe:
+         - pre-requisito de um perk travado (Cleaving III exige o II e o I) -- esses
+           ja foram comprados acima, e no alocado o bloqueio nao vale;
+         - caminho ate o Battle Tactics pedido no marker (no monk ele fica atras de
+           um perk). */
+    if(opts.closedPerks !== false){
+      blocked = new Set(perkNodes(v).map(n => n.id).filter(id => !perkSet.has(id)));
+      if(tNode && tWant > 0 && (rk[tNode]||0) < 1){
+        const {pred} = unlockDijkstra(v, rk);
+        for(let c = tNode, g = 0; c != null && g < 500; c = pred[c], g++) blocked.delete(c);
+      }
+    }
+  }
 
   grow(false);
 
@@ -634,7 +686,7 @@ function autobuild(v, level, obj, opts){
      ZERO pioraram -- ele so tira no que nao vale nada e nao segura nada. */
   const settle = floor => {
     for(let i = 0; i < 10; i++){
-      if(pruneDeadWeight(v, rk, obj, elem, floor) === 0) break;
+      if(pruneDeadWeight(v, rk, obj, elem, floor, keep) === 0) break;
       if(grow(floor) === 0) break;
     }
   };

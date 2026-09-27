@@ -143,8 +143,10 @@ console.log('== charms: Savage Blow escala com o uptime do Avatar ==');
   const noAva = find(M.charmRanking(target(20000), ctx({ up: 0 }), CHARMS), 'savage_blow');
   const avatar = find(M.charmRanking(target(20000), ctx({ up: 1 }), CHARMS), 'savage_blow');
   ok(avatar.gain > noAva.gain, 'dentro do Avatar (crita sempre) a Savage Blow devia render mais');
-  // up=1: todo hit crita, entao o ganho e' (2+cd+0.44)/(2+cd) - 1
-  ok(near(avatar.gain, (2 + 1.5 + 0.44) / (2 + 1.5) - 1, 1e-9), 'com Avatar o ganho e o proprio salto no multiplicador de crit');
+  // up=1: todo hit crita, entao o ganho e' (1.5+cd+0.44)/(1.5+cd) - 1 -- critico da
+  // +50% de base (wiki do jogo), nao +100%
+  ok(near(avatar.gain, (1.5 + 1.5 + 0.44) / (1.5 + 1.5) - 1, 1e-9), 'com Avatar o ganho e o proprio salto no multiplicador de crit');
+  ok(M.CRIT_BASE === 1.5, `critico da +50% de base no jogo, CRIT_BASE devia ser 1.5 (veio ${M.CRIT_BASE})`);
   ok(avatar.points === 6000, 'tier 3 da Savage Blow devia custar 800+1200+4000 = 6000 pontos');
 }
 
@@ -603,5 +605,68 @@ console.log('== dados: o que o browser carrega e o mesmo que esta em data/ ==');
 }
 
 /* ------------------------------------------------------------------- resultado */
+console.log('== Carnage: acerta quem estiver colado, nao 2 sempre ==');
+{
+  /* pack base 4: waves de 4,4,5,5,6,6,7,7,8. Quando o k-esimo de n morre, cada uma
+     das 2 casas do alcance tem bicho com chance (n-k)/7. Soma n(n-1)/7 por wave. */
+  const waves = [4, 4, 5, 5, 6, 6, 7, 7, 8];
+  const want = waves.reduce((s, n) => s + n * (n - 1) / 7, 0) / waves.reduce((s, n) => s + n, 0);
+  ok(near(M.carnageNeighbors({ packBase: 4 }), want, 1e-9), `pack 4 devia dar ${want.toFixed(3)} vizinhos, deu ${M.carnageNeighbors({ packBase: 4 })}`);
+  ok(M.carnageNeighbors({ packBase: 4 }) < 1, 'em media o estouro acerta menos de 1 bicho num pack de 4');
+  ok(M.carnageNeighbors({ packBase: 9 }) > M.carnageNeighbors({ packBase: 4 }), 'pack maior, mais vizinhos');
+  ok(M.carnageNeighbors({ packBase: 9 }) <= 2, 'e nunca passa das 2 casas do anel');
+
+  /* com Avatar a ~50%, na 2a criatura a Low Blow passa o Carnage (antes, com 2
+     vizinhos fixos, o Carnage ganhava por mais do dobro) */
+  const realHunts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'hunts.json'), 'utf8'));
+  const realCharms = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'charms.json'), 'utf8'));
+  const h = realHunts.find(x => x.id === 'asura-citadel');
+  const plan = M.huntCharmPlan(h, ctx({ level: 900, cc: 7.7, cd: 52.5, up: 0.5, dps: 100000, aps: 1.2 }),
+    { owned: realCharms.map(c => c.key), slots: 25, charms: realCharms });
+  const byRank = plan.rows.slice().sort((a, b) => b.creature.share - a.creature.share).map(r => r.major && r.major.key);
+  ok(byRank[0] === 'savage_blow' && byRank[1] === 'low_blow' && byRank[2] === 'carnage',
+    `Asura Citadel no 900 com Avatar: Savage > Low Blow > Carnage, veio ${byRank.join(' > ')}`);
+}
+
+console.log('== regra da casa: Savage fixa, Gut/Scavenge/Fatal Hold sempre, golpe medio decide o resto ==');
+{
+  const realHunts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'hunts.json'), 'utf8'));
+  const realCharms = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'charms.json'), 'utf8'));
+  const sbx = { window: {}, console }; sbx.window.window = sbx.window; require('vm').createContext(sbx);
+  require('vm').runInContext(fs.readFileSync(path.join(__dirname, '..', 'public', 'loot.js'), 'utf8'), sbx);
+  const LOOT = sbx.window.LOOT;
+  const owned = realCharms.map(c => c.key);
+
+  /* sem a regra, crit 30% e sem Avatar: a matematica escolhe Low Blow (bloco acima).
+     COM a regra, a Savage entra mesmo assim. */
+  const h1 = { id:'x', packBase:4, boss: mon('a', 300, 900, {}), monsters: [mon('a', 300, 900, {})] };
+  const free = M.huntCharmPlan(h1, ctx({ cc: 30, cd: 150 }), { owned, charms: realCharms });
+  const rule = M.huntCharmPlan(h1, ctx({ cc: 30, cd: 150 }), { owned, charms: realCharms, must: M.MUST_MAJOR });
+  ok(free.rows[0].major.key === 'low_blow', 'sem a regra, a conta pura escolhe Low Blow aqui');
+  ok(rule.rows[0].major.key === 'savage_blow', 'com a regra, a Savage Blow entra sempre');
+
+  /* hunt de 4 criaturas: os tres Menores fixos estao la */
+  const bony = realHunts.find(h => /bony/i.test(h.name));
+  const c900 = ctx({ level: 900, cc: 7.7, cd: 52.5, up: 0.5, dps: 100000, aps: 1.2 });
+  const p = M.huntCharmPlan(bony, c900, { owned, charms: realCharms, loot: LOOT, must: M.MUST_MAJOR });
+  const minors = p.rows.map(r => r.minor && r.minor.key);
+  for (const k of ['fatal_hold', 'gut', 'scavenge'])
+    ok(minors.includes(k), `${k} e fixo e devia estar no plano da ${bony.name} (veio ${minors.join(',')})`);
+  ok(p.rows.some(r => r.major && r.major.key === 'savage_blow'), 'e a Savage tambem');
+
+  /* golpe medio pequeno (runa): mais golpes por bicho, o elemental passa o Carnage */
+  const big = M.huntCharmPlan(bony, c900, { owned, charms: realCharms, loot: LOOT, must: M.MUST_MAJOR });
+  const small = M.huntCharmPlan(bony, Object.assign({}, c900, { hit: 2000 }), { owned, charms: realCharms, loot: LOOT, must: M.MUST_MAJOR });
+  const els = pl => pl.rows.filter(r => r.major && realCharms.find(c => c.key === r.major.key).element).length;
+  ok(els(small) > els(big), `com golpe de 2k devia ter mais elemental no plano (${els(small)} vs ${els(big)})`);
+  ok(!small.rows.some(r => r.major && r.major.key === 'carnage'), 'e o Carnage sai');
+
+  /* a virada em golpes bate com a conta na mao */
+  const carn = realCharms.find(c => c.key === 'carnage'), enf = realCharms.find(c => c.key === 'enflame');
+  const cr = { hp: 60000, hpFight: 60000, resist: {} };
+  const want = (0.22 * Math.min(0.15 * 60000, 6 * 900) * M.carnageNeighbors(bony)) / (0.11 * Math.min(2 * 900, 0.05 * 60000));
+  ok(near(M.carnageBreakeven(cr, { level: 900 }, carn, enf, bony), want, 1e-9), `virada devia ser ${want.toFixed(2)} golpes`);
+}
+
 console.log(`\n${pass} ok, ${fail} falha(s)`);
 process.exit(fail ? 1 : 0);

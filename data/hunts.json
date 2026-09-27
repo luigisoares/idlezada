@@ -1691,7 +1691,8 @@
     "hpPerClear": 279960,
     "goldPerClear": 17175,
     "xpMin": 97165,
-    "xpMax": 132525
+    "xpMax": 132525,
+    "avail": "test"
   },
   {
     "id": "grimreaper-cave",
@@ -2011,7 +2012,8 @@
     "hpPerClear": 328706,
     "goldPerClear": 22907,
     "xpMin": 131550,
-    "xpMax": 206950
+    "xpMax": 206950,
+    "avail": "test"
   },
   {
     "id": "asura-lair",
@@ -2776,7 +2778,7 @@
         "key": "minion_of_versperoth",
         "name": "Minion of Versperoth",
         "hp": 18000,
-        "exp": 0,
+        "exp": 4000,
         "resist": {
           "physical": 30,
           "energy": 30,
@@ -2860,12 +2862,12 @@
         "physical": 189.8
       }
     },
-    "avgExp": 4640,
+    "avgExp": 5440,
     "avgHp": 15240,
-    "xpPerClear": 259030,
+    "xpPerClear": 300630,
     "hpPerClear": 848880,
     "goldPerClear": 25078,
-    "xpMin": 267350,
+    "xpMin": 225750,
     "xpMax": 386950
   },
   {
@@ -4441,7 +4443,8 @@
     "hpPerClear": 567000,
     "goldPerClear": 44287,
     "xpMin": 197600,
-    "xpMax": 283400
+    "xpMax": 283400,
+    "avail": "test"
   },
   {
     "id": "werecrocodile-cave",
@@ -4538,7 +4541,8 @@
     "hpPerClear": 592374,
     "goldPerClear": 45203,
     "xpMin": 201815,
-    "xpMax": 295935
+    "xpMax": 295935,
+    "avail": "test"
   },
   {
     "id": "gazer-lair",
@@ -4782,7 +4786,8 @@
     "hpPerClear": 868400,
     "goldPerClear": 32848,
     "xpMin": 261600,
-    "xpMax": 276680
+    "xpMax": 276680,
+    "avail": "test"
   },
   {
     "id": "bulltaur-cave",
@@ -4970,7 +4975,8 @@
     "hpPerClear": 880466,
     "goldPerClear": 42560,
     "xpMin": 239800,
-    "xpMax": 255400
+    "xpMax": 255400,
+    "avail": "test"
   },
   {
     "id": "inferniarch-lair",
@@ -7075,7 +7081,7 @@
   {
     "id": "bloatedmanmaggot-cave",
     "name": "bloated man-maggot",
-    "minLevel": 1200,
+    "minLevel": 1500,
     "packBase": 4,
     "monsters": [
       {
@@ -7116,26 +7122,6 @@
           "physical": 639.7,
           "earth": 195.6,
           "fire": 50.4
-        }
-      },
-      {
-        "key": "bloodjaw",
-        "name": "Bloodjaw",
-        "hp": 80000,
-        "exp": 20000,
-        "resist": {
-          "physical": -15,
-          "energy": -10,
-          "earth": 5,
-          "fire": 40,
-          "ice": 0,
-          "holy": 25,
-          "death": -20
-        },
-        "threat": {
-          "physical": 425,
-          "earth": 120.3,
-          "death": 98.8
         }
       },
       {
@@ -7199,18 +7185,19 @@
         "fire": 50.4
       }
     },
-    "avgExp": 21162,
-    "avgHp": 65600,
-    "xpPerClear": 1154349,
-    "hpPerClear": 3601400,
-    "goldPerClear": 47537,
-    "xpMin": 1093925,
-    "xpMax": 1222105
+    "avgExp": 21453,
+    "avgHp": 62000,
+    "xpPerClear": 1169455,
+    "hpPerClear": 3414200,
+    "goldPerClear": 59097,
+    "xpMin": 1125125,
+    "xpMax": 1222105,
+    "avail": "test"
   },
   {
     "id": "maggot-cave",
     "name": "Rotten man-maggot",
-    "minLevel": 1200,
+    "minLevel": 1500,
     "packBase": 4,
     "monsters": [
       {
@@ -7328,12 +7315,13 @@
     "hpPerClear": 3213000,
     "goldPerClear": 53158,
     "xpMin": 1127763,
-    "xpMax": 1233063
+    "xpMax": 1233063,
+    "avail": "test"
   },
   {
     "id": "wanderingpillar-cave",
     "name": "Wandering Pillar",
-    "minLevel": 1200,
+    "minLevel": 1500,
     "packBase": 4,
     "monsters": [
       {
@@ -7453,12 +7441,13 @@
     "hpPerClear": 3505800,
     "goldPerClear": 55163,
     "xpMin": 1129200,
-    "xpMax": 1264400
+    "xpMax": 1264400,
+    "avail": "test"
   },
   {
     "id": "draklightsource-cave",
     "name": "Darklight Source",
-    "minLevel": 1200,
+    "minLevel": 1500,
     "packBase": 4,
     "monsters": [
       {
@@ -7590,6 +7579,696 @@
     "hpPerClear": 3452820,
     "goldPerClear": 65323,
     "xpMin": 1127363,
-    "xpMax": 1319763
+    "xpMax": 1319763,
+    "avail": "test"
+  },
+  {
+    "id": "moonstone-crater",
+    "name": "Moonstone Crater",
+    "minLevel": 310,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "moonstone_excavator",
+        "name": "Moonstone Excavator",
+        "hp": 10200,
+        "exp": 4670,
+        "resist": {
+          "physical": -5,
+          "energy": -10,
+          "earth": 80,
+          "fire": -10,
+          "ice": 15,
+          "holy": 10,
+          "death": 20
+        },
+        "threat": {
+          "physical": 250,
+          "earth": 7.9
+        }
+      },
+      {
+        "key": "moonstone_overseer",
+        "name": "Moonstone Overseer",
+        "hp": 10900,
+        "exp": 4920,
+        "resist": {
+          "physical": -5,
+          "energy": -10,
+          "earth": 30,
+          "fire": -10,
+          "ice": 5,
+          "holy": 15,
+          "death": 25
+        },
+        "threat": {
+          "physical": 250,
+          "holy": 33.8
+        }
+      }
+    ],
+    "boss": {
+      "key": "moonstone_overseer",
+      "name": "Moonstone Overseer",
+      "hp": 10900,
+      "exp": 4920,
+      "resist": {
+        "physical": -5,
+        "energy": -10,
+        "earth": 30,
+        "fire": -10,
+        "ice": 5,
+        "holy": 15,
+        "death": 25
+      },
+      "threat": {
+        "physical": 250,
+        "holy": 33.8
+      }
+    },
+    "avgExp": 4795,
+    "avgHp": 10550,
+    "xpPerClear": 261640,
+    "hpPerClear": 581300,
+    "goldPerClear": 25702,
+    "xpMin": 255140,
+    "xpMax": 268140,
+    "avail": "test"
+  },
+  {
+    "id": "forbidden-gardens",
+    "name": "Forbidden Gardens",
+    "minLevel": 370,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "true_feverbloom_asura",
+        "name": "True Feverbloom Asura",
+        "hp": 17200,
+        "exp": 7850,
+        "resist": {
+          "physical": 0,
+          "energy": -5,
+          "earth": 15,
+          "ice": -10,
+          "holy": -5,
+          "death": -10
+        },
+        "threat": {
+          "physical": 195,
+          "earth": 108.1,
+          "fire": 39.4
+        },
+        "heal": 5.6
+      },
+      {
+        "key": "true_frost_flower_asura",
+        "name": "True Frost Flower Asura",
+        "hp": 8000,
+        "exp": 7069,
+        "resist": {
+          "physical": 0,
+          "energy": -10,
+          "earth": -10,
+          "fire": -10,
+          "holy": 30,
+          "death": 20
+        },
+        "threat": {
+          "physical": 125,
+          "ice": 66.5,
+          "death": 10
+        },
+        "heal": 5.6
+      }
+    ],
+    "boss": {
+      "key": "true_feverbloom_asura",
+      "name": "True Feverbloom Asura",
+      "hp": 17200,
+      "exp": 7850,
+      "resist": {
+        "physical": 0,
+        "energy": -5,
+        "earth": 15,
+        "ice": -10,
+        "holy": -5,
+        "death": -10
+      },
+      "threat": {
+        "physical": 195,
+        "earth": 108.1,
+        "fire": 39.4
+      },
+      "heal": 5.6
+    },
+    "avgExp": 7460,
+    "avgHp": 12600,
+    "xpPerClear": 407519,
+    "hpPerClear": 706800,
+    "goldPerClear": 69772,
+    "xpMin": 387213,
+    "xpMax": 427825,
+    "avail": "test"
+  },
+  {
+    "id": "asura-citadel",
+    "name": "Asura Citadel",
+    "minLevel": 420,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "winged_jaracal",
+        "name": "Winged Jaracal",
+        "hp": 16400,
+        "exp": 7830,
+        "resist": {
+          "physical": 5,
+          "energy": -5,
+          "earth": -5,
+          "fire": 15,
+          "ice": -10,
+          "holy": 10,
+          "death": 10
+        },
+        "threat": {
+          "physical": 205,
+          "death": 80.4
+        }
+      },
+      {
+        "key": "iceplume_strider",
+        "name": "Iceplume Strider",
+        "hp": 17000,
+        "exp": 8150,
+        "resist": {
+          "physical": -5,
+          "energy": 10,
+          "earth": -5,
+          "fire": -5,
+          "ice": 10,
+          "holy": 10,
+          "death": -5
+        },
+        "threat": {
+          "physical": 160,
+          "energy": 35.6,
+          "ice": 55
+        },
+        "heal": 9
+      },
+      {
+        "key": "silverfrost_sentinel",
+        "name": "Silverfrost Sentinel",
+        "hp": 19000,
+        "exp": 8450,
+        "resist": {
+          "physical": -10,
+          "energy": 10,
+          "earth": -10,
+          "fire": -5,
+          "ice": 15,
+          "holy": 10,
+          "death": -10
+        },
+        "threat": {
+          "physical": 222.2,
+          "energy": 38.6,
+          "ice": 58
+        }
+      }
+    ],
+    "boss": {
+      "key": "silverfrost_sentinel",
+      "name": "Silverfrost Sentinel",
+      "hp": 19000,
+      "exp": 8450,
+      "resist": {
+        "physical": -10,
+        "energy": 10,
+        "earth": -10,
+        "fire": -5,
+        "ice": 15,
+        "holy": 10,
+        "death": -10
+      },
+      "threat": {
+        "physical": 222.2,
+        "energy": 38.6,
+        "ice": 58
+      }
+    },
+    "avgExp": 8143,
+    "avgHp": 17467,
+    "xpPerClear": 444578,
+    "hpPerClear": 965267,
+    "goldPerClear": 80834,
+    "xpMin": 428285,
+    "xpMax": 460525,
+    "avail": "test"
+  },
+  {
+    "id": "thalassara-surroundings",
+    "name": "Thalassara Surroundings",
+    "minLevel": 510,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "moonspawn_blightspitter",
+        "name": "Moonspawn Blightspitter",
+        "hp": 17000,
+        "exp": 6670,
+        "resist": {
+          "physical": -5,
+          "energy": 15,
+          "earth": 25,
+          "fire": -12,
+          "ice": 0,
+          "holy": -2,
+          "death": 15
+        },
+        "threat": {
+          "physical": 250,
+          "earth": 93.5,
+          "death": 22.5
+        },
+        "heal": 12
+      },
+      {
+        "key": "moonspawn_oozecrown",
+        "name": "Moonspawn Oozecrown",
+        "hp": 18400,
+        "exp": 7320,
+        "resist": {
+          "physical": -5,
+          "energy": 5,
+          "earth": 18,
+          "fire": -8,
+          "ice": -6,
+          "holy": -6,
+          "death": 10
+        },
+        "threat": {
+          "physical": 250,
+          "earth": 97.7,
+          "death": 23.3
+        },
+        "heal": 14
+      }
+    ],
+    "boss": {
+      "key": "moonspawn_juggernaut",
+      "name": "Moonspawn Juggernaut",
+      "hp": 120000,
+      "exp": 10000,
+      "resist": {
+        "physical": 0,
+        "energy": 15,
+        "fire": -5,
+        "ice": 15,
+        "holy": 0,
+        "death": 35
+      },
+      "threat": {
+        "physical": 326.3,
+        "earth": 122,
+        "death": 30.7
+      },
+      "heal": 20
+    },
+    "avgExp": 6995,
+    "avgHp": 17700,
+    "xpPerClear": 388740,
+    "hpPerClear": 1280400,
+    "goldPerClear": 55174,
+    "xpMin": 371840,
+    "xpMax": 405640,
+    "avail": "test"
+  },
+  {
+    "id": "radiant-skyhold",
+    "name": "Radiant Skyhold",
+    "minLevel": 2000,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "radiant_acolyte",
+        "name": "Radiant Acolyte",
+        "hp": 69200,
+        "exp": 32960,
+        "resist": {
+          "physical": 5,
+          "energy": -5,
+          "earth": -5,
+          "fire": 40,
+          "ice": 10,
+          "holy": 5,
+          "death": 30
+        },
+        "threat": {
+          "physical": 1285,
+          "ice": 1715.5,
+          "holy": 413
+        }
+      },
+      {
+        "key": "radiant_paragon",
+        "name": "Radiant Paragon",
+        "hp": 72000,
+        "exp": 34780,
+        "resist": {
+          "physical": 10,
+          "energy": -10,
+          "earth": -15,
+          "fire": 30,
+          "ice": 5,
+          "holy": 0,
+          "death": 20
+        },
+        "threat": {
+          "physical": 1861.5,
+          "fire": 916.5,
+          "holy": 594
+        }
+      },
+      {
+        "key": "radiant_warden",
+        "name": "Radiant Warden",
+        "hp": 77000,
+        "exp": 35540,
+        "resist": {
+          "physical": 10,
+          "energy": -10,
+          "earth": -5,
+          "fire": 30,
+          "ice": 10,
+          "holy": -10,
+          "death": 20
+        },
+        "threat": {
+          "physical": 800,
+          "energy": 399,
+          "fire": 990,
+          "ice": 472,
+          "holy": 780
+        }
+      }
+    ],
+    "boss": {
+      "key": "radiant_warden",
+      "name": "Radiant Warden",
+      "hp": 77000,
+      "exp": 35540,
+      "resist": {
+        "physical": 10,
+        "energy": -10,
+        "earth": -5,
+        "fire": 30,
+        "ice": 10,
+        "holy": -10,
+        "death": 20
+      },
+      "threat": {
+        "physical": 800,
+        "energy": 399,
+        "fire": 990,
+        "ice": 472,
+        "holy": 780
+      }
+    },
+    "avgExp": 34427,
+    "avgHp": 72733,
+    "xpPerClear": 1879037,
+    "hpPerClear": 4013133,
+    "goldPerClear": 116522,
+    "xpMin": 1802770,
+    "xpMax": 1936930,
+    "avail": "test"
+  },
+  {
+    "id": "radiant-ascendancy",
+    "name": "Radiant Ascendancy",
+    "minLevel": 2000,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "radiant_inquisitor",
+        "name": "Radiant Inquisitor",
+        "hp": 69600,
+        "exp": 32460,
+        "resist": {
+          "physical": -10,
+          "energy": 20,
+          "earth": 5,
+          "fire": -5,
+          "ice": -10,
+          "holy": 25,
+          "death": -5
+        },
+        "threat": {
+          "physical": 662.5,
+          "energy": 993,
+          "holy": 1716.5
+        }
+      },
+      {
+        "key": "radiant_templar",
+        "name": "Radiant Templar",
+        "hp": 74000,
+        "exp": 34520,
+        "resist": {
+          "physical": 5,
+          "energy": 20,
+          "earth": 5,
+          "fire": -10,
+          "ice": -10,
+          "holy": 25,
+          "death": -5
+        },
+        "threat": {
+          "physical": 1174,
+          "energy": 585,
+          "holy": 1185,
+          "death": 472
+        }
+      },
+      {
+        "key": "radiant_zealot",
+        "name": "Radiant Zealot",
+        "hp": 73000,
+        "exp": 35210,
+        "resist": {
+          "physical": -15,
+          "energy": 40,
+          "earth": 10,
+          "fire": -5,
+          "ice": -5,
+          "holy": 20,
+          "death": -10
+        },
+        "threat": {
+          "physical": 825,
+          "energy": 585,
+          "holy": 1185,
+          "death": 472
+        }
+      }
+    ],
+    "boss": {
+      "key": "radiant_templar",
+      "name": "Radiant Templar",
+      "hp": 74000,
+      "exp": 34520,
+      "resist": {
+        "physical": 5,
+        "energy": 20,
+        "earth": 5,
+        "fire": -10,
+        "ice": -10,
+        "holy": 25,
+        "death": -5
+      },
+      "threat": {
+        "physical": 1174,
+        "energy": 585,
+        "holy": 1185,
+        "death": 472
+      }
+    },
+    "avgExp": 34063,
+    "avgHp": 72200,
+    "xpPerClear": 1857593,
+    "hpPerClear": 3976400,
+    "goldPerClear": 116513,
+    "xpMin": 1774220,
+    "xpMax": 1917220,
+    "avail": "test"
+  },
+  {
+    "id": "radiant-skyhold-devoted",
+    "name": "Devoted Radiant Skyhold",
+    "minLevel": 2500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "devoted_radiant_acolyte",
+        "name": "Devoted Radiant Acolyte",
+        "hp": 79580,
+        "exp": 47830,
+        "resist": {},
+        "threat": {
+          "physical": 1898.5,
+          "ice": 2785,
+          "holy": 679.2
+        }
+      },
+      {
+        "key": "devoted_radiant_paragon",
+        "name": "Devoted Radiant Paragon",
+        "hp": 82800,
+        "exp": 50560,
+        "resist": {},
+        "threat": {
+          "physical": 2865.3,
+          "fire": 1489.5,
+          "holy": 951
+        }
+      },
+      {
+        "key": "devoted_radiant_warden",
+        "name": "Devoted Radiant Warden",
+        "hp": 88550,
+        "exp": 51280,
+        "resist": {},
+        "threat": {
+          "physical": 1112.5,
+          "energy": 656.8,
+          "fire": 1597.3,
+          "ice": 764.1,
+          "holy": 1264.5
+        }
+      }
+    ],
+    "boss": {
+      "key": "devoted_radiant_warden",
+      "name": "Devoted Radiant Warden",
+      "hp": 88550,
+      "exp": 51280,
+      "resist": {},
+      "threat": {
+        "physical": 1112.5,
+        "energy": 656.8,
+        "fire": 1597.3,
+        "ice": 764.1,
+        "holy": 1264.5
+      }
+    },
+    "avgExp": 49890,
+    "avgHp": 83643,
+    "xpPerClear": 2722480,
+    "hpPerClear": 4615103,
+    "goldPerClear": 156661,
+    "xpMin": 2615360,
+    "xpMax": 2794760,
+    "avail": "test"
+  },
+  {
+    "id": "radiant-ascendancy-devoted",
+    "name": "Devoted Radiant Ascendancy",
+    "minLevel": 2500,
+    "packBase": 4,
+    "monsters": [
+      {
+        "key": "devoted_radiant_inquisitor",
+        "name": "Devoted Radiant Inquisitor",
+        "hp": 80040,
+        "exp": 47030,
+        "resist": {
+          "physical": -10,
+          "energy": 25,
+          "earth": 10,
+          "fire": -5,
+          "ice": -5,
+          "holy": 25,
+          "death": -10
+        },
+        "threat": {
+          "physical": 912.5,
+          "energy": 1607.8,
+          "holy": 2785.5
+        }
+      },
+      {
+        "key": "devoted_radiant_templar",
+        "name": "Devoted Radiant Templar",
+        "hp": 85100,
+        "exp": 49910,
+        "resist": {
+          "physical": 5,
+          "energy": 20,
+          "earth": 5,
+          "fire": -10,
+          "ice": -10,
+          "holy": 25,
+          "death": -5
+        },
+        "threat": {
+          "physical": 1731.8,
+          "energy": 936,
+          "holy": 1925.8,
+          "death": 764.1
+        }
+      },
+      {
+        "key": "devoted_radiant_zealot",
+        "name": "Devoted Radiant Zealot",
+        "hp": 83960,
+        "exp": 50500,
+        "resist": {
+          "physical": -15,
+          "energy": 40,
+          "earth": 10,
+          "fire": -5,
+          "ice": -5,
+          "holy": 20,
+          "death": -10
+        },
+        "threat": {
+          "physical": 1175,
+          "energy": 936,
+          "holy": 1925.8,
+          "death": 764.1
+        }
+      }
+    ],
+    "boss": {
+      "key": "devoted_radiant_templar",
+      "name": "Devoted Radiant Templar",
+      "hp": 85100,
+      "exp": 49910,
+      "resist": {
+        "physical": 5,
+        "energy": 20,
+        "earth": 5,
+        "fire": -10,
+        "ice": -10,
+        "holy": 25,
+        "death": -5
+      },
+      "threat": {
+        "physical": 1731.8,
+        "energy": 936,
+        "holy": 1925.8,
+        "death": 764.1
+      }
+    },
+    "avgExp": 49147,
+    "avgHp": 83033,
+    "xpPerClear": 2680402,
+    "hpPerClear": 4573033,
+    "goldPerClear": 156640,
+    "xpMin": 2570335,
+    "xpMax": 2750775,
+    "avail": "test"
   }
 ]
