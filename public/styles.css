@@ -608,6 +608,10 @@ button.gold:hover{background:var(--torch-hi);border-color:var(--torch-hi)}
 .dbar{display:flex;height:8px;border-radius:3px;overflow:hidden;gap:2px;background:var(--sunken)}
 .dseg{display:block;min-width:3px;background:var(--c);flex-grow:0;flex-shrink:1}
 .dchips{display:flex;gap:5px;flex-wrap:wrap}
+.boss-hit{display:flex;flex-direction:column;gap:7px}
+.boss-hit .el b.up{color:var(--good);opacity:1}
+.boss-hit .el b.down{color:var(--bad);opacity:1}
+.boss-hit .el.best{box-shadow:inset 0 0 0 1px currentColor}
 .boss-editor{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:9px;margin-top:auto}
 .ed-hint{font-size:11px;color:var(--dim)}
 .ed-chips{display:flex;flex-wrap:wrap;gap:5px}

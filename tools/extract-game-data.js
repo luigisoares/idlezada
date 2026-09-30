@@ -565,6 +565,15 @@ function main(src) {
   }
   if (bossSemLoot.length) console.log(`  ! boss sem loot no bundle: ${bossSemLoot.join(', ')}`);
 
+  /* RESIST DOS BOSSES: o card mostra "com que elemento bater". Vale pra todo boss,
+     world boss incluso -- a resist vem do monstro que ele e' (bossKeys), nao do HP. */
+  const bossSemResist = [];
+  for (const b of bosses) {
+    const m = monsters[bossKeys[b.id] || b.id];
+    if (m) b.resist = m.resist; else bossSemResist.push(b.id);
+  }
+  if (bossSemResist.length) console.log(`  ! boss sem resist no bundle: ${bossSemResist.join(', ')}`);
+
   /* so os precos dos itens alcancaveis: os outros nunca cairiam na tela */
   const reachable = new Set();
   for (const rows of Object.values(lootPub)) for (const r of rows) reachable.add(r[0]);

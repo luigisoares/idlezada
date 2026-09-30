@@ -98,5 +98,17 @@ console.log('== sem loot.js a aba continua de pe ==');
   ok(!r5.html().includes('loot-toggle'), 'e sem botao de loot quebrado');
 }
 
+console.log('== todo card diz com que elemento bater ==');
+{
+  ok(B.every(b => b.resist), 'todo boss tem resist no dado');
+  ok((r.html().match(/class="boss-hit"/g) || []).length === B.length, 'todo card tem o "Hit it with"');
+  const cardOf = id => { const c = r.html().split('class="boss"').find(c => c.includes(`data-fav="${id}"`)); return c.slice(c.indexOf('boss-hit')); };
+  /* Black Vixen: ice -40, o resto 50 -> ice sozinho no topo, destacado */
+  ok(/el-ice best[^>]*>ice <b class="up">140%/.test(cardOf('black_vixen')), 'Black Vixen: ice 140% destacado');
+  /* Abyssador: physical, earth e holy empatam em 100% -> tres chips, nenhum destaque */
+  const ab = cardOf('abyssador');
+  ok(['physical','earth','holy'].every(el => ab.includes(`el-${el}"`)) && !ab.includes(' best'), 'Abyssador: empate sem destaque');
+}
+
 console.log(`\n${pass} ok, ${fail} falha(s)`);
 process.exit(fail ? 1 : 0);
