@@ -30,7 +30,15 @@
     "lookType": 495,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/495.png?v=5",
-    "expReal": 1000000
+    "expReal": 1000000,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 0,
+      "death": 15
+    }
   },
   {
     "id": "ahau",
@@ -63,7 +71,14 @@
     "lookType": 1591,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1591.png?v=5",
-    "expReal": 89250
+    "expReal": 89250,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "fire": 5,
+      "ice": 0,
+      "holy": 0
+    }
   },
   {
     "id": "alptramun",
@@ -96,7 +111,15 @@
     "lookType": 1143,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1143.png?v=5",
-    "expReal": 279750
+    "expReal": 279750,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 0,
+      "fire": 0,
+      "ice": 20,
+      "holy": 0
+    }
   },
   {
     "id": "amenef_the_burning",
@@ -129,7 +152,16 @@
     "lookType": 541,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/541.png?v=5",
-    "expReal": 132000
+    "expReal": 132000,
+    "resist": {
+      "physical": 0,
+      "energy": 10,
+      "earth": 0,
+      "fire": 15,
+      "ice": -20,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "anomaly",
@@ -158,7 +190,16 @@
     "lookType": 876,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/876.png?v=5",
-    "expReal": 292500
+    "expReal": 292500,
+    "resist": {
+      "physical": -20,
+      "energy": -20,
+      "earth": 20,
+      "fire": -20,
+      "ice": 0,
+      "holy": -20,
+      "death": 0
+    }
   },
   {
     "id": "arbaziloth",
@@ -191,7 +232,16 @@
     "lookType": 1802,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1802.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 30,
+      "energy": 0,
+      "earth": 0,
+      "fire": 15,
+      "ice": 20,
+      "holy": 0,
+      "death": 20
+    }
   },
   {
     "id": "bakragore",
@@ -228,7 +278,16 @@
     "lookType": 1671,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1671.png?v=5",
-    "expReal": 18750000
+    "expReal": 18750000,
+    "resist": {
+      "physical": 15,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 15,
+      "death": 15
+    }
   },
   {
     "id": "black_vixen",
@@ -257,7 +316,16 @@
     "lookType": 1038,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1038.png?v=5",
-    "expReal": 42750
+    "expReal": 42750,
+    "resist": {
+      "physical": 50,
+      "energy": 50,
+      "earth": 50,
+      "fire": 50,
+      "ice": -40,
+      "holy": 50,
+      "death": 50
+    }
   },
   {
     "id": "bloodback",
@@ -286,7 +354,16 @@
     "lookType": 1039,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1039.png?v=5",
-    "expReal": 55500
+    "expReal": 55500,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "earth": 40,
+      "fire": -5,
+      "ice": 0,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "bonelords_phylactery",
@@ -319,7 +396,16 @@
     "lookType": 0,
     "imgKind": "object",
     "img": "https://baiakidle.com/api/things/object/52466.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "brain_head",
@@ -344,7 +430,16 @@
     "lookType": 0,
     "imgKind": "object",
     "img": "https://baiakidle.com/api/things/object/32418.png?v=5",
-    "expReal": 34500
+    "expReal": 34500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": -30,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "brokul",
@@ -383,7 +478,13 @@
     "lookType": 1076,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1076.png?v=5",
-    "expReal": 57500
+    "expReal": 57500,
+    "resist": {
+      "physical": 0,
+      "energy": -15,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "chagorz",
@@ -416,7 +517,16 @@
     "lookType": 1666,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1666.png?v=5",
-    "expReal": 4062500
+    "expReal": 4062500,
+    "resist": {
+      "physical": 15,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 15,
+      "death": 15
+    }
   },
   {
     "id": "count_vlarkorth",
@@ -449,7 +559,16 @@
     "lookType": 1221,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5",
-    "expReal": 233250
+    "expReal": 233250,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 0,
+      "fire": 5,
+      "ice": 0,
+      "holy": 0,
+      "death": -10
+    }
   },
   {
     "id": "court_warlock",
@@ -486,7 +605,16 @@
     "lookType": 1903,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1903.png?v=5",
-    "expReal": 367500
+    "expReal": 367500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "darkfang",
@@ -515,7 +643,16 @@
     "lookType": 308,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/308.png?v=5",
-    "expReal": 51000
+    "expReal": 51000,
+    "resist": {
+      "physical": 0,
+      "energy": 20,
+      "earth": 70,
+      "fire": -5,
+      "ice": 10,
+      "holy": 0,
+      "death": 70
+    }
   },
   {
     "id": "deathstrike",
@@ -544,7 +681,15 @@
     "lookType": 500,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/500.png?v=5",
-    "expReal": 100000
+    "expReal": 100000,
+    "resist": {
+      "physical": 25,
+      "energy": 40,
+      "fire": 50,
+      "ice": 40,
+      "holy": 20,
+      "death": 40
+    }
   },
   {
     "id": "dragon_pack",
@@ -577,7 +722,16 @@
     "lookType": 1712,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1712.png?v=5",
-    "expReal": 178500
+    "expReal": 178500,
+    "resist": {
+      "physical": 0,
+      "energy": -10,
+      "earth": -10,
+      "fire": 0,
+      "ice": 0,
+      "holy": -10,
+      "death": 0
+    }
   },
   {
     "id": "dragonking_zyrtarch",
@@ -606,7 +760,10 @@
     "lookType": 938,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/938.png?v=5",
-    "expReal": 170250
+    "expReal": 170250,
+    "resist": {
+      "fire": 100
+    }
   },
   {
     "id": "drume",
@@ -647,7 +804,15 @@
     "lookType": 1317,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1317.png?v=5",
-    "expReal": 182250
+    "expReal": 182250,
+    "resist": {
+      "physical": 35,
+      "energy": -20,
+      "fire": 0,
+      "ice": 0,
+      "holy": -20,
+      "death": 50
+    }
   },
   {
     "id": "duke_krule",
@@ -676,7 +841,16 @@
     "lookType": 1221,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1221.png?v=5",
-    "expReal": 237750
+    "expReal": 237750,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 20,
+      "fire": -15,
+      "ice": 0,
+      "holy": 0,
+      "death": 40
+    }
   },
   {
     "id": "earl_osam",
@@ -709,7 +883,16 @@
     "lookType": 1223,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5",
-    "expReal": 255000
+    "expReal": 255000,
+    "resist": {
+      "physical": 0,
+      "energy": -5,
+      "earth": 50,
+      "fire": -10,
+      "ice": 50,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "eldritch_dragon_lord",
@@ -742,7 +925,15 @@
     "lookType": 1879,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1879.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "eradicator",
@@ -775,7 +966,16 @@
     "lookType": 875,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
-    "expReal": 314250
+    "expReal": 314250,
+    "resist": {
+      "physical": 50,
+      "energy": 50,
+      "earth": 50,
+      "fire": 50,
+      "ice": 50,
+      "holy": 50,
+      "death": 0
+    }
   },
   {
     "id": "faceless_bane",
@@ -812,7 +1012,16 @@
     "lookType": 1119,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1119.png?v=5",
-    "expReal": 199500
+    "expReal": 199500,
+    "resist": {
+      "physical": 50,
+      "energy": 0,
+      "earth": 0,
+      "fire": -20,
+      "ice": 0,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "fatal_bug",
@@ -841,7 +1050,16 @@
     "lookType": 79,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/79.png?v=5",
-    "expReal": 1670000
+    "expReal": 1670000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "ferumbras_mortal_shell",
@@ -874,7 +1092,16 @@
     "lookType": 229,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/229.png?v=5",
-    "expReal": 2500000
+    "expReal": 2500000,
+    "resist": {
+      "physical": 0,
+      "energy": 65,
+      "earth": 65,
+      "fire": 65,
+      "ice": 65,
+      "holy": 65,
+      "death": 65
+    }
   },
   {
     "id": "foreshock",
@@ -907,7 +1134,12 @@
     "lookType": 875,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
-    "expReal": 195000
+    "expReal": 195000,
+    "resist": {
+      "physical": 0,
+      "energy": -20,
+      "ice": -20
+    }
   },
   {
     "id": "ghulosh",
@@ -932,7 +1164,16 @@
     "lookType": 1062,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
-    "expReal": 112500
+    "expReal": 112500,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": -5,
+      "fire": 0,
+      "ice": 20,
+      "holy": -5,
+      "death": 10
+    }
   },
   {
     "id": "gnomevil",
@@ -961,7 +1202,14 @@
     "lookType": 504,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/504.png?v=5",
-    "expReal": 1000000
+    "expReal": 1000000,
+    "resist": {
+      "physical": 10,
+      "fire": 50,
+      "ice": 50,
+      "holy": 50,
+      "death": 27
+    }
   },
   {
     "id": "gorzindel",
@@ -990,7 +1238,16 @@
     "lookType": 1062,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
-    "expReal": 360750
+    "expReal": 360750,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_cruelty",
@@ -1023,7 +1280,16 @@
     "lookType": 1303,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1303.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_greed",
@@ -1060,7 +1326,16 @@
     "lookType": 1304,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1304.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_hatred",
@@ -1093,7 +1368,16 @@
     "lookType": 1307,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1307.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_malice",
@@ -1122,7 +1406,16 @@
     "lookType": 1306,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1306.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_megalomania",
@@ -1155,7 +1448,16 @@
     "lookType": 1308,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1308.png?v=5",
-    "expReal": 2500000
+    "expReal": 2500000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "goshnars_spite",
@@ -1188,7 +1490,16 @@
     "lookType": 1305,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1305.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "oberon",
@@ -1228,7 +1539,16 @@
     "lookType": 1072,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1072.png?v=5",
-    "expReal": 50000
+    "expReal": 50000,
+    "resist": {
+      "physical": 10,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": -20,
+      "death": 50
+    }
   },
   {
     "id": "ice_horror",
@@ -1257,7 +1577,15 @@
     "lookType": 1881,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1881.png?v=5",
-    "expReal": 647500
+    "expReal": 647500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "ichgahal",
@@ -1286,7 +1614,16 @@
     "lookType": 1665,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1665.png?v=5",
-    "expReal": 4062500
+    "expReal": 4062500,
+    "resist": {
+      "physical": 15,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 15,
+      "death": 15
+    }
   },
   {
     "id": "irgix_the_flimsy",
@@ -1323,7 +1660,15 @@
     "lookType": 1268,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
-    "expReal": 119250
+    "expReal": 119250,
+    "resist": {
+      "physical": 50,
+      "earth": 80,
+      "fire": 50,
+      "ice": 50,
+      "holy": 50,
+      "death": 50
+    }
   },
   {
     "id": "jaul",
@@ -1364,7 +1709,13 @@
     "lookType": 444,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/444.png?v=5",
-    "expReal": 207750
+    "expReal": 207750,
+    "resist": {
+      "physical": 0,
+      "energy": 1,
+      "holy": 0,
+      "death": 15
+    }
   },
   {
     "id": "king_zelos",
@@ -1397,7 +1748,16 @@
     "lookType": 1224,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1224.png?v=5",
-    "expReal": 394500
+    "expReal": 394500,
+    "resist": {
+      "physical": 10,
+      "energy": 3,
+      "earth": 0,
+      "fire": 5,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "kusuma",
@@ -1434,7 +1794,16 @@
     "lookType": 1068,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
-    "expReal": 153000
+    "expReal": 153000,
+    "resist": {
+      "physical": 50,
+      "energy": 50,
+      "earth": 50,
+      "fire": 50,
+      "ice": 50,
+      "holy": 50,
+      "death": 40
+    }
   },
   {
     "id": "lady_tenebris",
@@ -1463,7 +1832,16 @@
     "lookType": 433,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/433.png?v=5",
-    "expReal": 225000
+    "expReal": 225000,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 20,
+      "fire": 5,
+      "ice": 15,
+      "holy": 1,
+      "death": 60
+    }
   },
   {
     "id": "leiden",
@@ -1488,7 +1866,16 @@
     "lookType": 988,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/988.png?v=5",
-    "expReal": 127500
+    "expReal": 127500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "lloyd",
@@ -1517,7 +1904,16 @@
     "lookType": 940,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/940.png?v=5",
-    "expReal": 174000
+    "expReal": 174000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 5,
+      "ice": 0,
+      "holy": 10,
+      "death": 50
+    }
   },
   {
     "id": "lokathmor",
@@ -1550,7 +1946,16 @@
     "lookType": 1062,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
-    "expReal": 250000
+    "expReal": 250000,
+    "resist": {
+      "physical": 0,
+      "energy": -5,
+      "earth": -15,
+      "fire": 30,
+      "ice": 10,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "lord_azaram",
@@ -1579,7 +1984,15 @@
     "lookType": 1223,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1223.png?v=5",
-    "expReal": 258750
+    "expReal": 258750,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "fire": -10,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "lord_retro",
@@ -1612,7 +2025,16 @@
     "lookType": 1469,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1469.png?v=5",
-    "expReal": 212250
+    "expReal": 212250,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "magma_bubble",
@@ -1641,7 +2063,15 @@
     "lookType": 1413,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1413.png?v=5",
-    "expReal": 297000
+    "expReal": 297000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "maior_domus",
@@ -1674,7 +2104,16 @@
     "lookType": 1959,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1959.png?v=5",
-    "expReal": 20000000
+    "expReal": 20000000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "mazzinor",
@@ -1711,7 +2150,16 @@
     "lookType": 1062,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1062.png?v=5",
-    "expReal": 250000
+    "expReal": 250000,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "megasylvan_yselda",
@@ -1744,7 +2192,16 @@
     "lookType": 0,
     "imgKind": "object",
     "img": "https://baiakidle.com/api/things/object/36928.png?v=5",
-    "expReal": 140250
+    "expReal": 140250,
+    "resist": {
+      "physical": 85,
+      "energy": 80,
+      "earth": 90,
+      "fire": 60,
+      "ice": 90,
+      "holy": 0,
+      "death": 70
+    }
   },
   {
     "id": "mimar_haffar",
@@ -1773,7 +2230,16 @@
     "lookType": 1953,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1953.png?v=5",
-    "expReal": 20000000
+    "expReal": 20000000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "mitmah_vanguard",
@@ -1810,7 +2276,14 @@
     "lookType": 1716,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1716.png?v=5",
-    "expReal": 750000
+    "expReal": 750000,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "fire": 5,
+      "ice": 0,
+      "holy": 0
+    }
   },
   {
     "id": "mounted_thorn_knight",
@@ -1839,7 +2312,15 @@
     "lookType": 512,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/512.png?v=5",
-    "expReal": 191250
+    "expReal": 191250,
+    "resist": {
+      "physical": 0,
+      "energy": 50,
+      "fire": 0,
+      "ice": 40,
+      "holy": 0,
+      "death": -100
+    }
   },
   {
     "id": "murcion",
@@ -1876,7 +2357,16 @@
     "lookType": 1664,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1664.png?v=5",
-    "expReal": 4062500
+    "expReal": 4062500,
+    "resist": {
+      "physical": 15,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 15,
+      "death": 15
+    }
   },
   {
     "id": "neferi_the_spy",
@@ -1909,7 +2399,16 @@
     "lookType": 149,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/149.png?v=5",
-    "expReal": 114750
+    "expReal": 114750,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": -10,
+      "holy": 0,
+      "death": 20
+    }
   },
   {
     "id": "obujos",
@@ -1946,7 +2445,15 @@
     "lookType": 445,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/445.png?v=5",
-    "expReal": 157500
+    "expReal": 157500,
+    "resist": {
+      "physical": 25,
+      "energy": 15,
+      "fire": 60,
+      "ice": 20,
+      "holy": 0,
+      "death": 60
+    }
   },
   {
     "id": "outburst",
@@ -1979,7 +2486,16 @@
     "lookType": 876,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/876.png?v=5",
-    "expReal": 318000
+    "expReal": 318000,
+    "resist": {
+      "physical": 0,
+      "energy": -10,
+      "earth": 0,
+      "fire": -10,
+      "ice": 0,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "phosphorus",
@@ -2020,7 +2536,16 @@
     "lookType": 1955,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1955.png?v=5",
-    "expReal": 25000000
+    "expReal": 25000000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "plagirath",
@@ -2053,7 +2578,14 @@
     "lookType": 862,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/862.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": -10,
+      "fire": -25,
+      "ice": 10,
+      "holy": 0
+    }
   },
   {
     "id": "prince_drazzak",
@@ -2078,7 +2610,16 @@
     "lookType": 12,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/12.png?v=5",
-    "expReal": 525000
+    "expReal": 525000,
+    "resist": {
+      "physical": 35,
+      "energy": 35,
+      "earth": 35,
+      "fire": 35,
+      "ice": 35,
+      "holy": 35,
+      "death": 35
+    }
   },
   {
     "id": "ragiaz",
@@ -2107,7 +2648,16 @@
     "lookType": 862,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/862.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 90,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "rakesh_moonfang",
@@ -2140,7 +2690,16 @@
     "lookType": 1648,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1648.png?v=5",
-    "expReal": 137500
+    "expReal": 137500,
+    "resist": {
+      "physical": 0,
+      "energy": 20,
+      "earth": -25,
+      "fire": -15,
+      "ice": 20,
+      "holy": 0,
+      "death": -10
+    }
   },
   {
     "id": "ratmiral",
@@ -2171,7 +2730,16 @@
     "lookType": 1377,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1377.png?v=5",
-    "expReal": 125000
+    "expReal": 125000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "razzagorn",
@@ -2208,7 +2776,16 @@
     "lookType": 842,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 40,
+      "ice": 0,
+      "holy": 10,
+      "death": 0
+    }
   },
   {
     "id": "rupture",
@@ -2241,7 +2818,16 @@
     "lookType": 875,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
-    "expReal": 280000
+    "expReal": 280000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "scarlett",
@@ -2278,7 +2864,16 @@
     "lookType": 1201,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1201.png?v=5",
-    "expReal": 50000
+    "expReal": 50000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "shadowpelt",
@@ -2307,7 +2902,16 @@
     "lookType": 1040,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1040.png?v=5",
-    "expReal": 30000
+    "expReal": 30000,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "earth": 40,
+      "fire": -5,
+      "ice": 10,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "sharpclaw",
@@ -2336,7 +2940,16 @@
     "lookType": 1031,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1031.png?v=5",
-    "expReal": 47250
+    "expReal": 47250,
+    "resist": {
+      "physical": 0,
+      "energy": 10,
+      "earth": 50,
+      "fire": -5,
+      "ice": 10,
+      "holy": 0,
+      "death": 20
+    }
   },
   {
     "id": "shulgrax",
@@ -2369,7 +2982,16 @@
     "lookType": 842,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": -10,
+      "earth": 0,
+      "fire": -10,
+      "ice": 10,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "sir_nictros",
@@ -2398,7 +3020,15 @@
     "lookType": 1222,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1222.png?v=5",
-    "expReal": 204000
+    "expReal": 204000,
+    "resist": {
+      "physical": 0,
+      "energy": 5,
+      "earth": 80,
+      "fire": -10,
+      "ice": 35,
+      "holy": -10
+    }
   },
   {
     "id": "sister_hetai",
@@ -2431,7 +3061,16 @@
     "lookType": 1199,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1199.png?v=5",
-    "expReal": 123000
+    "expReal": 123000,
+    "resist": {
+      "physical": 5,
+      "energy": 15,
+      "earth": 0,
+      "fire": 10,
+      "ice": -25,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "solid_frozen_horror",
@@ -2456,7 +3095,12 @@
     "lookType": 261,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/261.png?v=5",
-    "expReal": 161250
+    "expReal": 161250,
+    "resist": {
+      "energy": -5,
+      "fire": -15,
+      "ice": 100
+    }
   },
   {
     "id": "tanjis",
@@ -2493,7 +3137,14 @@
     "lookType": 446,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/446.png?v=5",
-    "expReal": 148500
+    "expReal": 148500,
+    "resist": {
+      "physical": -1,
+      "energy": 10,
+      "earth": -5,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "tarbaz",
@@ -2526,7 +3177,16 @@
     "lookType": 842,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/842.png?v=5",
-    "expReal": 1250000
+    "expReal": 1250000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_baron_from_below",
@@ -2559,7 +3219,15 @@
     "lookType": 1045,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1045.png?v=5",
-    "expReal": 229500
+    "expReal": 229500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_blazing_rose",
@@ -2588,7 +3256,15 @@
     "lookType": 1068,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
-    "expReal": 81000
+    "expReal": 81000,
+    "resist": {
+      "physical": 0,
+      "energy": 20,
+      "earth": 20,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_brainstealer",
@@ -2617,7 +3293,16 @@
     "lookType": 1412,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1412.png?v=5",
-    "expReal": 242250
+    "expReal": 242250,
+    "resist": {
+      "physical": 10,
+      "energy": 3,
+      "earth": 0,
+      "fire": 5,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_count_of_the_core",
@@ -2646,7 +3331,16 @@
     "lookType": 1046,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1046.png?v=5",
-    "expReal": 750000
+    "expReal": 750000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 25,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_diamond_blossom",
@@ -2675,7 +3369,16 @@
     "lookType": 1068,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
-    "expReal": 106500
+    "expReal": 106500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "the_dread_maiden",
@@ -2704,7 +3407,16 @@
     "lookType": 1278,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1278.png?v=5",
-    "expReal": 220500
+    "expReal": 220500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": -10,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_duke_of_the_depths",
@@ -2733,7 +3445,16 @@
     "lookType": 1047,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1047.png?v=5",
-    "expReal": 750000
+    "expReal": 750000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_fear_feaster",
@@ -2770,7 +3491,16 @@
     "lookType": 1276,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1276.png?v=5",
-    "expReal": 263250
+    "expReal": 263250,
+    "resist": {
+      "physical": -10,
+      "energy": -10,
+      "earth": 20,
+      "fire": -10,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_gravedigger",
@@ -2803,7 +3533,16 @@
     "lookType": 1880,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1880.png?v=5",
-    "expReal": 1875000
+    "expReal": 1875000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_last_lore_keeper",
@@ -2840,7 +3579,16 @@
     "lookType": 939,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/939.png?v=5",
-    "expReal": 112500
+    "expReal": 112500,
+    "resist": {
+      "physical": 20,
+      "energy": 20,
+      "earth": 20,
+      "fire": 20,
+      "ice": 20,
+      "holy": 20,
+      "death": 20
+    }
   },
   {
     "id": "the_lily_of_night",
@@ -2869,7 +3617,15 @@
     "lookType": 1068,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
-    "expReal": 97500
+    "expReal": 97500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0
+    }
   },
   {
     "id": "the_monster",
@@ -2898,7 +3654,16 @@
     "lookType": 1600,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1600.png?v=5",
-    "expReal": 369000
+    "expReal": 369000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_moonsnow_magnolia",
@@ -2931,7 +3696,15 @@
     "lookType": 1068,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1068.png?v=5",
-    "expReal": 600000
+    "expReal": 600000,
+    "resist": {
+      "physical": 0,
+      "energy": -5,
+      "earth": -10,
+      "fire": -5,
+      "ice": 15,
+      "holy": 0
+    }
   },
   {
     "id": "nightmare_beast",
@@ -2960,7 +3733,16 @@
     "lookType": 1144,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1144.png?v=5",
-    "expReal": 187500
+    "expReal": 187500,
+    "resist": {
+      "physical": 20,
+      "energy": 0,
+      "earth": 0,
+      "fire": 35,
+      "ice": 0,
+      "holy": 15,
+      "death": 0
+    }
   },
   {
     "id": "the_pale_worm",
@@ -2997,7 +3779,16 @@
     "lookType": 1272,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1272.png?v=5",
-    "expReal": 309750
+    "expReal": 309750,
+    "resist": {
+      "physical": 5,
+      "energy": 5,
+      "earth": 5,
+      "fire": 5,
+      "ice": 5,
+      "holy": 5,
+      "death": 5
+    }
   },
   {
     "id": "the_primal_menace",
@@ -3038,7 +3829,15 @@
     "lookType": 1566,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1566.png?v=5",
-    "expReal": 288750
+    "expReal": 288750,
+    "resist": {
+      "physical": 0,
+      "energy": -5,
+      "fire": 5,
+      "ice": 50,
+      "holy": 40,
+      "death": 0
+    }
   },
   {
     "id": "the_rootkraken",
@@ -3071,7 +3870,16 @@
     "lookType": 1765,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1765.png?v=5",
-    "expReal": 1750000
+    "expReal": 1750000,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "earth": -10,
+      "fire": -15,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_scourge_of_oblivion",
@@ -3104,7 +3912,16 @@
     "lookType": 875,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
-    "expReal": 187500
+    "expReal": 187500,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "the_time_guardian",
@@ -3137,7 +3954,16 @@
     "lookType": 945,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/945.png?v=5",
-    "expReal": 125000
+    "expReal": 125000,
+    "resist": {
+      "physical": 0,
+      "energy": 80,
+      "earth": 80,
+      "fire": 80,
+      "ice": 80,
+      "holy": 80,
+      "death": 80
+    }
   },
   {
     "id": "the_unwelcome",
@@ -3174,7 +4000,16 @@
     "lookType": 1277,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1277.png?v=5",
-    "expReal": 267750
+    "expReal": 267750,
+    "resist": {
+      "physical": 40,
+      "energy": 40,
+      "earth": 40,
+      "fire": 40,
+      "ice": 40,
+      "holy": 40,
+      "death": 40
+    }
   },
   {
     "id": "timira_the_many_headed",
@@ -3211,7 +4046,16 @@
     "lookType": 1542,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1542.png?v=5",
-    "expReal": 216750
+    "expReal": 216750,
+    "resist": {
+      "physical": 0,
+      "energy": 10,
+      "earth": 0,
+      "fire": 10,
+      "ice": 10,
+      "holy": 0,
+      "death": 10
+    }
   },
   {
     "id": "unaz_the_mean",
@@ -3248,7 +4092,16 @@
     "lookType": 1268,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
-    "expReal": 135750
+    "expReal": 135750,
+    "resist": {
+      "physical": 50,
+      "energy": 50,
+      "earth": 0,
+      "fire": 0,
+      "ice": -10,
+      "holy": 0,
+      "death": 50
+    }
   },
   {
     "id": "urmahlullu_the_immaculate",
@@ -3281,7 +4134,15 @@
     "lookType": 1197,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1197.png?v=5",
-    "expReal": 356250
+    "expReal": 356250,
+    "resist": {
+      "physical": 0,
+      "energy": 40,
+      "earth": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "utua_stone_sting",
@@ -3314,7 +4175,16 @@
     "lookType": 398,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/398.png?v=5",
-    "expReal": 76500
+    "expReal": 76500,
+    "resist": {
+      "physical": 0,
+      "energy": 15,
+      "earth": 40,
+      "fire": 25,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "vemiath",
@@ -3351,7 +4221,16 @@
     "lookType": 1668,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1668.png?v=5",
-    "expReal": 4062500
+    "expReal": 4062500,
+    "resist": {
+      "physical": 15,
+      "energy": 15,
+      "earth": 15,
+      "fire": 15,
+      "ice": 15,
+      "holy": 15,
+      "death": 15
+    }
   },
   {
     "id": "vladrukh",
@@ -3384,7 +4263,16 @@
     "lookType": 1862,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1862.png?v=5",
-    "expReal": 1125000
+    "expReal": 1125000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "vok_the_freakish",
@@ -3421,7 +4309,15 @@
     "lookType": 1268,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/1268.png?v=5",
-    "expReal": 144750
+    "expReal": 144750,
+    "resist": {
+      "physical": 50,
+      "earth": 0,
+      "fire": 0,
+      "ice": -10,
+      "holy": 0,
+      "death": 0
+    }
   },
   {
     "id": "world_devourer",
@@ -3454,6 +4350,15 @@
     "lookType": 875,
     "imgKind": "outfit",
     "img": "https://baiakidle.com/api/things/outfit/875.png?v=5",
-    "expReal": 390000
+    "expReal": 390000,
+    "resist": {
+      "physical": 0,
+      "energy": 0,
+      "earth": 0,
+      "fire": 0,
+      "ice": 0,
+      "holy": 0,
+      "death": 0
+    }
   }
 ]
