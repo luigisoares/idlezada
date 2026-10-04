@@ -13892,7 +13892,7 @@
  "sopping_corpus": {
   "name": "Sopping Corpus",
   "hp": 33400,
-  "exp": 22465,
+  "exp": 67395,
   "armor": 112,
   "dmg": [
    0,
@@ -13948,7 +13948,7 @@
  "sopping_carcass": {
   "name": "Sopping Carcass",
   "hp": 33400,
-  "exp": 22465,
+  "exp": 67395,
   "armor": null,
   "dmg": [
    0,
@@ -14002,7 +14002,7 @@
  "rotten_man_maggot": {
   "name": "Rotten Man-Maggot",
   "hp": 31100,
-  "exp": 22625,
+  "exp": 72400,
   "armor": 110,
   "dmg": [
    0,
@@ -14065,7 +14065,7 @@
  "oozing_carcass": {
   "name": "Oozing Carcass",
   "hp": 27500,
-  "exp": 20980,
+  "exp": 67136,
   "armor": 102,
   "dmg": [
    0,
@@ -14128,7 +14128,7 @@
  "oozing_corpus": {
   "name": "Oozing Corpus",
   "hp": 28700,
-  "exp": 20600,
+  "exp": 61800,
   "armor": 107,
   "dmg": [
    0,
@@ -14184,7 +14184,7 @@
  "meandering_mushroom": {
   "name": "Meandering Mushroom",
   "hp": 29100,
-  "exp": 21980,
+  "exp": 70336,
   "armor": 115,
   "dmg": [
    0,
@@ -14247,7 +14247,7 @@
  "bloated_man_maggot": {
   "name": "Bloated Man-Maggot",
   "hp": 31700,
-  "exp": 21570,
+  "exp": 64710,
   "armor": 104,
   "dmg": [
    0,
@@ -14303,7 +14303,7 @@
  "bloodjaw": {
   "name": "Bloodjaw",
   "hp": 40000,
-  "exp": 20000,
+  "exp": 60000,
   "armor": 100,
   "dmg": [
    200,
@@ -14338,7 +14338,7 @@
  "mycobiontic_beetle": {
   "name": "Mycobiontic Beetle",
   "hp": 30200,
-  "exp": 21175,
+  "exp": 63525,
   "armor": 116,
   "dmg": [
    0,
@@ -14394,7 +14394,7 @@
  "darklight_construct": {
   "name": "Darklight Construct",
   "hp": 32200,
-  "exp": 22050,
+  "exp": 82026,
   "armor": 117,
   "dmg": [
    0,
@@ -14457,7 +14457,7 @@
  "darklight_emitter": {
   "name": "Darklight Emitter",
   "hp": 27500,
-  "exp": 20600,
+  "exp": 52530,
   "armor": 120,
   "dmg": [
    0,
@@ -14520,7 +14520,7 @@
  "darklight_matter": {
   "name": "Darklight Matter",
   "hp": 30150,
-  "exp": 22250,
+  "exp": 56737,
   "armor": 98,
   "dmg": [
    200,
@@ -14576,7 +14576,7 @@
  "darklight_source": {
   "name": "Darklight Source",
   "hp": 31550,
-  "exp": 22465,
+  "exp": 57286,
   "armor": 115,
   "dmg": [
    200,
@@ -14632,7 +14632,7 @@
  "darklight_striker": {
   "name": "Darklight Striker",
   "hp": 29700,
-  "exp": 22200,
+  "exp": 56610,
   "armor": 112,
   "dmg": [
    200,
@@ -14688,7 +14688,7 @@
  "walking_pillar": {
   "name": "Walking Pillar",
   "hp": 38000,
-  "exp": 24300,
+  "exp": 61965,
   "armor": 120,
   "dmg": [
    200,
@@ -14744,7 +14744,7 @@
  "wandering_pillar": {
   "name": "Wandering Pillar",
   "hp": 37000,
-  "exp": 23200,
+  "exp": 86304,
   "armor": 120,
   "dmg": [
    0,
@@ -14807,7 +14807,7 @@
  "converter": {
   "name": "Converter",
   "hp": 29600,
-  "exp": 21425,
+  "exp": 79701,
   "armor": 100,
   "dmg": [
    0,
@@ -20230,7 +20230,7 @@
  "radiant_acolyte": {
   "name": "Radiant Acolyte",
   "hp": 34600,
-  "exp": 32960,
+  "exp": 129203,
   "armor": 110,
   "dmg": [
    0,
@@ -20286,7 +20286,7 @@
  "radiant_paragon": {
   "name": "Radiant Paragon",
   "hp": 36000,
-  "exp": 34780,
+  "exp": 136338,
   "armor": 120,
   "dmg": [
    0,
@@ -20342,7 +20342,7 @@
  "radiant_warden": {
   "name": "Radiant Warden",
   "hp": 38500,
-  "exp": 35540,
+  "exp": 139317,
   "armor": 140,
   "dmg": [
    0,
@@ -20398,7 +20398,7 @@
  "radiant_inquisitor": {
   "name": "Radiant Inquisitor",
   "hp": 34800,
-  "exp": 32460,
+  "exp": 108741,
   "armor": 115,
   "dmg": [
    0,
@@ -20454,7 +20454,7 @@
  "radiant_templar": {
   "name": "Radiant Templar",
   "hp": 37000,
-  "exp": 34520,
+  "exp": 115642,
   "armor": 135,
   "dmg": [
    0,
@@ -20510,7 +20510,7 @@
  "radiant_zealot": {
   "name": "Radiant Zealot",
   "hp": 36500,
-  "exp": 35210,
+  "exp": 117954,
   "armor": 110,
   "dmg": [
    0,
@@ -20559,7 +20559,7 @@
  "devoted_radiant_acolyte": {
   "name": "Devoted Radiant Acolyte",
   "hp": 39790,
-  "exp": 47830,
+  "exp": 187494,
   "armor": 130,
   "dmg": [
    0,
@@ -20607,7 +20607,7 @@
  "devoted_radiant_paragon": {
   "name": "Devoted Radiant Paragon",
   "hp": 41400,
-  "exp": 50560,
+  "exp": 198195,
   "armor": 140,
   "dmg": [
    0,
@@ -20655,7 +20655,7 @@
  "devoted_radiant_warden": {
   "name": "Devoted Radiant Warden",
   "hp": 44275,
-  "exp": 51280,
+  "exp": 201018,
   "armor": 160,
   "dmg": [
    0,
@@ -20703,7 +20703,7 @@
  "devoted_radiant_inquisitor": {
   "name": "Devoted Radiant Inquisitor",
   "hp": 40020,
-  "exp": 47030,
+  "exp": 157551,
   "armor": 135,
   "dmg": [
    0,
@@ -20759,7 +20759,7 @@
  "devoted_radiant_templar": {
   "name": "Devoted Radiant Templar",
   "hp": 42550,
-  "exp": 49910,
+  "exp": 167199,
   "armor": 155,
   "dmg": [
    0,
@@ -20815,7 +20815,7 @@
  "devoted_radiant_zealot": {
   "name": "Devoted Radiant Zealot",
   "hp": 41980,
-  "exp": 50500,
+  "exp": 169175,
   "armor": 130,
   "dmg": [
    0,

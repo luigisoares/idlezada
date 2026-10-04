@@ -6,324 +6,264 @@
    O check-hunt-model.js prova a conta; este prova que a TELA usa a conta sem
    explodir. Sem jsdom: o stub abaixo implementa so o que public/hunts-view.js
    toca (getElementById, innerHTML, addEventListener, localStorage, closest) e
-   guarda os handlers, pra dar pra simular o clique que abre uma hunt.
+   guarda os handlers, pra dar pra simular clique, digitacao e change.
 
-   O que ele pega, e que `node --check` nao pega: variavel que nao existe, funcao
-   chamada antes de ser inicializada, campo que o modelo deixou de exportar, e o
-   HTML do plano vindo vazio.
+   A aba: a party vem da aba Builds (3 primeiros visiveis, um lider), o XP por
+   clear e' o da PARTY (soma das fatias), as hunts escolhidas viram colunas de um
+   comparativo, e o XP/h sai do tempo por clear que o jogador salva.
    ============================================================================ */
 'use strict';
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const PUB = path.join(__dirname, '..', 'public');
+const HUNTS = JSON.parse(fs.readFileSync(path.join(PUB, '..', 'data', 'hunts.json'), 'utf8'));
+const CHARMS = JSON.parse(fs.readFileSync(path.join(PUB, '..', 'data', 'charms.json'), 'utf8'));
 
 let fail = 0, pass = 0;
 function ok(cond, msg) { if (cond) pass++; else { fail++; console.log('  FAIL: ' + msg); } }
 
 /* ------------------------------------------------------------------ DOM stub */
 function makeEl(id) {
-  const el = {
-    id, innerHTML: '', textContent: '', value: '', hidden: true, checked: false,
+  return {
+    id, innerHTML: '', textContent: '', value: '', hidden: false, checked: false, disabled: false,
     dataset: {}, handlers: {},
     addEventListener(ev, fn) { (this.handlers[ev] = this.handlers[ev] || []).push(fn); },
     setAttribute(k, v) { this['attr_' + k] = v; },
     fire(ev, e) { for (const fn of this.handlers[ev] || []) fn(e || {}); },
   };
-  return el;
 }
-/* evento de clique com o `closest` que o handler espera */
+/* evento com o `closest` que o handler espera */
 const clickOn = (sel, node) => ({ target: { closest: s => (s === sel ? node : null) } });
 
+const IDS = ['hunts-table','hunt-chars','hunt-leader','hunt-vip','hunt-event','hunt-event-v','hunt-levelwrap',
+  'hunt-level','hunt-q','hunt-sug','hunt-compare','hunt-only','hunt-list-who','charm-cfg-toggle','charm-cfg','navtabs'];
 function run(opts) {
+  opts = opts || {};
   const store = Object.assign({}, opts.storage || {});
   const els = {};
-  const get = id => (els[id] = els[id] || makeEl(id));
-  ['hunts-table','hunt-level','hunt-chars','hunt-sort','hunt-rate','hunt-reco',
-   'hunt-dps','hunt-dpsinfo','charm-cfg-toggle','charm-cfg','navtabs','hunt-party',
-   'hunt-q','hunt-only','hunt-avatar','hunt-hit'].forEach(get);
-  els['hunt-level'].value = String(opts.level || 500);
-  els['hunt-sort'].value = 'xph';
-  els['hunt-dps'].value = '';
-
+  IDS.forEach(id => { els[id] = makeEl(id); });
+  els['hunt-level'].value = String(opts.level || 900);
+  els['hunt-vip'].checked = true; els['hunt-event'].checked = true;
+  els['charm-cfg'].hidden = true;
   const sandbox = {
-    console,
+    console, Date, Promise,
     window: {},
-    localStorage: {
-      getItem: k => (k in store ? store[k] : null),
-      setItem: (k, v) => { store[k] = String(v); },
-    },
+    localStorage: { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); } },
     document: { getElementById: id => els[id] || null },
   };
+  if (opts.fetch) sandbox.fetch = opts.fetch;
   sandbox.window.window = sandbox.window;
   sandbox.window.localStorage = sandbox.localStorage;
   sandbox.window.document = sandbox.document;
   vm.createContext(sandbox);
-  for (const f of ['trees.js', 'engine.js', 'hunts.js', 'charms.js', ...(opts.loot ? ['loot.js'] : []), 'hunt-model.js', 'hunts-view.js']) {
+  for (const f of ['trees.js', 'engine.js', 'xprates.js', 'hunts.js', 'charms.js', ...(opts.loot ? ['loot.js'] : []), 'hunt-model.js', 'hunts-view.js'])
     vm.runInContext(fs.readFileSync(path.join(PUB, f), 'utf8'), sandbox, { filename: f });
-  }
   return { els, store, win: sandbox.window };
 }
 
-/* um slot da aba Builds, que e' de onde a aba Hunts tira o personagem */
-const BUILDS = JSON.stringify({ slots: [
-  { label: 'EK', voc: 'knight', level: 500, obj: 'dps', element: 'ice', perks: [], forcePerks: false },
-] });
-const DPS_TEXT = 'Session\nEK\n120.000/s';
+/* a party que o jogador usa: tres de dano no lv1500 (nenhum pega XP% na arvore,
+   entao o bonus e' so o que o teste liga) + um quarto escondido na aba Builds */
+const slot = (label, voc, level, extra) => Object.assign({ label, voc, level, obj: 'dano', element: null, perks: [] }, extra || {});
+const TRIO = JSON.stringify({ slots: [
+  slot('Knight', 'knight', 1500), slot('Elder Druid', 'druid', 1500), slot('Master Sorcerer', 'sorcerer', 1500),
+  slot('Royal Paladin', 'paladin', 1500, { shown: false }) ] });
+const SOLO = JSON.stringify({ slots: [slot('Knight', 'knight', 1500)] });
+const B = r => r.els['hunts-table'].innerHTML;
+const C = r => r.els['hunt-compare'].innerHTML;
+const ids = html => [...html.matchAll(/class="ht-row[^"]*" data-hunt="([^"]+)"/g)].map(m => m[1]);
+const listXp = (html, id) => {
+  const i = html.indexOf(`data-hunt="${id}"`);
+  const m = html.slice(i).match(/class="num xpc" data-xp="(\d+)"/);
+  return m ? +m[1] : NaN;
+};
+const H = id => HUNTS.find(h => h.id === id);
+const pickEv = id => ({ target: { closest: s => (s === '[data-pick]' ? { dataset: { pick: id } } : null) } });
 
-console.log('== a aba carrega e desenha a tabela ==');
-let ctxRun;
+console.log('== a aba carrega: party da aba Builds, lista, comparativo vazio ==');
 {
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS } });
-  ctxRun = r;
-  ok(r.els['hunts-table'].innerHTML.includes('ht-row'), 'a tabela de hunts devia ter linhas');
-  ok(r.els['hunt-reco'].innerHTML.includes('reco-item'), 'o card de recomendacao devia listar hunts');
-  ok(r.els['hunt-rate'].textContent.includes('XP rate'), 'a linha de rate devia estar preenchida');
-  ok(r.els['hunt-chars'].innerHTML.includes('charpick'), 'o chip do personagem do slot devia aparecer');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO } });
+  ok(ids(B(r)).length === HUNTS.length, `a lista devia ter as ${HUNTS.length} hunts`);
+  const pc = r.els['hunt-chars'].innerHTML;
+  ok((pc.match(/class="pc[ "]/g) || []).length === 3, 'tres cartoes: o slot escondido na aba Builds nao aparece');
+  ok(!pc.includes('Royal Paladin'), 'o Paladin com shown:false fica de fora');
+  ok(pc.includes('lv 1,500'), 'o level e o da aba Builds');
+  ok(pc.includes('leader · 40%') && (pc.match(/30% of the XP/g) || []).length === 2, 'trio: lider 40%, os outros 30% cada');
+  ok(r.els['hunt-levelwrap'].hidden === true, 'com personagem, o campo de level some');
+  ok(r.els['hunt-leader'].innerHTML.includes('Elder Druid'), 'o seletor de lider lista a party');
+  ok(C(r).includes('hcmp-empty'), 'sem hunt escolhida, o comparativo diz como comecar');
+  ok(!B(r).includes('undefined') && !B(r).includes('NaN'), 'a lista nao tem undefined/NaN');
 }
 
-console.log('== o painel "meus charms" comeca recolhido e sabe o que falta ==');
+console.log('== sem personagem: a aba funciona com o level do campo ==');
 {
-  const t = ctxRun.els['charm-cfg-toggle'];
-  ok(t.innerHTML.includes('my charms'), 'o botao do painel devia estar rotulado');
-  ok(t.innerHTML.includes('all 24'), `default devia ser TODOS os charms (Low Blow e Carnage inclusive), veio: ${t.innerHTML}`);
-  ok(t.innerHTML.includes('25 slots'), 'default de slots devia ser 25 (Charm Expansion)');
-  ok(ctxRun.els['charm-cfg'].hidden === true, 'o painel devia comecar fechado');
-  ok(t.attr_ariaExpanded === undefined, 'aria-expanded e atributo, nao propriedade');
+  const r = run({ storage: {}, level: 900 });
+  ok(r.els['hunt-levelwrap'].hidden === false, 'sem personagem, o campo de level aparece');
+  ok(r.els['hunt-chars'].innerHTML.includes('Builds'), 'e o topo manda pra aba Builds');
+  ok(ids(B(r)).length === HUNTS.length, 'a lista continua inteira');
 }
 
-console.log('== abrir o painel desenha os chips e o seletor de slots ==');
+/* O que o jogador mediu in-game (03/10/2026, trio, VIP, evento de +25%): o XP DA
+   PARTY por clear. Bloated ~4.3M, Wandering Pillar ~5.3M, Infernal Demon ~2.2M.
+   Antes do multiplicador de XP das hunts de lv1500 o site dizia ~1.05M na Bloated.
+   A previsao tem que cair a menos de 10% de cada um. */
+console.log('== calibracao: XP da party por clear bate com o que o jogador viu ==');
 {
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS } });
-  r.els['charm-cfg-toggle'].fire('click');
-  const html = r.els['charm-cfg'].innerHTML;
-  ok(r.els['charm-cfg'].hidden === false, 'o clique devia abrir o painel');
-  ok(html.includes('data-charm="savage_blow"'), 'devia ter chip do Savage Blow');
-  ok(html.includes('data-slots="6"'), 'devia ter a opcao de 6 slots (VIP)');
-  const on = (html.match(/cchip on/g) || []).length;
-  ok(on === 24 + 1, `24 charms possuidos + 1 slot selecionado deviam estar marcados, vieram ${on}`);
-
-  /* desmarcar um charm persiste e re-renderiza */
-  r.els['charm-cfg'].fire('click', clickOn('button', { dataset: { charm: 'savage_blow' } }));
-  const saved = JSON.parse(r.store['idlezada.charmCfg.v2']);
-  ok(saved.owned.indexOf('savage_blow') < 0, 'desmarcar o Savage Blow devia sair do localStorage');
-  ok(r.els['charm-cfg-toggle'].innerHTML.includes('1 missing'), 'o contador do botao devia virar 1');
+  const extra = JSON.stringify({ 'knight|Knight': '25', 'druid|Elder Druid': '25', 'sorcerer|Master Sorcerer': '25' });
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO, 'idlezada.huntXpExtra.v1': extra } });
+  for (const [id, seen] of [['bloatedmanmaggot-cave', 4.3e6], ['wanderingpillar-cave', 5.3e6], ['infernalmdemon-cave', 2.2e6]]) {
+    const v = listXp(B(r), id);
+    ok(Math.abs(v / seen - 1) < 0.10, `${id}: previsao ${Math.round(v / 1e4) / 100}M devia ficar a <10% dos ${seen / 1e6}M vistos`);
+  }
+  const h = H('bloatedmanmaggot-cave');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.35) < 3, 'trio sem XP de arvore: a soma das fatias e o clear inteiro (40+30+30)');
 }
 
-console.log('== abrir uma hunt desenha o PLANO ==');
+console.log('== bonus: VIP padrao, extra por personagem ==');
 {
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS } });
-  r.els['hunt-dps'].value = DPS_TEXT;
-  r.els['hunt-dps'].fire('input');
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'minotaur' } }));
-  const html = r.els['hunts-table'].innerHTML;
-  ok(html.includes('class="pl"'), 'o detalhe devia trazer o bloco do plano');
-  ok(html.includes('Hit with'), 'o plano devia dizer com que elemento bater');
-  ok(html.includes('Protect from'), 'o plano devia dizer de que se proteger');
-  ok(html.includes('Savage Blow'), 'o plano da Minotaur devia usar Savage Blow');
-  ok(html.includes('wave-10 boss too'), 'a criatura que faz de boss devia estar marcada como tal');
-  ok(html.includes('Fatal Hold'), 'o Menor de dano devia entrar no plano');
-  ok(html.includes('kills'), 'cada linha devia mostrar o custo de bestiary');
-  ok(html.includes('all charms on this monster'), 'o ranking completo devia existir, fechado');
-  ok(!html.includes('undefined') && !html.includes('NaN'),
-    'o HTML do plano nao devia ter undefined/NaN');
-  ok(html.indexOf('class="pl"') < html.indexOf('htd-head'),
-    'o plano vem ANTES da lista de monstros (e a resposta, nao o apendice)');
+  const r = run({ storage: { 'idlezada.builds.v3': SOLO } });
+  const h = H('bloatedmanmaggot-cave');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.1) < 2, 'solo lv1500: base x 0.9 x VIP 1.1');
+  ok(r.els['hunt-chars'].innerHTML.includes('+10%'), 'o cartao mostra o bonus total');
+  r.els['hunt-chars'].fire('change', { target: { dataset: { extra: '0' }, value: '15' } });
+  ok(JSON.parse(r.store['idlezada.huntXpExtra.v1'])['knight|Knight'] === '15', 'o extra fica guardado por personagem');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.25) < 2, 'VIP 10 + extra 15 SOMAM (x1.25)');
+  ok(r.els['hunt-chars'].innerHTML.includes('+25%'), 'e o cartao soma o extra');
+  r.els['hunt-vip'].checked = false; r.els['hunt-vip'].fire('change');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.15) < 2, 'desligar o VIP tira os 10%');
+  ok(r.store['idlezada.huntVip.v1'] === 'false', 'e fica guardado');
 }
 
-console.log('== sem personagem selecionado o plano explica, nao quebra ==');
+console.log('== party: o lider escolhido leva a fatia maior ==');
 {
-  const r = run({ storage: {} });
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'minotaur' } }));
-  const html = r.els['hunts-table'].innerHTML;
-  ok(html.includes('pl-hint'), 'sem char, o detalhe devia pedir um personagem');
-  ok(!html.includes('class="pl"'), 'e nao devia desenhar um plano vazio');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO } });
+  r.els['hunt-leader'].value = 'druid|Elder Druid'; r.els['hunt-leader'].fire('change');
+  const pc = r.els['hunt-chars'].innerHTML;
+  const druid = pc.slice(pc.indexOf('Elder Druid'));
+  const next = druid.search(/class="pc[ "]/);
+  ok(druid.indexOf('leader · 40%') >= 0 && (next < 0 || druid.indexOf('leader · 40%') < next), 'o Druid passa a ser o lider');
+  ok(JSON.parse(r.store['idlezada.huntLeader.v1']) === 'druid|Elder Druid', 'o lider fica guardado');
 }
 
-console.log('== charm desmarcado sai do plano ==');
+console.log('== comparar: busca sugere, + fixa, a tabela lado a lado ==');
 {
-  const cfg = JSON.stringify({ owned: ['freeze', 'poison', 'fatal_hold', 'gut'], slots: 25 });
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS, 'idlezada.charmCfg.v2': cfg } });
-  r.els['hunt-dps'].value = DPS_TEXT;
-  r.els['hunt-dps'].fire('input');
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'minotaur' } }));
-  const plan = r.els['hunts-table'].innerHTML.split('htd-head')[0];
-  ok(!plan.includes('Savage Blow'), 'Savage Blow desmarcado nao pode aparecer no plano');
-  ok(plan.includes('Freeze') || plan.includes('Poison'), 'os charms marcados deviam aparecer');
-  ok(!plan.includes('Scavenge'), 'Scavenge desmarcado nao pode aparecer no plano');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO } });
+  r.els['hunt-q'].value = 'pillar'; r.els['hunt-q'].fire('input');
+  ok(r.els['hunt-sug'].innerHTML.includes('data-pick="wanderingpillar-cave"'), 'digitar sugere a hunt');
+  ok(ids(B(r)).length > 0 && ids(B(r)).every(id => /pillar/i.test(H(id).name) || H(id).monsters.some(m => /pillar/i.test(m.name))), 'e a lista filtra junto');
+  r.els['hunt-sug'].fire('click', clickOn('[data-pick]', { dataset: { pick: 'wanderingpillar-cave' } }));
+  ok(r.els['hunt-q'].value === '', 'escolher limpa a busca');
+  r.els['hunts-table'].fire('click', pickEv('bloatedmanmaggot-cave'));
+  r.els['hunts-table'].fire('click', pickEv('infernalmdemon-cave'));
+  const c = C(r);
+  ok((c.match(/class="hc-hunt"/g) || []).length === 3, 'tres colunas no comparativo');
+  for (const k of ['XP per clear', 'XP per hour', 'Your clear', 'Each one gets', 'Hit with', 'Protect from', 'Gold per clear'])
+    ok(c.includes(`>${k}</th>`), `o comparativo tem a linha "${k}"`);
+  ok((c.match(/class="hc-who"/g) || []).length === 9, 'a divisao mostra os 3 personagens em cada uma das 3 hunts');
+  ok(c.includes('hc-xp best'), 'a hunt de mais XP por clear vem marcada');
+  ok(!c.includes('undefined') && !c.includes('NaN'), 'o comparativo nao tem undefined/NaN');
+  ok(B(r).includes('class="pick on"'), 'na lista, as escolhidas ficam marcadas');
+  ok(JSON.parse(r.store['idlezada.huntPicks.v1']).length === 3, 'as escolhidas ficam guardadas');
+  r.els['hunt-compare'].fire('click', clickOn('[data-unpick]', { dataset: { unpick: 'infernalmdemon-cave' } }));
+  ok((C(r).match(/class="hc-hunt"/g) || []).length === 2, 'o x tira a hunt do comparativo');
+  r.els['hunts-table'].fire('click', pickEv('bloatedmanmaggot-cave'));
+  ok((C(r).match(/class="hc-hunt"/g) || []).length === 1, 'clicar no ✓ da lista tira tambem');
 }
 
-/* ---------------------------------------------------- regressoes de DPS colado */
-/* Os tres bugs que faziam o plano vir com uma linha so (print do usuario):
-     1. o rotulo do personagem entrava truncado ("Luigi" -> "UIGI");
-     2. o DPS proprio so casava pela sigla da vocacao, entao vinha 0;
-     3. com DPS 0 os elementais eram DESCARTADOS em vez de entrarem por resistencia. */
-const SESSION_NAME = 'Session\n05:27:35\nLuigi\n450.000/s · 63.410.078\nED\n300.000/s · 40.000.000';
-const withChar = extra => Object.assign({ 'idlezada.builds.v3': JSON.stringify({ slots: [
-  { label: 'Luigi', voc: 'knight', level: 900, obj: 'dps', element: 'ice', perks: [], forcePerks: false }] }) }, extra || {});
-
-console.log('== dps: nome de personagem nao pode entrar truncado ==');
+console.log('== sua run: tempo e XP salvos viram XP/h ==');
 {
-  const r = run({ level: 900, storage: withChar() });
-  r.els['hunt-dps'].value = SESSION_NAME;
-  r.els['hunt-dps'].fire('input');
-  const info = r.els['hunt-dpsinfo'].textContent;
-  ok(info.includes('LUIGI 450,000'), `o rotulo devia sair inteiro, veio: ${info}`);
-  ok(!info.includes('UIGI 450,000') || info.includes('LUIGI 450,000'), 'e nao truncado nas ultimas 4 letras');
-  ok(info.includes('Party DPS 750,000'), 'o total da party continua somando os dois');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO, 'idlezada.huntPicks.v1': JSON.stringify(['bloatedmanmaggot-cave', 'wanderingpillar-cave']) } });
+  ok(C(r).includes('data-run-min="bloatedmanmaggot-cave"') && C(r).includes('data-run-s="bloatedmanmaggot-cave"'), 'o tempo e minutos + segundos');
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runMin: 'bloatedmanmaggot-cave' }, value: '4' } });
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runS: 'bloatedmanmaggot-cave' }, value: '30' } });
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runXp: 'bloatedmanmaggot-cave' }, value: '4,3' } });
+  const saved = JSON.parse(r.store['idlezada.huntRuns.v1'])['bloatedmanmaggot-cave'];
+  ok(saved.sec === 270 && saved.xp === 4300000, `4 m + 30 s e "4,3" (KK) viram 270s e 4.300.000 (veio ${JSON.stringify(saved)})`);
+  ok(C(r).includes('value="4.3"'), 'o XP salvo volta pro campo em KK');
+  ok(C(r).includes('4.3KK'), 'e aparece em KK');
+  ok(listXp(B(r), 'bloatedmanmaggot-cave') === 4300000, 'na lista, o XP salvo ganha da previsao');
+  const xph = Math.round(4300000 * 3600 / 270);
+  ok(B(r).includes(`data-xph="${xph}"`), `XP/h = 4.3KK x 3600 / 270s = ${xph}`);
+  ok(C(r).includes('hc-xph best'), 'a unica com tempo e a melhor em XP/h');
+  ok(C(r).includes('yours · forecast'), 'o XP salvo aparece contra a previsao');
+  ok((C(r).match(/\/h<\/em>/g) || []).length === 3, 'com tempo, cada personagem mostra o seu XP/h');
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runMin: 'bloatedmanmaggot-cave' }, value: '2' } });
+  ok(JSON.parse(r.store['idlezada.huntRuns.v1'])['bloatedmanmaggot-cave'].sec === 150, 'trocar so os minutos mantem os segundos (2:30)');
+
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runMin: 'bloatedmanmaggot-cave' }, value: '' } });
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runS: 'bloatedmanmaggot-cave' }, value: '' } });
+  r.els['hunt-compare'].fire('change', { target: { dataset: { runXp: 'bloatedmanmaggot-cave' }, value: '' } });
+  ok(!JSON.parse(r.store['idlezada.huntRuns.v1'])['bloatedmanmaggot-cave'], 'apagar os campos esquece a hunt');
+
+  for (const [s, want] of [['4.3', 4300000], ['5,2', 5200000], ['4.3kk', 4300000], ['850k', 850000], ['4.300.000', 4300000], ['1,25kk', 1250000]]) {
+    r.els['hunt-compare'].fire('change', { target: { dataset: { runXp: 'minotaur' }, value: s } });
+    ok((JSON.parse(r.store['idlezada.huntRuns.v1']).minotaur || {}).xp === want, `XP "${s}" devia virar ${want}`);
+  }
 }
 
-console.log('== dps: o do personagem casa por sigla, por nome, ou sendo o unico ==');
+console.log('== lista: cabecalho ordena, "so as que eu entro" filtra pelo lider ==');
 {
-  const byName = run({ level: 900, storage: withChar() });
-  byName.els['hunt-dps'].value = SESSION_NAME;
-  byName.els['hunt-dps'].fire('input');
-  ok(byName.els['hunt-dpsinfo'].textContent.includes('Luigi: crit'), 'a linha do personagem devia aparecer');
-  ok(!byName.els['hunt-dpsinfo'].textContent.includes('no own DPS'),
-    'com o nome do personagem no paste, o DPS dele nao pode vir vazio');
-
-  const byVoc = run({ level: 900, storage: withChar() });
-  byVoc.els['hunt-dps'].value = 'Session\nEK\n450.000/s';
-  byVoc.els['hunt-dps'].fire('input');
-  ok(!byVoc.els['hunt-dpsinfo'].textContent.includes('no own DPS'), 'a sigla da vocacao tambem casa');
-
-  const solo = run({ level: 900, storage: withChar() });
-  solo.els['hunt-dps'].value = 'Session\nWhatever\n450.000/s';
-  solo.els['hunt-dps'].fire('input');
-  ok(solo.els['hunt-dpsinfo'].textContent.includes('only entry'),
-    'entrada unica vale como o proprio jogador, e a barra diz de onde veio');
-}
-
-console.log('== dps: o texto guardado e re-parseado (paste antigo se conserta sozinho) ==');
-{
-  /* perChar salvo com a chave truncada do parse velho; o texto e a fonte da verdade */
-  const stale = JSON.stringify({ total: 450000, perChar: { UIGI: 450000 }, text: SESSION_NAME });
-  const r = run({ level: 900, storage: withChar({ 'idlezada.huntDps.v1': stale }) });
-  ok(r.els['hunt-dpsinfo'].textContent.includes('LUIGI 450,000'),
-    'ao carregar, o texto devia ser re-parseado com a regra nova');
-}
-
-console.log('== plano: SEM dps colado, todo bicho ainda recebe charm (por resistencia) ==');
-{
-  /* sem Low Blow e Carnage de proposito: com eles a segunda criatura recebe Low Blow
-     (percentual, calculavel sem DPS) e o caminho "por resistencia" nem roda */
-  const semLB = JSON.stringify({ owned: JSON.parse(require('fs').readFileSync(path.join(PUB, '..', 'data', 'charms.json'), 'utf8'))
-    .map(c => c.key).filter(k => k !== 'low_blow' && k !== 'carnage'), slots: 25 });
-  const r = run({ level: 900, storage: withChar({ 'idlezada.charmCfg.v2': semLB }) });
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'infernalmdemon-cave' } }));
-  const plan = r.els['hunts-table'].innerHTML.split('htd-head')[0];
-  const dashes = (plan.match(/pl-none/g) || []).length;
-  ok(dashes === 0, `nenhuma criatura devia ficar com "—" no Maior, ficaram ${dashes}`);
-  /* a linha fica limpa (so nome + tier); o porque do charm sem numero vai no title */
-  ok(plan.includes('placed by resistance: paste your DPS for the %'), 'o charm posto por resistencia explica no title que falta o DPS');
-  ok(!plan.includes('taken · no %'), 'e a linha nao carrega mais o texto extra');
-  ok(plan.includes('placed by <b>resistance</b> only'), 'e a nota devia explicar o criterio');
-  ok(plan.includes('Savage Blow'), 'os percentuais continuam entrando com numero');
-}
-
-console.log('== revamp: cabecalho ordena, busca e "so as que eu entro" filtram ==');
-{
-  const H = JSON.parse(require('fs').readFileSync(path.join(PUB, '..', 'data', 'hunts.json'), 'utf8'));
-  const ids = html => [...html.matchAll(/class="ht-row[^"]*" data-hunt="([^"]+)"/g)].map(m => m[1]);
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS }, level: 900 });
-
-  /* clicar no cabecalho "Gold / clear" troca o ranking pra gold, como o select */
+  const r = run({ storage: { 'idlezada.builds.v3': JSON.stringify({ slots: [slot('Knight', 'knight', 900)] }) } });
   r.els['hunts-table'].fire('click', { target: { closest: s => (s === '.th' ? { dataset: { sort: 'gold' } } : null) } });
-  ok(r.els['hunt-sort'].value === 'gold', `o cabecalho devia levar o select pra gold, ficou ${r.els['hunt-sort'].value}`);
-  const byGold = H.slice().sort((a, b) => b.goldPerClear - a.goldPerClear)[0].id;
-  ok(ids(r.els['hunts-table'].innerHTML)[0] === byGold, `a primeira linha devia ser a de mais gold (${byGold})`);
-  ok(r.els['hunts-table'].innerHTML.includes('th num on'), 'o cabecalho ativo devia vir marcado');
-
-  /* toda linha responde as duas perguntas de elemento: com o que bater, do que se
-     defender -- e a defesa agrupa no maximo 2 elementos */
-  const tbl = r.els['hunts-table'].innerHTML;
-  const hits = (tbl.match(/class="he"/g) || []).length, prots = (tbl.match(/class="hp"/g) || []).length;
-  ok(hits === H.length && prots === H.length, `cada hunt devia ter Hit with e Protect from (${hits}/${prots} de ${H.length})`);
-  ok(tbl.includes('Hit with') && tbl.includes('Protect from'), 'o cabecalho devia nomear as duas colunas');
-  const maxProt = Math.max(...[...tbl.matchAll(/class="hp">(.*?)<\/span>\s*<span class="num/gs)]
-    .map(m => (m[1].match(/class="el /g) || []).length));
-  ok(maxProt <= 2, `Protect from devia agrupar no maximo 2 elementos, veio ${maxProt}`);
-
-  /* busca por MONSTRO, nao so pelo nome da hunt */
-  r.els['hunt-q'].value = 'minotaur';
-  r.els['hunt-q'].fire('input');
-  const found = ids(r.els['hunts-table'].innerHTML);
-  ok(found.length > 0 && found.every(id => {
-    const h = H.find(x => x.id === id);
-    return /minotaur/i.test(h.name) || h.monsters.some(m => /minotaur/i.test(m.name));
-  }), `a busca "minotaur" devia listar so hunts com minotauro (veio ${found.join(',')})`);
-
-  r.els['hunt-q'].value = 'zzz-nada';
-  r.els['hunt-q'].fire('input');
-  ok(r.els['hunts-table'].innerHTML.includes('ht-empty'), 'busca sem resultado devia dizer isso, nao sumir com a tabela');
-
-  /* "so as que eu entro" tira as de level acima, e o podio nao muda */
-  r.els['hunt-q'].value = '';
-  const podio = r.els['hunt-reco'].innerHTML;
-  r.els['hunt-only'].checked = true;
-  r.els['hunt-only'].fire('change');
-  const left = ids(r.els['hunts-table'].innerHTML);
-  ok(left.length === H.filter(h => h.minLevel <= 900).length, `no 900 deviam sobrar ${H.filter(h => h.minLevel <= 900).length} hunts, sobraram ${left.length}`);
-  ok(!r.els['hunts-table'].innerHTML.includes('ht-row locked'), 'nenhuma trancada com o filtro ligado');
-  ok(r.els['hunt-reco'].innerHTML === podio, 'filtro de tela nao mexe no podio');
+  const byGold = HUNTS.slice().sort((a, b) => b.goldPerClear - a.goldPerClear)[0].id;
+  ok(ids(B(r))[0] === byGold, `ordenar por gold poe a de mais gold primeiro (${byGold})`);
+  ok(JSON.parse(r.store['idlezada.huntSort.v1']) === 'gold', 'a ordem fica guardada');
+  r.els['hunt-only'].checked = true; r.els['hunt-only'].fire('change');
+  ok(ids(B(r)).length === HUNTS.filter(h => h.minLevel <= 900).length, 'no 900 sobram so as de level <= 900');
+  r.els['hunt-q'].value = 'zzz-nada'; r.els['hunt-q'].fire('input');
+  ok(B(r).includes('ht-empty'), 'busca sem resultado diz isso');
 }
 
-console.log('== charms: config antiga (v1) so passa os slots; o resto vira "tenho todos" ==');
+console.log('== abrir uma hunt desenha o plano de charms do lider (sem DPS) ==');
 {
-  const v1 = JSON.stringify({ owned: ['freeze'], slots: 6 });
-  const r = run({ storage: { 'idlezada.builds.v3': BUILDS, 'idlezada.charmCfg.v1': v1 } });
-  const t = r.els['charm-cfg-toggle'].innerHTML;
-  ok(t.includes('all 24') && t.includes('6 slots'), `v1 devia herdar os 6 slots e virar todos os charms, veio ${t}`);
-}
-
-console.log('== Avatar: uptime proprio e a nota Savage x Low Blow ==');
-{
-  const AV = JSON.stringify({ slots: [{ label: 'EK', voc: 'knight', level: 900, obj: 'avatar', element: 'physical', perks: [] }] });
-  const r = run({ storage: { 'idlezada.builds.v3': AV }, level: 900 });
-  r.els['hunt-dps'].value = DPS_TEXT; r.els['hunt-dps'].fire('input');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO } });
   r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'minotaur' } }));
-  const html = r.els['hunts-table'].innerHTML;
-  ok(html.includes('<b>Savage Blow</b> gives') && html.includes('<b>Low Blow</b> only'),
-    'com Avatar, o plano explica Savage x Low Blow');
-  const tree = +(r.els['hunt-dpsinfo'].textContent.match(/Avatar (\d+)% uptime/) || [])[1];
-  ok(tree > 0, `o uptime da arvore aparece na barra (veio ${r.els['hunt-dpsinfo'].textContent})`);
-
-  r.els['hunt-avatar'].value = '80'; r.els['hunt-avatar'].fire('input');
-  ok(r.els['hunt-dpsinfo'].textContent.includes('Avatar 80% uptime (yours)'), 'o uptime digitado vale e e marcado como seu');
-  ok(r.store['idlezada.avatarUptime.v1'] === '80', 'e fica guardado');
-  const note = up => (r.els['hunts-table'].innerHTML.match(/Savage Blow<\/b> gives \+([\d.]+)%.*?Low Blow<\/b> only \+([\d.]+)%/) || []).slice(1).map(Number);
-  const [sv80, lb80] = note();
-  r.els['hunt-avatar'].value = '0'; r.els['hunt-avatar'].fire('input');
-  ok(!r.els['hunts-table'].innerHTML.includes('<b>Low Blow</b> only'), 'sem Avatar (0%), a nota some');
-  ok(sv80 > lb80 * 3, `com 80% de Avatar a Savage devia render bem mais que a Low Blow (${sv80} vs ${lb80})`);
+  const html = B(r);
+  ok(html.includes('class="pl"'), 'o detalhe traz o plano');
+  ok(html.includes('Savage Blow'), 'o plano usa Savage Blow');
+  ok(!/paste your|your DPS/i.test(html), 'nenhuma mencao a DPS');
+  ok(!html.includes('undefined') && !html.includes('NaN'), 'o plano nao tem undefined/NaN');
 }
 
-console.log('== plano limpo: sem pilula de elemento, minors de gold com o valor ==');
+console.log('== charms: painel, desmarcar, slots ==');
 {
-  const AV = JSON.stringify({ slots: [{ label: 'EK', voc: 'knight', level: 900, obj: 'avatar', element: 'physical', perks: [] }] });
-  const r = run({ storage: { 'idlezada.builds.v3': AV }, level: 900, loot: true });
-  r.els['hunt-dps'].value = DPS_TEXT; r.els['hunt-dps'].fire('input');
-  const bony = JSON.parse(require('fs').readFileSync(path.join(PUB, '..', 'data', 'hunts.json'), 'utf8')).find(h => /bony/i.test(h.name));
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: bony.id } }));
-  const plan = r.els['hunts-table'].innerHTML.split('htd-more')[0];
-  ok(!/pl-charm[^>]*>\s*<span class="el /.test(plan), 'o charm no plano nao abre com pilula de elemento');
-  ok(plan.includes('Scavenge') && plan.includes('gold / clear'), 'Scavenge entra com o gold por clear que rende');
-  ok(plan.includes('Gut') , 'e o Gut tambem, na criatura em que vale mais');
-  ok(plan.includes('pl-row boss'), 'a linha da criatura que faz de boss continua marcada');
+  const r = run({ storage: { 'idlezada.builds.v3': TRIO } });
+  const t = r.els['charm-cfg-toggle'];
+  ok(t.innerHTML.includes('all ' + CHARMS.length) && t.innerHTML.includes('25 slots'), 'default: todos os charms, 25 slots');
+  r.els['charm-cfg-toggle'].fire('click');
+  ok(r.els['charm-cfg'].innerHTML.includes('data-charm="savage_blow"'), 'abrir mostra os chips');
+  r.els['charm-cfg'].fire('click', clickOn('button', { dataset: { charm: 'savage_blow' } }));
+  ok(JSON.parse(r.store['idlezada.charmCfg.v2']).owned.indexOf('savage_blow') < 0, 'desmarcar fica guardado');
+  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: 'minotaur' } }));
+  /* as linhas do plano (a nota do "por que" pode citar o desmarcado: "it would give...") */
+  ok(!/pl-charm[^>]*>s*<b>Savage Blow/.test(B(r)), 'e sai do plano');
+  const v1 = run({ storage: { 'idlezada.charmCfg.v1': JSON.stringify({ owned: ['freeze'], slots: 6 }) } });
+  ok(v1.els['charm-cfg-toggle'].innerHTML.includes('6 slots') && v1.els['charm-cfg-toggle'].innerHTML.includes('all'), 'v1 herda so os slots');
 }
 
-console.log('== golpe medio: guardado, e muda o plano de Carnage pra elemental ==');
-{
-  const AV = JSON.stringify({ slots: [{ label: 'EK', voc: 'knight', level: 900, obj: 'avatar', element: 'physical', perks: [] }] });
-  const r = run({ storage: { 'idlezada.builds.v3': AV }, level: 900, loot: true });
-  r.els['hunt-dps'].value = DPS_TEXT; r.els['hunt-dps'].fire('input');
-  const bony = JSON.parse(require('fs').readFileSync(path.join(PUB, '..', 'data', 'hunts.json'), 'utf8')).find(h => /bony/i.test(h.name));
-  r.els['hunts-table'].fire('click', clickOn('.ht-row', { dataset: { hunt: bony.id } }));
-  ok(r.els['hunts-table'].innerHTML.includes('the elemental wins once you need more than'), 'o "por que" traz a virada Carnage x elemental');
-  r.els['hunt-hit'].value = '2000'; r.els['hunt-hit'].fire('input');
-  ok(r.store['idlezada.avgHit.v1'] === '2000', 'o golpe medio fica guardado');
-  const plan = r.els['hunts-table'].innerHTML.split('htd-more')[0];
-  ok(!plan.includes('<b>Carnage</b>'), 'com golpe de 2k o Carnage sai do plano');
-  ok(plan.includes('with your average hit'), 'e a nota diz que usou o seu golpe');
-}
+/* evento ao vivo: a API publica do jogo, com um fetch de mentira */
+(async () => {
+  console.log('== evento de XP ao vivo entra no bonus ==');
+  const now = Date.now();
+  const body = { result: { data: { events: [
+    { name: 'Velho', expPct: 50, enabled: true, startsAt: now - 9e7, endsAt: now - 8e7 },
+    { name: 'Evento', expPct: 25, enabled: true, startsAt: now - 1e6, endsAt: now + 36e5 * 30 },
+    { name: 'Skill', expPct: 0, skillPct: 25, enabled: true, startsAt: now - 1e6, endsAt: now + 1e7 },
+  ] } } };
+  const r = run({ storage: { 'idlezada.builds.v3': SOLO }, fetch: () => Promise.resolve({ json: () => Promise.resolve(body) }) });
+  await new Promise(res => setTimeout(res, 20));
+  const h = H('bloatedmanmaggot-cave');
+  ok(r.els['hunt-event'].checked === false, 'o evento vem desligado por padrao');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.1) < 2, 'desligado, o evento nao entra na conta');
+  r.els['hunt-event'].checked = true; r.els['hunt-event'].fire('change');
+  ok(r.store['idlezada.huntEvent.v1'] === 'true', 'ligar fica guardado');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.35) < 2, 'VIP 10 + evento 25 (o de skill e o velho nao contam)');
+  ok(r.els['hunt-event-v'].textContent.startsWith('+25%') && r.els['hunt-event-v'].textContent.includes('1d'), `o rotulo diz o % e quanto falta, veio: ${r.els['hunt-event-v'].textContent}`);
+  r.els['hunt-event'].checked = false; r.els['hunt-event'].fire('change');
+  ok(Math.abs(listXp(B(r), h.id) - h.xpPerClear * 0.9 * 1.1) < 2, 'desligar o evento tira ele');
 
-console.log(`\n${pass} ok, ${fail} falha(s)`);
-process.exit(fail ? 1 : 0);
+  const off = run({ storage: {}, fetch: () => Promise.reject(new Error('offline')) });
+  await new Promise(res => setTimeout(res, 20));
+  ok(off.els['hunt-event-v'].textContent.includes('could not check'), 'sem rede, o rotulo diz que nao conferiu');
+
+  console.log(`\n${pass} ok, ${fail} falha(s)`);
+  process.exit(fail ? 1 : 0);
+})();

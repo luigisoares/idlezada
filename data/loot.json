@@ -26770,153 +26770,153 @@
  "sopping_corpus": [
   {
    "name": "crystal coin",
-   "chance": 6961,
+   "chance": 32369,
    "max": 1
   },
   {
    "name": "ultimate mana potion",
-   "chance": 10285,
+   "chance": 47825,
    "max": 2
   },
   {
    "name": "crimson sword",
-   "chance": 10090,
+   "chance": 46919,
    "max": 1
   },
   {
    "name": "ring of green plasma",
-   "chance": 3073,
+   "chance": 14289,
    "max": 1
   },
   {
    "name": "ultimate health potion",
-   "chance": 10285,
+   "chance": 47825,
    "max": 2
   },
   {
    "name": "organic acid",
-   "chance": 7678,
+   "chance": 35703,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 13133,
+   "chance": 61068,
    "max": 1
   },
   {
    "name": "emerald bangle",
-   "chance": 8558,
+   "chance": 39795,
    "max": 1
   },
   {
    "name": "underworld rod",
-   "chance": 8380,
+   "chance": 38967,
    "max": 1
   },
   {
    "name": "violet gem",
-   "chance": 5084,
+   "chance": 23641,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 9808,
+   "chance": 45607,
    "max": 1
   },
   {
    "name": "relic sword",
-   "chance": 6964,
+   "chance": 32383,
    "max": 1
   },
   {
    "name": "skullcracker armor",
-   "chance": 7270,
+   "chance": 33806,
    "max": 1
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 116,
    "max": 1
   },
   {
    "name": "stone skin amulet",
-   "chance": 1000
+   "chance": 4650
   }
  ],
  "sopping_carcass": [
   {
    "name": "crystal coin",
-   "chance": 6961,
+   "chance": 32369,
    "max": 1
   },
   {
    "name": "ultimate mana potion",
-   "chance": 10285,
+   "chance": 47825,
    "max": 2
   },
   {
    "name": "crimson sword",
-   "chance": 10090,
+   "chance": 46919,
    "max": 1
   },
   {
    "name": "ring of green plasma",
-   "chance": 3073,
+   "chance": 14289,
    "max": 1
   },
   {
    "name": "ultimate health potion",
-   "chance": 10285,
+   "chance": 47825,
    "max": 2
   },
   {
    "name": "organic acid",
-   "chance": 7678,
+   "chance": 35703,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 13133,
+   "chance": 61068,
    "max": 1
   },
   {
    "name": "emerald bangle",
-   "chance": 8558,
+   "chance": 39795,
    "max": 1
   },
   {
    "name": "underworld rod",
-   "chance": 8380,
+   "chance": 38967,
    "max": 1
   },
   {
    "name": "violet gem",
-   "chance": 5084,
+   "chance": 23641,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 9808,
+   "chance": 45607,
    "max": 1
   },
   {
    "name": "relic sword",
-   "chance": 6964,
+   "chance": 32383,
    "max": 1
   },
   {
    "name": "skullcracker armor",
-   "chance": 7270,
+   "chance": 33806,
    "max": 1
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 116,
    "max": 1
   },
   {
    "name": "stone skin amulet",
-   "chance": 1000
+   "chance": 4650
   }
  ],
  "creepy_crawler": [
@@ -26971,152 +26971,152 @@
  "rotten_man_maggot": [
   {
    "name": "crystal coin",
-   "chance": 10340,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "small amethyst",
-   "chance": 7364,
+   "chance": 64803,
    "max": 2
   },
   {
    "name": "lichen gobbler",
-   "chance": 8391,
+   "chance": 73841,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 11619,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "wood cape",
-   "chance": 14371,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "yellow gem",
-   "chance": 9564,
+   "chance": 84163,
    "max": 1
   },
   {
    "name": "blooded worm",
-   "chance": 5096,
+   "chance": 44845,
    "max": 1
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 220,
    "max": 1
   },
   {
    "name": "death ring",
-   "chance": 12591
+   "chance": 90000
   },
   {
    "name": "red gem",
-   "chance": 5155
+   "chance": 45364
   }
  ],
  "oozing_carcass": [
   {
    "name": "crystal coin",
-   "chance": 9000,
+   "chance": 79200,
    "max": 1
   },
   {
    "name": "lichen gobbler",
-   "chance": 12369,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "small emerald",
-   "chance": 12859,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "skull staff",
-   "chance": 12316,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "bone shield",
-   "chance": 6752,
+   "chance": 59418,
    "max": 1
   },
   {
    "name": "yellow gem",
-   "chance": 8634,
+   "chance": 75979,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 13133,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "decayed finger bone",
-   "chance": 6964,
+   "chance": 61283,
    "max": 1
   },
   {
    "name": "ultimate health potion",
-   "chance": 10285,
+   "chance": 90000,
    "max": 2
   },
   {
    "name": "bloody edge",
-   "chance": 12270,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "spellbook of warding",
-   "chance": 5084,
+   "chance": 44739,
    "max": 1
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 220,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 9808
+   "chance": 86310
   },
   {
    "name": "stone skin amulet",
-   "chance": 1000
+   "chance": 8800
   }
  ],
  "oozing_corpus": [
   {
    "name": "crystal coin",
-   "chance": 9000,
+   "chance": 41850,
    "max": 1
   },
   {
    "name": "organic acid",
-   "chance": 7678,
+   "chance": 35703,
    "max": 1
   },
   {
    "name": "terra boots",
-   "chance": 12369,
+   "chance": 57516,
    "max": 1
   },
   {
    "name": "small amethyst",
-   "chance": 12859,
+   "chance": 59794,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 13133,
+   "chance": 61068,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 9808,
+   "chance": 45607,
    "max": 1
   },
   {
@@ -27126,43 +27126,43 @@
   },
   {
    "name": "violet gem",
-   "chance": 5084,
+   "chance": 23641,
    "max": 1
   },
   {
    "name": "jade hammer",
-   "chance": 3073,
+   "chance": 14289,
    "max": 1
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 116,
    "max": 1
   },
   {
    "name": "stone skin amulet",
-   "chance": 1000
+   "chance": 4650
   }
  ],
  "meandering_mushroom": [
   {
    "name": "crystal coin",
-   "chance": 11755,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "lichen gobbler",
-   "chance": 9121,
+   "chance": 80265,
    "max": 1
   },
   {
    "name": "white mushroom",
-   "chance": 12998,
-   "max": 3
+   "chance": 90000,
+   "max": 4
   },
   {
    "name": "rotten roots",
-   "chance": 9791,
+   "chance": 86161,
    "max": 1
   },
   {
@@ -27172,112 +27172,112 @@
   },
   {
    "name": "dark mushroom",
-   "chance": 12313,
-   "max": 3
+   "chance": 90000,
+   "max": 4
   },
   {
    "name": "yellow gem",
-   "chance": 13520,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "brown mushroom",
-   "chance": 6422,
+   "chance": 56514,
    "max": 3
   },
   {
    "name": "terra amulet",
-   "chance": 13122,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 220,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 10406
+   "chance": 90000
   },
   {
    "name": "assassin dagger",
-   "chance": 3500
+   "chance": 30800
   }
  ],
  "bloated_man_maggot": [
   {
    "name": "crystal coin",
-   "chance": 12961,
+   "chance": 60269,
    "max": 1
   },
   {
    "name": "organic acid",
-   "chance": 11678,
+   "chance": 54303,
    "max": 1
   },
   {
    "name": "might ring",
-   "chance": 10020,
+   "chance": 46593,
    "max": 1
   },
   {
    "name": "small emerald",
-   "chance": 9133,
+   "chance": 42468,
    "max": 5
   },
   {
    "name": "rotten roots",
-   "chance": 8637,
+   "chance": 40162,
    "max": 1
   },
   {
    "name": "bloated maggot",
-   "chance": 8133,
+   "chance": 37818,
    "max": 1
   },
   {
    "name": "terra rod",
-   "chance": 8078,
+   "chance": 37563,
    "max": 1
   },
   {
    "name": "butcher's axe",
-   "chance": 7967,
+   "chance": 37047,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 7808,
+   "chance": 36307,
    "max": 1
   },
   {
    "name": "violet gem",
-   "chance": 7084,
+   "chance": 32941,
    "max": 1
   },
   {
    "name": "life ring",
-   "chance": 9500
+   "chance": 44175
   },
   {
    "name": "small topaz",
-   "chance": 9133,
+   "chance": 42468,
    "max": 3
   },
   {
    "name": "devil helmet",
-   "chance": 8500
+   "chance": 39525
   }
  ],
  "mycobiontic_beetle": [
   {
    "name": "crystal coin",
-   "chance": 15540
+   "chance": 72261
   },
   {
    "name": "ultimate health potion",
-   "chance": 43253,
-   "max": 5
+   "chance": 90000,
+   "max": 12
   },
   {
    "name": "serpent sword",
@@ -27285,419 +27285,419 @@
   },
   {
    "name": "glacier mask",
-   "chance": 21920
+   "chance": 90000
   },
   {
    "name": "small sapphire",
-   "chance": 34560,
-   "max": 3
+   "chance": 90000,
+   "max": 6
   },
   {
    "name": "organic acid",
-   "chance": 11678,
+   "chance": 54303,
    "max": 1
   },
   {
    "name": "rotten roots",
-   "chance": 25920,
-   "max": 1
+   "chance": 90000,
+   "max": 2
   },
   {
    "name": "scarab coin",
-   "chance": 22920,
-   "max": 3
+   "chance": 90000,
+   "max": 4
   },
   {
    "name": "buckle",
-   "chance": 22920,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "violet gem",
-   "chance": 18920
+   "chance": 87978
   },
   {
    "name": "blue gem",
-   "chance": 15920
+   "chance": 74028
   },
   {
    "name": "small ruby",
-   "chance": 24560,
-   "max": 3
+   "chance": 90000,
+   "max": 4
   },
   {
    "name": "tainted heart",
-   "chance": 25,
+   "chance": 116,
    "max": 1
   }
  ],
  "darklight_construct": [
   {
    "name": "crystal coin",
-   "chance": 11290,
+   "chance": 81853,
    "max": 1
   },
   {
    "name": "dark obsidian splinter",
-   "chance": 12735,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "small emerald",
-   "chance": 6646,
+   "chance": 48184,
    "max": 3
   },
   {
    "name": "zaoan shoes",
-   "chance": 8614,
+   "chance": 62452,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 5659,
+   "chance": 41028,
    "max": 1
   },
   {
    "name": "darklight obsidian axe",
-   "chance": 11129,
+   "chance": 80685,
    "max": 1
   },
   {
    "name": "magma amulet",
-   "chance": 13240,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "small ruby",
-   "chance": 12458,
+   "chance": 90000,
    "max": 3
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 145,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 8781
+   "chance": 63662
   },
   {
    "name": "green gem",
-   "chance": 5000
+   "chance": 36250
   }
  ],
  "darklight_emitter": [
   {
    "name": "crystal coin",
-   "chance": 12516,
+   "chance": 58199,
    "max": 2
   },
   {
    "name": "darklight core",
-   "chance": 13367,
+   "chance": 62157,
    "max": 1
   },
   {
    "name": "darklight obsidian axe",
-   "chance": 10433,
+   "chance": 48513,
    "max": 1
   },
   {
    "name": "zaoan armor",
-   "chance": 8574,
+   "chance": 39869,
    "max": 1
   },
   {
    "name": "basalt crumbs",
-   "chance": 5794,
+   "chance": 26942,
    "max": 1
   },
   {
    "name": "small topaz",
-   "chance": 5784,
+   "chance": 26896,
    "max": 3
   },
   {
    "name": "amber staff",
-   "chance": 6240,
+   "chance": 29016,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 93,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 8459
+   "chance": 39334
   },
   {
    "name": "yellow gem",
-   "chance": 7500
+   "chance": 34875
   },
   {
    "name": "green gem",
-   "chance": 5000
+   "chance": 23250
   }
  ],
  "darklight_matter": [
   {
    "name": "crystal coin",
-   "chance": 11755,
+   "chance": 54661,
    "max": 1
   },
   {
    "name": "unstable darklight matter",
-   "chance": 9060,
+   "chance": 42129,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 12887,
+   "chance": 59925,
    "max": 1
   },
   {
    "name": "ultimate health potion",
-   "chance": 6553,
+   "chance": 30471,
    "max": 6
   },
   {
    "name": "rubber cap",
-   "chance": 7180,
+   "chance": 33387,
    "max": 1
   },
   {
    "name": "green gem",
-   "chance": 3500,
+   "chance": 16275,
    "max": 1
   },
   {
    "name": "shadow sceptre",
-   "chance": 3500,
+   "chance": 16275,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 93,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 5852
+   "chance": 27212
   },
   {
    "name": "collar of red plasma",
-   "chance": 3500
+   "chance": 16275
   }
  ],
  "darklight_source": [
   {
    "name": "crystal coin",
-   "chance": 5214,
+   "chance": 24245,
    "max": 1
   },
   {
    "name": "yellow darklight matter",
-   "chance": 9397,
+   "chance": 43696,
    "max": 1
   },
   {
    "name": "dark obsidian splinter",
-   "chance": 13215,
+   "chance": 61450,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 7570,
+   "chance": 35201,
    "max": 1
   },
   {
    "name": "small sapphire",
-   "chance": 5644,
+   "chance": 26245,
    "max": 2
   },
   {
    "name": "blue gem",
-   "chance": 12909,
+   "chance": 60027,
    "max": 1
   },
   {
    "name": "twiceslicer",
-   "chance": 11596,
+   "chance": 53921,
    "max": 1
   },
   {
    "name": "white gem",
-   "chance": 13964,
+   "chance": 64933,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 93,
    "max": 1
   },
   {
    "name": "crystalline armor",
-   "chance": 4000
+   "chance": 18600
   }
  ],
  "darklight_striker": [
   {
    "name": "crystal coin",
-   "chance": 14380,
+   "chance": 66867,
    "max": 1
   },
   {
    "name": "unstable darklight matter",
-   "chance": 14492,
+   "chance": 67388,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 9783,
+   "chance": 45491,
    "max": 1
   },
   {
    "name": "small topaz",
-   "chance": 11140,
+   "chance": 51801,
    "max": 3
   },
   {
    "name": "ice rapier",
-   "chance": 5104,
+   "chance": 23734,
    "max": 1
   },
   {
    "name": "dark obsidian splinter",
-   "chance": 14185,
+   "chance": 65960,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 7355,
+   "chance": 34201,
    "max": 1
   },
   {
    "name": "crystal mace",
-   "chance": 8812,
+   "chance": 40976,
    "max": 1
   },
   {
    "name": "zaoan helmet",
-   "chance": 5572,
+   "chance": 25910,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 93,
    "max": 1
   },
   {
    "name": "white gem",
-   "chance": 4500
+   "chance": 20925
   }
  ],
  "walking_pillar": [
   {
    "name": "crystal coin",
-   "chance": 12186,
+   "chance": 56665,
    "max": 1
   },
   {
    "name": "yellow darklight matter",
-   "chance": 5354,
+   "chance": 24896,
    "max": 1
   },
   {
    "name": "magma clump",
-   "chance": 11440,
+   "chance": 53196,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 10276,
+   "chance": 47783,
    "max": 1
   },
   {
    "name": "darklight basalt chunk",
-   "chance": 12855,
+   "chance": 59776,
    "max": 1
   },
   {
    "name": "onyx chip",
-   "chance": 12831,
+   "chance": 59664,
    "max": 2
   },
   {
    "name": "strange helmet",
-   "chance": 11001,
+   "chance": 51155,
    "max": 1
   },
   {
    "name": "fire sword",
-   "chance": 8347,
+   "chance": 38814,
    "max": 1
   },
   {
    "name": "ultimate mana potion",
-   "chance": 9687,
+   "chance": 45045,
    "max": 3
   },
   {
    "name": "blue gem",
-   "chance": 5868,
+   "chance": 27286,
    "max": 1
   },
   {
    "name": "magma legs",
-   "chance": 14497,
+   "chance": 67411,
    "max": 1
   },
   {
    "name": "white gem",
-   "chance": 9936,
+   "chance": 46202,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 93,
    "max": 1
   },
   {
    "name": "coal",
-   "chance": 8489,
+   "chance": 39474,
    "max": 4
   }
  ],
  "wandering_pillar": [
   {
    "name": "crystal coin",
-   "chance": 6629,
+   "chance": 48060,
    "max": 1
   },
   {
    "name": "darklight obsidian axe",
-   "chance": 14652,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "basalt crumbs",
-   "chance": 8184,
+   "chance": 59334,
    "max": 1
   },
   {
    "name": "sulphurous stone",
-   "chance": 5873,
+   "chance": 42579,
    "max": 1
   },
   {
    "name": "magma boots",
-   "chance": 5080,
+   "chance": 36830,
    "max": 1
   },
   {
    "name": "coal",
-   "chance": 9802,
+   "chance": 71065,
    "max": 4
   },
   {
@@ -27707,103 +27707,103 @@
   },
   {
    "name": "magma coat",
-   "chance": 11753,
+   "chance": 85209,
    "max": 1
   },
   {
    "name": "onyx chip",
-   "chance": 9311,
+   "chance": 67505,
    "max": 2
   },
   {
    "name": "darklight core",
-   "chance": 5957,
+   "chance": 43188,
    "max": 1
   },
   {
    "name": "fire sword",
-   "chance": 8319,
+   "chance": 60313,
    "max": 1
   },
   {
    "name": "magma clump",
-   "chance": 6260,
+   "chance": 45385,
    "max": 1
   },
   {
    "name": "red gem",
-   "chance": 9915,
+   "chance": 71884,
    "max": 1
   },
   {
    "name": "green gem",
-   "chance": 12864,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "basalt core",
-   "chance": 9037,
+   "chance": 65518,
    "max": 1
   },
   {
    "name": "darklight heart",
-   "chance": 20,
+   "chance": 145,
    "max": 1
   }
  ],
  "converter": [
   {
    "name": "crystal coin",
-   "chance": 5230,
+   "chance": 37918,
    "max": 1
   },
   {
    "name": "darklight obsidian axe",
-   "chance": 6963,
+   "chance": 50482,
    "max": 1
   },
   {
    "name": "darklight core",
-   "chance": 10715,
+   "chance": 77684,
    "max": 1
   },
   {
    "name": "wand of starstorm",
-   "chance": 8797,
+   "chance": 63778,
    "max": 1
   },
   {
    "name": "blue gem",
-   "chance": 9372,
+   "chance": 67947,
    "max": 1
   },
   {
    "name": "ultimate health potion",
-   "chance": 9851,
+   "chance": 71420,
    "max": 5
   },
   {
    "name": "focus cape",
-   "chance": 6945,
+   "chance": 50351,
    "max": 1
   },
   {
    "name": "white gem",
-   "chance": 14533,
+   "chance": 90000,
    "max": 1
   },
   {
    "name": "might ring",
-   "chance": 8000
+   "chance": 58000
   },
   {
    "name": "ultimate mana potion",
-   "chance": 9851,
+   "chance": 71420,
    "max": 5
   },
   {
    "name": "lightning legs",
-   "chance": 5000
+   "chance": 36250
   }
  ],
  "gore_horn": [
@@ -33890,837 +33890,837 @@
  "radiant_acolyte": [
   {
    "name": "book of faith",
-   "chance": 500
+   "chance": 3230
   },
   {
    "name": "blank imbuement scroll",
-   "chance": 1200
+   "chance": 7752
   },
   {
    "name": "crystal coin",
-   "chance": 5617,
+   "chance": 36286,
    "max": 7
   },
   {
    "name": "giant sapphire",
-   "chance": 1460
+   "chance": 9432
   },
   {
    "name": "blue crystal shard",
-   "chance": 7864,
+   "chance": 50801,
    "max": 3
   },
   {
    "name": "blue crystal splinter",
-   "chance": 11235,
+   "chance": 72578,
    "max": 5
   },
   {
    "name": "white pearl",
-   "chance": 13482,
+   "chance": 87094,
    "max": 8
   },
   {
    "name": "small topaz",
-   "chance": 13482,
+   "chance": 87094,
    "max": 8
   },
   {
    "name": "silver brooch",
-   "chance": 12358
+   "chance": 79833
   },
   {
    "name": "ice rapier",
-   "chance": 8988
+   "chance": 58062
   },
   {
    "name": "supreme health potion",
-   "chance": 10111,
+   "chance": 65317,
    "max": 10
   },
   {
    "name": "ultimate mana potion",
-   "chance": 11235,
+   "chance": 72578,
    "max": 12
   },
   {
    "name": "mysterious remains",
-   "chance": 13000
+   "chance": 83980
   },
   {
    "name": "rusted armor",
-   "chance": 12000
+   "chance": 77520
   },
   {
    "name": "slightly rusted helmet",
-   "chance": 14000
+   "chance": 90000
   }
  ],
  "radiant_paragon": [
   {
    "name": "broken arrow",
-   "chance": 500
+   "chance": 3230
   },
   {
    "name": "crystal coin",
-   "chance": 5211,
+   "chance": 33663,
    "max": 7
   },
   {
    "name": "giant emerald",
-   "chance": 729
+   "chance": 4709
   },
   {
    "name": "green crystal shard",
-   "chance": 7295,
+   "chance": 47126,
    "max": 3
   },
   {
    "name": "emerald bangle",
-   "chance": 9379,
+   "chance": 60588,
    "max": 3
   },
   {
    "name": "small emerald",
-   "chance": 12505,
+   "chance": 80782,
    "max": 8
   },
   {
    "name": "prismatic quartz",
-   "chance": 11463,
+   "chance": 74051,
    "max": 6
   },
   {
    "name": "yellow gem",
-   "chance": 8337,
+   "chance": 53857,
    "max": 2
   },
   {
    "name": "knight axe",
-   "chance": 7295
+   "chance": 47126
   },
   {
    "name": "ultimate spirit potion",
-   "chance": 10421,
+   "chance": 67320,
    "max": 12
   },
   {
    "name": "bullseye potion",
-   "chance": 1251,
+   "chance": 8081,
    "max": 2
   },
   {
    "name": "heavily rusted legs",
-   "chance": 13000
+   "chance": 83980
   },
   {
    "name": "rusted shield",
-   "chance": 12000
+   "chance": 77520
   },
   {
    "name": "slightly rusted armor",
-   "chance": 14000
+   "chance": 90000
   }
  ],
  "radiant_warden": [
   {
    "name": "crimson sword",
-   "chance": 5000
+   "chance": 32300
   },
   {
    "name": "tatty robe",
-   "chance": 500
+   "chance": 3230
   },
   {
    "name": "crystal coin",
-   "chance": 5652,
+   "chance": 36512,
    "max": 7
   },
   {
    "name": "twiceslicer",
-   "chance": 1582
+   "chance": 10220
   },
   {
    "name": "rubber cap",
-   "chance": 2487
+   "chance": 16066
   },
   {
    "name": "violet crystal shard",
-   "chance": 7912,
+   "chance": 51112,
    "max": 3
   },
   {
    "name": "talon",
-   "chance": 13564,
+   "chance": 87623,
    "max": 8
   },
   {
    "name": "small ruby",
-   "chance": 13564,
+   "chance": 87623,
    "max": 8
   },
   {
    "name": "red gem",
-   "chance": 9043
+   "chance": 58418
   },
   {
    "name": "glorious axe",
-   "chance": 7912
+   "chance": 51112
   },
   {
    "name": "supreme health potion",
-   "chance": 10173,
+   "chance": 65718,
    "max": 10
   },
   {
    "name": "berserk potion",
-   "chance": 1356,
+   "chance": 8760,
    "max": 2
   },
   {
    "name": "heavily rusted armor",
-   "chance": 13000
+   "chance": 83980
   },
   {
    "name": "rusted helmet",
-   "chance": 12000
+   "chance": 77520
   },
   {
    "name": "slightly rusted legs",
-   "chance": 14000
+   "chance": 90000
   }
  ],
  "radiant_inquisitor": [
   {
    "name": "golden belt",
-   "chance": 500
+   "chance": 3045
   },
   {
    "name": "crystal coin",
-   "chance": 5384,
+   "chance": 32789,
    "max": 7
   },
   {
    "name": "rubber cap",
-   "chance": 4091
+   "chance": 24914
   },
   {
    "name": "shadow sceptre",
-   "chance": 4091
+   "chance": 24914
   },
   {
    "name": "violet crystal shard",
-   "chance": 7537,
+   "chance": 45900,
    "max": 3
   },
   {
    "name": "prismatic quartz",
-   "chance": 11844,
+   "chance": 72130,
    "max": 6
   },
   {
    "name": "small topaz",
-   "chance": 12921,
+   "chance": 78689,
    "max": 8
   },
   {
    "name": "yellow gem",
-   "chance": 8614,
+   "chance": 52459,
    "max": 2
   },
   {
    "name": "silver brooch",
-   "chance": 11844
+   "chance": 72130
   },
   {
    "name": "ultimate spirit potion",
-   "chance": 10767,
+   "chance": 65571,
    "max": 12
   },
   {
    "name": "mastermind potion",
-   "chance": 1292,
+   "chance": 7868,
    "max": 2
   },
   {
    "name": "heavily rusted shield",
-   "chance": 13000
+   "chance": 79170
   },
   {
    "name": "rusted armor",
-   "chance": 12000
+   "chance": 73080
   },
   {
    "name": "mysterious remains",
-   "chance": 14000
+   "chance": 85260
   }
  ],
  "radiant_templar": [
   {
    "name": "ceremonial bowl",
-   "chance": 500
+   "chance": 3045
   },
   {
    "name": "crystal coin",
-   "chance": 5316,
+   "chance": 32374,
    "max": 7
   },
   {
    "name": "giant ruby",
-   "chance": 957
+   "chance": 5828
   },
   {
    "name": "red gem",
-   "chance": 8506
+   "chance": 51802
   },
   {
    "name": "small ruby",
-   "chance": 12759,
+   "chance": 77702,
    "max": 8
   },
   {
    "name": "blue crystal shard",
-   "chance": 7443,
+   "chance": 45328,
    "max": 3
   },
   {
    "name": "white pearl",
-   "chance": 12759,
+   "chance": 77702,
    "max": 8
   },
   {
    "name": "knight axe",
-   "chance": 7443
+   "chance": 45328
   },
   {
    "name": "haunted blade",
-   "chance": 2765
+   "chance": 16839
   },
   {
    "name": "supreme health potion",
-   "chance": 9570,
+   "chance": 58281,
    "max": 10
   },
   {
    "name": "ultimate mana potion",
-   "chance": 10633,
+   "chance": 64755,
    "max": 12
   },
   {
    "name": "heavily rusted helmet",
-   "chance": 13000
+   "chance": 79170
   },
   {
    "name": "rusted legs",
-   "chance": 12000
+   "chance": 73080
   },
   {
    "name": "slightly rusted shield",
-   "chance": 14000
+   "chance": 85260
   }
  ],
  "radiant_zealot": [
   {
    "name": "etcher",
-   "chance": 1200
+   "chance": 7308
   },
   {
    "name": "loose prayer beads",
-   "chance": 500
+   "chance": 3045
   },
   {
    "name": "crystal coin",
-   "chance": 5798,
+   "chance": 35310,
    "max": 7
   },
   {
    "name": "haunted blade",
-   "chance": 4175
+   "chance": 25426
   },
   {
    "name": "glorious axe",
-   "chance": 7537
+   "chance": 45900
   },
   {
    "name": "green crystal shard",
-   "chance": 8117,
+   "chance": 49433,
    "max": 3
   },
   {
    "name": "blue crystal splinter",
-   "chance": 11596,
+   "chance": 70620,
    "max": 5
   },
   {
    "name": "small emerald",
-   "chance": 13915,
+   "chance": 84742,
    "max": 8
   },
   {
    "name": "talon",
-   "chance": 13915,
+   "chance": 84742,
    "max": 8
   },
   {
    "name": "emerald bangle",
-   "chance": 10437,
+   "chance": 63561,
    "max": 3
   },
   {
    "name": "ice rapier",
-   "chance": 9277
+   "chance": 56497
   },
   {
    "name": "supreme health potion",
-   "chance": 10437,
+   "chance": 63561,
    "max": 10
   },
   {
    "name": "transcendence potion",
-   "chance": 1392,
+   "chance": 8477,
    "max": 2
   },
   {
    "name": "heavily rusted legs",
-   "chance": 13000
+   "chance": 79170
   },
   {
    "name": "slightly rusted armor",
-   "chance": 12000
+   "chance": 73080
   },
   {
    "name": "rusted shield",
-   "chance": 14000
+   "chance": 85260
   }
  ],
  "devoted_radiant_acolyte": [
   {
    "name": "book of faith",
-   "chance": 672
+   "chance": 3064
   },
   {
    "name": "blank imbuement scroll",
-   "chance": 1613
+   "chance": 7355
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5472
   },
   {
    "name": "crystal coin",
-   "chance": 7553,
+   "chance": 34442,
    "max": 7
   },
   {
    "name": "giant sapphire",
-   "chance": 1964
+   "chance": 8956
   },
   {
    "name": "blue crystal shard",
-   "chance": 10573,
+   "chance": 48213,
    "max": 3
   },
   {
    "name": "blue crystal splinter",
-   "chance": 15105,
+   "chance": 68879,
    "max": 5
   },
   {
    "name": "white pearl",
-   "chance": 18127,
+   "chance": 82659,
    "max": 8
   },
   {
    "name": "small topaz",
-   "chance": 18127,
+   "chance": 82659,
    "max": 8
   },
   {
    "name": "silver brooch",
-   "chance": 16616
+   "chance": 75769
   },
   {
    "name": "ice rapier",
-   "chance": 12085
+   "chance": 55108
   },
   {
    "name": "supreme health potion",
-   "chance": 13595,
+   "chance": 61993,
    "max": 10
   },
   {
    "name": "ultimate mana potion",
-   "chance": 15105,
+   "chance": 68879,
    "max": 12
   },
   {
    "name": "mysterious remains",
-   "chance": 17478
+   "chance": 79700
   },
   {
    "name": "rusted armor",
-   "chance": 16134
+   "chance": 73571
   },
   {
    "name": "slightly rusted helmet",
-   "chance": 18822
+   "chance": 85828
   }
  ],
  "devoted_radiant_paragon": [
   {
    "name": "broken arrow",
-   "chance": 672
+   "chance": 3064
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5472
   },
   {
    "name": "crystal coin",
-   "chance": 7005,
+   "chance": 31943,
    "max": 7
   },
   {
    "name": "giant emerald",
-   "chance": 980
+   "chance": 4469
   },
   {
    "name": "green crystal shard",
-   "chance": 9807,
+   "chance": 44720,
    "max": 3
   },
   {
    "name": "emerald bangle",
-   "chance": 12608,
+   "chance": 57492,
    "max": 3
   },
   {
    "name": "small emerald",
-   "chance": 16810,
+   "chance": 76654,
    "max": 8
   },
   {
    "name": "prismatic quartz",
-   "chance": 15410,
+   "chance": 70270,
    "max": 6
   },
   {
    "name": "yellow gem",
-   "chance": 11208,
+   "chance": 51108,
    "max": 2
   },
   {
    "name": "knight axe",
-   "chance": 9807
+   "chance": 44720
   },
   {
    "name": "ultimate spirit potion",
-   "chance": 14009,
+   "chance": 63881,
    "max": 12
   },
   {
    "name": "bullseye potion",
-   "chance": 1682,
+   "chance": 7670,
    "max": 2
   },
   {
    "name": "heavily rusted legs",
-   "chance": 17478
+   "chance": 79700
   },
   {
    "name": "rusted shield",
-   "chance": 16134
+   "chance": 73571
   },
   {
    "name": "slightly rusted armor",
-   "chance": 18822
+   "chance": 85828
   }
  ],
  "devoted_radiant_warden": [
   {
    "name": "crimson sword",
-   "chance": 6722
+   "chance": 30652
   },
   {
    "name": "tatty robe",
-   "chance": 672
+   "chance": 3064
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5472
   },
   {
    "name": "crystal coin",
-   "chance": 7599,
+   "chance": 34651,
    "max": 7
   },
   {
    "name": "twiceslicer",
-   "chance": 2127
+   "chance": 9699
   },
   {
    "name": "rubber cap",
-   "chance": 3344
+   "chance": 15249
   },
   {
    "name": "violet crystal shard",
-   "chance": 10637,
+   "chance": 48505,
    "max": 3
   },
   {
    "name": "talon",
-   "chance": 18236,
+   "chance": 83156,
    "max": 8
   },
   {
    "name": "small ruby",
-   "chance": 18236,
+   "chance": 83156,
    "max": 8
   },
   {
    "name": "red gem",
-   "chance": 12157
+   "chance": 55436
   },
   {
    "name": "glorious axe",
-   "chance": 10637
+   "chance": 48505
   },
   {
    "name": "supreme health potion",
-   "chance": 13676,
+   "chance": 62363,
    "max": 10
   },
   {
    "name": "berserk potion",
-   "chance": 1823,
+   "chance": 8313,
    "max": 2
   },
   {
    "name": "heavily rusted armor",
-   "chance": 17478
+   "chance": 79700
   },
   {
    "name": "rusted helmet",
-   "chance": 16134
+   "chance": 73571
   },
   {
    "name": "slightly rusted legs",
-   "chance": 18822
+   "chance": 85828
   }
  ],
  "devoted_radiant_inquisitor": [
   {
    "name": "golden belt",
-   "chance": 672
+   "chance": 2883
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5148
   },
   {
    "name": "crystal coin",
-   "chance": 7238,
+   "chance": 31051,
    "max": 7
   },
   {
    "name": "rubber cap",
-   "chance": 5500
+   "chance": 23595
   },
   {
    "name": "shadow sceptre",
-   "chance": 5500
+   "chance": 23595
   },
   {
    "name": "violet crystal shard",
-   "chance": 10133,
+   "chance": 43471,
    "max": 3
   },
   {
    "name": "prismatic quartz",
-   "chance": 15924,
+   "chance": 68314,
    "max": 6
   },
   {
    "name": "small topaz",
-   "chance": 17371,
+   "chance": 74522,
    "max": 8
   },
   {
    "name": "yellow gem",
-   "chance": 11581,
+   "chance": 49682,
    "max": 2
   },
   {
    "name": "silver brooch",
-   "chance": 15924
+   "chance": 68314
   },
   {
    "name": "ultimate spirit potion",
-   "chance": 14475,
+   "chance": 62098,
    "max": 12
   },
   {
    "name": "mastermind potion",
-   "chance": 1737,
+   "chance": 7452,
    "max": 2
   },
   {
    "name": "heavily rusted shield",
-   "chance": 17478
+   "chance": 74981
   },
   {
    "name": "rusted armor",
-   "chance": 16134
+   "chance": 69215
   },
   {
    "name": "mysterious remains",
-   "chance": 18822
+   "chance": 80746
   }
  ],
  "devoted_radiant_templar": [
   {
    "name": "ceremonial bowl",
-   "chance": 672
+   "chance": 2883
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5148
   },
   {
    "name": "crystal coin",
-   "chance": 7147,
+   "chance": 30661,
    "max": 7
   },
   {
    "name": "giant ruby",
-   "chance": 1287
+   "chance": 5521
   },
   {
    "name": "red gem",
-   "chance": 11436
+   "chance": 49060
   },
   {
    "name": "small ruby",
-   "chance": 17153,
+   "chance": 73586,
    "max": 8
   },
   {
    "name": "blue crystal shard",
-   "chance": 10007,
+   "chance": 42930,
    "max": 3
   },
   {
    "name": "white pearl",
-   "chance": 17153,
+   "chance": 73586,
    "max": 8
   },
   {
    "name": "knight axe",
-   "chance": 10007
+   "chance": 42930
   },
   {
    "name": "haunted blade",
-   "chance": 3717
+   "chance": 15946
   },
   {
    "name": "supreme health potion",
-   "chance": 12867,
+   "chance": 55199,
    "max": 10
   },
   {
    "name": "ultimate mana potion",
-   "chance": 14296,
+   "chance": 61330,
    "max": 12
   },
   {
    "name": "heavily rusted helmet",
-   "chance": 17478
+   "chance": 74981
   },
   {
    "name": "rusted legs",
-   "chance": 16134
+   "chance": 69215
   },
   {
    "name": "slightly rusted shield",
-   "chance": 18822
+   "chance": 80746
   }
  ],
  "devoted_radiant_zealot": [
   {
    "name": "etcher",
-   "chance": 1613
+   "chance": 6920
   },
   {
    "name": "loose prayer beads",
-   "chance": 672
+   "chance": 2883
   },
   {
    "name": "cloud familiar",
-   "chance": 1200
+   "chance": 5148
   },
   {
    "name": "crystal coin",
-   "chance": 7795,
+   "chance": 33441,
    "max": 7
   },
   {
    "name": "haunted blade",
-   "chance": 5613
+   "chance": 24080
   },
   {
    "name": "glorious axe",
-   "chance": 10133
+   "chance": 43471
   },
   {
    "name": "green crystal shard",
-   "chance": 10912,
+   "chance": 46812,
    "max": 3
   },
   {
    "name": "blue crystal splinter",
-   "chance": 15589,
+   "chance": 66877,
    "max": 5
   },
   {
    "name": "small emerald",
-   "chance": 18708,
+   "chance": 80257,
    "max": 8
   },
   {
    "name": "talon",
-   "chance": 18708,
+   "chance": 80257,
    "max": 8
   },
   {
    "name": "emerald bangle",
-   "chance": 14032,
+   "chance": 60197,
    "max": 3
   },
   {
    "name": "ice rapier",
-   "chance": 12472
+   "chance": 53505
   },
   {
    "name": "supreme health potion",
-   "chance": 14032,
+   "chance": 60197,
    "max": 10
   },
   {
    "name": "transcendence potion",
-   "chance": 1871,
+   "chance": 8027,
    "max": 2
   },
   {
    "name": "heavily rusted legs",
-   "chance": 17478
+   "chance": 74981
   },
   {
    "name": "slightly rusted armor",
-   "chance": 16134
+   "chance": 69215
   },
   {
    "name": "rusted shield",
-   "chance": 18822
+   "chance": 80746
   }
  ],
  "rakesh_moonfang": [
