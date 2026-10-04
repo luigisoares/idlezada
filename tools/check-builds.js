@@ -160,6 +160,32 @@ console.log('== puller: bate o tank em ofensiva sem jogar a defesa fora ==');
   console.log(`   cleave ${p.spec.slash||0}% vs tank ${t.spec.slash||0}% · atk +${p.bonus.atkPct||0}% vs ${t.bonus.atkPct||0}%`);
 }
 
+console.log('== tank + def: HP, def e armor, so no knight, e notavel so se pagar ==');
+{
+  ok(E.objAvailable('knight', 'tankdef'), 'tankdef nao aparece no knight');
+  for (const v of E.VOCS.filter(x => x !== 'knight'))
+    ok(!E.objAvailable(v, 'tankdef'), `tankdef nao deveria aparecer no ${v}`);
+  const theme = rk => { const s = E.aggregate('knight', rk).bonus;
+    return (s.hpPct||0) + (s.defFlat||0) + (s.armorFlat||0); };
+  for (const lv of [300, 500, 900, 1500]) {
+    const td = E.aggregate('knight', build('knight', lv, 'tankdef').ranks).bonus;
+    const tk = E.aggregate('knight', build('knight', lv, 'tank').ranks).bonus;
+    const dd = (td.defFlat||0) + (td.armorFlat||0), dk = (tk.defFlat||0) + (tk.armorFlat||0);
+    ok(dd > dk * 3, `tankdef/${lv}: def+armor ${dd} nao passa nitidamente o tank (${dk})`);
+    ok((td.hpPct||0) >= (tk.hpPct||0) * 0.5, `tankdef/${lv}: jogou o HP fora (${td.hpPct} vs tank ${tk.hpPct})`);
+    /* o pedido: um notavel de 300 pontos as vezes nao vale os 300 pontos. A build livre
+       tem que empatar ou ganhar no tema (HP + def + armor) de qualquer notavel travado --
+       se travar rende mais, o teste de notavel do autobuild deixou passar um ruim. */
+    const free = theme(build('knight', lv, 'tankdef').ranks);
+    for (const p of ['k_combat_mastery', 'k_battle_healing', 'k_gift_of_life', 'k_avatar_steel']) {
+      const locked = E.autobuild('knight', lv, 'tankdef', { element:'physical', perks:[p], forcePerks:true });
+      ok(free >= theme(locked.ranks) - 1e-9,
+        `tankdef/${lv}: travar ${p} rende mais no tema (${theme(locked.ranks).toFixed(1)} vs livre ${free.toFixed(1)})`);
+    }
+    console.log(`   lv${lv}: hp +${(td.hpPct||0).toFixed(1)}% def +${td.defFlat||0} armor +${td.armorFlat||0} (tank: hp +${(tk.hpPct||0).toFixed(1)}% def+armor ${dk})`);
+  }
+}
+
 console.log('== aoe: pega os chains onde a arvore tem ==');
 for (const [voc, node, el] of [['sorcerer','s_chain1','fire'], ['druid','d_chain1','ice']]) {
   const b = build(voc, 800, 'aoe', el);

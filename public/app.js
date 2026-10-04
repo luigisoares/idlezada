@@ -15,6 +15,7 @@ const OBJS = [
   { key:'avatar',   label:'Avatar' },
   { key:'aoe',      label:'AoE' },
   { key:'tank',     label:'Tank' },
+  { key:'tankdef',  label:'Tank + Def' },
   { key:'puller',   label:'Puller' },
   { key:'healer',   label:'Healer' },
   { key:'curadano', label:'Heal + Dmg' },
@@ -23,7 +24,7 @@ const OBJS = [
 ];
 // título do card por objetivo
 const OBJTITLE = { dano:'MAX DAMAGE', critico:'CRIT', avatar:'AVATAR', aoe:'AOE / MULTI-TARGET',
-  tank:'TANK', puller:'PULLER', healer:'HEALER', curadano:'HEAL + DAMAGE', xp:'XP', atkspeed:'ATTACK SPEED' };
+  tank:'TANK', tankdef:'TANK + DEFENSE', puller:'PULLER', healer:'HEALER', curadano:'HEAL + DAMAGE', xp:'XP', atkspeed:'ATTACK SPEED' };
 /* objetivos em que o elemento de dano muda a build -> mostra o seletor. Vem do engine
    (derivado dos pesos elemPick) em vez de escrito a mao: a lista antiga esquecia o
    `avatar`, que tem elemPick 1.3, e por isso nao havia como pedir "avatar de fire" --
@@ -35,7 +36,7 @@ const ELEM_OBJS = E.elementObjs();
 const OBJ_GROUPS = [
   { label:'Single target · boss', objs:['dano','critico','avatar','atkspeed'] },
   { label:'Pack · hunt',          objs:['aoe','puller','xp'] },
-  { label:'Defense & support',    objs:['tank','healer','curadano'] },
+  { label:'Defense & support',    objs:['tank','tankdef','healer','curadano'] },
 ];
 
 const ELNAME = { physical:'Physical', energy:'Energy', earth:'Earth', fire:'Fire', ice:'Ice', holy:'Holy', death:'Death' };
@@ -572,7 +573,7 @@ const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', 
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
 /* versao do front: vai na query dos iframes pra o navegador nao servir a pagina
    velha do cache. Suba junto com o ?v= do index.html. */
-const FRONT_V = '20';
+const FRONT_V = '21';
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){
   state.tab = view; saveState();
