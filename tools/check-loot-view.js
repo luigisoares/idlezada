@@ -124,8 +124,10 @@ console.log('== buscar um item: hunts, criatura, chance, por clear e clears/1 ==
   ok(clean(h), 'o ranking do item nao devia ter undefined/NaN');
   ok(r.els['loot-info'].innerHTML.includes('sells for 500g'), 'a barra devia dar o preco de venda');
   ok(r.els['loot-info'].innerHTML.includes('19 hunt'), 'e em quantas hunts cai');
-  /* default = mais por clear: Dark Thais (1,602) na frente do Gazer (1,536) */
-  ok(/Dark Thais/.test(h.split('lt-item')[1] || ''), 'default ordena por quantidade por clear');
+  /* default = mais por clear. A Rotten Man-Maggot lidera desde que o extrator aplica
+     o multiplicador de chance de loot do jogo nas hunts de lv1500 (x8.8 nela); antes
+     era a Dark Thais (1,602) na frente do Gazer (1,536). */
+  ok(/Rotten man-maggot/.test(h.split('lt-item')[1] || ''), 'default ordena por quantidade por clear');
 }
 
 console.log('== ordenar por melhor chance poe o bicho de maior % na frente ==');

@@ -108,6 +108,60 @@ function arrayAround(src, anchor) {
   throw new Error(`"${anchor}" nao esta dentro de um array`);
 }
 
+/* ------------------------------------------- identificador solto do bundle */
+/* avalia um IDENTIFICADOR do bundle pelo que ele vale la: acha a definicao
+   (`,nome=` / `const nome=` / `function nome(`), avalia, e o que ela citar de outro
+   identificador e' resolvido do mesmo jeito, sob demanda. Serve pros mapas e
+   funcoes pequenos que o jogo monta por cima da tabela de monstros (multiplicador
+   de XP e de loot das hunts de endgame): copiar os numeros pra ca deixaria o site
+   errado no primeiro rebalanceamento, que foi exatamente o bug do XP por clear.
+   Globais (Object, Math, JSON...) passam direto. */
+function bundleResolver(src) {
+  const cache = new Map();
+  const scope = new Proxy({}, {
+    has: (_, k) => typeof k === 'string' && !(k in globalThis) && k !== '__s',
+    get: (_, k) => (k === Symbol.unscopables ? undefined : resolve(k)),
+  });
+  const run = text => new Function('__s', `with(__s){return (${text})}`)(scope);
+  /* fim de uma expressao: a primeira `,` ou `;` fora de string/colchete/parentese */
+  function exprEnd(from) {
+    let depth = 0;
+    for (let i = from; i < src.length; i++) {
+      const c = src[i];
+      if (c === '"' || c === "'" || c === '`') {
+        for (i++; i < src.length && src[i] !== c; i++) if (src[i] === '\\') i++;
+        continue;
+      }
+      if (c === '(' || c === '[' || c === '{') depth++;
+      else if (c === ')' || c === ']' || c === '}') { if (--depth < 0) return i; }
+      else if ((c === ',' || c === ';') && depth === 0) return i;
+    }
+    return src.length;
+  }
+  function resolve(name) {
+    if (cache.has(name)) return cache.get(name);
+    let val, found = false;
+    const fn = src.indexOf(`function ${name}(`);
+    if (fn >= 0) {
+      const body = src.indexOf('{', src.indexOf(')', fn));
+      val = run(`(${src.slice(fn, body)}${matchBrackets(src, body, '{')})`);
+      found = true;
+    } else {
+      const re = new RegExp(`(?:[,;{]|\\b(?:const|let|var) )${name.replace(/\$/g, '\\$')}=(?![=>])`, 'g');
+      let m;
+      while (!found && (m = re.exec(src))) {
+        const at = m.index + m[0].length;
+        const text = src[at] === '{' || src[at] === '[' ? matchBrackets(src, at, src[at]) : src.slice(at, exprEnd(at));
+        try { val = run(text); found = true; } catch (e) { /* outro `nome=` (string de HTML etc.): tenta o proximo */ }
+      }
+    }
+    if (!found) throw new Error(`nao achei a definicao de ${name} no bundle`);
+    cache.set(name, val);
+    return val;
+  }
+  return resolve;
+}
+
 /* -------------------------------------------------------------- monstros */
 const ELEMENTS = ['physical','energy','earth','fire','ice','holy','death'];
 
@@ -123,15 +177,31 @@ function mergedMonsterTable(src) {
     'nao achei a expressao que monta a tabela de monstros. O bundle mudou de forma: '
     + 'abra o arquivo, procure "Object.fromEntries(Object.entries(" perto de um resist:{ e atualize o regex.');
   const [, baseVar, , , byNameVar, byKeyVar] = m;
-  console.log(`tabela de monstros: base=${baseVar} porNome=${byNameVar} porKey=${byKeyVar}`);
+
+  /* o resto da MESMA expressao, que o jogo passou a usar nas hunts de lv1500+:
+       i=t1[e]??1; return[e,{...a,...o,...t,...i!==1?{exp:Math.round(a.exp*i)}:{},loot:r1(e,Xp(e,a.loot))}]
+     t1 = multiplicador de XP por monstro (Bloated x3, Wandering Pillar x3.72...), r1 =
+     multiplicador de CHANCE de loot. Sem isto o site mostrava ~1/3 do XP real nessas
+     hunts. Se a expressao tiver so os tres overrides (bundle antigo), segue sem eles. */
+  const tail = src.slice(m.index, m.index + 600).match(
+    /,\w+=(\w+)\[\w+\]\?\?1;return\[\w+,\{[^}]*?\.\.\.(\w+)!==1\?\{exp:Math\.round\(\w+\.exp\*\2\)\}:\{\},loot:(\w+)\(\w+,/);
+  const expVar = tail && tail[1], lootFn = tail && tail[3];
+  console.log(`tabela de monstros: base=${baseVar} porNome=${byNameVar} porKey=${byKeyVar}`
+    + (tail ? ` xpMult=${expVar} lootMult=${lootFn}` : ' (sem multiplicador de XP/loot)'));
 
   const base = objectNamed(src, baseVar);
   const byName = objectNamed(src, byNameVar);
   const byKey = objectNamed(src, byKeyVar);
+  const resolve = tail ? bundleResolver(src) : null;
+  const expMult = tail ? resolve(expVar) : {};
+  const lootMult = tail ? resolve(lootFn) : null;
 
   const out = {};
   for (const [key, b] of Object.entries(base)) {
     out[key] = Object.assign({}, b, byName[String(b.name || '').toLowerCase()] || {}, byKey[key] || {});
+    const xm = expMult[key] ?? 1;
+    if (xm !== 1) out[key].exp = Math.round(b.exp * xm);   // sobre o exp BASE, como o jogo
+    if (lootMult && Array.isArray(out[key].loot)) out[key].loot = lootMult(key, out[key].loot);
   }
   return out;
 }

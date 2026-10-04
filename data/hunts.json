@@ -7088,7 +7088,7 @@
         "key": "mycobiontic_beetle",
         "name": "Mycobiontic Beetle",
         "hp": 60400,
-        "exp": 21175,
+        "exp": 63525,
         "resist": {
           "physical": 25,
           "energy": -15,
@@ -7108,7 +7108,7 @@
         "key": "bloated_man_maggot",
         "name": "Bloated Man-Maggot",
         "hp": 63400,
-        "exp": 21570,
+        "exp": 64710,
         "resist": {
           "physical": 45,
           "energy": -15,
@@ -7128,7 +7128,7 @@
         "key": "sopping_corpus",
         "name": "Sopping Corpus",
         "hp": 66800,
-        "exp": 22465,
+        "exp": 67395,
         "resist": {
           "physical": 40,
           "energy": -20,
@@ -7148,7 +7148,7 @@
         "key": "oozing_corpus",
         "name": "Oozing Corpus",
         "hp": 57400,
-        "exp": 20600,
+        "exp": 61800,
         "resist": {
           "physical": 30,
           "energy": -25,
@@ -7169,7 +7169,7 @@
       "key": "bloated_man_maggot",
       "name": "Bloated Man-Maggot",
       "hp": 63400,
-      "exp": 21570,
+      "exp": 64710,
       "resist": {
         "physical": 45,
         "energy": -15,
@@ -7185,13 +7185,13 @@
         "fire": 50.4
       }
     },
-    "avgExp": 21453,
+    "avgExp": 64358,
     "avgHp": 62000,
-    "xpPerClear": 1169455,
+    "xpPerClear": 3508365,
     "hpPerClear": 3414200,
-    "goldPerClear": 59097,
-    "xpMin": 1125125,
-    "xpMax": 1222105,
+    "goldPerClear": 274801,
+    "xpMin": 3375375,
+    "xpMax": 3666315,
     "avail": "test"
   },
   {
@@ -7204,7 +7204,7 @@
         "key": "rotten_man_maggot",
         "name": "Rotten Man-Maggot",
         "hp": 62200,
-        "exp": 22625,
+        "exp": 72400,
         "resist": {
           "physical": 0,
           "energy": 55,
@@ -7226,7 +7226,7 @@
         "key": "oozing_carcass",
         "name": "Oozing Carcass",
         "hp": 55000,
-        "exp": 20980,
+        "exp": 67136,
         "resist": {
           "physical": 0,
           "energy": 25,
@@ -7248,7 +7248,7 @@
         "key": "oozing_corpus",
         "name": "Oozing Corpus",
         "hp": 57400,
-        "exp": 20600,
+        "exp": 61800,
         "resist": {
           "physical": 30,
           "energy": -25,
@@ -7268,7 +7268,7 @@
         "key": "meandering_mushroom",
         "name": "Meandering Mushroom",
         "hp": 58200,
-        "exp": 21980,
+        "exp": 70336,
         "resist": {
           "physical": 0,
           "energy": 25,
@@ -7291,7 +7291,7 @@
       "key": "rotten_man_maggot",
       "name": "Rotten Man-Maggot",
       "hp": 62200,
-      "exp": 22625,
+      "exp": 72400,
       "resist": {
         "physical": 0,
         "energy": 55,
@@ -7309,13 +7309,13 @@
         "death": 751.7
       }
     },
-    "avgExp": 21546,
+    "avgExp": 67918,
     "avgHp": 58200,
-    "xpPerClear": 1176968,
+    "xpPerClear": 3712736,
     "hpPerClear": 3213000,
-    "goldPerClear": 53158,
-    "xpMin": 1127763,
-    "xpMax": 1233063,
+    "goldPerClear": 400365,
+    "xpMin": 3394600,
+    "xpMax": 3945800,
     "avail": "test"
   },
   {
@@ -7328,7 +7328,7 @@
         "key": "wandering_pillar",
         "name": "Wandering Pillar",
         "hp": 74000,
-        "exp": 23200,
+        "exp": 86304,
         "resist": {
           "physical": -15,
           "energy": -10,
@@ -7350,7 +7350,7 @@
         "key": "darklight_emitter",
         "name": "Darklight Emitter",
         "hp": 55000,
-        "exp": 20600,
+        "exp": 52530,
         "resist": {
           "physical": -15,
           "energy": -10,
@@ -7372,7 +7372,7 @@
         "key": "converter",
         "name": "Converter",
         "hp": 59200,
-        "exp": 21425,
+        "exp": 79701,
         "resist": {
           "physical": -20,
           "energy": -10,
@@ -7394,7 +7394,7 @@
         "key": "darklight_construct",
         "name": "Darklight Construct",
         "hp": 64400,
-        "exp": 22050,
+        "exp": 82026,
         "resist": {
           "physical": -15,
           "energy": -5,
@@ -7417,7 +7417,7 @@
       "key": "wandering_pillar",
       "name": "Wandering Pillar",
       "hp": 74000,
-      "exp": 23200,
+      "exp": 86304,
       "resist": {
         "physical": -15,
         "energy": -10,
@@ -7435,13 +7435,13 @@
         "holy": 627.1
       }
     },
-    "avgExp": 21819,
+    "avgExp": 75140,
     "avgHp": 63150,
-    "xpPerClear": 1192575,
+    "xpPerClear": 4123053,
     "hpPerClear": 3505800,
-    "goldPerClear": 55163,
-    "xpMin": 1129200,
-    "xpMax": 1264400,
+    "goldPerClear": 336474,
+    "xpMin": 2947320,
+    "xpMax": 4703568,
     "avail": "test"
   },
   {
@@ -7454,7 +7454,7 @@
         "key": "walking_pillar",
         "name": "Walking Pillar",
         "hp": 76000,
-        "exp": 24300,
+        "exp": 61965,
         "resist": {
           "physical": -10,
           "energy": 60,
@@ -7474,7 +7474,7 @@
         "key": "darklight_emitter",
         "name": "Darklight Emitter",
         "hp": 55000,
-        "exp": 20600,
+        "exp": 52530,
         "resist": {
           "physical": -15,
           "energy": -10,
@@ -7496,7 +7496,7 @@
         "key": "darklight_matter",
         "name": "Darklight Matter",
         "hp": 60300,
-        "exp": 22250,
+        "exp": 56737,
         "resist": {
           "physical": -10,
           "energy": 40,
@@ -7516,7 +7516,7 @@
         "key": "darklight_source",
         "name": "Darklight Source",
         "hp": 63100,
-        "exp": 22465,
+        "exp": 57286,
         "resist": {
           "physical": -15,
           "energy": 55,
@@ -7536,7 +7536,7 @@
         "key": "darklight_striker",
         "name": "Darklight Striker",
         "hp": 59400,
-        "exp": 22200,
+        "exp": 56610,
         "resist": {
           "physical": 10,
           "energy": 35,
@@ -7557,7 +7557,7 @@
       "key": "darklight_source",
       "name": "Darklight Source",
       "hp": 63100,
-      "exp": 22465,
+      "exp": 57286,
       "resist": {
         "physical": -15,
         "energy": 55,
@@ -7573,13 +7573,13 @@
         "ice": 123.5
       }
     },
-    "avgExp": 22363,
+    "avgExp": 57026,
     "avgHp": 62760,
-    "xpPerClear": 1219039,
+    "xpPerClear": 3108546,
     "hpPerClear": 3452820,
-    "goldPerClear": 65323,
-    "xpMin": 1127363,
-    "xpMax": 1319763,
+    "goldPerClear": 303750,
+    "xpMin": 2874775,
+    "xpMax": 3365395,
     "avail": "test"
   },
   {
@@ -7915,7 +7915,7 @@
         "key": "radiant_acolyte",
         "name": "Radiant Acolyte",
         "hp": 69200,
-        "exp": 32960,
+        "exp": 129203,
         "resist": {
           "physical": 5,
           "energy": -5,
@@ -7935,7 +7935,7 @@
         "key": "radiant_paragon",
         "name": "Radiant Paragon",
         "hp": 72000,
-        "exp": 34780,
+        "exp": 136338,
         "resist": {
           "physical": 10,
           "energy": -10,
@@ -7955,7 +7955,7 @@
         "key": "radiant_warden",
         "name": "Radiant Warden",
         "hp": 77000,
-        "exp": 35540,
+        "exp": 139317,
         "resist": {
           "physical": 10,
           "energy": -10,
@@ -7978,7 +7978,7 @@
       "key": "radiant_warden",
       "name": "Radiant Warden",
       "hp": 77000,
-      "exp": 35540,
+      "exp": 139317,
       "resist": {
         "physical": 10,
         "energy": -10,
@@ -7996,13 +7996,13 @@
         "holy": 780
       }
     },
-    "avgExp": 34427,
+    "avgExp": 134953,
     "avgHp": 72733,
-    "xpPerClear": 1879037,
+    "xpPerClear": 7365831,
     "hpPerClear": 4013133,
-    "goldPerClear": 116522,
-    "xpMin": 1802770,
-    "xpMax": 1936930,
+    "goldPerClear": 752734,
+    "xpMin": 7066849,
+    "xpMax": 7592777,
     "avail": "test"
   },
   {
@@ -8015,7 +8015,7 @@
         "key": "radiant_inquisitor",
         "name": "Radiant Inquisitor",
         "hp": 69600,
-        "exp": 32460,
+        "exp": 108741,
         "resist": {
           "physical": -10,
           "energy": 20,
@@ -8035,7 +8035,7 @@
         "key": "radiant_templar",
         "name": "Radiant Templar",
         "hp": 74000,
-        "exp": 34520,
+        "exp": 115642,
         "resist": {
           "physical": 5,
           "energy": 20,
@@ -8056,7 +8056,7 @@
         "key": "radiant_zealot",
         "name": "Radiant Zealot",
         "hp": 73000,
-        "exp": 35210,
+        "exp": 117954,
         "resist": {
           "physical": -15,
           "energy": 40,
@@ -8078,7 +8078,7 @@
       "key": "radiant_templar",
       "name": "Radiant Templar",
       "hp": 74000,
-      "exp": 34520,
+      "exp": 115642,
       "resist": {
         "physical": 5,
         "energy": 20,
@@ -8095,13 +8095,13 @@
         "death": 472
       }
     },
-    "avgExp": 34063,
+    "avgExp": 114112,
     "avgHp": 72200,
-    "xpPerClear": 1857593,
+    "xpPerClear": 6222946,
     "hpPerClear": 3976400,
-    "goldPerClear": 116513,
-    "xpMin": 1774220,
-    "xpMax": 1917220,
+    "goldPerClear": 709562,
+    "xpMin": 5943637,
+    "xpMax": 6422713,
     "avail": "test"
   },
   {
@@ -8114,7 +8114,7 @@
         "key": "devoted_radiant_acolyte",
         "name": "Devoted Radiant Acolyte",
         "hp": 79580,
-        "exp": 47830,
+        "exp": 187494,
         "resist": {},
         "threat": {
           "physical": 1898.5,
@@ -8126,7 +8126,7 @@
         "key": "devoted_radiant_paragon",
         "name": "Devoted Radiant Paragon",
         "hp": 82800,
-        "exp": 50560,
+        "exp": 198195,
         "resist": {},
         "threat": {
           "physical": 2865.3,
@@ -8138,7 +8138,7 @@
         "key": "devoted_radiant_warden",
         "name": "Devoted Radiant Warden",
         "hp": 88550,
-        "exp": 51280,
+        "exp": 201018,
         "resist": {},
         "threat": {
           "physical": 1112.5,
@@ -8153,7 +8153,7 @@
       "key": "devoted_radiant_warden",
       "name": "Devoted Radiant Warden",
       "hp": 88550,
-      "exp": 51280,
+      "exp": 201018,
       "resist": {},
       "threat": {
         "physical": 1112.5,
@@ -8163,13 +8163,13 @@
         "holy": 1264.5
       }
     },
-    "avgExp": 49890,
+    "avgExp": 195569,
     "avgHp": 83643,
-    "xpPerClear": 2722480,
+    "xpPerClear": 10672133,
     "hpPerClear": 4615103,
-    "goldPerClear": 156661,
-    "xpMin": 2615360,
-    "xpMax": 2794760,
+    "goldPerClear": 714377,
+    "xpMin": 10252233,
+    "xpMax": 10955481,
     "avail": "test"
   },
   {
@@ -8182,7 +8182,7 @@
         "key": "devoted_radiant_inquisitor",
         "name": "Devoted Radiant Inquisitor",
         "hp": 80040,
-        "exp": 47030,
+        "exp": 157551,
         "resist": {
           "physical": -10,
           "energy": 25,
@@ -8202,7 +8202,7 @@
         "key": "devoted_radiant_templar",
         "name": "Devoted Radiant Templar",
         "hp": 85100,
-        "exp": 49910,
+        "exp": 167199,
         "resist": {
           "physical": 5,
           "energy": 20,
@@ -8223,7 +8223,7 @@
         "key": "devoted_radiant_zealot",
         "name": "Devoted Radiant Zealot",
         "hp": 83960,
-        "exp": 50500,
+        "exp": 169175,
         "resist": {
           "physical": -15,
           "energy": 40,
@@ -8245,7 +8245,7 @@
       "key": "devoted_radiant_templar",
       "name": "Devoted Radiant Templar",
       "hp": 85100,
-      "exp": 49910,
+      "exp": 167199,
       "resist": {
         "physical": 5,
         "energy": 20,
@@ -8262,13 +8262,13 @@
         "death": 764.1
       }
     },
-    "avgExp": 49147,
+    "avgExp": 164642,
     "avgHp": 83033,
-    "xpPerClear": 2680402,
+    "xpPerClear": 8979364,
     "hpPerClear": 4573033,
-    "goldPerClear": 156640,
-    "xpMin": 2570335,
-    "xpMax": 2750775,
+    "goldPerClear": 671992,
+    "xpMin": 8610650,
+    "xpMax": 9215098,
     "avail": "test"
   }
 ]

@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Idlezada — Baiak Idle toolkit</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
@@ -45,58 +46,40 @@
   <div class="wrap">
     <div class="vh">
       <h2>Hunts</h2>
-      <p>Where to hunt at your level, ranked by real XP per hour once you paste your Session. Open a hunt for the element to hit with, the element to protect from, and where to put each charm.</p>
+      <p>Compare hunts by the XP your party makes per clear, and per hour once you save how long a clear takes.</p>
     </div>
-    <div class="hx">
-      <aside class="rail" aria-label="Hunt settings">
-        <div class="rail-card">
-          <span class="rail-k">Character</span>
-          <div class="hunt-chars" id="hunt-chars"></div>
-          <div class="rail-row">
-            <label class="field"><span class="k">Level</span><input type="number" id="hunt-level" min="1" max="9999999" value="900"></label>
-            <label class="switch"><input type="checkbox" id="hunt-party"><span>Party <em>leader gets 65%</em></span></label>
-          </div>
-          <label class="field"><span class="k">Avatar uptime % <em>— empty uses your tree; set it if forge Transcendence or potions make it proc more</em></span>
-            <input type="number" id="hunt-avatar" min="0" max="100" step="1" placeholder="from tree"></label>
-          <span class="rail-meta" id="hunt-rate"></span>
-        </div>
 
-        <div class="rail-card">
-          <label class="field"><span class="k">Your DPS <em>— paste the Session window (Ctrl+V)</em></span>
-            <textarea id="hunt-dps" rows="3" placeholder="Session&#10;05:27:35&#10;EK&#10;3.226/s · 63.410.078&#10;ED ..."></textarea></label>
-          <label class="field"><span class="k">Your average hit <em>— the damage number you see per hit, runes and spells included; decides elemental × Carnage</em></span>
-            <input type="number" id="hunt-hit" min="0" step="100" placeholder="from your DPS"></label>
-          <span id="hunt-dpsinfo" class="dpsinfo"></span>
-        </div>
-
-        <div class="rail-card charm-bar">
-          <button type="button" class="cfg-toggle perks-h" id="charm-cfg-toggle" aria-expanded="false" aria-controls="charm-cfg"></button>
-          <div class="cfg-body" id="charm-cfg" hidden></div>
-        </div>
-
-        <div class="rail-card">
-          <label class="field"><span class="k">Rank by</span>
-            <select id="hunt-sort">
-              <option value="xph">XP / hour</option>
-              <option value="xp">XP per clear</option>
-              <option value="gold">Gold per clear</option>
-              <option value="level">Level</option>
-            </select></label>
-          <label class="field"><span class="k">Find a hunt</span>
-            <input type="search" id="hunt-q" placeholder="name or monster" autocomplete="off"></label>
-          <label class="switch"><input type="checkbox" id="hunt-only"><span>Only hunts I can enter</span></label>
-        </div>
-      </aside>
-
-      <div class="hx-main">
-        <div id="hunt-reco"></div>
-        <div class="hunts-table" id="hunts-table"></div>
-        <details class="howto">
-          <summary>How these numbers are computed</summary>
-          <p>XP per clear is the hunt's base XP times your level's XP rate and your party share. XP per hour needs your DPS: clear time is the clear's total HP divided by the party DPS you pasted. <b>Hit with</b> is the element the whole pack takes the most damage from, as extra damage over a neutral hit (a monster immune to an element rules it out for the hunt). <b>Protect from</b> groups the biggest sources of the damage you take there — elements are added until they cover about 70% of it, two at most. Gold is coins only. Data comes from the game bundle; XP rates are the live server config.</p>
-        </details>
+    <div class="hparty" id="hunt-party-box">
+      <div class="hparty-chars" id="hunt-chars"></div>
+      <div class="hparty-opts">
+        <label class="switch"><input type="checkbox" id="hunt-vip" checked><span>VIP <em>+10%</em></span></label>
+        <label class="switch"><input type="checkbox" id="hunt-event"><span>Server event <em id="hunt-event-v">checking…</em></span></label>
+        <label class="hparty-sel">Party leader <select id="hunt-leader"></select></label>
+        <label class="hparty-lv" id="hunt-levelwrap" hidden>Level <input type="number" id="hunt-level" min="1" max="9999999" value="900"></label>
       </div>
     </div>
+
+    <div class="hfind">
+      <input type="search" id="hunt-q" placeholder="Add a hunt to compare: type a hunt or monster name" autocomplete="off" aria-label="Add a hunt to compare">
+      <div class="hunt-sug" id="hunt-sug"></div>
+    </div>
+
+    <div class="hcmp" id="hunt-compare"></div>
+
+    <div class="hlist-h">
+      <h3>All hunts <span id="hunt-list-who"></span></h3>
+      <label class="switch"><input type="checkbox" id="hunt-only"><span>Only hunts I can enter</span></label>
+      <button type="button" class="cfg-toggle perks-h" id="charm-cfg-toggle" aria-expanded="false" aria-controls="charm-cfg"></button>
+    </div>
+    <div class="cfg-body hlist-cfg" id="charm-cfg" hidden></div>
+    <div class="hunts-table" id="hunts-table"></div>
+
+    <details class="howto">
+      <summary>How the XP is computed</summary>
+      <p>A clear is 10 waves: 4, 4, 5, 5, 6, 6, 7, 7 and 8 monsters drawn evenly from the hunt's list, then the wave-10 boss worth 2.5× its XP. Each monster's XP is the one the game client uses, including the extra multiplier of the level 1500 and 2000 hunts.</p>
+      <p>The XP of a clear belongs to the party and is split: the leader keeps 40% in a trio (60% in a duo) and the others share the rest. Each character's part is then multiplied by the XP rate of their level and by their bonus: VIP, the live server event, the XP% of their tree in the Builds tab and the extra you type, added together. XP per clear is the sum of the parts, the number the game shows you. XP per hour is that divided by the time per clear you save.</p>
+      <p><b>Hit with</b> is the element the whole pack takes the most damage from. <b>Protect from</b> groups the elements behind about 70% of the damage you take there.</p>
+    </details>
   </div>
 </section>
 
@@ -172,17 +155,17 @@
   <div class="iframe-wrap"><iframe id="staminaFrame" title="Stamina Calculator"></iframe></div>
 </section>
 
-<script src="trees.js?v=14"></script>
-<script src="engine.js?v=14"></script>
-<script src="app.js?v=14"></script>
-<script src="xprates.js?v=14"></script>
-<script src="hunts.js?v=14"></script>
-<script src="charms.js?v=14"></script>
-<script src="hunt-model.js?v=14"></script>
-<script src="loot.js?v=14"></script>
-<script src="hunts-view.js?v=14"></script>
-<script src="bosses.js?v=14"></script>
-<script src="bosses-view.js?v=14"></script>
-<script src="loot-view.js?v=14"></script>
+<script src="trees.js?v=20"></script>
+<script src="engine.js?v=20"></script>
+<script src="app.js?v=20"></script>
+<script src="xprates.js?v=20"></script>
+<script src="hunts.js?v=20"></script>
+<script src="charms.js?v=20"></script>
+<script src="hunt-model.js?v=20"></script>
+<script src="loot.js?v=20"></script>
+<script src="hunts-view.js?v=20"></script>
+<script src="bosses.js?v=20"></script>
+<script src="bosses-view.js?v=20"></script>
+<script src="loot-view.js?v=20"></script>
 </body>
 </html>
