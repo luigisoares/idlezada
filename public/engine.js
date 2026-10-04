@@ -288,6 +288,33 @@ PROFILES.curadano = blend(PROFILES.healer, PROFILES.dano, 0.65);
    do notavel, e o otimizador acerta em gastar isso em absorb/HP. */
 PROFILES.puller = blend(PROFILES.tank, PROFILES.aoe, 0.65);
 
+/* tank + defesa (pedido pro knight): o Tank de cima poe def/armor em 0.1 de proposito
+   (escalam menos que hpPct), e quem quer a barra de def/armor cheia nao tinha como
+   pedir. Aqui defFlat/armorFlat pesam O MESMO que hpPct: +1 def / +1 armor vale tanto
+   quanto +1% de HP, entao as escadas de def/armor sobem junto com o ramo de HP em vez
+   de esperar sobra. So HP, def e armadura -- absorb elemental (Wards) continua em 0,
+   como no Tank, e o absorb fisico fica no peso do Tank.
+   E e' SO isso: regen, leech, dodge e Gift of Life ficam em 0. MEDIDO no knight lv300
+   com o resto do Tank herdado: o Gift of Life (200 pts) comia o orcamento e a build saia
+   com hp 16% / def 12 / armor 8 -- travando o Combat Mastery no lugar dele dava 27% /
+   21 / 22, melhor nos tres eixos.
+   Notaveis NAO sao perseguidos: Combat Mastery e Avatar of Steel entram pelos stats
+   deles (armor 8 / hp 8) contra o custo, e o teste de notavel do autobuild (ver
+   dropWeakNotables) tira o que nao pagou os pontos. Quem quiser o notavel mesmo assim
+   trava ele na lista de perks. tactics em 2.0 pelo mesmo motivo dos outros perfis.
+   O resto fica em 0.02 (150x abaixo do tema) so pra ter destino quando HP/def/armor
+   maxam (~lv1500): com tudo zerado o knight lv2000 parava em 1605 pontos, porque o
+   passe de sobra so engrossa ramo vizinho. Em 0.1-0.15 era alto demais -- MEDIDO:
+   competia com os ranks caros do fim da escada de HP e o lv1500 caia de 75% pra 67%. */
+PROFILES.tankdef = {
+  stats: { hpPct:3.0, defFlat:3.0, armorFlat:3.0,
+           hpRegenPct:0.02, lifeLeech:0.02, manaPct:0.02, atkPct:0.02, spellDmgPct:0.02, critChance:0.02 },
+  elem: 0.02, elemPick: 0.02, elemOther: 0, absorb: 0.02, absorbElem: 0,
+  specials: { tactics:2.0, gift_of_life:0.02, dodge:0.02, battle_instinct:0.02 },
+  notableCheck: true,
+};
+PROFILES.tank.notableCheck = true;
+
 /* "+ XP": o objetivo escolhido COM foco em XP (pedido pro druid e o sorcerer: Avatar
    com XP, pra ter o crit do Avatar e ainda subir rapido). Nao e' um blend 50/50 --
    isso diluiria justo o que o objetivo tem de proprio (o peso do no do Avatar, o
@@ -639,10 +666,64 @@ function pruneDeadWeight(v, rk, obj, elem, floor, keep){
   return freed;
 }
 
+/* valor da build inteira no perfil (soma do valor de cada rank alocado), pra comparar
+   duas builds do MESMO objetivo. Crit usa o contexto final da build -- aproximacao,
+   mas a mesma nas duas pontas da comparacao. */
+function buildScore(v, rk, obj, elem){
+  const ctx = valueCtx(v, rk);
+  let s = 0;
+  for(const id in rk) if(rk[id] > 0) s += nodeValue(nd(v,id), obj, elem, ctx, false) * rk[id];
+  return s;
+}
+
+/* TESTE DE NOTAVEL — "a mastery vale os pontos dela?".
+   O greedy compara valor/custo NA HORA de comprar e nunca revisa. Um notavel de
+   200-300 pontos pode ganhar a comparacao local e mesmo assim deixar a build pior do
+   que se aqueles pontos tivessem ido pra arvore em si -- MEDIDO no knight Tank + Def
+   lv300: o Gift of Life entrava e a build saia pior em HP, def E armor do que a mesma
+   build sem ele.
+   Entao, pra cada notavel que entrou sem ser pedido, monta a build de novo com ele
+   bloqueado e fica com a que vale mais no proprio perfil. Do mais caro pro mais barato
+   (o mais caro e' o que mais pesa no orcamento). Notavel travado na lista de perks
+   nunca e' testado -- foi pedido -- e a troca nao pode custar rank do Battle Tactics
+   nem perk travado.
+   SO NOS PERFIS DE DEFESA (flag notableCheck). Ligado em todos foi MEDIDO contra o
+   tools/model.js (185 combos, lv300-2500): 12 melhoraram, 8 PIORARAM -- druid healer
+   -28% de cura, atkspeed -29% -- porque nos perfis de dano/cura a soma linear dos
+   pesos nao acompanha a metrica real (crit multiplica, cura satura). Em tank/tankdef
+   o score linear E' a metrica (HP, def, armor, absorb somam), e la nada piorou. */
+function dropWeakNotables(v, level, obj, opts, best){
+  const elem = (!opts.element || opts.element === 'all') ? defaultElement(v) : opts.element;
+  const scoreObj = (!!opts.xp && obj !== 'xp' && objAvailable(v, 'xp')) ? (xpProfile(obj), xpKey(obj)) : obj;
+  const asked = new Set(opts.perks || []);
+  const skip = [];
+  let bestScore = buildScore(v, best.ranks, scoreObj, elem);
+  const tried = new Set();
+  for(let guard = 0; guard < 20; guard++){
+    const cand = perkNodes(v)
+      .filter(n => (best.ranks[n.id]||0) > 0 && !asked.has(n.id) && !tried.has(n.id))
+      .sort((a,b) => b.cost - a.cost)[0];
+    if(!cand) break;
+    tried.add(cand.id);
+    const alt = autobuild(v, level, obj, Object.assign({}, opts, { _skip: skip.concat(cand.id), _noNotableCheck: true }));
+    const altScore = buildScore(v, alt.ranks, scoreObj, elem);
+    if(altScore > bestScore * (1 + 1e-9)
+       && alt.tactics.got >= best.tactics.got
+       && alt.perks.reached.length >= best.perks.reached.length){
+      best = alt; bestScore = altScore; skip.push(cand.id);
+    }
+  }
+  return best;
+}
+
 /* monta a build. retorna {ranks, spent, reachedAvatar, leftover, spentFallback,
    perks:{reached,missing,unaffordable}}. */
 function autobuild(v, level, obj, opts){
   opts = opts||{};
+  const P = PROFILES[obj];
+  if(!opts._noNotableCheck && P && P.notableCheck)
+    return dropWeakNotables(v, level, obj, opts,
+      autobuild(v, level, obj, Object.assign({}, opts, { _noNotableCheck: true })));
   /* 'all' (legado do localStorage) e ausencia de escolha caem no padrao da vocacao, nao
      em 'none': pro knight isso devolve `physical` (o elemento dele) em vez de descartar
      o ramo de dano fisico. 'none' explicito continua sendo "nao conto com elemento". */
@@ -700,6 +781,11 @@ function autobuild(v, level, obj, opts){
         for(let c = tNode, g = 0; c != null && g < 500; c = pred[c], g++) blocked.delete(c);
       }
     }
+  }
+  // notaveis que o teste de notavel (dropWeakNotables) ja descartou
+  if(opts._skip && opts._skip.length){
+    blocked = blocked || new Set();
+    for(const id of opts._skip) blocked.add(id);
   }
 
   grow(false);
@@ -790,12 +876,14 @@ const OBJ_NEEDS = {
   atkspeed: { stat:'attackSpeedPct' },    // o druid nao tem
   puller:   { specials:['slash','chain','battle_instinct'] },  // paladin/monk nao tem
   aoe:      { specials:['chain','slash'] },                    // paladin/monk nao tem
+  tankdef:  { vocs:['knight'] },          // escolha de produto: so o knight (monk/paladin tem def, mas pouca)
 };
 const treeHasStat = (v,k) => TREES[v].some(n => n.per && n.per[k] != null);
 const treeHasSpecial = (v,ks) => TREES[v].some(n => n.special && ks.includes(n.special.key));
 function objAvailable(v, obj){
   const need = OBJ_NEEDS[obj];
   if(!need) return true;                  // dano/critico/avatar/tank: sempre
+  if(need.vocs) return need.vocs.includes(v);
   if(need.stat) return treeHasStat(v, need.stat);
   if(need.specials) return treeHasSpecial(v, need.specials);
   return true;
