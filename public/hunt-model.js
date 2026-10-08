@@ -85,7 +85,11 @@ function huntElements(hunt, ctx) {
     }
     return { el, immune, mult: immune || !time ? 0 : total / time };
   });
-  return rows.sort((a, b) => (b.mult - a.mult) || ELEMENTS.indexOf(a.el) - ELEMENTS.indexOf(b.el));
+  /* empate (ate 0,5%) vai pro ELEMENTAL: physical so lidera quando e' estritamente o
+     melhor. Sem isto o physical ganhava todo empate so por ser o primeiro da lista. */
+  const key = r => Math.round(r.mult * 200);
+  return rows.sort((a, b) => (key(b) - key(a)) || ((a.el === 'physical') - (b.el === 'physical'))
+    || (b.mult - a.mult) || ELEMENTS.indexOf(a.el) - ELEMENTS.indexOf(b.el));
 }
 
 /* ============================================================================
