@@ -1691,8 +1691,7 @@
     "hpPerClear": 279960,
     "goldPerClear": 17175,
     "xpMin": 97165,
-    "xpMax": 132525,
-    "avail": "test"
+    "xpMax": 132525
   },
   {
     "id": "grimreaper-cave",
@@ -2012,8 +2011,7 @@
     "hpPerClear": 328706,
     "goldPerClear": 22907,
     "xpMin": 131550,
-    "xpMax": 206950,
-    "avail": "test"
+    "xpMax": 206950
   },
   {
     "id": "asura-lair",
@@ -4443,8 +4441,7 @@
     "hpPerClear": 567000,
     "goldPerClear": 44287,
     "xpMin": 197600,
-    "xpMax": 283400,
-    "avail": "test"
+    "xpMax": 283400
   },
   {
     "id": "werecrocodile-cave",
@@ -4541,8 +4538,7 @@
     "hpPerClear": 592374,
     "goldPerClear": 45203,
     "xpMin": 201815,
-    "xpMax": 295935,
-    "avail": "test"
+    "xpMax": 295935
   },
   {
     "id": "gazer-lair",
@@ -4786,8 +4782,7 @@
     "hpPerClear": 868400,
     "goldPerClear": 32848,
     "xpMin": 261600,
-    "xpMax": 276680,
-    "avail": "test"
+    "xpMax": 276680
   },
   {
     "id": "bulltaur-cave",
@@ -4975,8 +4970,7 @@
     "hpPerClear": 880466,
     "goldPerClear": 42560,
     "xpMin": 239800,
-    "xpMax": 255400,
-    "avail": "test"
+    "xpMax": 255400
   },
   {
     "id": "inferniarch-lair",
@@ -6121,7 +6115,7 @@
       {
         "key": "headpecker",
         "name": "Headpecker",
-        "hp": 32600,
+        "hp": 57050,
         "exp": 20965,
         "resist": {
           "physical": -10,
@@ -6132,14 +6126,14 @@
           "death": -10
         },
         "threat": {
-          "physical": 322.9,
-          "earth": 210.7
+          "physical": 387.5,
+          "earth": 252.8
         }
       },
       {
         "key": "mantosaurus",
         "name": "Mantosaurus",
-        "hp": 38800,
+        "hp": 67900,
         "exp": 20168,
         "resist": {
           "physical": -10,
@@ -6151,14 +6145,14 @@
           "death": 5
         },
         "threat": {
-          "physical": 374.2,
-          "earth": 121.2
+          "physical": 449.1,
+          "earth": 145.4
         }
       },
       {
         "key": "mercurial_menace",
         "name": "Mercurial Menace",
-        "hp": 37000,
+        "hp": 64750,
         "exp": 21086,
         "resist": {
           "physical": 5,
@@ -6170,14 +6164,14 @@
           "death": -5
         },
         "threat": {
-          "physical": 365.6,
-          "energy": 202.7
+          "physical": 438.8,
+          "energy": 243.2
         }
       },
       {
         "key": "noxious_ripptor",
         "name": "Noxious Ripptor",
-        "hp": 45400,
+        "hp": 79450,
         "exp": 22994,
         "resist": {
           "physical": 20,
@@ -6189,14 +6183,14 @@
           "death": -10
         },
         "threat": {
-          "physical": 337.5,
-          "earth": 264
+          "physical": 405,
+          "earth": 316.8
         }
       },
       {
         "key": "shrieking_cry_stal",
         "name": "Shrieking Cry-Stal",
-        "hp": 41300,
+        "hp": 72276,
         "exp": 23639,
         "resist": {
           "physical": 20,
@@ -6207,16 +6201,16 @@
           "death": 0
         },
         "threat": {
-          "physical": 100,
-          "energy": 206.6,
-          "death": 51.4
+          "physical": 120,
+          "energy": 247.9,
+          "death": 61.7
         }
       }
     ],
     "boss": {
       "key": "noxious_ripptor",
       "name": "Noxious Ripptor",
-      "hp": 45400,
+      "hp": 79450,
       "exp": 22994,
       "resist": {
         "physical": 20,
@@ -6228,14 +6222,14 @@
         "death": -10
       },
       "threat": {
-        "physical": 337.5,
-        "earth": 264
+        "physical": 405,
+        "earth": 316.8
       }
     },
     "avgExp": 21770,
-    "avgHp": 39020,
+    "avgHp": 68285,
     "xpPerClear": 1189546,
-    "hpPerClear": 2165240,
+    "hpPerClear": 3789180,
     "goldPerClear": 289193,
     "xpMin": 1106221,
     "xpMax": 1286713
@@ -6249,7 +6243,7 @@
       {
         "key": "undertaker",
         "name": "Undertaker",
-        "hp": 40200,
+        "hp": 70350,
         "exp": 23652,
         "resist": {
           "physical": -15,
@@ -6261,15 +6255,15 @@
           "death": 40
         },
         "threat": {
-          "physical": 300,
-          "earth": 273.5,
-          "death": 101.8
+          "physical": 360,
+          "earth": 328.2,
+          "death": 122.2
         }
       },
       {
         "key": "sulphider",
         "name": "Sulphider",
-        "hp": 42000,
+        "hp": 73500,
         "exp": 23276,
         "resist": {
           "physical": 0,
@@ -6281,14 +6275,14 @@
           "death": 20
         },
         "threat": {
-          "physical": 250,
-          "fire": 172.1
+          "physical": 300,
+          "fire": 206.5
         }
       },
       {
         "key": "sulphur_spouter",
         "name": "Sulphur Spouter",
-        "hp": 38000,
+        "hp": 66500,
         "exp": 20113,
         "resist": {
           "physical": 0,
@@ -6300,15 +6294,15 @@
           "death": 0
         },
         "threat": {
-          "physical": 300.3,
-          "fire": 50,
-          "death": 51.7
+          "physical": 360.3,
+          "fire": 60,
+          "death": 62
         }
       },
       {
         "key": "nighthunter",
         "name": "Nighthunter",
-        "hp": 38400,
+        "hp": 67200,
         "exp": 22087,
         "resist": {
           "physical": -10,
@@ -6320,14 +6314,14 @@
           "death": 20
         },
         "threat": {
-          "physical": 175,
-          "earth": 146.9
+          "physical": 210,
+          "earth": 176.2
         }
       },
       {
         "key": "stalking_stalk",
         "name": "Stalking Stalk",
-        "hp": 34200,
+        "hp": 59850,
         "exp": 20204,
         "resist": {
           "physical": -25,
@@ -6339,16 +6333,16 @@
           "death": 10
         },
         "threat": {
-          "physical": 100,
-          "earth": 85.3,
-          "fire": 92.5
+          "physical": 120,
+          "earth": 102.4,
+          "fire": 111
         }
       }
     ],
     "boss": {
       "key": "sulphider",
       "name": "Sulphider",
-      "hp": 42000,
+      "hp": 73500,
       "exp": 23276,
       "resist": {
         "physical": 0,
@@ -6360,14 +6354,14 @@
         "death": 20
       },
       "threat": {
-        "physical": 250,
-        "fire": 172.1
+        "physical": 300,
+        "fire": 206.5
       }
     },
     "avgExp": 21866,
-    "avgHp": 38560,
+    "avgHp": 67480,
     "xpPerClear": 1195243,
-    "hpPerClear": 2131120,
+    "hpPerClear": 3729460,
     "goldPerClear": 249480,
     "xpMin": 1104066,
     "xpMax": 1288094
@@ -6381,7 +6375,7 @@
       {
         "key": "emerald_tortoise",
         "name": "Emerald Tortoise",
-        "hp": 44600,
+        "hp": 78050,
         "exp": 21362,
         "resist": {
           "physical": 20,
@@ -6393,14 +6387,14 @@
           "death": 0
         },
         "threat": {
-          "physical": 312.5,
-          "energy": 324.7
+          "physical": 375,
+          "energy": 389.6
         }
       },
       {
         "key": "gore_horn",
         "name": "Gore Horn",
-        "hp": 41240,
+        "hp": 72170,
         "exp": 22183,
         "resist": {
           "physical": 0,
@@ -6412,14 +6406,14 @@
           "death": 0
         },
         "threat": {
-          "physical": 275.6,
-          "energy": 121.8
+          "physical": 330.7,
+          "energy": 146.1
         }
       },
       {
         "key": "gorerilla",
         "name": "Gorerilla",
-        "hp": 33700,
+        "hp": 58976,
         "exp": 23199,
         "resist": {
           "physical": 30,
@@ -6431,14 +6425,14 @@
           "death": 0
         },
         "threat": {
-          "physical": 502.8,
-          "fire": 84.7
+          "physical": 603.3,
+          "fire": 101.6
         }
       },
       {
         "key": "hulking_prehemoth",
         "name": "Hulking Prehemoth",
-        "hp": 41400,
+        "hp": 72450,
         "exp": 22349,
         "resist": {
           "physical": 5,
@@ -6450,14 +6444,14 @@
           "death": -20
         },
         "threat": {
-          "physical": 450.9,
-          "energy": 65.9
+          "physical": 541.1,
+          "energy": 79
         }
       },
       {
         "key": "sabretooth",
         "name": "Sabretooth",
-        "hp": 34600,
+        "hp": 60550,
         "exp": 21013,
         "resist": {
           "physical": -10,
@@ -6469,15 +6463,15 @@
           "death": 0
         },
         "threat": {
-          "physical": 373.6,
-          "fire": 201.8
+          "physical": 448.3,
+          "fire": 242.2
         }
       }
     ],
     "boss": {
       "key": "emerald_tortoise",
       "name": "Emerald Tortoise",
-      "hp": 44600,
+      "hp": 78050,
       "exp": 21362,
       "resist": {
         "physical": 20,
@@ -6489,14 +6483,14 @@
         "death": 0
       },
       "threat": {
-        "physical": 312.5,
-        "energy": 324.7
+        "physical": 375,
+        "energy": 389.6
       }
     },
     "avgExp": 22021,
-    "avgHp": 39108,
+    "avgHp": 68439,
     "xpPerClear": 1198507,
-    "hpPerClear": 2167416,
+    "hpPerClear": 3792988,
     "goldPerClear": 245030,
     "xpMin": 1146081,
     "xpMax": 1259753
@@ -6522,9 +6516,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 200.5,
-          "ice": 271.3,
-          "holy": 104.9
+          "physical": 230.5,
+          "ice": 312.1,
+          "holy": 120.6
         }
       },
       {
@@ -6542,9 +6536,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 277.7,
-          "ice": 115.1,
-          "holy": 172.1
+          "physical": 319.4,
+          "ice": 132.4,
+          "holy": 197.9
         }
       },
       {
@@ -6562,9 +6556,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 283.6,
-          "ice": 121.8,
-          "holy": 166
+          "physical": 326.1,
+          "ice": 140.1,
+          "holy": 190.9
         }
       },
       {
@@ -6582,9 +6576,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 252.7,
-          "ice": 108.5,
-          "holy": 147.8
+          "physical": 290.5,
+          "ice": 124.8,
+          "holy": 170
         }
       },
       {
@@ -6602,9 +6596,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 208,
-          "ice": 166.2,
-          "holy": 257.8
+          "physical": 239.3,
+          "ice": 191.2,
+          "holy": 296.5
         },
         "heal": 131.3
       },
@@ -6623,9 +6617,9 @@
           "death": 0
         },
         "threat": {
-          "physical": 151.8,
-          "ice": 141.1,
-          "holy": 207.9
+          "physical": 174.5,
+          "ice": 162.2,
+          "holy": 239.1
         }
       },
       {
@@ -6643,9 +6637,9 @@
           "death": -30
         },
         "threat": {
-          "physical": 289.5,
-          "ice": 192.2,
-          "holy": 129.4
+          "physical": 333,
+          "ice": 221.1,
+          "holy": 148.8
         }
       }
     ],
@@ -6664,9 +6658,9 @@
         "death": -30
       },
       "threat": {
-        "physical": 289.5,
-        "ice": 192.2,
-        "holy": 129.4
+        "physical": 333,
+        "ice": 221.1,
+        "holy": 148.8
       }
     },
     "avgExp": 24430,
@@ -6792,9 +6786,9 @@
           "holy": -20
         },
         "threat": {
-          "physical": 162,
-          "fire": 427.6,
-          "death": 127.1
+          "physical": 145.8,
+          "fire": 384.8,
+          "death": 114.4
         }
       },
       {
@@ -6812,9 +6806,9 @@
           "death": 50
         },
         "threat": {
-          "physical": 290,
-          "fire": 117.5,
-          "death": 193.2
+          "physical": 261,
+          "fire": 105.8,
+          "death": 173.9
         }
       },
       {
@@ -6832,9 +6826,9 @@
           "death": 50
         },
         "threat": {
-          "physical": 213.8,
-          "fire": 143.1,
-          "death": 235.8
+          "physical": 192.5,
+          "fire": 128.8,
+          "death": 212.3
         }
       }
     ],
@@ -6853,9 +6847,9 @@
         "death": 50
       },
       "threat": {
-        "physical": 290,
-        "fire": 117.5,
-        "death": 193.2
+        "physical": 261,
+        "fire": 105.8,
+        "death": 173.9
       }
     },
     "avgExp": 30361,
@@ -6887,9 +6881,9 @@
           "death": -10
         },
         "threat": {
-          "physical": 162,
-          "energy": 146.8,
-          "holy": 188.2
+          "physical": 202.5,
+          "energy": 183.5,
+          "holy": 235.2
         }
       },
       {
@@ -6907,9 +6901,9 @@
           "death": -25
         },
         "threat": {
-          "physical": 175,
-          "energy": 325.5,
-          "holy": 130
+          "physical": 218.8,
+          "energy": 406.9,
+          "holy": 162.5
         }
       },
       {
@@ -6927,9 +6921,9 @@
           "death": -20
         },
         "threat": {
-          "physical": 202.5,
-          "energy": 103.3,
-          "holy": 81.2
+          "physical": 253.3,
+          "energy": 129.2,
+          "holy": 101.5
         }
       }
     ],
@@ -6948,9 +6942,9 @@
         "death": -20
       },
       "threat": {
-        "physical": 202.5,
-        "energy": 103.3,
-        "holy": 81.2
+        "physical": 253.3,
+        "energy": 129.2,
+        "holy": 101.5
       }
     },
     "avgExp": 35952,
@@ -6982,9 +6976,9 @@
           "death": 0
         },
         "threat": {
-          "physical": 240.8,
-          "earth": 46.1,
-          "ice": 220.1
+          "physical": 315.3,
+          "earth": 60.4,
+          "ice": 288.4
         }
       },
       {
@@ -7002,9 +6996,9 @@
           "death": 0
         },
         "threat": {
-          "physical": 275,
-          "earth": 135.4,
-          "ice": 255
+          "physical": 360.3,
+          "earth": 177.4,
+          "ice": 334.1
         }
       },
       {
@@ -7022,9 +7016,9 @@
           "death": 0
         },
         "threat": {
-          "physical": 182.3,
-          "earth": 90.8,
-          "ice": 172.8
+          "physical": 238.8,
+          "earth": 118.9,
+          "ice": 226.3
         }
       },
       {
@@ -7042,10 +7036,10 @@
           "death": 5
         },
         "threat": {
-          "physical": 182.3,
-          "energy": 34.4,
-          "earth": 68.3,
-          "ice": 266.1
+          "physical": 238.8,
+          "energy": 45.1,
+          "earth": 89.5,
+          "ice": 348.5
         }
       }
     ],
@@ -7064,10 +7058,10 @@
         "death": 5
       },
       "threat": {
-        "physical": 182.3,
-        "energy": 34.4,
-        "earth": 68.3,
-        "ice": 266.1
+        "physical": 238.8,
+        "energy": 45.1,
+        "earth": 89.5,
+        "ice": 348.5
       }
     },
     "avgExp": 51539,
@@ -7087,7 +7081,7 @@
       {
         "key": "mycobiontic_beetle",
         "name": "Mycobiontic Beetle",
-        "hp": 60400,
+        "hp": 77312,
         "exp": 63525,
         "resist": {
           "physical": 25,
@@ -7099,15 +7093,15 @@
           "death": 0
         },
         "threat": {
-          "physical": 570.5,
-          "earth": 286.5,
-          "fire": 38
+          "physical": 423.3,
+          "earth": 159.6,
+          "fire": 21.8
         }
       },
       {
         "key": "bloated_man_maggot",
         "name": "Bloated Man-Maggot",
-        "hp": 63400,
+        "hp": 81152,
         "exp": 64710,
         "resist": {
           "physical": 45,
@@ -7119,15 +7113,15 @@
           "death": 5
         },
         "threat": {
-          "physical": 639.7,
-          "earth": 195.6,
-          "fire": 50.4
+          "physical": 453.9,
+          "earth": 108.7,
+          "fire": 27.6
         }
       },
       {
         "key": "sopping_corpus",
         "name": "Sopping Corpus",
-        "hp": 66800,
+        "hp": 85504,
         "exp": 67395,
         "resist": {
           "physical": 40,
@@ -7139,15 +7133,15 @@
           "death": 10
         },
         "threat": {
-          "physical": 780,
-          "earth": 675.2,
-          "fire": 163
+          "physical": 570.7,
+          "earth": 372.2,
+          "fire": 91.1
         }
       },
       {
         "key": "oozing_corpus",
         "name": "Oozing Corpus",
-        "hp": 57400,
+        "hp": 73472,
         "exp": 61800,
         "resist": {
           "physical": 30,
@@ -7159,16 +7153,16 @@
           "death": 0
         },
         "threat": {
-          "physical": 679.5,
-          "earth": 616.7,
-          "fire": 163
+          "physical": 486.5,
+          "earth": 339.5,
+          "fire": 91.1
         }
       }
     ],
     "boss": {
       "key": "bloated_man_maggot",
       "name": "Bloated Man-Maggot",
-      "hp": 63400,
+      "hp": 81152,
       "exp": 64710,
       "resist": {
         "physical": 45,
@@ -7180,19 +7174,18 @@
         "death": 5
       },
       "threat": {
-        "physical": 639.7,
-        "earth": 195.6,
-        "fire": 50.4
+        "physical": 453.9,
+        "earth": 108.7,
+        "fire": 27.6
       }
     },
     "avgExp": 64358,
-    "avgHp": 62000,
+    "avgHp": 79360,
     "xpPerClear": 3508365,
-    "hpPerClear": 3414200,
+    "hpPerClear": 4370176,
     "goldPerClear": 274801,
     "xpMin": 3375375,
-    "xpMax": 3666315,
-    "avail": "test"
+    "xpMax": 3666315
   },
   {
     "id": "maggot-cave",
@@ -7203,7 +7196,7 @@
       {
         "key": "rotten_man_maggot",
         "name": "Rotten Man-Maggot",
-        "hp": 62200,
+        "hp": 79616,
         "exp": 72400,
         "resist": {
           "physical": 0,
@@ -7215,17 +7208,17 @@
           "death": 30
         },
         "threat": {
-          "physical": 212.5,
-          "energy": 186.9,
-          "earth": 163,
-          "ice": 755.6,
-          "death": 751.7
+          "physical": 174.3,
+          "energy": 85.8,
+          "earth": 79,
+          "ice": 349.4,
+          "death": 350.6
         }
       },
       {
         "key": "oozing_carcass",
         "name": "Oozing Carcass",
-        "hp": 55000,
+        "hp": 70400,
         "exp": 67136,
         "resist": {
           "physical": 0,
@@ -7237,37 +7230,17 @@
           "death": 40
         },
         "threat": {
-          "physical": 225,
-          "energy": 199.1,
-          "earth": 204.8,
-          "ice": 855.5,
-          "death": 833.6
-        }
-      },
-      {
-        "key": "oozing_corpus",
-        "name": "Oozing Corpus",
-        "hp": 57400,
-        "exp": 61800,
-        "resist": {
-          "physical": 30,
-          "energy": -25,
-          "earth": 40,
-          "fire": 25,
-          "ice": -10,
-          "holy": -10,
-          "death": 0
-        },
-        "threat": {
-          "physical": 679.5,
-          "earth": 616.7,
-          "fire": 163
+          "physical": 184.5,
+          "energy": 91.4,
+          "earth": 94,
+          "ice": 374.2,
+          "death": 364.6
         }
       },
       {
         "key": "meandering_mushroom",
         "name": "Meandering Mushroom",
-        "hp": 58200,
+        "hp": 74496,
         "exp": 70336,
         "resist": {
           "physical": 0,
@@ -7279,18 +7252,38 @@
           "death": 50
         },
         "threat": {
-          "physical": 237.5,
-          "energy": 42,
-          "earth": 45.6,
-          "ice": 191,
-          "death": 251.6
+          "physical": 194.8,
+          "energy": 23,
+          "earth": 24.9,
+          "ice": 107.6,
+          "death": 141.4
+        }
+      },
+      {
+        "key": "sopping_carcass",
+        "name": "Sopping Carcass",
+        "hp": 85504,
+        "exp": 67395,
+        "resist": {
+          "physical": 40,
+          "energy": -20,
+          "earth": 50,
+          "fire": 30,
+          "ice": -10,
+          "holy": 5,
+          "death": 10
+        },
+        "threat": {
+          "physical": 570.7,
+          "earth": 372.2,
+          "fire": 91.1
         }
       }
     ],
     "boss": {
       "key": "rotten_man_maggot",
       "name": "Rotten Man-Maggot",
-      "hp": 62200,
+      "hp": 79616,
       "exp": 72400,
       "resist": {
         "physical": 0,
@@ -7302,21 +7295,20 @@
         "death": 30
       },
       "threat": {
-        "physical": 212.5,
-        "energy": 186.9,
-        "earth": 163,
-        "ice": 755.6,
-        "death": 751.7
+        "physical": 174.3,
+        "energy": 85.8,
+        "earth": 79,
+        "ice": 349.4,
+        "death": 350.6
       }
     },
-    "avgExp": 67918,
-    "avgHp": 58200,
-    "xpPerClear": 3712736,
-    "hpPerClear": 3213000,
-    "goldPerClear": 400365,
-    "xpMin": 3394600,
-    "xpMax": 3945800,
-    "avail": "test"
+    "avgExp": 69317,
+    "avgHp": 77504,
+    "xpPerClear": 3785471,
+    "hpPerClear": 4269056,
+    "goldPerClear": 388040,
+    "xpMin": 3672072,
+    "xpMax": 3945800
   },
   {
     "id": "wanderingpillar-cave",
@@ -7327,7 +7319,7 @@
       {
         "key": "wandering_pillar",
         "name": "Wandering Pillar",
-        "hp": 74000,
+        "hp": 94720,
         "exp": 86304,
         "resist": {
           "physical": -15,
@@ -7339,17 +7331,17 @@
           "death": -15
         },
         "threat": {
-          "physical": 275,
-          "energy": 110.5,
-          "earth": 224.3,
-          "fire": 791,
-          "holy": 627.1
+          "physical": 225.5,
+          "energy": 49.8,
+          "earth": 103,
+          "fire": 350.6,
+          "holy": 288.9
         }
       },
       {
         "key": "darklight_emitter",
         "name": "Darklight Emitter",
-        "hp": 55000,
+        "hp": 70400,
         "exp": 52530,
         "resist": {
           "physical": -15,
@@ -7361,17 +7353,17 @@
           "death": -20
         },
         "threat": {
-          "physical": 225,
-          "energy": 110.5,
-          "earth": 224.3,
-          "fire": 722.8,
-          "holy": 486.2
+          "physical": 184.5,
+          "energy": 49.8,
+          "earth": 103,
+          "fire": 319.3,
+          "holy": 216.4
         }
       },
       {
         "key": "converter",
         "name": "Converter",
-        "hp": 59200,
+        "hp": 75776,
         "exp": 79701,
         "resist": {
           "physical": -20,
@@ -7383,17 +7375,17 @@
           "death": -15
         },
         "threat": {
-          "physical": 225,
-          "energy": 26.6,
-          "earth": 63,
-          "fire": 262.4,
-          "holy": 177.6
+          "physical": 184.5,
+          "energy": 13.1,
+          "earth": 27.6,
+          "fire": 118.1,
+          "holy": 81.7
         }
       },
       {
         "key": "darklight_construct",
         "name": "Darklight Construct",
-        "hp": 64400,
+        "hp": 82432,
         "exp": 82026,
         "resist": {
           "physical": -15,
@@ -7405,18 +7397,18 @@
           "death": -20
         },
         "threat": {
-          "physical": 250,
-          "energy": 110.5,
-          "earth": 224.3,
-          "fire": 745.5,
-          "holy": 692.3
+          "physical": 205,
+          "energy": 49.8,
+          "earth": 103,
+          "fire": 336.8,
+          "holy": 318.8
         }
       }
     ],
     "boss": {
       "key": "wandering_pillar",
       "name": "Wandering Pillar",
-      "hp": 74000,
+      "hp": 94720,
       "exp": 86304,
       "resist": {
         "physical": -15,
@@ -7428,21 +7420,20 @@
         "death": -15
       },
       "threat": {
-        "physical": 275,
-        "energy": 110.5,
-        "earth": 224.3,
-        "fire": 791,
-        "holy": 627.1
+        "physical": 225.5,
+        "energy": 49.8,
+        "earth": 103,
+        "fire": 350.6,
+        "holy": 288.9
       }
     },
     "avgExp": 75140,
-    "avgHp": 63150,
+    "avgHp": 80832,
     "xpPerClear": 4123053,
-    "hpPerClear": 3505800,
+    "hpPerClear": 4487424,
     "goldPerClear": 336474,
     "xpMin": 2947320,
-    "xpMax": 4703568,
-    "avail": "test"
+    "xpMax": 4703568
   },
   {
     "id": "draklightsource-cave",
@@ -7453,7 +7444,7 @@
       {
         "key": "walking_pillar",
         "name": "Walking Pillar",
-        "hp": 76000,
+        "hp": 97280,
         "exp": 61965,
         "resist": {
           "physical": -10,
@@ -7465,15 +7456,15 @@
           "death": 10
         },
         "threat": {
-          "physical": 940.8,
-          "energy": 641.1,
-          "ice": 136.5
+          "physical": 675.7,
+          "energy": 352.6,
+          "ice": 78.4
         }
       },
       {
         "key": "darklight_emitter",
         "name": "Darklight Emitter",
-        "hp": 55000,
+        "hp": 70400,
         "exp": 52530,
         "resist": {
           "physical": -15,
@@ -7485,17 +7476,17 @@
           "death": -20
         },
         "threat": {
-          "physical": 225,
-          "energy": 110.5,
-          "earth": 224.3,
-          "fire": 722.8,
-          "holy": 486.2
+          "physical": 184.5,
+          "energy": 49.8,
+          "earth": 103,
+          "fire": 319.3,
+          "holy": 216.4
         }
       },
       {
         "key": "darklight_matter",
         "name": "Darklight Matter",
-        "hp": 60300,
+        "hp": 77184,
         "exp": 56737,
         "resist": {
           "physical": -10,
@@ -7507,15 +7498,15 @@
           "death": 0
         },
         "threat": {
-          "physical": 935,
-          "energy": 541.5,
-          "ice": 123.5
+          "physical": 687.7,
+          "energy": 298,
+          "ice": 70.9
         }
       },
       {
         "key": "darklight_source",
         "name": "Darklight Source",
-        "hp": 63100,
+        "hp": 80768,
         "exp": 57286,
         "resist": {
           "physical": -15,
@@ -7527,15 +7518,15 @@
           "death": 0
         },
         "threat": {
-          "physical": 788,
-          "energy": 527.5,
-          "ice": 123.5
+          "physical": 578.9,
+          "energy": 290.3,
+          "ice": 70.9
         }
       },
       {
         "key": "darklight_striker",
         "name": "Darklight Striker",
-        "hp": 59400,
+        "hp": 76032,
         "exp": 56610,
         "resist": {
           "physical": 10,
@@ -7547,16 +7538,16 @@
           "death": 0
         },
         "threat": {
-          "physical": 856,
-          "energy": 551.9,
-          "ice": 136.5
+          "physical": 630.1,
+          "energy": 303.9,
+          "ice": 78.4
         }
       }
     ],
     "boss": {
       "key": "darklight_source",
       "name": "Darklight Source",
-      "hp": 63100,
+      "hp": 80768,
       "exp": 57286,
       "resist": {
         "physical": -15,
@@ -7568,19 +7559,18 @@
         "death": 0
       },
       "threat": {
-        "physical": 788,
-        "energy": 527.5,
-        "ice": 123.5
+        "physical": 578.9,
+        "energy": 290.3,
+        "ice": 70.9
       }
     },
     "avgExp": 57026,
-    "avgHp": 62760,
+    "avgHp": 80333,
     "xpPerClear": 3108546,
-    "hpPerClear": 3452820,
+    "hpPerClear": 4419610,
     "goldPerClear": 303750,
     "xpMin": 2874775,
-    "xpMax": 3365395,
-    "avail": "test"
+    "xpMax": 3365395
   },
   {
     "id": "moonstone-crater",
@@ -7652,8 +7642,7 @@
     "hpPerClear": 581300,
     "goldPerClear": 25702,
     "xpMin": 255140,
-    "xpMax": 268140,
-    "avail": "test"
+    "xpMax": 268140
   },
   {
     "id": "forbidden-gardens",
@@ -7728,8 +7717,7 @@
     "hpPerClear": 706800,
     "goldPerClear": 69772,
     "xpMin": 387213,
-    "xpMax": 427825,
-    "avail": "test"
+    "xpMax": 427825
   },
   {
     "id": "asura-citadel",
@@ -7824,8 +7812,7 @@
     "hpPerClear": 965267,
     "goldPerClear": 80834,
     "xpMin": 428285,
-    "xpMax": 460525,
-    "avail": "test"
+    "xpMax": 460525
   },
   {
     "id": "thalassara-surroundings",
@@ -7902,8 +7889,7 @@
     "hpPerClear": 1280400,
     "goldPerClear": 55174,
     "xpMin": 371840,
-    "xpMax": 405640,
-    "avail": "test"
+    "xpMax": 405640
   },
   {
     "id": "radiant-skyhold",
@@ -7914,7 +7900,7 @@
       {
         "key": "radiant_acolyte",
         "name": "Radiant Acolyte",
-        "hp": 69200,
+        "hp": 88576,
         "exp": 129203,
         "resist": {
           "physical": 5,
@@ -7926,15 +7912,15 @@
           "death": 30
         },
         "threat": {
-          "physical": 1285,
-          "ice": 1715.5,
-          "holy": 413
+          "physical": 716.1,
+          "ice": 854.7,
+          "holy": 201.2
         }
       },
       {
         "key": "radiant_paragon",
         "name": "Radiant Paragon",
-        "hp": 72000,
+        "hp": 92160,
         "exp": 136338,
         "resist": {
           "physical": 10,
@@ -7946,15 +7932,15 @@
           "death": 20
         },
         "threat": {
-          "physical": 1861.5,
-          "fire": 916.5,
-          "holy": 594
+          "physical": 1001.9,
+          "fire": 458.5,
+          "holy": 286.4
         }
       },
       {
         "key": "radiant_warden",
         "name": "Radiant Warden",
-        "hp": 77000,
+        "hp": 98560,
         "exp": 139317,
         "resist": {
           "physical": 10,
@@ -7966,18 +7952,18 @@
           "death": 20
         },
         "threat": {
-          "physical": 800,
-          "energy": 399,
-          "fire": 990,
-          "ice": 472,
-          "holy": 780
+          "physical": 496,
+          "energy": 194.4,
+          "fire": 483,
+          "ice": 237.8,
+          "holy": 386.9
         }
       }
     ],
     "boss": {
       "key": "radiant_warden",
       "name": "Radiant Warden",
-      "hp": 77000,
+      "hp": 98560,
       "exp": 139317,
       "resist": {
         "physical": 10,
@@ -7989,21 +7975,20 @@
         "death": 20
       },
       "threat": {
-        "physical": 800,
-        "energy": 399,
-        "fire": 990,
-        "ice": 472,
-        "holy": 780
+        "physical": 496,
+        "energy": 194.4,
+        "fire": 483,
+        "ice": 237.8,
+        "holy": 386.9
       }
     },
     "avgExp": 134953,
-    "avgHp": 72733,
+    "avgHp": 93099,
     "xpPerClear": 7365831,
-    "hpPerClear": 4013133,
+    "hpPerClear": 5136811,
     "goldPerClear": 752734,
     "xpMin": 7066849,
-    "xpMax": 7592777,
-    "avail": "test"
+    "xpMax": 7592777
   },
   {
     "id": "radiant-ascendancy",
@@ -8014,7 +7999,7 @@
       {
         "key": "radiant_inquisitor",
         "name": "Radiant Inquisitor",
-        "hp": 69600,
+        "hp": 89088,
         "exp": 108741,
         "resist": {
           "physical": -10,
@@ -8026,15 +8011,15 @@
           "death": -5
         },
         "threat": {
-          "physical": 662.5,
-          "energy": 993,
-          "holy": 1716.5
+          "physical": 410.8,
+          "energy": 480.8,
+          "holy": 855.3
         }
       },
       {
         "key": "radiant_templar",
         "name": "Radiant Templar",
-        "hp": 74000,
+        "hp": 94720,
         "exp": 115642,
         "resist": {
           "physical": 5,
@@ -8046,16 +8031,16 @@
           "death": -5
         },
         "threat": {
-          "physical": 1174,
-          "energy": 585,
-          "holy": 1185,
-          "death": 472
+          "physical": 674.9,
+          "energy": 282.1,
+          "holy": 587.8,
+          "death": 237.8
         }
       },
       {
         "key": "radiant_zealot",
         "name": "Radiant Zealot",
-        "hp": 73000,
+        "hp": 93440,
         "exp": 117954,
         "resist": {
           "physical": -15,
@@ -8067,17 +8052,17 @@
           "death": -10
         },
         "threat": {
-          "physical": 825,
-          "energy": 585,
-          "holy": 1185,
-          "death": 472
+          "physical": 511.5,
+          "energy": 282.1,
+          "holy": 587.8,
+          "death": 237.8
         }
       }
     ],
     "boss": {
       "key": "radiant_templar",
       "name": "Radiant Templar",
-      "hp": 74000,
+      "hp": 94720,
       "exp": 115642,
       "resist": {
         "physical": 5,
@@ -8089,20 +8074,19 @@
         "death": -5
       },
       "threat": {
-        "physical": 1174,
-        "energy": 585,
-        "holy": 1185,
-        "death": 472
+        "physical": 674.9,
+        "energy": 282.1,
+        "holy": 587.8,
+        "death": 237.8
       }
     },
     "avgExp": 114112,
-    "avgHp": 72200,
+    "avgHp": 92416,
     "xpPerClear": 6222946,
-    "hpPerClear": 3976400,
+    "hpPerClear": 5089792,
     "goldPerClear": 709562,
     "xpMin": 5943637,
-    "xpMax": 6422713,
-    "avail": "test"
+    "xpMax": 6422713
   },
   {
     "id": "radiant-skyhold-devoted",
@@ -8113,64 +8097,95 @@
       {
         "key": "devoted_radiant_acolyte",
         "name": "Devoted Radiant Acolyte",
-        "hp": 79580,
+        "hp": 101862,
         "exp": 187494,
-        "resist": {},
+        "resist": {
+          "physical": 5,
+          "energy": -5,
+          "earth": -5,
+          "fire": 40,
+          "ice": 10,
+          "holy": 5,
+          "death": 30
+        },
         "threat": {
-          "physical": 1898.5,
-          "ice": 2785,
-          "holy": 679.2
+          "physical": 944.9,
+          "ice": 1054.2,
+          "holy": 263.2
         }
       },
       {
         "key": "devoted_radiant_paragon",
         "name": "Devoted Radiant Paragon",
-        "hp": 82800,
+        "hp": 105984,
         "exp": 198195,
-        "resist": {},
+        "resist": {
+          "physical": 10,
+          "energy": -10,
+          "earth": -15,
+          "fire": 30,
+          "ice": 5,
+          "holy": 0,
+          "death": 20
+        },
         "threat": {
-          "physical": 2865.3,
-          "fire": 1489.5,
-          "holy": 951
+          "physical": 1320.2,
+          "fire": 554.8,
+          "holy": 353.8
         }
       },
       {
         "key": "devoted_radiant_warden",
         "name": "Devoted Radiant Warden",
-        "hp": 88550,
+        "hp": 113344,
         "exp": 201018,
-        "resist": {},
+        "resist": {
+          "physical": 10,
+          "energy": -10,
+          "earth": -5,
+          "fire": 30,
+          "ice": 10,
+          "holy": -10,
+          "death": 20
+        },
         "threat": {
-          "physical": 1112.5,
-          "energy": 656.8,
-          "fire": 1597.3,
-          "ice": 764.1,
-          "holy": 1264.5
+          "physical": 689.8,
+          "energy": 254.5,
+          "fire": 589.4,
+          "ice": 289.5,
+          "holy": 487.8
         }
       }
     ],
     "boss": {
       "key": "devoted_radiant_warden",
       "name": "Devoted Radiant Warden",
-      "hp": 88550,
+      "hp": 113344,
       "exp": 201018,
-      "resist": {},
+      "resist": {
+        "physical": 10,
+        "energy": -10,
+        "earth": -5,
+        "fire": 30,
+        "ice": 10,
+        "holy": -10,
+        "death": 20
+      },
       "threat": {
-        "physical": 1112.5,
-        "energy": 656.8,
-        "fire": 1597.3,
-        "ice": 764.1,
-        "holy": 1264.5
+        "physical": 689.8,
+        "energy": 254.5,
+        "fire": 589.4,
+        "ice": 289.5,
+        "holy": 487.8
       }
     },
     "avgExp": 195569,
-    "avgHp": 83643,
+    "avgHp": 107063,
     "xpPerClear": 10672133,
-    "hpPerClear": 4615103,
+    "hpPerClear": 5907325,
     "goldPerClear": 714377,
     "xpMin": 10252233,
-    "xpMax": 10955481,
-    "avail": "test"
+    "xpMax": 10955481
   },
   {
     "id": "radiant-ascendancy-devoted",
@@ -8181,7 +8196,7 @@
       {
         "key": "devoted_radiant_inquisitor",
         "name": "Devoted Radiant Inquisitor",
-        "hp": 80040,
+        "hp": 102452,
         "exp": 157551,
         "resist": {
           "physical": -10,
@@ -8193,15 +8208,15 @@
           "death": -10
         },
         "threat": {
-          "physical": 912.5,
-          "energy": 1607.8,
-          "holy": 2785.5
+          "physical": 565.8,
+          "energy": 608.3,
+          "holy": 1054.8
         }
       },
       {
         "key": "devoted_radiant_templar",
         "name": "Devoted Radiant Templar",
-        "hp": 85100,
+        "hp": 108928,
         "exp": 167199,
         "resist": {
           "physical": 5,
@@ -8213,16 +8228,16 @@
           "death": -5
         },
         "threat": {
-          "physical": 1731.8,
-          "energy": 936,
-          "holy": 1925.8,
-          "death": 764.1
+          "physical": 921,
+          "energy": 348.2,
+          "holy": 729,
+          "death": 289.5
         }
       },
       {
         "key": "devoted_radiant_zealot",
         "name": "Devoted Radiant Zealot",
-        "hp": 83960,
+        "hp": 107468,
         "exp": 169175,
         "resist": {
           "physical": -15,
@@ -8234,17 +8249,17 @@
           "death": -10
         },
         "threat": {
-          "physical": 1175,
-          "energy": 936,
-          "holy": 1925.8,
-          "death": 764.1
+          "physical": 728.5,
+          "energy": 348.2,
+          "holy": 729,
+          "death": 289.5
         }
       }
     ],
     "boss": {
       "key": "devoted_radiant_templar",
       "name": "Devoted Radiant Templar",
-      "hp": 85100,
+      "hp": 108928,
       "exp": 167199,
       "resist": {
         "physical": 5,
@@ -8256,19 +8271,18 @@
         "death": -5
       },
       "threat": {
-        "physical": 1731.8,
-        "energy": 936,
-        "holy": 1925.8,
-        "death": 764.1
+        "physical": 921,
+        "energy": 348.2,
+        "holy": 729,
+        "death": 289.5
       }
     },
     "avgExp": 164642,
-    "avgHp": 83033,
+    "avgHp": 106283,
     "xpPerClear": 8979364,
-    "hpPerClear": 4573033,
+    "hpPerClear": 5853483,
     "goldPerClear": 671992,
     "xpMin": 8610650,
-    "xpMax": 9215098,
-    "avail": "test"
+    "xpMax": 9215098
   }
 ]

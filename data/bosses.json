@@ -2218,12 +2218,16 @@
     "exp": 8000000,
     "elements": [
       {
+        "el": "energy",
+        "pct": 41
+      },
+      {
         "el": "death",
-        "pct": 67
+        "pct": 39
       },
       {
         "el": "physical",
-        "pct": 33
+        "pct": 20
       }
     ],
     "summons": [],
@@ -2513,15 +2517,15 @@
     "elements": [
       {
         "el": "ice",
-        "pct": 40
+        "pct": 39
       },
       {
         "el": "holy",
-        "pct": 25
+        "pct": 24
       },
       {
         "el": "physical",
-        "pct": 18
+        "pct": 20
       },
       {
         "el": "fire",
