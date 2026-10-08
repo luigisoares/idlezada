@@ -49,6 +49,53 @@ async function loadSource() {
   if (!r.ok) throw new Error(`${url} respondeu ${r.status}`);
   return r.text();
 }
+/* OVERRIDE DO SERVIDOR: o painel admin do jogo grava as hunts (monstros, pesos, boss,
+   level minimo, tamanho do pack, disponibilidade) e o servidor manda isso pro cliente
+   (mensagem "huntgate" do websocket), por cima do que o bundle traz. E' por isso que
+   o bundle ainda lista o Darklight Emitter na Darklight Source e o jogo nao. A mesma
+   lista sai publica, sem login, em /api/trpc/adminConfig.stages. */
+async function loadLiveStages() {
+  const url = `${SITE}/api/trpc/adminConfig.stages`;
+  console.log(`baixando ${url}`);
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`${url} respondeu ${r.status} -- sem o override do servidor as hunts sairiam com os monstros do bundle, que nao sao os do jogo`);
+  const data = (await r.json())?.result?.data;
+  if (!Array.isArray(data) || data.length < 50) throw new Error(`${url} nao trouxe a lista de stages esperada`);
+  return data;
+}
+/* aplica o override como o cliente faz (K8e no game.js): monstros so quando vem uma
+   lista de strings nao vazia, bossKey string (vazia = sem boss declarado). Level,
+   pack, pesos e avail o servidor impoe direto. Devolve o que mudou, pro log. */
+function applyLiveStages(bundleHunts, live) {
+  const out = [];
+  for (const l of live) {
+    const bh = bundleHunts[l.id];
+    if (!bh) { out.push(`  ! stage ${l.id} so no servidor (nao esta no bundle) -- ignorada`); continue; }
+    const d = [];
+    if (Array.isArray(l.monsters) && l.monsters.length && l.monsters.every(k => typeof k === 'string')
+        && l.monsters.join() !== bh.monsters.join()) {
+      for (const k of bh.monsters) if (!l.monsters.includes(k)) d.push(`-${k}`);
+      for (const k of l.monsters) if (!bh.monsters.includes(k)) d.push(`+${k}`);
+      bh.monsters = [...l.monsters];
+    }
+    if (typeof l.bossKey === 'string' && l.bossKey !== (bh.bossKey || '')) {
+      d.push(`boss ${bh.bossKey || '-'}->${l.bossKey || '-'}`);
+      if (l.bossKey) bh.bossKey = l.bossKey; else delete bh.bossKey;
+    }
+    if (Number.isFinite(l.minLevel) && l.minLevel !== bh.minLevel) { d.push(`nivel ${bh.minLevel}->${l.minLevel}`); bh.minLevel = l.minLevel; }
+    if (Number.isFinite(l.maxAlive) && l.maxAlive !== bh.maxAlive) { d.push(`pack ${bh.maxAlive}->${l.maxAlive}`); bh.maxAlive = l.maxAlive; }
+    const w = Array.isArray(l.weights) && l.weights.length === bh.monsters.length ? l.weights : undefined;
+    if (JSON.stringify(w) !== JSON.stringify(bh.weights && bh.weights.length === bh.monsters.length ? bh.weights : undefined)) d.push(`pesos ${JSON.stringify(bh.weights || [])}->${JSON.stringify(w || [])}`);
+    if (w) bh.weights = w; else delete bh.weights;
+    if (l.avail && l.avail !== bh.avail) { d.push(`avail ${bh.avail}->${l.avail}`); bh.avail = l.avail; }
+    if (d.length) out.push(`  servidor ${l.id}: ${d.join(', ')}`);
+  }
+  for (const id of Object.keys(bundleHunts)) if (!live.find(l => l.id === id)) {
+    out.push(`  servidor: ${id} nao esta nas stages -- fora do jogo`);
+    delete bundleHunts[id];
+  }
+  return out;
+}
 async function findBundleUrl() {
   const r = await fetch(SITE);
   if (!r.ok) throw new Error(`${SITE} respondeu ${r.status}`);
@@ -496,18 +543,21 @@ function write(file, text) {
   console.log(`  + ${rel}`);
 }
 
-function main(src) {
+function main(src, live) {
   const table = mergedMonsterTable(src);
   const monsters = extractMonsters(table);
   const loot = extractLoot(table);
   const prices = extractPrices(src);
   const bundleHunts = extractHunts(src);
+  const serverLog = applyLiveStages(bundleHunts, live);
   const charms = extractCharms(src);
 
   const withResist = Object.values(monsters).filter(m => Object.keys(m.resist).length).length;
   console.log(`${Object.keys(monsters).length} monstros (${withResist} com resist, `
     + `${Object.keys(loot).length} com loot) · ${Object.keys(bundleHunts).length} hunts · `
     + `${charms.length} charms · ${Object.keys(prices).length} precos`);
+  console.log(`override do servidor: ${live.length} stages` + (serverLog.length ? '' : ' (igual ao bundle)'));
+  for (const line of serverLog) console.log(line);
 
   /* resist por key; boss de hunt as vezes vem sem key, so com o nome */
   const byLowerName = {};
@@ -702,4 +752,4 @@ function main(src) {
   console.log(changed.length ? `\n${changed.length} arquivo(s) mudaram` : '\nnada mudou');
 }
 
-loadSource().then(main).catch(e => { console.error('ERRO: ' + e.message); process.exit(1); });
+Promise.all([loadSource(), loadLiveStages()]).then(([src, live]) => main(src, live)).catch(e => { console.error('ERRO: ' + e.message); process.exit(1); });

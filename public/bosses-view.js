@@ -123,14 +123,15 @@ function lootHtml(b){
 }
 
 /* com que elemento bater: olha os sete e mostra os tres melhores, pelo dano que
-   CHEGA no boss (resist 15 -> 85%). Vale pra toda vocacao -- o knight tambem
+   CHEGA no boss (resist 15 -> 85%). Empate vai pro elemental: physical so lidera
+   quando e' estritamente o melhor. Vale pra toda vocacao -- o knight tambem
    escolhe o elemento pela arma elemental. So' destaca quando um elemento sozinho
    e' o melhor; empate no topo nao tem "o" melhor. Elemento que o jogo nao lista na
    resist e' 0, igual ao hunt-model. */
 function hitHtml(b){
   if (!b.resist) return '';
   const rows = ELEMENTS.map(el => ({ el, m: Math.max(0, 100 - (b.resist[el] || 0)) }))
-    .sort((a, c) => c.m - a.m);
+    .sort((a, c) => (c.m - a.m) || ((a.el === 'physical') - (c.el === 'physical')));   // empate: elemental na frente
   const solo = rows[0].m > rows[1].m;
   const chips = rows.slice(0, 3).map((r, i) => `<span class="el el-${r.el}${solo && i === 0 ? ' best' : ''}"
       title="${r.el}: ${r.m}% of your damage lands">${r.el} <b class="${r.m > 100 ? 'up' : r.m < 100 ? 'down' : ''}">${r.m}%</b></span>`).join('');

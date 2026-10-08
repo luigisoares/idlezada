@@ -107,6 +107,14 @@ console.log('== elemento: imunidade no pack desclassifica o elemento da hunt int
   ok(M.huntElements(h, {})[0].el !== 'fire', 'elemento com imune nao pode ser o recomendado');
 }
 
+console.log('== elemento: empate vai pro elemental, physical so quando e o melhor de todos ==');
+{
+  const tie = hunt([mon('a', 100, 10, { physical: -10, ice: -10 })]);
+  ok(M.huntElements(tie, {})[0].el === 'ice', 'physical empatado com ice: recomenda o ice');
+  const phys = hunt([mon('a', 100, 10, { physical: -20, ice: -10 })]);
+  ok(M.huntElements(phys, {})[0].el === 'physical', 'physical estritamente melhor: recomenda o physical');
+}
+
 console.log('== elemento: o peso do pack reproduz o hpPerClear ja gravado em hunts.json ==');
 {
   const HUNTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'hunts.json'), 'utf8'));

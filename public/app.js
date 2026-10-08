@@ -573,7 +573,7 @@ const views = { builds:'view-builds', bosses:'view-bosses', hunts:'view-hunts', 
 const iframeSrc = { sim:'simuladorbuild.html', stamina:'stamina.html' };
 /* versao do front: vai na query dos iframes pra o navegador nao servir a pagina
    velha do cache. Suba junto com o ?v= do index.html. */
-const FRONT_V = '23';
+const FRONT_V = '24';
 const frames = { sim: document.getElementById('simFrame'), stamina: document.getElementById('staminaFrame') };
 function switchTab(view){
   state.tab = view; saveState();

@@ -253,12 +253,13 @@ const elChip = (el, extra) => `<span class="el el-${esc(el)}">${esc(el)}${extra 
 
    Bater: o elemento que o pack inteiro mais apanha (o mult harmonico do
    huntElements), dito como "% a mais de dano" -- ×1.12 vira +12%, que e' o que se
-   le. Pack sem preferencia diz isso em vez de inventar um vencedor.
+   le. Empate vai pro elemental; physical so aparece quando e' o melhor de todos
+   (a ordem vem pronta do huntElements). Pack sem preferencia diz isso em vez de
+   inventar um vencedor.
 
-   Defender: os MAIORES danos agrupados, nao a lista inteira. Entra elemento ate
-   cobrir ~70% do dano que chega (huntThreat), no maximo 2 -- o terceiro quase
-   nunca muda o que voce equipa. */
-const PROTECT_COVER = 0.7, PROTECT_MAX = 2;
+   Defender: os ate 3 MAIORES danos que chegam (huntThreat). Elemento abaixo de 5%
+   do dano e' ruido e fica de fora. */
+const PROTECT_MIN = 0.05, PROTECT_MAX = 3;
 const plusPct = m => { const v = Math.round((m - 1) * 100); return (v >= 0 ? '+' : '−') + Math.abs(v) + '%'; };
 function hitOf(h){
   const els = h.els || [];
@@ -271,11 +272,7 @@ function hitOf(h){
 function protectOf(h){
   const rows = (h.threat && h.threat.rows) || [];
   if (!rows.length) return '<span class="el-empty">no data</span>';
-  const out = []; let acc = 0;
-  for (const r of rows) {
-    out.push(r); acc += r.share;
-    if (acc >= PROTECT_COVER || out.length >= PROTECT_MAX) break;
-  }
+  const out = rows.filter((r, i) => i === 0 || r.share >= PROTECT_MIN).slice(0, PROTECT_MAX);
   return out.map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join('');
 }
 
@@ -423,7 +420,7 @@ function planBlock(h, ctx){
     ? '<span class="el-empty">no element bias in this pack</span>'
     : hit.map(e => elChip(e.el, plusPct(e.mult))).join(' ');
   const protLine = threat.rows.length
-    ? threat.rows.slice(0, 3).map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join(' ')
+    ? threat.rows.filter((r, i) => i === 0 || r.share >= PROTECT_MIN).slice(0, PROTECT_MAX).map(r => elChip(r.el, Math.round(r.share * 100) + '%')).join(' ')
     : '<span class="el-empty">no damage data</span>';
 
   /* UMA linha por criatura: onde prender cada charm. O "quanto do clear" diz por
