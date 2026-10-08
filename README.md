@@ -37,7 +37,8 @@ idlezada/
 │  ├─ check-loot.js      # loot model + the gold cross-check that pins the chance scale
 │  ├─ check-loot-view.js # runs the Loot tab against a fake DOM
 │  ├─ check-bosses-view.js # runs the Bosses tab against a fake DOM (loot included)
-│  ├─ extract-game-data.js # the one data script: bundle → monsters, loot, prices, charms, hunts, bosses
+│  ├─ extract-game-data.js # the one data script: bundle + server overrides → monsters, loot, prices, charms, hunts, bosses
+│  ├─ check-live.js        # compares the site with the live server (hunt overrides, monster multipliers)
 │  ├─ extract-wiki.js    # reads the game's wiki (shipped inside the bundle): the source of the rules
 │  ├─ bump-front-version.js # raises the ?v= cache version everywhere at once
 │  └─ model.js           # combat model used to compare objectives
@@ -472,10 +473,13 @@ is the `updating-game-data` skill in `.claude/skills/`.** This section is the re
 behind it.
 
 `data/monsters.json`, `data/charms.json`, `data/loot.json`, `data/prices.json`, the room
-bosses in `data/bosses.json` and the hunts in `data/hunts.json` come from the game bundle:
+bosses in `data/bosses.json` and the hunts in `data/hunts.json` come from the game bundle.
+The hunts also take the server override (`/api/trpc/adminConfig.stages`, public): the game
+admin changes monsters and levels there, on top of the bundle.
 
 ```
-node tools/extract-game-data.js           # downloads the current bundle
+node tools/check-live.js                  # is the site in sync with the live server?
+node tools/extract-game-data.js           # downloads the current bundle + server stages
 node tools/extract-game-data.js --dry     # shows what would change
 node tools/check-hunt-model.js            # then verify the model
 node tools/check-hunts-view.js            # ...and that the tab still renders

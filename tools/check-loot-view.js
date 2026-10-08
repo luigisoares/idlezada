@@ -349,7 +349,7 @@ console.log('== o level marca a hunt fora do alcance, sem esconder ==');
   const h = r.html();
   ok(h.includes(' locked'), 'hunt acima do level devia vir marcada');
   ok((h.match(/lt-item/g) || []).length === 19, 'mas nenhuma sai da lista: o ranking continua inteiro');
-  ok(h.includes('class="hl bad">350'), 'o level da hunt inalcancavel devia estar marcado');
+  ok(h.includes('class="hl bad">500'), 'o level da hunt inalcancavel devia estar marcado');
   ok(r.els['loot-info'].innerHTML.includes('at or below level 100'), 'a barra devia contar quantas dao pra fazer');
 
   /* o mesmo vale em Minha lista */

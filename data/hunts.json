@@ -71,7 +71,7 @@
   {
     "id": "elf-lair",
     "name": "Elf",
-    "minLevel": 8,
+    "minLevel": 10,
     "packBase": 4,
     "monsters": [
       {
@@ -481,7 +481,7 @@
   {
     "id": "corym-cave",
     "name": "Corym Skirmisher",
-    "minLevel": 30,
+    "minLevel": 35,
     "packBase": 4,
     "monsters": [
       {
@@ -574,7 +574,7 @@
   {
     "id": "refiner-cave",
     "name": "Stone Refiner",
-    "minLevel": 30,
+    "minLevel": 35,
     "packBase": 4,
     "monsters": [
       {
@@ -625,7 +625,7 @@
   {
     "id": "giant-spider",
     "name": "Giant Spider",
-    "minLevel": 50,
+    "minLevel": 60,
     "packBase": 4,
     "monsters": [
       {
@@ -714,7 +714,7 @@
   {
     "id": "crawler-cave",
     "name": "Crawler",
-    "minLevel": 50,
+    "minLevel": 60,
     "packBase": 4,
     "monsters": [
       {
@@ -800,7 +800,7 @@
   {
     "id": "hero-cave",
     "name": "Hero",
-    "minLevel": 60,
+    "minLevel": 70,
     "packBase": 4,
     "monsters": [
       {
@@ -891,7 +891,7 @@
   {
     "id": "glooth-cave",
     "name": "Glooth Bandit",
-    "minLevel": 60,
+    "minLevel": 110,
     "packBase": 4,
     "monsters": [
       {
@@ -1051,7 +1051,7 @@
   {
     "id": "dragon-lair",
     "name": "Dragon Lair",
-    "minLevel": 80,
+    "minLevel": 70,
     "packBase": 3,
     "monsters": [
       {
@@ -1401,7 +1401,7 @@
   {
     "id": "behemoth-cave",
     "name": "Behemoth",
-    "minLevel": 100,
+    "minLevel": 15,
     "packBase": 4,
     "monsters": [
       {
@@ -1508,7 +1508,7 @@
   {
     "id": "wyrm-cave",
     "name": "Wyrm",
-    "minLevel": 130,
+    "minLevel": 90,
     "packBase": 4,
     "monsters": [
       {
@@ -2194,7 +2194,7 @@
   {
     "id": "wereliones-cave",
     "name": "Wereliones",
-    "minLevel": 170,
+    "minLevel": 450,
     "packBase": 4,
     "monsters": [
       {
@@ -2290,7 +2290,7 @@
   {
     "id": "draken-lair",
     "name": "Draken",
-    "minLevel": 180,
+    "minLevel": 250,
     "packBase": 4,
     "monsters": [
       {
@@ -2455,7 +2455,7 @@
   {
     "id": "cobra-cave",
     "name": "Cobras",
-    "minLevel": 190,
+    "minLevel": 100,
     "packBase": 4,
     "monsters": [
       {
@@ -3024,7 +3024,7 @@
   {
     "id": "vexclaw-lair",
     "name": "Vexclaw",
-    "minLevel": 210,
+    "minLevel": 450,
     "packBase": 4,
     "monsters": [
       {
@@ -3118,7 +3118,7 @@
   {
     "id": "falcon",
     "name": "Falcon",
-    "minLevel": 210,
+    "minLevel": 140,
     "packBase": 4,
     "monsters": [
       {
@@ -3191,7 +3191,7 @@
   {
     "id": "grimeleech-cave",
     "name": "Grimeleech",
-    "minLevel": 220,
+    "minLevel": 240,
     "packBase": 4,
     "monsters": [
       {
@@ -3283,7 +3283,7 @@
   {
     "id": "choking-cave",
     "name": "Choking Fear",
-    "minLevel": 240,
+    "minLevel": 220,
     "packBase": 4,
     "monsters": [
       {
@@ -3352,7 +3352,7 @@
   {
     "id": "crazed-cave",
     "name": "Crazed Elf's",
-    "minLevel": 240,
+    "minLevel": 190,
     "packBase": 4,
     "monsters": [
       {
@@ -3577,7 +3577,7 @@
   {
     "id": "guzzlemaw-cave",
     "name": "Guzzlemaw",
-    "minLevel": 250,
+    "minLevel": 210,
     "packBase": 4,
     "monsters": [
       {
@@ -3874,7 +3874,7 @@
   {
     "id": "lionknight-cave",
     "name": "Lion Knight",
-    "minLevel": 270,
+    "minLevel": 350,
     "packBase": 4,
     "monsters": [
       {
@@ -3973,7 +3973,7 @@
   {
     "id": "megadragon-cave",
     "name": "Mega Dragon",
-    "minLevel": 290,
+    "minLevel": 450,
     "packBase": 4,
     "monsters": [
       {
@@ -4543,7 +4543,7 @@
   {
     "id": "gazer-lair",
     "name": "Gazer",
-    "minLevel": 350,
+    "minLevel": 190,
     "packBase": 4,
     "monsters": [
       {
@@ -4787,7 +4787,7 @@
   {
     "id": "bulltaur-cave",
     "name": "Bulltaur",
-    "minLevel": 350,
+    "minLevel": 210,
     "packBase": 4,
     "monsters": [
       {
@@ -4975,7 +4975,7 @@
   {
     "id": "inferniarch-lair",
     "name": "Inferniarch",
-    "minLevel": 450,
+    "minLevel": 500,
     "packBase": 4,
     "monsters": [
       {
@@ -5070,7 +5070,7 @@
   {
     "id": "girtablilu-cave",
     "name": "girtablilu warrior",
-    "minLevel": 460,
+    "minLevel": 350,
     "packBase": 4,
     "monsters": [
       {
@@ -5919,7 +5919,7 @@
   {
     "id": "lavafungos-cave",
     "name": "Lavafungos",
-    "minLevel": 610,
+    "minLevel": 410,
     "packBase": 4,
     "monsters": [
       {
@@ -7075,7 +7075,7 @@
   {
     "id": "bloatedmanmaggot-cave",
     "name": "bloated man-maggot",
-    "minLevel": 1500,
+    "minLevel": 1200,
     "packBase": 4,
     "monsters": [
       {
@@ -7190,7 +7190,7 @@
   {
     "id": "maggot-cave",
     "name": "Rotten man-maggot",
-    "minLevel": 1500,
+    "minLevel": 1200,
     "packBase": 4,
     "monsters": [
       {
@@ -7313,7 +7313,7 @@
   {
     "id": "wanderingpillar-cave",
     "name": "Wandering Pillar",
-    "minLevel": 1500,
+    "minLevel": 1200,
     "packBase": 4,
     "monsters": [
       {
@@ -7438,7 +7438,7 @@
   {
     "id": "draklightsource-cave",
     "name": "Darklight Source",
-    "minLevel": 1500,
+    "minLevel": 1200,
     "packBase": 4,
     "monsters": [
       {
@@ -7459,28 +7459,6 @@
           "physical": 675.7,
           "energy": 352.6,
           "ice": 78.4
-        }
-      },
-      {
-        "key": "darklight_emitter",
-        "name": "Darklight Emitter",
-        "hp": 70400,
-        "exp": 52530,
-        "resist": {
-          "physical": -15,
-          "energy": -10,
-          "earth": 5,
-          "fire": 40,
-          "ice": 0,
-          "holy": 25,
-          "death": -20
-        },
-        "threat": {
-          "physical": 184.5,
-          "energy": 49.8,
-          "earth": 103,
-          "fire": 319.3,
-          "holy": 216.4
         }
       },
       {
@@ -7564,12 +7542,12 @@
         "ice": 70.9
       }
     },
-    "avgExp": 57026,
-    "avgHp": 80333,
-    "xpPerClear": 3108546,
-    "hpPerClear": 4419610,
-    "goldPerClear": 303750,
-    "xpMin": 2874775,
+    "avgExp": 58150,
+    "avgHp": 82816,
+    "xpPerClear": 3166989,
+    "hpPerClear": 4548736,
+    "goldPerClear": 265594,
+    "xpMin": 3086935,
     "xpMax": 3365395
   },
   {
