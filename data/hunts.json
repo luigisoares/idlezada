@@ -1691,8 +1691,7 @@
     "hpPerClear": 279960,
     "goldPerClear": 17175,
     "xpMin": 97165,
-    "xpMax": 132525,
-    "avail": "test"
+    "xpMax": 132525
   },
   {
     "id": "grimreaper-cave",
@@ -2012,8 +2011,7 @@
     "hpPerClear": 328706,
     "goldPerClear": 22907,
     "xpMin": 131550,
-    "xpMax": 206950,
-    "avail": "test"
+    "xpMax": 206950
   },
   {
     "id": "asura-lair",
@@ -4443,8 +4441,7 @@
     "hpPerClear": 567000,
     "goldPerClear": 44287,
     "xpMin": 197600,
-    "xpMax": 283400,
-    "avail": "test"
+    "xpMax": 283400
   },
   {
     "id": "werecrocodile-cave",
@@ -4541,8 +4538,7 @@
     "hpPerClear": 592374,
     "goldPerClear": 45203,
     "xpMin": 201815,
-    "xpMax": 295935,
-    "avail": "test"
+    "xpMax": 295935
   },
   {
     "id": "gazer-lair",
@@ -4786,8 +4782,7 @@
     "hpPerClear": 868400,
     "goldPerClear": 32848,
     "xpMin": 261600,
-    "xpMax": 276680,
-    "avail": "test"
+    "xpMax": 276680
   },
   {
     "id": "bulltaur-cave",
@@ -4975,8 +4970,7 @@
     "hpPerClear": 880466,
     "goldPerClear": 42560,
     "xpMin": 239800,
-    "xpMax": 255400,
-    "avail": "test"
+    "xpMax": 255400
   },
   {
     "id": "inferniarch-lair",
@@ -7191,8 +7185,7 @@
     "hpPerClear": 3414200,
     "goldPerClear": 274801,
     "xpMin": 3375375,
-    "xpMax": 3666315,
-    "avail": "test"
+    "xpMax": 3666315
   },
   {
     "id": "maggot-cave",
@@ -7245,26 +7238,6 @@
         }
       },
       {
-        "key": "oozing_corpus",
-        "name": "Oozing Corpus",
-        "hp": 57400,
-        "exp": 61800,
-        "resist": {
-          "physical": 30,
-          "energy": -25,
-          "earth": 40,
-          "fire": 25,
-          "ice": -10,
-          "holy": -10,
-          "death": 0
-        },
-        "threat": {
-          "physical": 679.5,
-          "earth": 616.7,
-          "fire": 163
-        }
-      },
-      {
         "key": "meandering_mushroom",
         "name": "Meandering Mushroom",
         "hp": 58200,
@@ -7284,6 +7257,16 @@
           "earth": 45.6,
           "ice": 191,
           "death": 251.6
+        }
+      },
+      {
+        "key": "sopping_carcass",
+        "name": "Sopping Carcass",
+        "hp": 66800,
+        "exp": 67395,
+        "resist": {},
+        "threat": {
+          "physical": 167
         }
       }
     ],
@@ -7309,14 +7292,13 @@
         "death": 751.7
       }
     },
-    "avgExp": 67918,
-    "avgHp": 58200,
-    "xpPerClear": 3712736,
-    "hpPerClear": 3213000,
-    "goldPerClear": 400365,
-    "xpMin": 3394600,
-    "xpMax": 3945800,
-    "avail": "test"
+    "avgExp": 69317,
+    "avgHp": 60550,
+    "xpPerClear": 3785471,
+    "hpPerClear": 3335200,
+    "goldPerClear": 388040,
+    "xpMin": 3672072,
+    "xpMax": 3945800
   },
   {
     "id": "wanderingpillar-cave",
@@ -7441,8 +7423,7 @@
     "hpPerClear": 3505800,
     "goldPerClear": 336474,
     "xpMin": 2947320,
-    "xpMax": 4703568,
-    "avail": "test"
+    "xpMax": 4703568
   },
   {
     "id": "draklightsource-cave",
@@ -7579,8 +7560,7 @@
     "hpPerClear": 3452820,
     "goldPerClear": 303750,
     "xpMin": 2874775,
-    "xpMax": 3365395,
-    "avail": "test"
+    "xpMax": 3365395
   },
   {
     "id": "moonstone-crater",
@@ -7652,8 +7632,7 @@
     "hpPerClear": 581300,
     "goldPerClear": 25702,
     "xpMin": 255140,
-    "xpMax": 268140,
-    "avail": "test"
+    "xpMax": 268140
   },
   {
     "id": "forbidden-gardens",
@@ -7728,8 +7707,7 @@
     "hpPerClear": 706800,
     "goldPerClear": 69772,
     "xpMin": 387213,
-    "xpMax": 427825,
-    "avail": "test"
+    "xpMax": 427825
   },
   {
     "id": "asura-citadel",
@@ -7824,8 +7802,7 @@
     "hpPerClear": 965267,
     "goldPerClear": 80834,
     "xpMin": 428285,
-    "xpMax": 460525,
-    "avail": "test"
+    "xpMax": 460525
   },
   {
     "id": "thalassara-surroundings",
@@ -7902,8 +7879,7 @@
     "hpPerClear": 1280400,
     "goldPerClear": 55174,
     "xpMin": 371840,
-    "xpMax": 405640,
-    "avail": "test"
+    "xpMax": 405640
   },
   {
     "id": "radiant-skyhold",
@@ -8002,8 +7978,7 @@
     "hpPerClear": 4013133,
     "goldPerClear": 752734,
     "xpMin": 7066849,
-    "xpMax": 7592777,
-    "avail": "test"
+    "xpMax": 7592777
   },
   {
     "id": "radiant-ascendancy",
@@ -8101,8 +8076,7 @@
     "hpPerClear": 3976400,
     "goldPerClear": 709562,
     "xpMin": 5943637,
-    "xpMax": 6422713,
-    "avail": "test"
+    "xpMax": 6422713
   },
   {
     "id": "radiant-skyhold-devoted",
@@ -8169,8 +8143,7 @@
     "hpPerClear": 4615103,
     "goldPerClear": 714377,
     "xpMin": 10252233,
-    "xpMax": 10955481,
-    "avail": "test"
+    "xpMax": 10955481
   },
   {
     "id": "radiant-ascendancy-devoted",
@@ -8268,7 +8241,6 @@
     "hpPerClear": 4573033,
     "goldPerClear": 671992,
     "xpMin": 8610650,
-    "xpMax": 9215098,
-    "avail": "test"
+    "xpMax": 9215098
   }
 ]

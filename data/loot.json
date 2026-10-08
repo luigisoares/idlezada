@@ -35039,6 +35039,14 @@
    "chance": 1500
   },
   {
+   "name": "moonsilver nimbus hat",
+   "chance": 1500
+  },
+  {
+   "name": "royal almandine",
+   "chance": 8322
+  },
+  {
    "name": "figurine of mimar haffar",
    "chance": 2000
   }
@@ -35174,6 +35182,10 @@
   },
   {
    "name": "moonsilver trail hood",
+   "chance": 1500
+  },
+  {
+   "name": "moonsilver nimbus hat",
    "chance": 1500
   },
   {
