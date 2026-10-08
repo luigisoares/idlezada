@@ -87,7 +87,7 @@ function evalLiteral(text) {
   return new Function('__s', `with(__s){return (${text})}`)(scope);
 }
 
-function objectNamed(src, name) {
+function objectNamed(src, name, run = evalLiteral) {
   const re = new RegExp(`\\b${name}\\s*=\\s*\\{`, 'g');
   let m, best = null;
   while ((m = re.exec(src))) {
@@ -95,7 +95,7 @@ function objectNamed(src, name) {
     if (!best || text.length > best.length) best = text;
   }
   if (!best) throw new Error(`nao achei a definicao de ${name} no bundle`);
-  return evalLiteral(best);
+  return run(best);
 }
 function arrayAround(src, anchor) {
   const i = src.indexOf(anchor);
@@ -159,6 +159,7 @@ function bundleResolver(src) {
     cache.set(name, val);
     return val;
   }
+  resolve.run = run;
   return resolve;
 }
 
@@ -189,10 +190,15 @@ function mergedMonsterTable(src) {
   console.log(`tabela de monstros: base=${baseVar} porNome=${byNameVar} porKey=${byKeyVar}`
     + (tail ? ` xpMult=${expVar} lootMult=${lootFn}` : ' (sem multiplicador de XP/loot)'));
 
-  const base = objectNamed(src, baseVar);
-  const byName = objectNamed(src, byNameVar);
-  const byKey = objectNamed(src, byKeyVar);
-  const resolve = tail ? bundleResolver(src) : null;
+  /* as tres tabelas sao avaliadas com os helpers DE VERDADE do bundle. O override
+     por key das hunts de endgame e' quase todo `{...N(key,.82,.54),..._(key,1.28)}`
+     (N reescala dano/golpes/chance, _ reescala HP): pelo evalLiteral esses helpers
+     viravam {} e o site mostrava o dano, a ameaca por elemento e o HP de antes do
+     rebalanceamento. */
+  const resolve = bundleResolver(src);
+  const base = objectNamed(src, baseVar, resolve.run);
+  const byName = objectNamed(src, byNameVar, resolve.run);
+  const byKey = objectNamed(src, byKeyVar, resolve.run);
   const expMult = tail ? resolve(expVar) : {};
   const lootMult = tail ? resolve(lootFn) : null;
 

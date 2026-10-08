@@ -12665,7 +12665,7 @@
   "armor": 100,
   "dmg": [
    0,
-   729
+   955
   ],
   "resist": {
    "physical": 0,
@@ -12679,36 +12679,36 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 729,
-    "max": 1093,
+    "min": 955,
+    "max": 1432,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 567,
-    "max": 810,
+    "min": 743,
+    "max": 1061,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 769,
-    "max": 1020,
+    "min": 1007,
+    "max": 1336,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 769,
-    "max": 891,
+    "min": 1007,
+    "max": 1167,
     "chance": 25,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 891,
-    "max": 1053,
+    "min": 1167,
+    "max": 1379,
     "chance": 15,
     "interval": 2000
    }
@@ -12721,7 +12721,7 @@
   "armor": 100,
   "dmg": [
    0,
-   729
+   955
   ],
   "resist": {
    "physical": -10,
@@ -12735,36 +12735,36 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 688,
-    "max": 972,
+    "min": 901,
+    "max": 1273,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 567,
-    "max": 850,
+    "min": 743,
+    "max": 1114,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 688,
-    "max": 729,
+    "min": 901,
+    "max": 955,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 688,
-    "max": 891,
+    "min": 901,
+    "max": 1167,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 891,
-    "max": 1053,
+    "min": 1167,
+    "max": 1379,
     "chance": 15,
     "interval": 2000
    }
@@ -12777,7 +12777,7 @@
   "armor": 100,
   "dmg": [
    0,
-   1100
+   1441
   ],
   "resist": {
    "physical": 0,
@@ -12791,36 +12791,36 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 1050,
-    "max": 1400,
+    "min": 1376,
+    "max": 1834,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 900,
-    "max": 1250,
+    "min": 1179,
+    "max": 1638,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1050,
-    "max": 1100,
+    "min": 1376,
+    "max": 1441,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1050,
-    "max": 1300,
+    "min": 1376,
+    "max": 1703,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1300,
-    "max": 1500,
+    "min": 1703,
+    "max": 1965,
     "chance": 15,
     "interval": 2000
    }
@@ -12833,7 +12833,7 @@
   "armor": 105,
   "dmg": [
    0,
-   810
+   1061
   ],
   "resist": {
    "physical": 10,
@@ -12847,36 +12847,36 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 810,
-    "max": 1215,
+    "min": 1061,
+    "max": 1592,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 630,
-    "max": 900,
+    "min": 825,
+    "max": 1179,
     "chance": 15,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 855,
-    "max": 1134,
+    "min": 1120,
+    "max": 1486,
     "chance": 24,
     "interval": 4000
    },
    {
     "element": "ice",
-    "min": 855,
-    "max": 1134,
+    "min": 1120,
+    "max": 1486,
     "chance": 17,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 855,
-    "max": 990,
+    "min": 1120,
+    "max": 1297,
     "chance": 10,
     "interval": 2000
    }
@@ -12889,7 +12889,7 @@
   "armor": 105,
   "dmg": [
    0,
-   1158
+   1332
   ],
   "resist": {
    "physical": 0,
@@ -12903,29 +12903,29 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 1086,
-    "max": 1247,
+    "min": 1249,
+    "max": 1434,
     "chance": 33,
     "interval": 4000
    },
    {
     "element": "ice",
-    "min": 891,
-    "max": 1291,
+    "min": 1025,
+    "max": 1485,
     "chance": 44,
     "interval": 5000
    },
    {
     "element": "holy",
-    "min": 935,
-    "max": 1158,
+    "min": 1075,
+    "max": 1332,
     "chance": 59,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 1024,
-    "max": 1158,
+    "min": 1178,
+    "max": 1332,
     "chance": 59,
     "interval": 10000
    }
@@ -12938,7 +12938,7 @@
   "armor": 100,
   "dmg": [
    0,
-   607
+   698
   ],
   "resist": {
    "physical": -10,
@@ -12952,43 +12952,43 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 810,
-    "max": 1012,
+    "min": 931,
+    "max": 1164,
     "chance": 33,
     "interval": 4000
    },
    {
     "element": "ice",
-    "min": 850,
-    "max": 1053,
+    "min": 977,
+    "max": 1211,
     "chance": 44,
     "interval": 5000
    },
    {
     "element": "ice",
-    "min": 891,
-    "max": 1053,
+    "min": 1025,
+    "max": 1211,
     "chance": 59,
     "interval": 10000
    },
    {
     "element": "holy",
-    "min": 850,
-    "max": 1012,
+    "min": 977,
+    "max": 1164,
     "chance": 18,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 729,
-    "max": 891,
+    "min": 838,
+    "max": 1025,
     "chance": 25,
     "interval": 4000
    },
    {
     "element": "holy",
-    "min": 324,
-    "max": 567,
+    "min": 373,
+    "max": 652,
     "chance": 59,
     "interval": 10000
    }
@@ -13050,7 +13050,7 @@
   "armor": 100,
   "dmg": [
    0,
-   832
+   957
   ],
   "resist": {
    "physical": -20,
@@ -13064,29 +13064,29 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 1057,
-    "max": 1274,
+    "min": 1216,
+    "max": 1465,
     "chance": 31,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1078,
-    "max": 1274,
+    "min": 1240,
+    "max": 1465,
     "chance": 37,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 1078,
-    "max": 1224,
+    "min": 1240,
+    "max": 1408,
     "chance": 55,
     "interval": 4000
    },
    {
     "element": "holy",
-    "min": 1224,
-    "max": 1372,
+    "min": 1408,
+    "max": 1578,
     "chance": 23,
     "interval": 3000
    },
@@ -13106,7 +13106,7 @@
   "armor": 100,
   "dmg": [
    0,
-   802
+   922
   ],
   "resist": {
    "physical": 50,
@@ -13120,36 +13120,36 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 748,
-    "max": 891,
+    "min": 860,
+    "max": 1025,
     "chance": 26,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 935,
-    "max": 1158,
+    "min": 1075,
+    "max": 1332,
     "chance": 34,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 935,
-    "max": 1158,
+    "min": 1075,
+    "max": 1332,
     "chance": 52,
     "interval": 5000
    },
    {
     "element": "holy",
-    "min": 980,
-    "max": 1247,
+    "min": 1127,
+    "max": 1434,
     "chance": 14,
     "interval": 4000
    },
    {
     "element": "physical",
-    "min": 757,
-    "max": 891,
+    "min": 871,
+    "max": 1025,
     "chance": 19,
     "interval": 3000
    }
@@ -13162,7 +13162,7 @@
   "armor": 100,
   "dmg": [
    0,
-   900
+   1035
   ],
   "resist": {
    "physical": 50,
@@ -13176,36 +13176,36 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 840,
-    "max": 1000,
+    "min": 966,
+    "max": 1150,
     "chance": 26,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1050,
-    "max": 1300,
+    "min": 1208,
+    "max": 1495,
     "chance": 34,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 1050,
-    "max": 1300,
+    "min": 1208,
+    "max": 1495,
     "chance": 52,
     "interval": 5000
    },
    {
     "element": "holy",
-    "min": 1100,
-    "max": 1400,
+    "min": 1265,
+    "max": 1610,
     "chance": 14,
     "interval": 4000
    },
    {
     "element": "physical",
-    "min": 850,
-    "max": 1000,
+    "min": 977,
+    "max": 1150,
     "chance": 19,
     "interval": 3000
    }
@@ -13218,7 +13218,7 @@
   "armor": 100,
   "dmg": [
    0,
-   832
+   957
   ],
   "resist": {
    "physical": 20,
@@ -13232,36 +13232,36 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 905,
-    "max": 1078,
+    "min": 1041,
+    "max": 1240,
     "chance": 26,
     "interval": 4000
    },
    {
     "element": "ice",
-    "min": 1132,
-    "max": 1401,
+    "min": 1302,
+    "max": 1611,
     "chance": 20,
     "interval": 5000
    },
    {
     "element": "holy",
-    "min": 1132,
-    "max": 1401,
+    "min": 1302,
+    "max": 1611,
     "chance": 52,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 1294,
-    "max": 1509,
+    "min": 1488,
+    "max": 1735,
     "chance": 22,
     "interval": 3000
    },
    {
     "element": "physical",
-    "min": 970,
-    "max": 1454,
+    "min": 1116,
+    "max": 1672,
     "chance": 23,
     "interval": 4000
    }
@@ -13274,7 +13274,7 @@
   "armor": 100,
   "dmg": [
    0,
-   802
+   922
   ],
   "resist": {
    "physical": -20,
@@ -13288,43 +13288,43 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 961,
-    "max": 1158,
+    "min": 1105,
+    "max": 1332,
     "chance": 26,
     "interval": 4000
    },
    {
     "element": "ice",
-    "min": 980,
-    "max": 1158,
+    "min": 1127,
+    "max": 1332,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 980,
-    "max": 1158,
+    "min": 1127,
+    "max": 1332,
     "chance": 34,
     "interval": 5000
    },
    {
     "element": "ice",
-    "min": 980,
-    "max": 1158,
+    "min": 1127,
+    "max": 1332,
     "chance": 52,
     "interval": 9500
    },
    {
     "element": "holy",
-    "min": 980,
-    "max": 1113,
+    "min": 1127,
+    "max": 1280,
     "chance": 14,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 1113,
-    "max": 1247,
+    "min": 1280,
+    "max": 1434,
     "chance": 19,
     "interval": 4000
    }
@@ -13337,7 +13337,7 @@
   "armor": 107,
   "dmg": [
    0,
-   810
+   1013
   ],
   "resist": {
    "physical": 0,
@@ -13351,29 +13351,29 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 891,
-    "max": 1093,
+    "min": 1114,
+    "max": 1366,
     "chance": 15,
     "interval": 4000
    },
    {
     "element": "energy",
-    "min": 931,
-    "max": 1053,
+    "min": 1164,
+    "max": 1316,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 810,
-    "max": 1053,
+    "min": 1013,
+    "max": 1316,
     "chance": 14,
     "interval": 4000
    },
    {
     "element": "holy",
-    "min": 648,
-    "max": 972,
+    "min": 810,
+    "max": 1215,
     "chance": 24,
     "interval": 4000
    }
@@ -13386,7 +13386,7 @@
   "armor": 100,
   "dmg": [
    0,
-   700
+   875
   ],
   "resist": {
    "physical": 20,
@@ -13400,36 +13400,36 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 1100,
-    "max": 1500,
+    "min": 1375,
+    "max": 1875,
     "chance": 17,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 1100,
-    "max": 1500,
+    "min": 1375,
+    "max": 1875,
     "chance": 15,
     "interval": 3000
    },
    {
     "element": "energy",
-    "min": 900,
-    "max": 1300,
+    "min": 1125,
+    "max": 1625,
     "chance": 15,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 1100,
-    "max": 1500,
+    "min": 1375,
+    "max": 1875,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 900,
-    "max": 1000,
+    "min": 1125,
+    "max": 1250,
     "chance": 20,
     "interval": 2000
    }
@@ -13442,7 +13442,7 @@
   "armor": 100,
   "dmg": [
    0,
-   648
+   810
   ],
   "resist": {
    "physical": -10,
@@ -13456,36 +13456,36 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 405,
-    "max": 486,
+    "min": 506,
+    "max": 608,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 648,
-    "max": 972,
+    "min": 810,
+    "max": 1215,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "energy",
-    "min": 810,
-    "max": 972,
+    "min": 1013,
+    "max": 1215,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 850,
-    "max": 1053,
+    "min": 1063,
+    "max": 1316,
     "chance": 25,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 834,
-    "max": 1012,
+    "min": 1043,
+    "max": 1265,
     "chance": 15,
     "interval": 2000
    }
@@ -13498,7 +13498,7 @@
   "armor": 120,
   "dmg": [
    0,
-   1160
+   1044
   ],
   "resist": {
    "physical": 30,
@@ -13512,29 +13512,29 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 920,
-    "max": 1120,
+    "min": 828,
+    "max": 1008,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 640,
-    "max": 1000,
+    "min": 576,
+    "max": 900,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 800,
-    "max": 1080,
+    "min": 720,
+    "max": 972,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 880,
-    "max": 1104,
+    "min": 792,
+    "max": 994,
     "chance": 20,
     "interval": 2000
    }
@@ -13547,7 +13547,7 @@
   "armor": 100,
   "dmg": [
    0,
-   855
+   770
   ],
   "resist": {
    "physical": 0,
@@ -13561,29 +13561,29 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 990,
-    "max": 1395,
+    "min": 891,
+    "max": 1256,
     "chance": 24,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 810,
-    "max": 1152,
+    "min": 729,
+    "max": 1037,
     "chance": 22,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1035,
-    "max": 1314,
+    "min": 932,
+    "max": 1183,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 855,
-    "max": 990,
+    "min": 770,
+    "max": 891,
     "chance": 15,
     "interval": 2000
    }
@@ -13596,7 +13596,7 @@
   "armor": 100,
   "dmg": [
    0,
-   648
+   583
   ],
   "resist": {
    "physical": -10,
@@ -13609,36 +13609,36 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 769,
-    "max": 1053,
+    "min": 692,
+    "max": 948,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 567,
-    "max": 729,
+    "min": 510,
+    "max": 656,
     "chance": 90,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 729,
-    "max": 1093,
+    "min": 656,
+    "max": 984,
     "chance": 20,
     "interval": 3000
    },
    {
     "element": "fire",
-    "min": 793,
-    "max": 1012,
+    "min": 714,
+    "max": 911,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 688,
-    "max": 972,
+    "min": 619,
+    "max": 875,
     "chance": 24,
     "interval": 3000
    }
@@ -13891,12 +13891,12 @@
  },
  "sopping_corpus": {
   "name": "Sopping Corpus",
-  "hp": 33400,
+  "hp": 42752,
   "exp": 67395,
   "armor": 112,
   "dmg": [
    0,
-   2000
+   1640
   ],
   "resist": {
    "physical": 40,
@@ -13910,52 +13910,96 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1600,
-    "chance": 20,
+    "min": 1066,
+    "max": 1312,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 1200,
-    "max": 1500,
+    "min": 984,
+    "max": 1230,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1919,
+    "max": 2399,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 2340,
-    "max": 2925,
-    "chance": 30,
-    "interval": 2000
-   },
-   {
-    "element": "earth",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 17,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1560,
-    "max": 2145,
-    "chance": 22,
+    "min": 1279,
+    "max": 1759,
+    "chance": 15,
     "interval": 2500
    }
   ]
  },
  "sopping_carcass": {
   "name": "Sopping Carcass",
-  "hp": 33400,
+  "hp": 42752,
   "exp": 67395,
-  "armor": null,
+  "armor": 112,
   "dmg": [
    0,
-   668
+   1640
   ],
-  "resist": {},
-  "abilities": []
+  "resist": {
+   "physical": 40,
+   "energy": -20,
+   "earth": 50,
+   "fire": 30,
+   "ice": -10,
+   "holy": 5,
+   "death": 10
+  },
+  "abilities": [
+   {
+    "element": "physical",
+    "min": 1066,
+    "max": 1312,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "physical",
+    "min": 984,
+    "max": 1230,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1919,
+    "max": 2399,
+    "chance": 20,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1599,
+    "max": 2079,
+    "chance": 17,
+    "interval": 2000
+   },
+   {
+    "element": "fire",
+    "min": 1279,
+    "max": 1759,
+    "chance": 15,
+    "interval": 2500
+   }
+  ]
  },
  "creepy_crawler": {
   "name": "Creepy Crawler",
@@ -14001,12 +14045,12 @@
  },
  "rotten_man_maggot": {
   "name": "Rotten Man-Maggot",
-  "hp": 31100,
+  "hp": 39808,
   "exp": 72400,
   "armor": 110,
   "dmg": [
    0,
-   850
+   697
   ],
   "resist": {
    "physical": 0,
@@ -14020,56 +14064,56 @@
   "abilities": [
    {
     "element": "death",
-    "min": 2535,
-    "max": 3120,
-    "chance": 30,
+    "min": 2079,
+    "max": 2558,
+    "chance": 17,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1950,
-    "max": 2730,
-    "chance": 28,
+    "min": 1599,
+    "max": 2239,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2535,
-    "max": 3315,
-    "chance": 30,
+    "min": 2079,
+    "max": 2718,
+    "chance": 17,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2145,
-    "max": 2925,
-    "chance": 25,
+    "min": 1759,
+    "max": 2399,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 14,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 1560,
-    "max": 2145,
-    "chance": 22,
+    "min": 1279,
+    "max": 1759,
+    "chance": 13,
     "interval": 2500
    }
   ]
  },
  "oozing_carcass": {
   "name": "Oozing Carcass",
-  "hp": 27500,
+  "hp": 35200,
   "exp": 67136,
   "armor": 102,
   "dmg": [
    0,
-   900
+   738
   ],
   "resist": {
    "physical": 0,
@@ -14083,56 +14127,56 @@
   "abilities": [
    {
     "element": "death",
-    "min": 2925,
-    "max": 3315,
-    "chance": 30,
+    "min": 2399,
+    "max": 2718,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1950,
-    "max": 2925,
-    "chance": 30,
+    "min": 1599,
+    "max": 2399,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2730,
-    "max": 3120,
-    "chance": 30,
+    "min": 2239,
+    "max": 2558,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2535,
-    "max": 3022,
-    "chance": 30,
+    "min": 2079,
+    "max": 2478,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2048,
-    "max": 2730,
-    "chance": 25,
+    "min": 1679,
+    "max": 2239,
+    "chance": 14,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 1755,
-    "max": 2340,
-    "chance": 25,
+    "min": 1439,
+    "max": 1919,
+    "chance": 14,
     "interval": 2500
    }
   ]
  },
  "oozing_corpus": {
   "name": "Oozing Corpus",
-  "hp": 28700,
+  "hp": 36736,
   "exp": 61800,
   "armor": 107,
   "dmg": [
    0,
-   1600
+   1312
   ],
   "resist": {
    "physical": 30,
@@ -14146,49 +14190,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1700,
-    "chance": 22,
+    "min": 1066,
+    "max": 1394,
+    "chance": 15,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 1400,
-    "max": 1550,
+    "min": 1148,
+    "max": 1271,
+    "chance": 14,
+    "interval": 2000
+   },
+   {
+    "element": "earth",
+    "min": 1919,
+    "max": 2478,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 2340,
-    "max": 3022,
-    "chance": 30,
-    "interval": 2000
-   },
-   {
-    "element": "earth",
-    "min": 1755,
-    "max": 2535,
-    "chance": 25,
+    "min": 1439,
+    "max": 2079,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "fire",
-    "min": 1560,
-    "max": 2145,
-    "chance": 22,
+    "min": 1279,
+    "max": 1759,
+    "chance": 15,
     "interval": 2500
    }
   ]
  },
  "meandering_mushroom": {
   "name": "Meandering Mushroom",
-  "hp": 29100,
+  "hp": 37248,
   "exp": 70336,
   "armor": 115,
   "dmg": [
    0,
-   950
+   779
   ],
   "resist": {
    "physical": 0,
@@ -14202,56 +14246,56 @@
   "abilities": [
    {
     "element": "death",
-    "min": 1600,
-    "max": 1900,
-    "chance": 20,
+    "min": 1312,
+    "max": 1558,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "death",
-    "min": 1400,
-    "max": 1700,
-    "chance": 18,
+    "min": 1148,
+    "max": 1394,
+    "chance": 12,
     "interval": 2500
    },
    {
     "element": "ice",
-    "min": 1300,
-    "max": 1600,
-    "chance": 20,
+    "min": 1066,
+    "max": 1312,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "ice",
-    "min": 1100,
-    "max": 1400,
-    "chance": 15,
+    "min": 902,
+    "max": 1148,
+    "chance": 10,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 900,
-    "max": 1200,
-    "chance": 12,
+    "min": 738,
+    "max": 984,
+    "chance": 8,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 800,
-    "max": 1100,
-    "chance": 12,
+    "min": 656,
+    "max": 902,
+    "chance": 8,
     "interval": 2500
    }
   ]
  },
  "bloated_man_maggot": {
   "name": "Bloated Man-Maggot",
-  "hp": 31700,
+  "hp": 40576,
   "exp": 64710,
   "armor": 104,
   "dmg": [
    0,
-   1500
+   1230
   ],
   "resist": {
    "physical": 45,
@@ -14265,49 +14309,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1400,
-    "max": 1700,
-    "chance": 22,
+    "min": 1148,
+    "max": 1394,
+    "chance": 15,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1550,
-    "chance": 18,
+    "min": 1066,
+    "max": 1271,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 1400,
-    "max": 1900,
-    "chance": 22,
+    "min": 1148,
+    "max": 1558,
+    "chance": 15,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 900,
-    "max": 1200,
-    "chance": 12,
+    "min": 738,
+    "max": 984,
+    "chance": 8,
     "interval": 2500
    },
    {
     "element": "fire",
-    "min": 900,
-    "max": 1200,
-    "chance": 12,
+    "min": 738,
+    "max": 984,
+    "chance": 8,
     "interval": 2500
    }
   ]
  },
  "bloodjaw": {
   "name": "Bloodjaw",
-  "hp": 40000,
+  "hp": 51200,
   "exp": 60000,
   "armor": 100,
   "dmg": [
-   200,
-   1500
+   164,
+   1230
   ],
   "resist": {
    "physical": -15,
@@ -14321,28 +14365,28 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 1000,
-    "max": 1405,
-    "chance": 20,
+    "min": 820,
+    "max": 1152,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1000,
-    "max": 1635,
-    "chance": 15,
+    "min": 820,
+    "max": 1341,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "mycobiontic_beetle": {
   "name": "Mycobiontic Beetle",
-  "hp": 30200,
+  "hp": 38656,
   "exp": 63525,
   "armor": 116,
   "dmg": [
    0,
-   1600
+   1312
   ],
   "resist": {
    "physical": 25,
@@ -14356,49 +14400,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1400,
-    "max": 1700,
-    "chance": 22,
+    "min": 1148,
+    "max": 1394,
+    "chance": 15,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 1200,
-    "max": 1500,
-    "chance": 20,
+    "min": 984,
+    "max": 1230,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 1100,
-    "max": 1400,
-    "chance": 18,
-    "interval": 2000
-   },
-   {
-    "element": "earth",
-    "min": 900,
-    "max": 1300,
+    "min": 902,
+    "max": 1148,
     "chance": 12,
     "interval": 2000
    },
    {
+    "element": "earth",
+    "min": 738,
+    "max": 1066,
+    "chance": 8,
+    "interval": 2000
+   },
+   {
     "element": "fire",
-    "min": 800,
-    "max": 1100,
-    "chance": 10,
+    "min": 656,
+    "max": 902,
+    "chance": 7,
     "interval": 2500
    }
   ]
  },
  "darklight_construct": {
   "name": "Darklight Construct",
-  "hp": 32200,
+  "hp": 41216,
   "exp": 82026,
   "armor": 117,
   "dmg": [
    0,
-   1000
+   820
   ],
   "resist": {
    "physical": -15,
@@ -14412,56 +14456,56 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2535,
-    "max": 3120,
-    "chance": 35,
+    "min": 2079,
+    "max": 2558,
+    "chance": 19,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1950,
-    "max": 2730,
-    "chance": 30,
+    "min": 1599,
+    "max": 2239,
+    "chance": 17,
     "interval": 2800
    },
    {
     "element": "holy",
-    "min": 2730,
-    "max": 3120,
-    "chance": 32,
+    "min": 2239,
+    "max": 2558,
+    "chance": 18,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 1365,
-    "max": 1950,
-    "chance": 20,
+    "min": 1119,
+    "max": 1599,
+    "chance": 11,
     "interval": 3000
    }
   ]
  },
  "darklight_emitter": {
   "name": "Darklight Emitter",
-  "hp": 27500,
+  "hp": 35200,
   "exp": 52530,
   "armor": 120,
   "dmg": [
    0,
-   900
+   738
   ],
   "resist": {
    "physical": -15,
@@ -14475,56 +14519,56 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2730,
-    "max": 3412,
-    "chance": 35,
+    "min": 2239,
+    "max": 2798,
+    "chance": 19,
     "interval": 2600
    },
    {
     "element": "fire",
-    "min": 2340,
-    "max": 3022,
-    "chance": 30,
+    "min": 1919,
+    "max": 2478,
+    "chance": 16,
     "interval": 2600
    },
    {
     "element": "holy",
-    "min": 2340,
-    "max": 3120,
-    "chance": 32,
+    "min": 1919,
+    "max": 2558,
+    "chance": 17,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 1560,
-    "max": 2340,
-    "chance": 25,
+    "min": 1279,
+    "max": 1919,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 1365,
-    "max": 1950,
-    "chance": 20,
+    "min": 1119,
+    "max": 1599,
+    "chance": 11,
     "interval": 3000
    }
   ]
  },
  "darklight_matter": {
   "name": "Darklight Matter",
-  "hp": 30150,
+  "hp": 38592,
   "exp": 56737,
   "armor": 98,
   "dmg": [
-   200,
-   2300
+   164,
+   1886
   ],
   "resist": {
    "physical": -10,
@@ -14538,49 +14582,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1500,
-    "max": 1800,
-    "chance": 25,
+    "min": 1230,
+    "max": 1476,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1600,
-    "chance": 20,
+    "min": 1066,
+    "max": 1312,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2730,
-    "max": 3315,
-    "chance": 30,
+    "min": 2239,
+    "max": 2718,
+    "chance": 20,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 1755,
-    "max": 2535,
-    "chance": 25,
+    "min": 1439,
+    "max": 2079,
+    "chance": 17,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1560,
-    "max": 2145,
-    "chance": 20,
+    "min": 1279,
+    "max": 1759,
+    "chance": 14,
     "interval": 3000
    }
   ]
  },
  "darklight_source": {
   "name": "Darklight Source",
-  "hp": 31550,
+  "hp": 40384,
   "exp": 57286,
   "armor": 115,
   "dmg": [
-   200,
-   1900
+   164,
+   1558
   ],
   "resist": {
    "physical": -15,
@@ -14594,49 +14638,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1400,
-    "max": 1700,
-    "chance": 25,
+    "min": 1148,
+    "max": 1394,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 1200,
-    "max": 1500,
+    "min": 984,
+    "max": 1230,
+    "chance": 14,
+    "interval": 2500
+   },
+   {
+    "element": "energy",
+    "min": 2239,
+    "max": 2639,
     "chance": 20,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 2730,
-    "max": 3218,
-    "chance": 30,
-    "interval": 2500
-   },
-   {
-    "element": "energy",
-    "min": 1755,
-    "max": 2340,
-    "chance": 25,
+    "min": 1439,
+    "max": 1919,
+    "chance": 17,
     "interval": 3000
    },
    {
     "element": "ice",
-    "min": 1560,
-    "max": 2145,
-    "chance": 20,
+    "min": 1279,
+    "max": 1759,
+    "chance": 14,
     "interval": 3000
    }
   ]
  },
  "darklight_striker": {
   "name": "Darklight Striker",
-  "hp": 29700,
+  "hp": 38016,
   "exp": 56610,
   "armor": 112,
   "dmg": [
-   200,
-   2100
+   164,
+   1722
   ],
   "resist": {
    "physical": 10,
@@ -14650,49 +14694,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1500,
-    "max": 1800,
-    "chance": 25,
+    "min": 1230,
+    "max": 1476,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1600,
+    "min": 1066,
+    "max": 1312,
+    "chance": 14,
+    "interval": 2500
+   },
+   {
+    "element": "energy",
+    "min": 2239,
+    "max": 2639,
     "chance": 20,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 2730,
-    "max": 3218,
-    "chance": 30,
-    "interval": 2500
-   },
-   {
-    "element": "energy",
-    "min": 1560,
-    "max": 2340,
-    "chance": 25,
+    "min": 1279,
+    "max": 1919,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "ice",
-    "min": 1755,
-    "max": 2340,
-    "chance": 20,
+    "min": 1439,
+    "max": 1919,
+    "chance": 14,
     "interval": 3000
    }
   ]
  },
  "walking_pillar": {
   "name": "Walking Pillar",
-  "hp": 38000,
+  "hp": 48640,
   "exp": 61965,
   "armor": 120,
   "dmg": [
-   200,
-   2100
+   164,
+   1722
   ],
   "resist": {
    "physical": -10,
@@ -14706,49 +14750,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1500,
-    "max": 1800,
-    "chance": 25,
+    "min": 1230,
+    "max": 1476,
+    "chance": 17,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 1300,
-    "max": 1600,
-    "chance": 22,
+    "min": 1066,
+    "max": 1312,
+    "chance": 15,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2730,
-    "max": 3218,
-    "chance": 30,
+    "min": 2239,
+    "max": 2639,
+    "chance": 20,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 1560,
-    "max": 2340,
-    "chance": 25,
+    "min": 1279,
+    "max": 1919,
+    "chance": 17,
     "interval": 2500
    },
    {
     "element": "ice",
-    "min": 1755,
-    "max": 2340,
-    "chance": 20,
+    "min": 1439,
+    "max": 1919,
+    "chance": 14,
     "interval": 3000
    }
   ]
  },
  "wandering_pillar": {
   "name": "Wandering Pillar",
-  "hp": 37000,
+  "hp": 47360,
   "exp": 86304,
   "armor": 120,
   "dmg": [
    0,
-   1100
+   902
   ],
   "resist": {
    "physical": -15,
@@ -14762,56 +14806,56 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2730,
-    "max": 3315,
-    "chance": 35,
+    "min": 2239,
+    "max": 2718,
+    "chance": 19,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1950,
-    "max": 2730,
-    "chance": 28,
+    "min": 1599,
+    "max": 2239,
+    "chance": 15,
     "interval": 2500
    },
    {
     "element": "holy",
-    "min": 2535,
-    "max": 3120,
-    "chance": 32,
+    "min": 2079,
+    "max": 2558,
+    "chance": 18,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 1755,
-    "max": 2438,
-    "chance": 25,
+    "min": 1439,
+    "max": 1999,
+    "chance": 14,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 1950,
-    "max": 2535,
-    "chance": 25,
+    "min": 1599,
+    "max": 2079,
+    "chance": 14,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 1365,
-    "max": 1950,
-    "chance": 20,
+    "min": 1119,
+    "max": 1599,
+    "chance": 11,
     "interval": 3000
    }
   ]
  },
  "converter": {
   "name": "Converter",
-  "hp": 29600,
+  "hp": 37888,
   "exp": 79701,
   "armor": 100,
   "dmg": [
    0,
-   900
+   738
   ],
   "resist": {
    "physical": -20,
@@ -14825,56 +14869,56 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 1400,
-    "max": 1800,
-    "chance": 22,
+    "min": 1148,
+    "max": 1476,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1000,
-    "max": 1400,
-    "chance": 18,
+    "min": 820,
+    "max": 1148,
+    "chance": 10,
     "interval": 2500
    },
    {
     "element": "holy",
-    "min": 1400,
-    "max": 1600,
-    "chance": 20,
+    "min": 1148,
+    "max": 1312,
+    "chance": 11,
     "interval": 2500
    },
    {
     "element": "holy",
-    "min": 1000,
-    "max": 1400,
-    "chance": 12,
+    "min": 820,
+    "max": 1148,
+    "chance": 7,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 900,
-    "max": 1200,
-    "chance": 15,
+    "min": 738,
+    "max": 984,
+    "chance": 8,
     "interval": 2500
    },
    {
     "element": "energy",
-    "min": 700,
-    "max": 1000,
-    "chance": 10,
+    "min": 574,
+    "max": 820,
+    "chance": 6,
     "interval": 3200
    }
   ]
  },
  "gore_horn": {
   "name": "Gore Horn",
-  "hp": 20620,
+  "hp": 36085,
   "exp": 22183,
   "armor": 78,
   "dmg": [
    0,
-   1000
+   1200
   ],
   "resist": {
    "physical": 0,
@@ -14888,22 +14932,22 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 450,
-    "max": 750,
+    "min": 540,
+    "max": 900,
     "chance": 20,
     "interval": 3500
    },
    {
     "element": "physical",
-    "min": 500,
-    "max": 900,
+    "min": 600,
+    "max": 1080,
     "chance": 15,
     "interval": 4100
    },
    {
     "element": "energy",
-    "min": 500,
-    "max": 850,
+    "min": 600,
+    "max": 1020,
     "chance": 35,
     "interval": 2700
    }
@@ -14911,12 +14955,12 @@
  },
  "emerald_tortoise": {
   "name": "Emerald Tortoise",
-  "hp": 22300,
+  "hp": 39025,
   "exp": 21362,
   "armor": 97,
   "dmg": [
    0,
-   1250
+   1500
   ],
   "resist": {
    "physical": 20,
@@ -14930,43 +14974,43 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 750,
-    "max": 1000,
+    "min": 900,
+    "max": 1200,
     "chance": 37,
     "interval": 5000
    },
    {
     "element": "energy",
-    "min": 500,
-    "max": 600,
+    "min": 600,
+    "max": 720,
     "chance": 35,
     "interval": 2700
    },
    {
     "element": "energy",
-    "min": 550,
-    "max": 1000,
+    "min": 660,
+    "max": 1200,
     "chance": 35,
     "interval": 3500
    },
    {
     "element": "energy",
-    "min": 550,
-    "max": 700,
+    "min": 660,
+    "max": 840,
     "chance": 20,
     "interval": 4500
    },
    {
     "element": "energy",
-    "min": 400,
-    "max": 600,
+    "min": 480,
+    "max": 720,
     "chance": 30,
     "interval": 3800
    },
    {
     "element": "energy",
-    "min": 450,
-    "max": 750,
+    "min": 540,
+    "max": 900,
     "chance": 30,
     "interval": 4100
    }
@@ -14974,12 +15018,12 @@
  },
  "gorerilla": {
   "name": "Gorerilla",
-  "hp": 16850,
+  "hp": 29488,
   "exp": 23199,
   "armor": 76,
   "dmg": [
    0,
-   950
+   1140
   ],
   "resist": {
    "physical": 30,
@@ -14993,29 +15037,29 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 300,
-    "max": 750,
+    "min": 360,
+    "max": 900,
     "chance": 60,
     "interval": 2200
    },
    {
     "element": "fire",
-    "min": 650,
-    "max": 850,
+    "min": 780,
+    "max": 1020,
     "chance": 35,
     "interval": 3100
    },
    {
     "element": "physical",
-    "min": 600,
-    "max": 1000,
+    "min": 720,
+    "max": 1200,
     "chance": 35,
     "interval": 3500
    },
    {
     "element": "physical",
-    "min": 600,
-    "max": 1000,
+    "min": 720,
+    "max": 1200,
     "chance": 20,
     "interval": 3800
    }
@@ -15023,12 +15067,12 @@
  },
  "sabretooth": {
   "name": "Sabretooth",
-  "hp": 17300,
+  "hp": 30275,
   "exp": 21013,
   "armor": 63,
   "dmg": [
    0,
-   1100
+   1320
   ],
   "resist": {
    "physical": -10,
@@ -15042,22 +15086,22 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 600,
-    "max": 1000,
+    "min": 720,
+    "max": 1200,
     "chance": 35,
     "interval": 5000
    },
    {
     "element": "physical",
-    "min": 800,
-    "max": 1500,
+    "min": 960,
+    "max": 1800,
     "chance": 30,
     "interval": 3500
    },
    {
     "element": "fire",
-    "min": 900,
-    "max": 1350,
+    "min": 1080,
+    "max": 1620,
     "chance": 35,
     "interval": 2700
    }
@@ -15065,12 +15109,12 @@
  },
  "mantosaurus": {
   "name": "Mantosaurus",
-  "hp": 19400,
+  "hp": 33950,
   "exp": 20168,
   "armor": 65,
   "dmg": [
    0,
-   1000
+   1200
   ],
   "resist": {
    "physical": -10,
@@ -15084,22 +15128,22 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 750,
-    "max": 1100,
+    "min": 900,
+    "max": 1320,
     "chance": 47,
     "interval": 3500
    },
    {
     "element": "earth",
-    "min": 550,
-    "max": 800,
+    "min": 660,
+    "max": 960,
     "chance": 31,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 500,
-    "max": 700,
+    "min": 600,
+    "max": 840,
     "chance": 25,
     "interval": 4000
    }
@@ -15107,12 +15151,12 @@
  },
  "noxious_ripptor": {
   "name": "Noxious Ripptor",
-  "hp": 22700,
+  "hp": 39725,
   "exp": 22994,
   "armor": 82,
   "dmg": [
    0,
-   1350
+   1620
   ],
   "resist": {
    "physical": 20,
@@ -15126,15 +15170,15 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 1100,
-    "max": 1700,
+    "min": 1320,
+    "max": 2040,
     "chance": 40,
     "interval": 2500
    },
    {
     "element": "earth",
-    "min": 450,
-    "max": 750,
+    "min": 540,
+    "max": 900,
     "chance": 30,
     "interval": 4500
    }
@@ -15142,12 +15186,12 @@
  },
  "mercurial_menace": {
   "name": "Mercurial Menace",
-  "hp": 18500,
+  "hp": 32375,
   "exp": 21086,
   "armor": 91,
   "dmg": [
    0,
-   900
+   1080
   ],
   "resist": {
    "physical": 5,
@@ -15162,21 +15206,21 @@
    {
     "element": "physical",
     "min": 0,
-    "max": 750,
+    "max": 900,
     "chance": 75,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 800,
-    "max": 1500,
+    "min": 960,
+    "max": 1800,
     "chance": 40,
     "interval": 3000
    },
    {
     "element": "energy",
-    "min": 500,
-    "max": 700,
+    "min": 600,
+    "max": 840,
     "chance": 37,
     "interval": 4500
    }
@@ -15184,12 +15228,12 @@
  },
  "headpecker": {
   "name": "Headpecker",
-  "hp": 16300,
+  "hp": 28525,
   "exp": 20965,
   "armor": 68,
   "dmg": [
    0,
-   1000
+   1200
   ],
   "resist": {
    "physical": -10,
@@ -15202,22 +15246,22 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 700,
-    "max": 1100,
+    "min": 840,
+    "max": 1320,
     "chance": 37,
     "interval": 2500
    },
    {
     "element": "physical",
-    "min": 700,
-    "max": 1050,
+    "min": 840,
+    "max": 1260,
     "chance": 35,
     "interval": 4200
    },
    {
     "element": "earth",
-    "min": 700,
-    "max": 850,
+    "min": 840,
+    "max": 1020,
     "chance": 35,
     "interval": 3500
    }
@@ -15225,12 +15269,12 @@
  },
  "shrieking_cry_stal": {
   "name": "Shrieking Cry-Stal",
-  "hp": 20650,
+  "hp": 36138,
   "exp": 23639,
   "armor": 95,
   "dmg": [
    0,
-   400
+   480
   ],
   "resist": {
    "physical": 20,
@@ -15243,29 +15287,29 @@
   "abilities": [
    {
     "element": "energy",
-    "min": 650,
-    "max": 900,
+    "min": 780,
+    "max": 1080,
     "chance": 47,
     "interval": 5000
    },
    {
     "element": "death",
-    "min": 500,
-    "max": 700,
+    "min": 600,
+    "max": 840,
     "chance": 30,
     "interval": 3500
    },
    {
     "element": "energy",
-    "min": 425,
-    "max": 550,
+    "min": 510,
+    "max": 660,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 700,
-    "max": 1000,
+    "min": 840,
+    "max": 1200,
     "chance": 30,
     "interval": 3000
    }
@@ -15273,12 +15317,12 @@
  },
  "sulphur_spouter": {
   "name": "Sulphur Spouter",
-  "hp": 19000,
+  "hp": 33250,
   "exp": 20113,
   "armor": 84,
   "dmg": [
    0,
-   801
+   961
   ],
   "resist": {
    "physical": 0,
@@ -15292,22 +15336,22 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 800,
-    "max": 1200,
+    "min": 960,
+    "max": 1440,
     "chance": 35,
     "interval": 3500
    },
    {
     "element": "fire",
-    "min": 800,
-    "max": 1200,
+    "min": 960,
+    "max": 1440,
     "chance": 20,
     "interval": 4000
    },
    {
     "element": "death",
-    "min": 650,
-    "max": 900,
+    "min": 780,
+    "max": 1080,
     "chance": 30,
     "interval": 4500
    }
@@ -15315,12 +15359,12 @@
  },
  "sulphider": {
   "name": "Sulphider",
-  "hp": 21000,
+  "hp": 36750,
   "exp": 23276,
   "armor": 83,
   "dmg": [
    0,
-   1000
+   1200
   ],
   "resist": {
    "physical": 0,
@@ -15334,15 +15378,15 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 650,
-    "max": 1060,
+    "min": 780,
+    "max": 1272,
     "chance": 40,
     "interval": 3500
    },
    {
     "element": "fire",
-    "min": 600,
-    "max": 1100,
+    "min": 720,
+    "max": 1320,
     "chance": 35,
     "interval": 4000
    }
@@ -15350,12 +15394,12 @@
  },
  "nighthunter": {
   "name": "Nighthunter",
-  "hp": 19200,
+  "hp": 33600,
   "exp": 22087,
   "armor": 81,
   "dmg": [
    0,
-   700
+   840
   ],
   "resist": {
    "physical": -10,
@@ -15369,15 +15413,15 @@
   "abilities": [
    {
     "element": "earth",
-    "min": 950,
-    "max": 1300,
+    "min": 1140,
+    "max": 1560,
     "chance": 35,
     "interval": 3500
    },
    {
     "element": "earth",
-    "min": 600,
-    "max": 775,
+    "min": 720,
+    "max": 930,
     "chance": 25,
     "interval": 5000
    }
@@ -15385,12 +15429,12 @@
  },
  "undertaker": {
   "name": "Undertaker",
-  "hp": 20100,
+  "hp": 35175,
   "exp": 23652,
   "armor": 77,
   "dmg": [
    0,
-   1200
+   1440
   ],
   "resist": {
    "physical": -15,
@@ -15404,29 +15448,29 @@
   "abilities": [
    {
     "element": "death",
-    "min": 800,
-    "max": 1150,
+    "min": 960,
+    "max": 1380,
     "chance": 47,
     "interval": 4500
    },
    {
     "element": "earth",
-    "min": 600,
-    "max": 950,
+    "min": 720,
+    "max": 1140,
     "chance": 30,
     "interval": 3650
    },
    {
     "element": "earth",
-    "min": 775,
-    "max": 900,
+    "min": 930,
+    "max": 1080,
     "chance": 25,
     "interval": 3000
    },
    {
     "element": "earth",
-    "min": 1500,
-    "max": 2000,
+    "min": 1800,
+    "max": 2400,
     "chance": 40,
     "interval": 5000
    }
@@ -15434,12 +15478,12 @@
  },
  "stalking_stalk": {
   "name": "Stalking Stalk",
-  "hp": 17100,
+  "hp": 29925,
   "exp": 20204,
   "armor": 76,
   "dmg": [
    0,
-   400
+   480
   ],
   "resist": {
    "physical": -25,
@@ -15453,15 +15497,15 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 800,
-    "max": 1050,
+    "min": 960,
+    "max": 1260,
     "chance": 40,
     "interval": 4000
    },
    {
     "element": "earth",
-    "min": 850,
-    "max": 1130,
+    "min": 1020,
+    "max": 1356,
     "chance": 25,
     "interval": 2900
    }
@@ -15469,12 +15513,12 @@
  },
  "hulking_prehemoth": {
   "name": "Hulking Prehemoth",
-  "hp": 20700,
+  "hp": 36225,
   "exp": 22349,
   "armor": 84,
   "dmg": [
    0,
-   1250
+   1500
   ],
   "resist": {
    "physical": 5,
@@ -15488,15 +15532,15 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 850,
-    "max": 1700,
+    "min": 1020,
+    "max": 2040,
     "chance": 38,
     "interval": 3500
    },
    {
     "element": "energy",
-    "min": 600,
-    "max": 1200,
+    "min": 720,
+    "max": 1440,
     "chance": 30,
     "interval": 4100
    }
@@ -16724,8 +16768,8 @@
   "exp": 0,
   "armor": 50,
   "dmg": [
-   900,
-   1400
+   270,
+   420
   ],
   "resist": {
    "physical": 15,
@@ -16738,15 +16782,15 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 1440,
-    "max": 2160,
+    "min": 432,
+    "max": 648,
     "chance": 45,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1320,
-    "max": 1920,
+    "min": 396,
+    "max": 576,
     "chance": 40,
     "interval": 2000
    }
@@ -16758,8 +16802,8 @@
   "exp": 0,
   "armor": 45,
   "dmg": [
-   800,
-   1200
+   240,
+   360
   ],
   "resist": {
    "physical": 20,
@@ -16773,22 +16817,22 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 1200,
-    "max": 1800,
+    "min": 360,
+    "max": 540,
     "chance": 40,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1200,
-    "max": 1800,
+    "min": 360,
+    "max": 540,
     "chance": 35,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 900,
-    "max": 1400,
+    "min": 270,
+    "max": 420,
     "chance": 8,
     "interval": 2000
    }
@@ -16800,8 +16844,8 @@
   "exp": 0,
   "armor": 44,
   "dmg": [
-   850,
-   1250
+   255,
+   375
   ],
   "resist": {
    "physical": 25,
@@ -16815,22 +16859,22 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 950,
-    "max": 1400,
+    "min": 285,
+    "max": 420,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1080,
-    "max": 1620,
+    "min": 324,
+    "max": 486,
     "chance": 40,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1080,
-    "max": 1620,
+    "min": 324,
+    "max": 486,
     "chance": 35,
     "interval": 2000
    }
@@ -16842,8 +16886,8 @@
   "exp": 0,
   "armor": 42,
   "dmg": [
-   950,
-   1400
+   285,
+   420
   ],
   "resist": {
    "physical": 30,
@@ -16857,22 +16901,22 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1100,
-    "max": 1600,
+    "min": 330,
+    "max": 480,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1200,
-    "max": 1800,
+    "min": 360,
+    "max": 540,
     "chance": 40,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1200,
-    "max": 1800,
+    "min": 360,
+    "max": 540,
     "chance": 35,
     "interval": 2000
    }
@@ -16884,8 +16928,8 @@
   "exp": 0,
   "armor": 40,
   "dmg": [
-   600,
-   900
+   180,
+   270
   ],
   "resist": {
    "physical": 0,
@@ -16898,15 +16942,15 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 960,
-    "max": 1440,
+    "min": 288,
+    "max": 432,
     "chance": 40,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 1080,
-    "max": 1440,
+    "min": 324,
+    "max": 432,
     "chance": 40,
     "interval": 2000
    }
@@ -16918,8 +16962,8 @@
   "exp": 0,
   "armor": 48,
   "dmg": [
-   900,
-   1350
+   270,
+   405
   ],
   "resist": {
    "physical": 15,
@@ -16932,22 +16976,22 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 1320,
-    "max": 1980,
+    "min": 396,
+    "max": 594,
     "chance": 40,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1200,
-    "max": 1800,
+    "min": 360,
+    "max": 540,
     "chance": 35,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 960,
-    "max": 1440,
+    "min": 288,
+    "max": 432,
     "chance": 30,
     "interval": 2000
    }
@@ -17082,8 +17126,8 @@
   "exp": 0,
   "armor": 80,
   "dmg": [
-   2000,
-   3200
+   1260,
+   2016
   ],
   "resist": {
    "physical": 35,
@@ -17096,29 +17140,29 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 2500,
-    "max": 3800,
+    "min": 1575,
+    "max": 2394,
     "chance": 22,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2200,
-    "max": 3500,
+    "min": 1386,
+    "max": 2205,
     "chance": 18,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2000,
-    "max": 3200,
+    "min": 1260,
+    "max": 2016,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1800,
-    "max": 2800,
+    "min": 1134,
+    "max": 1764,
     "chance": 12,
     "interval": 2500
    },
@@ -17137,8 +17181,8 @@
   "exp": 0,
   "armor": 62,
   "dmg": [
-   1200,
-   2200
+   288,
+   528
   ],
   "resist": {
    "physical": 50,
@@ -17151,15 +17195,15 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 1800,
-    "max": 2600,
+    "min": 432,
+    "max": 624,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1500,
-    "max": 2000,
+    "min": 360,
+    "max": 480,
     "chance": 15,
     "interval": 2000
    }
@@ -17171,8 +17215,8 @@
   "exp": 0,
   "armor": 62,
   "dmg": [
-   1800,
-   2800
+   432,
+   672
   ],
   "resist": {
    "physical": 50,
@@ -17185,15 +17229,15 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2000,
-    "max": 2900,
+    "min": 480,
+    "max": 696,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2000,
-    "max": 2500,
+    "min": 480,
+    "max": 600,
     "chance": 15,
     "interval": 2000
    }
@@ -17205,8 +17249,8 @@
   "exp": 0,
   "armor": 44,
   "dmg": [
-   1900,
-   3000
+   456,
+   720
   ],
   "resist": {
    "physical": 25,
@@ -17219,22 +17263,22 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 1500,
-    "max": 2500,
+    "min": 360,
+    "max": 600,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1800,
-    "max": 2000,
+    "min": 432,
+    "max": 480,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2800,
-    "max": 3000,
+    "min": 672,
+    "max": 720,
     "chance": 10,
     "interval": 2000
    },
@@ -17253,8 +17297,8 @@
   "exp": 0,
   "armor": 70,
   "dmg": [
-   2200,
-   2800
+   528,
+   672
   ],
   "resist": {
    "physical": 30,
@@ -17267,8 +17311,8 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 1800,
-    "max": 4000,
+    "min": 432,
+    "max": 960,
     "chance": 15,
     "interval": 2000
    },
@@ -17287,8 +17331,8 @@
   "exp": 0,
   "armor": 55,
   "dmg": [
-   3200,
-   4300
+   1568,
+   2107
   ],
   "resist": {
    "physical": 0,
@@ -17301,36 +17345,36 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2870,
-    "max": 3200,
+    "min": 1406,
+    "max": 1568,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 3750,
-    "max": 4300,
+    "min": 1838,
+    "max": 2107,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1550,
-    "max": 2200,
+    "min": 760,
+    "max": 1078,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2200,
-    "max": 3850,
+    "min": 1078,
+    "max": 1887,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2200,
-    "max": 3300,
+    "min": 1078,
+    "max": 1617,
     "chance": 10,
     "interval": 2000
    },
@@ -17349,8 +17393,8 @@
   "exp": 0,
   "armor": 55,
   "dmg": [
-   1100,
-   2000
+   385,
+   700
   ],
   "resist": {
    "physical": 0,
@@ -17364,8 +17408,8 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2000,
-    "max": 3000,
+    "min": 700,
+    "max": 1050,
     "chance": 10,
     "interval": 2000
    },
@@ -17384,8 +17428,8 @@
   "exp": 0,
   "armor": 25,
   "dmg": [
-   900,
-   1200
+   315,
+   420
   ],
   "resist": {
    "physical": 0,
@@ -17399,29 +17443,29 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 1200,
-    "max": 1800,
+    "min": 420,
+    "max": 630,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 1000,
-    "max": 1700,
+    "min": 350,
+    "max": 595,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 1500,
-    "max": 2000,
+    "min": 525,
+    "max": 700,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 1600,
-    "max": 2800,
+    "min": 560,
+    "max": 980,
     "chance": 10,
     "interval": 2000
    },
@@ -17440,8 +17484,8 @@
   "exp": 0,
   "armor": 17,
   "dmg": [
-   1000,
-   1800
+   350,
+   630
   ],
   "resist": {
    "physical": 30,
@@ -17455,15 +17499,15 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 1500,
-    "max": 2000,
+    "min": 525,
+    "max": 700,
     "chance": 30,
     "interval": 2000
    },
    {
     "element": "earth",
-    "min": 1500,
-    "max": 2000,
+    "min": 525,
+    "max": 700,
     "chance": 30,
     "interval": 2000
    }
@@ -17475,8 +17519,8 @@
   "exp": 0,
   "armor": 55,
   "dmg": [
-   2400,
-   3700
+   1416,
+   2183
   ],
   "resist": {
    "physical": 50,
@@ -17490,36 +17534,36 @@
   "abilities": [
    {
     "element": "fire",
-    "min": 2270,
-    "max": 2800,
+    "min": 1339,
+    "max": 1652,
     "chance": 15,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 2750,
-    "max": 3300,
+    "min": 1623,
+    "max": 1947,
     "chance": 20,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 1550,
-    "max": 2200,
+    "min": 915,
+    "max": 1298,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2200,
-    "max": 3850,
+    "min": 1298,
+    "max": 2272,
     "chance": 10,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2200,
-    "max": 3300,
+    "min": 1298,
+    "max": 1947,
     "chance": 10,
     "interval": 2000
    },
@@ -20126,7 +20170,7 @@
  },
  "moonspawn_juggernaut": {
   "name": "Moonspawn Juggernaut",
-  "hp": 60000,
+  "hp": 15000,
   "exp": 10000,
   "armor": 90,
   "dmg": [
@@ -20229,12 +20273,12 @@
  },
  "radiant_acolyte": {
   "name": "Radiant Acolyte",
-  "hp": 34600,
+  "hp": 44288,
   "exp": 129203,
   "armor": 110,
   "dmg": [
    0,
-   2800
+   1736
   ],
   "resist": {
    "physical": 5,
@@ -20248,49 +20292,49 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 3500,
-    "max": 4500,
-    "chance": 40,
+    "min": 4340,
+    "max": 5580,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2900,
-    "max": 3600,
-    "chance": 36,
+    "min": 3596,
+    "max": 4464,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2700,
-    "max": 3400,
-    "chance": 32,
+    "min": 3348,
+    "max": 4216,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2500,
-    "max": 3200,
-    "chance": 30,
+    "min": 3100,
+    "max": 3968,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2600,
-    "max": 3300,
-    "chance": 28,
+    "min": 3224,
+    "max": 4092,
+    "chance": 11,
     "interval": 2000
    }
   ]
  },
  "radiant_paragon": {
   "name": "Radiant Paragon",
-  "hp": 36000,
+  "hp": 46080,
   "exp": 136338,
   "armor": 120,
   "dmg": [
    0,
-   2650
+   1643
   ],
   "resist": {
    "physical": 10,
@@ -20304,49 +20348,49 @@
   "abilities": [
    {
     "element": "physical",
-    "min": 3500,
-    "max": 4500,
-    "chance": 40,
+    "min": 4340,
+    "max": 5580,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2900,
-    "max": 3700,
-    "chance": 36,
+    "min": 3596,
+    "max": 4588,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2800,
-    "max": 3500,
-    "chance": 32,
+    "min": 3472,
+    "max": 4340,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2400,
-    "max": 3100,
-    "chance": 30,
+    "min": 2976,
+    "max": 3844,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2500,
-    "max": 3200,
-    "chance": 28,
+    "min": 3100,
+    "max": 3968,
+    "chance": 11,
     "interval": 2000
    }
   ]
  },
  "radiant_warden": {
   "name": "Radiant Warden",
-  "hp": 38500,
+  "hp": 49280,
   "exp": 139317,
   "armor": 140,
   "dmg": [
    0,
-   3200
+   1984
   ],
   "resist": {
    "physical": 10,
@@ -20360,49 +20404,49 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 3400,
-    "max": 4400,
-    "chance": 40,
+    "min": 4216,
+    "max": 5456,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2900,
-    "max": 3600,
-    "chance": 36,
+    "min": 3596,
+    "max": 4464,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 2600,
-    "max": 3300,
-    "chance": 32,
+    "min": 3224,
+    "max": 4092,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 2400,
-    "max": 3000,
-    "chance": 30,
+    "min": 2976,
+    "max": 3720,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2500,
-    "max": 3200,
-    "chance": 28,
+    "min": 3100,
+    "max": 3968,
+    "chance": 11,
     "interval": 2000
    }
   ]
  },
  "radiant_inquisitor": {
   "name": "Radiant Inquisitor",
-  "hp": 34800,
+  "hp": 44544,
   "exp": 108741,
   "armor": 115,
   "dmg": [
    0,
-   2650
+   1643
   ],
   "resist": {
    "physical": -10,
@@ -20416,49 +20460,49 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 3500,
-    "max": 4500,
-    "chance": 40,
+    "min": 4340,
+    "max": 5580,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2900,
-    "max": 3700,
-    "chance": 36,
+    "min": 3596,
+    "max": 4588,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2800,
-    "max": 3500,
-    "chance": 32,
+    "min": 3472,
+    "max": 4340,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2400,
-    "max": 3100,
-    "chance": 30,
+    "min": 2976,
+    "max": 3844,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2500,
-    "max": 3200,
-    "chance": 28,
+    "min": 3100,
+    "max": 3968,
+    "chance": 11,
     "interval": 2000
    }
   ]
  },
  "radiant_templar": {
   "name": "Radiant Templar",
-  "hp": 37000,
+  "hp": 47360,
   "exp": 115642,
   "armor": 135,
   "dmg": [
    0,
-   3100
+   1922
   ],
   "resist": {
    "physical": 5,
@@ -20472,49 +20516,49 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 3400,
-    "max": 4400,
-    "chance": 40,
+    "min": 4216,
+    "max": 5456,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2900,
-    "max": 3600,
-    "chance": 36,
+    "min": 3596,
+    "max": 4464,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 2600,
-    "max": 3300,
-    "chance": 32,
+    "min": 3224,
+    "max": 4092,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2400,
-    "max": 3000,
-    "chance": 30,
+    "min": 2976,
+    "max": 3720,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 2500,
-    "max": 3200,
-    "chance": 28,
+    "min": 3100,
+    "max": 3968,
+    "chance": 11,
     "interval": 2000
    }
   ]
  },
  "radiant_zealot": {
   "name": "Radiant Zealot",
-  "hp": 36500,
+  "hp": 46720,
   "exp": 117954,
   "armor": 110,
   "dmg": [
    0,
-   3300
+   2046
   ],
   "resist": {
    "physical": -15,
@@ -20528,186 +20572,210 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 3400,
-    "max": 4400,
-    "chance": 40,
+    "min": 4216,
+    "max": 5456,
+    "chance": 16,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 2900,
-    "max": 3600,
-    "chance": 36,
+    "min": 3596,
+    "max": 4464,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 2600,
-    "max": 3300,
-    "chance": 32,
+    "min": 3224,
+    "max": 4092,
+    "chance": 13,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 2400,
-    "max": 3000,
-    "chance": 30,
+    "min": 2976,
+    "max": 3720,
+    "chance": 12,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_acolyte": {
   "name": "Devoted Radiant Acolyte",
-  "hp": 39790,
+  "hp": 50931,
   "exp": 187494,
   "armor": 130,
   "dmg": [
    0,
-   3850
+   2387
   ],
-  "resist": {},
+  "resist": {
+   "physical": 5,
+   "energy": -5,
+   "earth": -5,
+   "fire": 40,
+   "ice": 10,
+   "holy": 5,
+   "death": 30
+  },
   "abilities": [
    {
     "element": "ice",
-    "min": 5040,
-    "max": 6480,
-    "chance": 45,
+    "min": 6250,
+    "max": 8035,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 4180,
-    "max": 5180,
-    "chance": 40,
+    "min": 5183,
+    "max": 6423,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 3890,
-    "max": 4900,
-    "chance": 36,
+    "min": 4824,
+    "max": 6076,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 3600,
-    "max": 4610,
-    "chance": 34,
+    "min": 4464,
+    "max": 5716,
+    "chance": 10,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 3740,
-    "max": 4750,
-    "chance": 32,
+    "min": 4638,
+    "max": 5890,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_paragon": {
   "name": "Devoted Radiant Paragon",
-  "hp": 41400,
+  "hp": 52992,
   "exp": 198195,
   "armor": 140,
   "dmg": [
    0,
-   3650
+   2263
   ],
-  "resist": {},
+  "resist": {
+   "physical": 10,
+   "energy": -10,
+   "earth": -15,
+   "fire": 30,
+   "ice": 5,
+   "holy": 0,
+   "death": 20
+  },
   "abilities": [
    {
     "element": "physical",
-    "min": 5040,
-    "max": 6480,
-    "chance": 45,
+    "min": 6250,
+    "max": 8035,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 4180,
-    "max": 5330,
-    "chance": 40,
+    "min": 5183,
+    "max": 6609,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 4030,
-    "max": 5040,
-    "chance": 36,
+    "min": 4997,
+    "max": 6250,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 3460,
-    "max": 4460,
-    "chance": 34,
+    "min": 4290,
+    "max": 5530,
+    "chance": 10,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 3600,
-    "max": 4610,
-    "chance": 32,
+    "min": 4464,
+    "max": 5716,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_warden": {
   "name": "Devoted Radiant Warden",
-  "hp": 44275,
+  "hp": 56672,
   "exp": 201018,
   "armor": 160,
   "dmg": [
    0,
-   4450
+   2759
   ],
-  "resist": {},
+  "resist": {
+   "physical": 10,
+   "energy": -10,
+   "earth": -5,
+   "fire": 30,
+   "ice": 10,
+   "holy": -10,
+   "death": 20
+  },
   "abilities": [
    {
     "element": "holy",
-    "min": 4900,
-    "max": 6340,
-    "chance": 45,
+    "min": 6076,
+    "max": 7862,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 4180,
-    "max": 5180,
-    "chance": 40,
+    "min": 5183,
+    "max": 6423,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 3740,
-    "max": 4750,
-    "chance": 36,
+    "min": 4638,
+    "max": 5890,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 3460,
-    "max": 4320,
-    "chance": 34,
+    "min": 4290,
+    "max": 5357,
+    "chance": 10,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 3600,
-    "max": 4610,
-    "chance": 32,
+    "min": 4464,
+    "max": 5716,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_inquisitor": {
   "name": "Devoted Radiant Inquisitor",
-  "hp": 40020,
+  "hp": 51226,
   "exp": 157551,
   "armor": 135,
   "dmg": [
    0,
-   3650
+   2263
   ],
   "resist": {
    "physical": -10,
@@ -20721,49 +20789,49 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 5040,
-    "max": 6480,
-    "chance": 45,
+    "min": 6250,
+    "max": 8035,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 4180,
-    "max": 5330,
-    "chance": 40,
+    "min": 5183,
+    "max": 6609,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 4030,
-    "max": 5040,
-    "chance": 36,
+    "min": 4997,
+    "max": 6250,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 3460,
-    "max": 4460,
-    "chance": 34,
+    "min": 4290,
+    "max": 5530,
+    "chance": 10,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 3600,
-    "max": 4610,
-    "chance": 32,
+    "min": 4464,
+    "max": 5716,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_templar": {
   "name": "Devoted Radiant Templar",
-  "hp": 42550,
+  "hp": 54464,
   "exp": 167199,
   "armor": 155,
   "dmg": [
    0,
-   4300
+   2666
   ],
   "resist": {
    "physical": 5,
@@ -20777,49 +20845,49 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 4900,
-    "max": 6340,
-    "chance": 45,
+    "min": 6076,
+    "max": 7862,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 4180,
-    "max": 5180,
-    "chance": 40,
+    "min": 5183,
+    "max": 6423,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 3740,
-    "max": 4750,
-    "chance": 36,
+    "min": 4638,
+    "max": 5890,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 3460,
-    "max": 4320,
-    "chance": 34,
+    "min": 4290,
+    "max": 5357,
+    "chance": 10,
     "interval": 2000
    },
    {
     "element": "physical",
-    "min": 3600,
-    "max": 4610,
-    "chance": 32,
+    "min": 4464,
+    "max": 5716,
+    "chance": 10,
     "interval": 2000
    }
   ]
  },
  "devoted_radiant_zealot": {
   "name": "Devoted Radiant Zealot",
-  "hp": 41980,
+  "hp": 53734,
   "exp": 169175,
   "armor": 130,
   "dmg": [
    0,
-   4700
+   2914
   ],
   "resist": {
    "physical": -15,
@@ -20833,30 +20901,30 @@
   "abilities": [
    {
     "element": "holy",
-    "min": 4900,
-    "max": 6340,
-    "chance": 45,
+    "min": 6076,
+    "max": 7862,
+    "chance": 14,
     "interval": 2000
    },
    {
     "element": "energy",
-    "min": 4180,
-    "max": 5180,
-    "chance": 40,
+    "min": 5183,
+    "max": 6423,
+    "chance": 12,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 3740,
-    "max": 4750,
-    "chance": 36,
+    "min": 4638,
+    "max": 5890,
+    "chance": 11,
     "interval": 2000
    },
    {
     "element": "holy",
-    "min": 3460,
-    "max": 4320,
-    "chance": 34,
+    "min": 4290,
+    "max": 5357,
+    "chance": 10,
     "interval": 2000
    }
   ]
@@ -20985,6 +21053,20 @@
     "interval": 2000
    },
    {
+    "element": "energy",
+    "min": 3500,
+    "max": 6100,
+    "chance": 35,
+    "interval": 2000
+   },
+   {
+    "element": "energy",
+    "min": 3600,
+    "max": 7200,
+    "chance": 30,
+    "interval": 2000
+   },
+   {
     "element": "death",
     "min": 3600,
     "max": 7200,
@@ -21048,8 +21130,8 @@
   "exp": 10000000,
   "armor": 250,
   "dmg": [
-   2400,
-   4800
+   1680,
+   3360
   ],
   "resist": {
    "physical": 0,
@@ -21063,37 +21145,37 @@
   "abilities": [
    {
     "element": "ice",
-    "min": 6800,
-    "max": 11200,
-    "chance": 40,
+    "min": 4760,
+    "max": 7840,
+    "chance": 34,
     "interval": 2000
    },
    {
     "element": "ice",
-    "min": 8400,
-    "max": 14450,
-    "chance": 35,
+    "min": 5880,
+    "max": 10115,
+    "chance": 30,
     "interval": 2000
    },
    {
     "element": "fire",
-    "min": 8600,
-    "max": 17100,
-    "chance": 35,
+    "min": 6020,
+    "max": 11970,
+    "chance": 30,
     "interval": 3000
    },
    {
     "element": "holy",
-    "min": 7200,
-    "max": 14400,
-    "chance": 25,
+    "min": 5040,
+    "max": 10080,
+    "chance": 21,
     "interval": 2000
    },
    {
     "element": "death",
-    "min": 9300,
-    "max": 16700,
-    "chance": 20,
+    "min": 6510,
+    "max": 11690,
+    "chance": 17,
     "interval": 4000
    }
   ]
